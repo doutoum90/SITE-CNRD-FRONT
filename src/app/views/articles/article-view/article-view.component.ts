@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ArticlesService } from '../articles.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ArticlesService } from "../articles.service";
 
 @Component({
   selector: "app-article-view",
@@ -15,6 +15,8 @@ export class ArticleViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.article$ = this.articleService.getArticle(this._activatedRoute.snapshot.params.id);
+    this.article$ = this.articleService.getArticle(
+      this._activatedRoute.snapshot.params.id
+    );
   }
 }
