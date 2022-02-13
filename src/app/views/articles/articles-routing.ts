@@ -17,7 +17,7 @@ export const ArticleRoutes: Routes = [
     },
   },
   {
-    path: "add/:id",
+    path: "add",
     component: AddArticleComponent,
     canActivate: [UserRoleGuard],
     data: {
