@@ -10,12 +10,6 @@ export const rootRouterConfig: Routes = [
     pathMatch: "full",
   },
   {
-    path: "home",
-    loadChildren: () =>
-      import("./views/articles/articles.module").then((m) => m.ArticlesModule),
-    data: { title: "Choose A Demo" },
-  },
-  {
     path: "",
     component: AuthLayoutComponent,
     children: [
@@ -35,6 +29,7 @@ export const rootRouterConfig: Routes = [
     canActivate: [AuthGuard],
     children: [
       {
+        // vu
         path: "dashboard",
         loadChildren: () =>
           import("./views/dashboard/dashboard.module").then(
@@ -43,52 +38,18 @@ export const rootRouterConfig: Routes = [
         data: { title: "Dashboard", breadcrumb: "DASHBOARD" },
       },
       {
-        path: "material",
-        loadChildren: () =>
-          import(
-            "./views/material-example-view/material-example-view.module"
-          ).then((m) => m.MaterialExampleViewModule),
-        data: { title: "Material", breadcrumb: "MATERIAL" },
-      },
-      {
-        path: "dialogs",
-        loadChildren: () =>
-          import("./views/app-dialogs/app-dialogs.module").then(
-            (m) => m.AppDialogsModule
-          ),
-        data: { title: "Dialogs", breadcrumb: "DIALOGS" },
-      },
-      {
+        // vu
         path: "profile",
         loadChildren: () =>
           import("./views/profile/profile.module").then((m) => m.ProfileModule),
         data: { title: "Profile", breadcrumb: "PROFILE" },
       },
       {
+        // vu
         path: "others",
         loadChildren: () =>
           import("./views/others/others.module").then((m) => m.OthersModule),
         data: { title: "Others", breadcrumb: "OTHERS" },
-      },
-      {
-        path: "tables",
-        loadChildren: () =>
-          import("./views/tables/tables.module").then((m) => m.TablesModule),
-        data: { title: "Tables", breadcrumb: "TABLES" },
-      },
-      {
-        path: "tour",
-        loadChildren: () =>
-          import("./views/app-tour/app-tour.module").then(
-            (m) => m.AppTourModule
-          ),
-        data: { title: "Tour", breadcrumb: "TOUR" },
-      },
-      {
-        path: "forms",
-        loadChildren: () =>
-          import("./views/forms/forms.module").then((m) => m.AppFormsModule),
-        data: { title: "Forms", breadcrumb: "FORMS" },
       },
       {
         path: "chart",
@@ -127,26 +88,12 @@ export const rootRouterConfig: Routes = [
         data: { title: "Inbox", breadcrumb: "INBOX" },
       },
       {
-        path: "calendar",
-        loadChildren: () =>
-          import("./views/app-calendar/app-calendar.module").then(
-            (m) => m.AppCalendarModule
-          ),
-        data: { title: "Calendar", breadcrumb: "CALENDAR" },
-      },
-      {
         path: "chat",
         loadChildren: () =>
           import("./views/app-chats/app-chats.module").then(
             (m) => m.AppChatsModule
           ),
         data: { title: "Chat", breadcrumb: "CHAT" },
-      },
-      {
-        path: "cruds",
-        loadChildren: () =>
-          import("./views/cruds/cruds.module").then((m) => m.CrudsModule),
-        data: { title: "CRUDs", breadcrumb: "CRUDs" },
       },
       {
         path: "shop",

@@ -23,13 +23,21 @@ import { SharedPipesModule } from "app/shared/pipes/shared-pipes.module";
 
 import { ArticleRoutes } from "./articles-routing";
 import { HomeComponent } from "./home/home.component";
-import { AddArticleComponent } from './add-article/add-article.component';
-import { ArticleViewComponent } from './article-view/article-view.component';
+import { AddArticleComponent } from "./add-article/add-article.component";
+import { ArticleViewComponent } from "./article-view/article-view.component";
+import { QuillModule } from "ngx-quill";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatStepperModule } from "@angular/material/stepper";
+import { MatInputModule } from "@angular/material/input";
+import { FileUploadModule } from "ng2-file-upload";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatIconModule,
+    MatInputModule,
     MatCardModule,
     MatMenuModule,
     MatProgressBarModule,
@@ -41,13 +49,16 @@ import { ArticleViewComponent } from './article-view/article-view.component';
     MatTableModule,
     MatGridListModule,
     FlexLayoutModule,
+    MatStepperModule,
     ChartsModule,
     NgxEchartsModule.forRoot({
       echarts,
     }),
+    QuillModule.forRoot(),
     NgApexchartsModule,
     NgxDatatableModule,
     SharedPipesModule,
+    FileUploadModule,
     RouterModule.forChild(ArticleRoutes),
   ],
   declarations: [HomeComponent, AddArticleComponent, ArticleViewComponent],
