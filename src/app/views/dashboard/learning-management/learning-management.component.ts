@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./learning-management.component.scss'],
 })
 export class LearningManagementComponent implements OnInit {
+  user = 'Mahamat'
   welcomeProgressChart = {
     series: [76],
     chartOptions: {

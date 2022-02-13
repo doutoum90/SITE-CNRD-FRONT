@@ -1,0 +1,64 @@
+<div class="">
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
+      <mat-card class="p-24">
+        <div fxLayout="row wrap">
+          <div fxFlex="100">
+            <ul>
+              <li *ngFor="let article of articles$ | async">
+                {{ article.content }}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </mat-card>
+
+      <div fxLayout="row wrap">
+        <div fxFlex="50" *ngFor="let article of articles$ | async">
+          <mat-card>
+            <mat-card-title>{{ article.title }}</mat-card-title>
+            <p class="text-small">
+              {{ article.shortContent }}
+            </p>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
+      <mat-card>
+        <div class="mat-heading-label">Articles archivés</div>
+        <div class="d-flex mb-16" *ngFor="let r of archivedArticle$ | async">
+          <div
+            class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center"
+          >
+            <mat-icon>{{ r.icon }}</mat-icon>
+          </div>
+          <div class="d-flex flex-column justify-content-center flex-grow-1">
+            <h6 class="mb-4">{{ r.title }}</h6>
+            <small class="text-muted">{{ r.date }}</small>
+          </div>
+          <button mat-icon-button>
+            <mat-icon class="text-muted">more_vert</mat-icon>
+          </button>
+        </div>
+        <div class="my-24"></div>
+        <div class="mat-heading-label">Upcoming Challenges</div>
+        <div class="d-flex mb-16" *ngFor="let r of archivedArticle$ | async">
+          <div
+            class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center"
+          >
+            <mat-icon>{{ r.icon }}</mat-icon>
+          </div>
+          <div class="d-flex flex-column justify-content-center flex-grow-1">
+            <h6 class="mb-4">{{ r.title }}</h6>
+            <small class="text-muted">{{ r.date }}</small>
+          </div>
+          <button mat-icon-button>
+            <mat-icon class="text-muted">more_vert</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+<div class="">
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
+      <mat-card class="p-24" *ngIf="article$ | async as article">
+        <div fxLayout="row wrap">
+          <div fxFlex="100">
+            <mat-card-title>{{ article.title }}</mat-card-title>
+            <p>
+              {{ article.content }}
+            </p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+    <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
+      <mat-card>
+        <div class="mat-heading-label">Articles Connexes</div>
+
+        <p class="m-12">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
+          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
+          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
+          dicta saepe.
+        </p>
+      </mat-card>
+    </div>
+  </div>
+</div>
