@@ -40,11 +40,13 @@ import { EgretExampleViewerComponent } from "./example-viewer/example-viewer.com
 import { EgretExampleViewerTemplateComponent } from "./example-viewer-template/example-viewer-template.component";
 import { EgretNotifications2Component } from "./egret-notifications2/egret-notifications2.component";
 import { FrontLayoutComponent } from "./layouts/front-layout/front-layout.component";
+import { SidenavFrontComponent } from "./sidenav-front/sidenav-front.component";
 
 const components = [
   HeaderTopComponent,
   SidebarTopComponent,
   SidenavComponent,
+  SidenavFrontComponent,
   NotificationsComponent,
   SidebarSideComponent,
   HeaderSideComponent,
