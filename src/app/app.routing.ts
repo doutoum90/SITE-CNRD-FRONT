@@ -28,12 +28,11 @@ export const rootRouterConfig: Routes = [
   {
     path: "",
     component: FrontLayoutComponent,
-    canActivate: [UserRoleGuard],
+    canActivate: [AuthGuard],
     children: [
       {
         // vu
         path: "articles",
-        pathMatch: "full",
         loadChildren: () =>
           import("./views/articles/articles.module").then(
             (m) => m.ArticlesModule

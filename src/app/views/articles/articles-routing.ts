@@ -8,6 +8,11 @@ import { ArticleViewComponent } from "./article-view/article-view.component";
 export const ArticleRoutes: Routes = [
   {
     path: "",
+    redirectTo: "home",
+    pathMatch: "full",
+  },
+  {
+    path: "home",
     component: HomeComponent,
     canActivate: [UserRoleGuard],
     data: {
