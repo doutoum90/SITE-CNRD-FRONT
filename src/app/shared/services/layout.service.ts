@@ -44,18 +44,18 @@ export class LayoutService {
     this.setAppLayout(
       // ******** SET YOUR LAYOUT OPTIONS HERE *********
       {
-        navigationPos: 'side', // side, top
-        sidebarStyle: 'full', // full, compact, closed
-        sidebarColor: 'slate', // http://demos.ui-lib.com/egret-doc/#egret-colors
+        navigationPos: "side", // side, top
+        sidebarStyle: "closed", // full, compact, closed
+        sidebarColor: "slate", // http://demos.ui-lib.com/egret-doc/#egret-colors
         sidebarCompactToggle: false, // applied when "sidebarStyle" is "compact"
-        dir: 'ltr', // ltr, rtl
+        dir: "ltr", // ltr, rtl
         useBreadcrumb: true,
         topbarFixed: false,
         footerFixed: false,
-        topbarColor: 'white', // http://demos.ui-lib.com/egret-doc/#egret-colors
-        footerColor: 'slate', // http://demos.ui-lib.com/egret-doc/#egret-colors
-        matTheme: 'egret-navy', // egret-navy, egret-navy-dark
-        breadcrumb: 'simple', // simple, title
+        topbarColor: "white", // http://demos.ui-lib.com/egret-doc/#egret-colors
+        footerColor: "slate", // http://demos.ui-lib.com/egret-doc/#egret-colors
+        matTheme: "egret-navy", // egret-navy, egret-navy-dark
+        breadcrumb: "simple", // simple, title
         perfectScrollbar: true,
       }
     );
@@ -75,7 +75,9 @@ export class LayoutService {
       this.themeService.changeTheme(this.layoutConf.matTheme, lc.matTheme);
     }
 
+    
     this.layoutConf = Object.assign(this.layoutConf, lc);
+    
     this.layoutConfSubject.next(this.layoutConf);
   }
 
@@ -96,7 +98,7 @@ export class LayoutService {
     let sidebarStyle: string;
     this.isMobile = this.isSm();
     this.currentRoute = options.route || this.currentRoute;
-    sidebarStyle = this.isMobile ? 'closed' : 'full';
+    sidebarStyle = this.isMobile ? 'closed' : 'closed';
 
     if (this.currentRoute) {
       this.fullWidthRoutes.forEach((route) => {

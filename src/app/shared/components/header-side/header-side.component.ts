@@ -1,26 +1,42 @@
-import { Component, OnInit, EventEmitter, Input, ViewChildren  , Output, Renderer2 } from '@angular/core';
-import { ThemeService } from '../../services/theme.service';
-import { LayoutService } from '../../services/layout.service';
-import { TranslateService } from '@ngx-translate/core';
-import { JwtAuthService } from '../../services/auth/jwt-auth.service';
-import { EgretNotifications2Component } from '../egret-notifications2/egret-notifications2.component';
+import {
+  Component,
+  OnInit,
+  EventEmitter,
+  Input,
+  ViewChildren,
+  Output,
+  Renderer2,
+} from "@angular/core";
+import { ThemeService } from "../../services/theme.service";
+import { LayoutService } from "../../services/layout.service";
+import { TranslateService } from "@ngx-translate/core";
+import { JwtAuthService } from "../../services/auth/jwt-auth.service";
+import { EgretNotifications2Component } from "../egret-notifications2/egret-notifications2.component";
 
 @Component({
-  selector: 'app-header-side',
-  templateUrl: './header-side.template.html'
+  selector: "app-header-side",
+  templateUrl: "./header-side.template.html",
 })
 export class HeaderSideComponent implements OnInit {
   @Input() notificPanel;
   @ViewChildren(EgretNotifications2Component) noti;
-  public availableLangs = [{
-    name: 'EN',
-    code: 'en',
-    flag: 'flag-icon-us'
-  }, {
-    name: 'ES',
-    code: 'es',
-    flag: 'flag-icon-es'
-  }];
+  public availableLangs = [
+    {
+      name: "FR",
+      code: "fr",
+      flag: "flag-icon-fr",
+    },
+    {
+      name: "EN",
+      code: "en",
+      flag: "flag-icon-us",
+    },
+    {
+      name: "ES",
+      code: "es",
+      flag: "flag-icon-es",
+    },
+  ];
   currentLang = this.availableLangs[0];
 
   public egretThemes;
@@ -48,34 +64,38 @@ export class HeaderSideComponent implements OnInit {
     this.notificPanel.toggle();
   }
   toggleSidenav() {
-    if (this.layoutConf.sidebarStyle === 'closed') {
+    console.log(this.layoutConf.sidebarStyle);
+    if (this.layoutConf.sidebarStyle === "closed") {
       return this.layout.publishLayoutChange({
-        sidebarStyle: 'full'
+        sidebarStyle: "full",
       });
     }
     this.layout.publishLayoutChange({
-      sidebarStyle: 'closed'
+      sidebarStyle: "closed",
     });
   }
 
   toggleCollapse() {
     // compact --> full
-    if (this.layoutConf.sidebarStyle === 'compact') {
-      return this.layout.publishLayoutChange({
-        sidebarStyle: 'full',
-        sidebarCompactToggle: false
-      }, {transitionClass: true});
+    if (this.layoutConf.sidebarStyle === "compact") {
+      return this.layout.publishLayoutChange(
+        {
+          sidebarStyle: "full",
+          sidebarCompactToggle: false,
+        },
+        { transitionClass: true }
+      );
     }
 
     // * --> compact
-    this.layout.publishLayoutChange({
-      sidebarStyle: 'compact',
-      sidebarCompactToggle: true
-    }, {transitionClass: true});
-
+    this.layout.publishLayoutChange(
+      {
+        sidebarStyle: "compact",
+        sidebarCompactToggle: true,
+      },
+      { transitionClass: true }
+    );
   }
 
-  onSearch(e) {
-    //   console.log(e)
-  }
+  onSearch(e) {}
 }

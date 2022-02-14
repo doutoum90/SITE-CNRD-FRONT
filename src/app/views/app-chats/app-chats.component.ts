@@ -30,7 +30,6 @@ export class AppChatsComponent implements OnInit, OnDestroy {
     private mediaObserver: MediaObserver, 
     public chatService: ChatService
   ) {
-    // console.log(chatService.chats)
     this.user = chatService.user
   }
 

@@ -1,4 +1,5 @@
 {
+  "LEARNING": "Apprentero",
   "DASHBOARD": "Tablero",
   "APPS": "Apps",
   "INBOX": "Mensaje",
@@ -18,7 +19,7 @@
   "CHECKBOX": "Checkbox",
   "DATEPICKER": "Datepicker",
   "RADIO": "Radio",
-  "TOOLBAR": "Toolbar",    
+  "TOOLBAR": "Toolbar",
   "LISTS": "lista",
   "GRIDS": "Grids",
   "PROGRESS": "Progreso",

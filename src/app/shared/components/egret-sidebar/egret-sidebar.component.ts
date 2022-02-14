@@ -8,7 +8,7 @@ import {
   Directive,
   Renderer2,
   ElementRef,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from "@angular/core";
 import { MatchMediaService } from "app/shared/services/match-media.service";
 import { MediaObserver } from "@angular/flex-layout";
@@ -19,7 +19,7 @@ import { EgretSidebarHelperService } from "./egret-sidebar-helper.service";
 @Component({
   selector: "egret-sidebar",
   templateUrl: "./egret-sidebar.component.html",
-  styleUrls: ["./egret-sidebar.component.scss"]
+  styleUrls: ["./egret-sidebar.component.scss"],
 })
 export class EgretSidebarComponent implements OnInit, OnDestroy {
   // Name
@@ -72,7 +72,6 @@ export class EgretSidebarComponent implements OnInit, OnDestroy {
     this.matchMediaService.onMediaChange
       .pipe(takeUntil(this.unsubscribeAll))
       .subscribe(() => {
-        // console.log("medua sub");
         if (this.mediaObserver.isActive(this.lockedBreakpoint)) {
           this.sidebarLockedOpen = true;
           this.opened = true;
@@ -137,7 +136,7 @@ export class EgretSidebarComponent implements OnInit, OnDestroy {
 }
 
 @Directive({
-  selector: "[egretSidebarToggler]"
+  selector: "[egretSidebarToggler]",
 })
 export class EgretSidebarTogglerDirective {
   @Input("egretSidebarToggler")

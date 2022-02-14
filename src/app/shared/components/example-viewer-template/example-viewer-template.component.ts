@@ -1,12 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Subject, combineLatest } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { Subject, combineLatest } from "rxjs";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
-  selector: 'egret-example-viewer-template',
-  templateUrl: './example-viewer-template.component.html',
-  styleUrls: ['./example-viewer-template.component.scss']
+  selector: "egret-example-viewer-template",
+  templateUrl: "./example-viewer-template.component.html",
+  styleUrls: ["./example-viewer-template.component.scss"],
 })
 export class EgretExampleViewerTemplateComponent implements OnInit, OnDestroy {
   private unsubscribeAll: Subject<any>;
@@ -22,17 +22,16 @@ export class EgretExampleViewerTemplateComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     combineLatest(this.route.params, this.route.data)
-    .pipe(takeUntil(this.unsubscribeAll))
-    .subscribe(([params, data]) => {
-      this.id = params['id'];
-      this.examples = data.map[this.id];
-      this.exampleComponents = data.components;
-      this.componentDirPath = data.path;
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(([params, data]) => {
+        this.id = params["id"];
+        this.examples = data.map[this.id];
+        this.exampleComponents = data.components;
+        this.componentDirPath = data.path;
 
-      const title = this.id.replace('-', ' ');
-      this.title = title.charAt(0).toUpperCase() + title.substring(1);
-      // console.log(params, data);
-    });
+        const title = this.id.replace("-", " ");
+        this.title = title.charAt(0).toUpperCase() + title.substring(1);
+      });
   }
 
   ngOnDestroy() {

@@ -11,34 +11,41 @@ import { config } from 'config';
 
 export const DashboardRoutes: Routes = [
   {
-    path: 'default',
+    path: "default",
     component: DefaultDashboardComponent,
     canActivate: [UserRoleGuard],
-    data: { title: 'Default', breadcrumb: 'Default', roles: config.authRoles.sa }
+    data: {
+      title: "Default",
+      breadcrumb: "Default",
+      roles: config.authRoles.sa,
+    },
   },
   {
-    path: 'learning-management',
+    path: "learning-management",
     component: LearningManagementComponent,
-    data: { title: 'Learning management', breadcrumb: 'Learning management' }
+    data: { title: "Learning management", breadcrumb: "LEARNING" },
   },
   {
-    path: 'analytics',
+    path: "analytics",
     component: AnalyticsComponent,
-    data: { title: 'Analytics', breadcrumb: 'Analytics' }
+    data: { title: "Analytics", breadcrumb: "Analytics" },
   },
   {
-    path: 'analytics-alt',
+    path: "analytics-alt",
     component: AnalyticsAltComponent,
-    data: { title: 'Analytics Alternative', breadcrumb: 'Analytics Alternative' }
+    data: {
+      title: "Analytics Alternative",
+      breadcrumb: "Analytics Alternative",
+    },
   },
   {
-    path: 'crypto',
+    path: "crypto",
     component: CryptocurrencyComponent,
-    data: { title: 'Cryptocurrency', breadcrumb: 'Cryptocurrency' }
+    data: { title: "Cryptocurrency", breadcrumb: "Cryptocurrency" },
   },
   {
-    path: 'dark',
+    path: "dark",
     component: DashboardDarkComponent,
-    data: { title: 'Dark Cards', breadcrumb: 'Dark Cards' }
-  }
+    data: { title: "Dark Cards", breadcrumb: "Dark Cards" },
+  },
 ];
