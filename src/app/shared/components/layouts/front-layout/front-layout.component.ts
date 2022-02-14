@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: "app-auth-layout",
-  templateUrl: "./auth-layout.component.html",
+  selector: "app-front-layout",
+  templateUrl: "./front-layout.template.html",
 })
-export class AuthLayoutComponent implements OnInit {
+export class FrontLayoutComponent implements OnInit {
   constructor(public translate: TranslateService) {
     // Translator init
     const browserLang: string = translate.getBrowserLang();

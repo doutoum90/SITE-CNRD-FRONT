@@ -1,7 +1,9 @@
 import { Routes } from "@angular/router";
 import { AdminLayoutComponent } from "./shared/components/layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from "./shared/components/layouts/auth-layout/auth-layout.component";
+import { FrontLayoutComponent } from "./shared/components/layouts/front-layout/front-layout.component";
 import { AuthGuard } from "./shared/guards/auth.guard";
+import { UserRoleGuard } from "./shared/guards/user-role.guard";
 
 export const rootRouterConfig: Routes = [
   {
@@ -20,6 +22,23 @@ export const rootRouterConfig: Routes = [
             (m) => m.SessionsModule
           ),
         data: { title: "Session" },
+      },
+    ],
+  },
+  {
+    path: "",
+    component: FrontLayoutComponent,
+    canActivate: [UserRoleGuard],
+    children: [
+      {
+        // vu
+        path: "articles",
+        pathMatch: "full",
+        loadChildren: () =>
+          import("./views/articles/articles.module").then(
+            (m) => m.ArticlesModule
+          ),
+        data: { title: "Articles", breadcrumb: "Articles" },
       },
     ],
   },
@@ -102,15 +121,6 @@ export const rootRouterConfig: Routes = [
           import("./views/page-layouts/page-layouts.module").then(
             (m) => m.PageLayoutsModule
           ),
-      },
-      {
-        // vu
-        path: "articles",
-        loadChildren: () =>
-          import("./views/articles/articles.module").then(
-            (m) => m.ArticlesModule
-          ),
-        data: { title: "Articles", breadcrumb: "Articles" },
       },
     ],
   },
