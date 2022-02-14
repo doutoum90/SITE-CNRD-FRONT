@@ -1,14 +1,9 @@
-import { NgEgretPage } from './app.po';
+import { NgCNRDPage } from "./app.po";
 
-describe('ng-egret App', () => {
-  let page: NgEgretPage;
+describe("ng-egret App", () => {
+  let page: NgCNRDPage;
 
   beforeEach(() => {
-    page = new NgEgretPage();
-  });
-
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
+    page = new NgCNRDPage();
   });
 });
