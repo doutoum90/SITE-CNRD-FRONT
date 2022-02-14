@@ -1,7 +1,7 @@
 {
-  "name": "egret",
-  "version": "13.0.0",
-  "license": "https://themeforest.net/licenses/terms/regular",
+  "name": "cnrd",
+  "version": "1.0.0",
+  "license": "",
   "scripts": {
     "postinstall": "ngcc",
     "ng": "ng",

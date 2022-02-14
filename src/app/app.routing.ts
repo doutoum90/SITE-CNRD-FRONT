@@ -52,34 +52,7 @@ export const rootRouterConfig: Routes = [
         data: { title: "Others", breadcrumb: "OTHERS" },
       },
       {
-        path: "chart",
-        loadChildren: () =>
-          import("./views/chart-example-view/chart-example-view.module").then(
-            (m) => m.ChartExampleViewModule
-          ),
-        data: { title: "Charts", breadcrumb: "CHARTS" },
-      },
-      {
-        path: "charts",
-        loadChildren: () =>
-          import("./views/charts/charts.module").then((m) => m.AppChartsModule),
-        data: { title: "Charts", breadcrumb: "CHARTS" },
-      },
-      {
-        path: "map",
-        loadChildren: () =>
-          import("./views/map/map.module").then((m) => m.AppMapModule),
-        data: { title: "Map", breadcrumb: "MAP" },
-      },
-      {
-        path: "dragndrop",
-        loadChildren: () =>
-          import("./views/dragndrop/dragndrop.module").then(
-            (m) => m.DragndropModule
-          ),
-        data: { title: "Drag and Drop", breadcrumb: "DND" },
-      },
-      {
+        //vu
         path: "inbox",
         loadChildren: () =>
           import("./views/app-inbox/app-inbox.module").then(
@@ -88,6 +61,7 @@ export const rootRouterConfig: Routes = [
         data: { title: "Inbox", breadcrumb: "INBOX" },
       },
       {
+        // vu
         path: "chat",
         loadChildren: () =>
           import("./views/app-chats/app-chats.module").then(
@@ -96,6 +70,7 @@ export const rootRouterConfig: Routes = [
         data: { title: "Chat", breadcrumb: "CHAT" },
       },
       {
+        //vu
         path: "shop",
         loadChildren: () =>
           import("./views/shop/shop.module").then((m) => m.ShopModule),
@@ -109,22 +84,19 @@ export const rootRouterConfig: Routes = [
           ),
       },
       {
+        // vu
         path: "invoice",
         loadChildren: () =>
           import("./views/invoice/invoice.module").then((m) => m.InvoiceModule),
       },
       {
+        // vu
         path: "todo",
         loadChildren: () =>
           import("./views/todo/todo.module").then((m) => m.TodoModule),
       },
       {
-        path: "orders",
-        loadChildren: () =>
-          import("./views/order/order.module").then((m) => m.OrderModule),
-        data: { title: "Orders", breadcrumb: "Orders" },
-      },
-      {
+        // vu
         path: "page-layouts",
         loadChildren: () =>
           import("./views/page-layouts/page-layouts.module").then(
@@ -132,21 +104,7 @@ export const rootRouterConfig: Routes = [
           ),
       },
       {
-        path: "utilities",
-        loadChildren: () =>
-          import("./views/utilities/utilities.module").then(
-            (m) => m.UtilitiesModule
-          ),
-      },
-      {
-        path: "icons",
-        loadChildren: () =>
-          import("./views/mat-icons/mat-icons.module").then(
-            (m) => m.MatIconsModule
-          ),
-        data: { title: "Icons", breadcrumb: "Icons" },
-      },
-      {
+        // vu
         path: "articles",
         loadChildren: () =>
           import("./views/articles/articles.module").then(

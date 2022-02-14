@@ -24,6 +24,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TodoSearchPipe } from './todo-search.pipe';
 import { TagDialogueComponent } from './tag-dialogue/tag-dialogue.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [TodoComponent, TodoListComponent, TodoDetailsComponent, TodoSearchPipe, TagDialogueComponent],
@@ -45,6 +46,7 @@ import { TagDialogueComponent } from './tag-dialogue/tag-dialogue.component';
     MatInputModule,
     ReactiveFormsModule,
     MatTooltipModule,
+    MatCardModule,
     MatDialogModule,
     MatChipsModule,
     PerfectScrollbarModule
