@@ -1,7 +1,7 @@
 <div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <mat-card class="p-24">
+      <mat-card class="p-24" >
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <p>
@@ -23,7 +23,7 @@
 
       <div fxLayout="row wrap">
         <div fxFlex="50" *ngFor="let article of articles$ | async">
-          <mat-card>
+          <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
             <p class="text-small">
               {{ article.shortContent }}
