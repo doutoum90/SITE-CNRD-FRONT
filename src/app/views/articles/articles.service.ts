@@ -1,115 +1,87 @@
 import { Injectable } from "@angular/core";
 import { of } from "rxjs";
+import { Article } from "./model/article.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class ArticlesService {
-  archivedArticle = [
+  articles: Article[] = [
     {
+      id: "ABSDDSDSD",
       title: "Data structure test",
-      date: "23 December 2019",
+      isArchived: true,
+      content:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p>",
+      shortContent:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p>",
+      datePublication: "23 December 2019",
       icon: "view_week",
     },
     {
-      title: "Design pattern test",
-      date: "24 December 2019",
+      id: "ABSDDSDSDdfddf",
+      title: "Design pattern",
+      content:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p>",
+      shortContent:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p>",
+      isArchived: true,
+      datePublication: "24 December 2019",
       icon: "library_books",
     },
     {
+      id: "xyxyxyxyxyxyxyxy",
       title: "Algorithm test",
-      date: "24 December 2019",
+      isArchived: true,
+      content:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p>",
+      shortContent:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p>",
+      datePublication: "24 December 2019",
       icon: "games",
     },
     {
-      title: "Code organizing test",
-      date: "27 December 2019",
+      id: "xyxyzwyzxyzwyzxyz",
+      title: "Code organizing",
+      isArchived: true,
+      content:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p>",
+      shortContent:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p>",
+      datePublication: "27 December 2019",
       icon: "library_books",
     },
-  ];
-
-  articles = [
     {
       id: "jrejherhrej",
       title: "Data structure test",
-      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.`,
+      isArchived: false,
+      content:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p>",
       shortContent:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam",
-      date: "23 December 2019",
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p>",
+      datePublication: "23 December 2019",
       icon: "view_week",
     },
     {
       id: "jrejherhrejefjhreher",
       title: "Design pattern test",
-      content: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.`,
+      isArchived: false,
+      content:
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p><br></p>",
       shortContent:
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam",
-      date: "24 December 2019",
+        "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, recusandae! Modi fuga fugit quo aut optio odit harum cum, enim ipsa illo reprehenderit nulla itaque omnis odio magni deserunt ipsum!</p><p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officiis nisi consequuntur totam provident molestias laboriosam quia illum? Dolorum illo, nobis suscipit placeat vero voluptatem tenetur totam pariatur quaerat deleniti molestiae?</p>",
+      datePublication: "24 December 2019",
       icon: "library_books",
     },
   ];
   constructor() {}
 
   getArchivedArticle() {
-    return of(this.archivedArticle);
+    return of(this.articles.filter((article) => article.isArchived === true));
   }
 
   getArticles() {
-    return of(this.articles);
+    return of(this.articles.filter((article) => article.isArchived === false));
   }
 
   getArticle(id: string) {

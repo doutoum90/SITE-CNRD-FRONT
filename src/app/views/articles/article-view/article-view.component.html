@@ -5,9 +5,7 @@
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-card-title>{{ article.title }}</mat-card-title>
-            <p>
-              {{ article.content }}
-            </p>
+            <p [innerHtml]="article.content"></p>
           </div>
         </div>
       </mat-card>

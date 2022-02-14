@@ -57,7 +57,8 @@ articles
 - -shortContent: text
 - -libelles: string
 - -auteur: string
-- -dateAjout: Date - dateModification: Date
+- -datePublication: Date 
+- -dateModification: Date
 - -icon: string
 - #idArtCat
 - #idUser
