@@ -14,10 +14,10 @@ import { JwtAuthService } from "../../services/auth/jwt-auth.service";
 import { EgretNotifications2Component } from "../egret-notifications2/egret-notifications2.component";
 
 @Component({
-  selector: "app-header-side",
-  templateUrl: "./header-side.template.html",
+  selector: "app-header-side-front",
+  templateUrl: "./header-side-front.template.html",
 })
-export class HeaderSideComponent implements OnInit {
+export class HeaderSideFrontComponent implements OnInit {
   @Input() notificPanel;
   @ViewChildren(EgretNotifications2Component) noti;
   public availableLangs = [

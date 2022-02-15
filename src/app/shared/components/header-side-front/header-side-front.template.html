@@ -1,0 +1,43 @@
+<mat-toolbar class="topbar mat-bg-card">
+  <!-- Sidenav toggle button -->
+  <button
+    *ngIf="layoutConf.sidebarStyle !== 'compact'"
+    mat-icon-button
+    id="sidenavToggle"
+    (click)="toggleSidenav()"
+    matTooltip="Toggle Hide/Open"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span fxFlex></span>
+
+  <button mat-button [routerLink]="['/home']">
+    <mat-icon>home</mat-icon>
+    <span>Acceuil</span>
+  </button>
+  <button mat-button [routerLink]="['/about']">
+    <mat-icon>settings</mat-icon>
+    <span>A propos</span>
+  </button>
+  <button mat-button [routerLink]="['/contact']">
+    <mat-icon>settings</mat-icon>
+    <span>Contact</span>
+  </button>
+
+  <!-- Language Switcher -->
+  <button mat-button [matMenuTriggerFor]="menu">
+    <span class="flag-icon {{currentLang.flag}} mr-8"></span>
+    <span>{{currentLang.name}}</span>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button
+      mat-menu-item
+      *ngFor="let lang of availableLangs"
+      (click)="setLang(lang)"
+    >
+      <span class="flag-icon mr-8 {{lang.flag}}"></span>
+      <span>{{lang.name}}</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>
