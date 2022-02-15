@@ -23,10 +23,19 @@
       </mat-card>
 
       <div fxLayout="row wrap">
-        <div fxFlex="50" *ngFor="let article of articles$ | async">
+        <div fxFlex="33" *ngFor="let article of articles$ | async;  let i = index">
+          <!--  -->
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
-            <p class="text-small" [innerHtml]="article.shortContent"></p>
+
+            <p [innerHtml]="article.content | slice:0:250">
+
+
+            </p>
+            <!--<span>
+              <a href="javascript:;" *ngIf="!readMore" (click)="readMoreArticle(i)">{{"READMORE" | translate }}</a>
+            </span> ">
+            <p class="text-small" [innerHtml]="article.shortContent"></p>-->
           </mat-card>
         </div>
       </div>

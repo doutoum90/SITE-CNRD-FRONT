@@ -1,4 +1,5 @@
 {
+  "READMORE": "Read more",
   "LEARNING": "Learning management",
   "DASHBOARD": "Dashboard",
   "APPS": "Apps",
@@ -18,7 +19,7 @@
   "CHECKBOX": "Checkbox",
   "DATEPICKER": "Datepicker",
   "RADIO": "Radio",
-  "TOOLBAR": "Toolbar",    
+  "TOOLBAR": "Toolbar",
   "LISTS": "Lists",
   "GRIDS": "Grids",
   "PROGRESS": "Progress",
@@ -70,7 +71,7 @@
   "ERROR": "Error",
   "OVERVIEW": "Overview",
   "SETTINGS": "Settings",
-  
+
   "ECOMMERCE": "Ecommerce",
   "SHOP": "Shop",
   "PRODUCTS": "Products",
