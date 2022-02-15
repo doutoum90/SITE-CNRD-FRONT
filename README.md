@@ -68,7 +68,7 @@ Commentaires
 - +id: UUID
 - -content: string
 - -description: text
-- -dateAjout: Date
+- -datePublication: Date
 - -dateModification: Date
 - #idArticles
 - #idUser

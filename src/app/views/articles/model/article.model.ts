@@ -4,8 +4,17 @@ export interface Article {
   isArchived: boolean;
   content: string;
   shortContent: string;
-  datePublication: string;
-  dateModification?: string;
-  dateArchivage?: string;
+  datePublication: Date;
+  dateModification?: Date;
+  dateArchivage?: Date;
   icon: string;
+  commentaires?: Commentaire[];
+}
+
+export interface Commentaire {
+  id: string;
+  content: string;
+  datePublication: Date;
+  dateModification?: Date;
+  auteur: string;
 }
