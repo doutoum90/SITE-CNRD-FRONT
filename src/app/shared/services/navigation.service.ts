@@ -173,7 +173,6 @@ export class NavigationService {
         { name: "GALLERY", state: "gallery" },
         { name: "PRICINGS", state: "pricing" },
         { name: "USERS", state: "users" },
-        { name: "BLANK", state: "blank" },
       ],
     },
   ];
