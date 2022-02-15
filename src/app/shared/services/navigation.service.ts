@@ -114,7 +114,7 @@ export class NavigationService {
       icon: "center_focus_strong",
       state: "todo/list",
     },
-    
+
     {
       name: "TABLES",
       type: "dropDown",
@@ -162,7 +162,7 @@ export class NavigationService {
         { name: "ERROR", state: "error" },
       ],
     },
-    
+
     {
       name: "OTHERS",
       type: "dropDown",
@@ -173,6 +173,21 @@ export class NavigationService {
         { name: "GALLERY", state: "gallery" },
         { name: "PRICINGS", state: "pricing" },
         { name: "USERS", state: "users" },
+      ],
+    },
+  ];
+  iconMenuFront: IMenuItem[] = [
+    {
+      name: "OTHERS",
+      type: "dropDown",
+      tooltip: "Others",
+      icon: "blur_on",
+      state: "others",
+      sub: [
+        { name: "GALLERY", state: "gallery" },
+        { name: "PRICINGS", state: "pricing" },
+        { name: "USERS", state: "users" },
+        { name: "BLANK", state: "blank" },
       ],
     },
   ];
@@ -367,6 +382,21 @@ export class NavigationService {
       state: "http://demos.ui-lib.com/egret-doc/",
     },
   ];
+  separatorMenuFront: IMenuItem[] = [
+    {
+      name: "OTHERS",
+      type: "dropDown",
+      tooltip: "Others",
+      icon: "blur_on",
+      state: "others",
+      sub: [
+        { name: "GALLERY", state: "gallery" },
+        { name: "PRICINGS", state: "pricing" },
+        { name: "USERS", state: "users" },
+        { name: "BLANK", state: "blank" },
+      ],
+    },
+  ];
 
   plainMenu: IMenuItem[] = [
     {
@@ -545,7 +575,21 @@ export class NavigationService {
       state: "http://demos.ui-lib.com/egret-doc/",
     },
   ];
-
+  plainMenuFront: IMenuItem[] = [
+    {
+      name: "OTHERS",
+      type: "dropDown",
+      tooltip: "Others",
+      icon: "blur_on",
+      state: "others",
+      sub: [
+        { name: "GALLERY", state: "gallery" },
+        { name: "PRICINGS", state: "pricing" },
+        { name: "USERS", state: "users" },
+        { name: "BLANK", state: "blank" },
+      ],
+    },
+  ];
   // Icon menu TITLE at the very top of navigation.
   // This title will appear if any icon type item is present in menu.
   iconTypeMenuTitle = "Frequently Accessed";
@@ -553,6 +597,10 @@ export class NavigationService {
   menuItems = new BehaviorSubject<IMenuItem[]>(this.iconMenu);
   // navigation component has subscribed to this Observable
   menuItems$ = this.menuItems.asObservable();
+
+  menuFrontItems = new BehaviorSubject<IMenuItem[]>(this.iconMenuFront);
+  // navigation component has subscribed to this Observable
+  menuFrontItems$ = this.menuFrontItems.asObservable();
   constructor() {}
 
   // Customizer component uses this method to change menu.
@@ -560,6 +608,7 @@ export class NavigationService {
   // Or you can customize this method to supply different menu for
   // different user type.
   publishNavigationChange(menuType: string) {
+    console.log("rerrer", menuType);
     switch (menuType) {
       case "separator-menu":
         this.menuItems.next(this.separatorMenu);
@@ -569,6 +618,20 @@ export class NavigationService {
         break;
       default:
         this.menuItems.next(this.plainMenu);
+    }
+  }
+
+  publishFrontNavigationChange(menuType: string) {
+    console.log(menuType);
+    switch (menuType) {
+      case "separator-menu":
+        this.menuFrontItems.next(this.separatorMenuFront);
+        break;
+      case "icon-menu":
+        this.menuFrontItems.next(this.iconMenuFront);
+        break;
+      default:
+        this.menuFrontItems.next(this.plainMenuFront);
     }
   }
 }

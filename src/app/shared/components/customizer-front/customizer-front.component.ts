@@ -1,16 +1,16 @@
-import { Component, OnInit, Input, Renderer2 } from "@angular/core";
-import { NavigationService } from "../../../shared/services/navigation.service";
-import { LayoutService } from "../../../shared/services/layout.service";
-import PerfectScrollbar from "perfect-scrollbar";
-import { CustomizerService } from "app/shared/services/customizer.service";
-import { ThemeService, ITheme } from "app/shared/services/theme.service";
+import { Component, OnInit, Input, Renderer2 } from '@angular/core';
+import { NavigationService } from '../../services/navigation.service';
+import { LayoutService } from '../../services/layout.service';
+import PerfectScrollbar from 'perfect-scrollbar';
+import { CustomizerService } from 'app/shared/services/customizer.service';
+import { ThemeService, ITheme } from 'app/shared/services/theme.service';
 
 @Component({
-  selector: "app-customizer",
-  templateUrl: "./customizer.component.html",
-  styleUrls: ["./customizer.component.scss"],
+  selector: "app-customizer-front",
+  templateUrl: "./customizer-front.component.html",
+  styleUrls: ["./customizer-front.component.scss"],
 })
-export class CustomizerComponent implements OnInit {
+export class CustomizerFrontComponent implements OnInit {
   isCustomizerOpen = false;
   viewMode: "options" | "json" = "options";
   sidenavTypes = [
@@ -53,6 +53,7 @@ export class CustomizerComponent implements OnInit {
     this.isTopbarFixed = this.layoutConf.topbarFixed;
     this.isRTL = this.layoutConf.dir === "rtl";
     this.egretThemes = this.themeService.egretThemes;
+    console.log('zezeze')
   }
   changeTheme(theme) {
     // this.themeService.changeTheme(theme);
@@ -61,9 +62,9 @@ export class CustomizerComponent implements OnInit {
   changeLayoutStyle(data) {
     this.layout.publishLayoutChange({ navigationPos: this.selectedLayout });
   }
-  changeSidenav(data) {
+  changeSidenavFront(data) {
     console.log(data)
-    this.navService.publishNavigationChange(data.value);
+    this.navService.publishFrontNavigationChange(data.value);
   }
   toggleBreadcrumb(data) {
     this.layout.publishLayoutChange({ useBreadcrumb: data.checked });

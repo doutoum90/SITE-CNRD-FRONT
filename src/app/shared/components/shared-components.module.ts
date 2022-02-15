@@ -42,6 +42,8 @@ import { EgretNotifications2Component } from "./egret-notifications2/egret-notif
 import { FrontLayoutComponent } from "./layouts/front-layout/front-layout.component";
 import { SidenavFrontComponent } from "./sidenav-front/sidenav-front.component";
 import { HeaderSideFrontComponent } from "./header-side-front/header-side-front.component";
+import { SidebarSideFrontComponent } from "./sidebar-side-front/sidebar-side-front.component";
+import { CustomizerFrontComponent } from "./customizer-front/customizer-front.component";
 
 const components = [
   HeaderTopComponent,
@@ -49,7 +51,10 @@ const components = [
   SidenavComponent,
   SidenavFrontComponent,
   NotificationsComponent,
+
   SidebarSideComponent,
+  SidebarSideFrontComponent,
+
   HeaderSideComponent,
   HeaderSideFrontComponent,
 
@@ -62,6 +67,7 @@ const components = [
   AppLoaderComponent,
   EgretNotifications2Component,
   CustomizerComponent,
+  CustomizerFrontComponent,
   ButtonLoadingComponent,
   EgretSidebarComponent,
   FooterComponent,
