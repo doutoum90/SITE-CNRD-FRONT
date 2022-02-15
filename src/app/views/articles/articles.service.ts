@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { of } from "rxjs";
-import { Article } from "./model/article.model";
+import { Article, Commentaire } from "./model/article.model";
+import { v4 as uuidv4 } from "uuid";
 
 @Injectable({
   providedIn: "root",
@@ -20,9 +21,38 @@ export class ArticlesService {
       commentaires: [
         {
           id: "gheghergreh",
-          content: "un super commentaire",
+          content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.`,
           datePublication: new Date("23 December 2019"),
           auteur: "John Doe",
+          user: {
+            id: "gheghergreh",
+            image: "https://bootdey.com/img/Content/user_1.jpg",
+            userName: "@MartinoMon",
+          },
+        },
+        {
+          id: "gheghergreh",
+          content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.`,
+          datePublication: new Date("23 December 2019"),
+          auteur: "John Doe",
+          user: {
+            id: "gheghergreh",
+            image: "https://bootdey.com/img/Content/user_2.jpg",
+            userName: "@LaurenceCorreil",
+          },
+        },
+        {
+          id: "gheghergreh",
+          content: ` Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.`,
+          datePublication: new Date("23 December 2019"),
+          auteur: "John Doe",
+          user: {
+            id: "gheghergreh",
+            image: "https://bootdey.com/img/Content/user_3.jpg",
+            userName: "@JohnNida",
+          },
         },
       ],
     },
@@ -71,10 +101,39 @@ export class ArticlesService {
       icon: "view_week",
       commentaires: [
         {
-          id: "ghegUNidCommentaire",
-          content: "un super commentaire",
+          id: "gheghergreh",
+          content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.`,
           datePublication: new Date("23 December 2019"),
           auteur: "John Doe",
+          user: {
+            id: "gheghergreh",
+            image: "https://bootdey.com/img/Content/user_1.jpg",
+            userName: "@MartinoMon",
+          },
+        },
+        {
+          id: "gheghergreh",
+          content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.`,
+          datePublication: new Date("23 December 2019"),
+          auteur: "John Doe",
+          user: {
+            id: "gheghergreh",
+            image: "https://bootdey.com/img/Content/user_2.jpg",
+            userName: "@LaurenceCorreil",
+          },
+        },
+        {
+          id: "gheghergreh",
+          content: ` Lorem ipsum dolor <a href="#">#sitamet</a> sit amet, consectetur adipiscing elit.`,
+          datePublication: new Date("23 December 2019"),
+          auteur: "John Doe",
+          user: {
+            id: "gheghergreh",
+            image: "https://bootdey.com/img/Content/user_3.jpg",
+            userName: "@JohnNida",
+          },
         },
       ],
     },
@@ -102,5 +161,30 @@ export class ArticlesService {
 
   getArticle(id: string) {
     return of(this.articles.find((article) => article.id === id));
+  }
+
+  addComment(comment: Commentaire, currentUserId: string, articleId: string) {
+    console.log({
+      ...comment,
+      id: uuidv4(),
+      user: {
+        id: currentUserId,
+        userName: "@Username",
+        image: "https://bootdey.com/img/Content/user_3.jpg",
+      },
+    });
+    this.articles.forEach((article) => {
+      if (article.id === articleId) {
+        article.commentaires.push({
+          ...comment,
+          id: uuidv4(),
+          user: {
+            id: currentUserId,
+            userName: "@Username",
+            image: "https://bootdey.com/img/Content/user_3.jpg",
+          },
+        });
+      }
+    });
   }
 }

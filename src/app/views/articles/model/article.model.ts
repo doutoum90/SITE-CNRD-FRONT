@@ -17,4 +17,11 @@ export interface Commentaire {
   datePublication: Date;
   dateModification?: Date;
   auteur: string;
+  user: User;
+}
+
+export interface User {
+  id: string;
+  image: string;
+  userName: string;
 }

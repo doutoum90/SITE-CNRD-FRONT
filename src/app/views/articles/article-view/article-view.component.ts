@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
+import { Observable } from "rxjs";
 import { ArticlesService } from "../articles.service";
+import { Article } from "../model/article.model";
 
 @Component({
   selector: "app-article-view",
@@ -10,17 +12,25 @@ import { ArticlesService } from "../articles.service";
 })
 export class ArticleViewComponent implements OnInit {
   commentForm: FormGroup;
-  article$;
+  article$: Observable<Article>;
   constructor(
     private readonly articleService: ArticlesService,
     private readonly _activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder
   ) {}
 
-
   createForm() {
     this.commentForm = this.formBuilder.group({
-      comment: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(100)]]
+      full_name: ["", [Validators.required]],
+      mail: ["", [Validators.required, Validators.email]],
+      content: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(100),
+        ],
+      ],
     });
   }
 
@@ -32,18 +42,18 @@ export class ArticleViewComponent implements OnInit {
   }
 
   onSubmitComment() {
+    console.log(this.commentForm.value, this.commentForm.invalid);
     // this.submitted = true;
     // stop here if form is invalid
     if (this.commentForm.invalid) {
       return false;
     } else {
-     /*  this.commentInfo.push({
-        commentId : this.id++,
-        currentDate : new Date(),
-        commentTxt: this.commentForm.controls['comment'].value,
-        replyComment: []
-      });
-      this.usercomment.emit(this.commentInfo); */
+      const currentUser = { id: "rereerre", image: "", userName: "John Doe" };
+      this.articleService.addComment(
+        { ...this.commentForm.value, datePublication: new Date() },
+        currentUser.id,
+        this._activatedRoute.snapshot.params.id
+      );
     }
   }
 }

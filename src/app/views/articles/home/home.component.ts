@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../articles.service";
+import { Article } from "../model/article.model";
 
 @Component({
   selector: "article-home",
@@ -10,8 +11,8 @@ import { ArticlesService } from "../articles.service";
 })
 export class HomeComponent implements OnInit {
   user = "Mahamat";
-  archivedArticle$;
-  articles$;
+  archivedArticle$: Observable<Article[]>;
+  articles$: Observable<Article[]>;
 
   constructor(
     private readonly articleService: ArticlesService,
