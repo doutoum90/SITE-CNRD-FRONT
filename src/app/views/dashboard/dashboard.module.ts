@@ -1,33 +1,34 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatExpansionModule } from '@angular/material/expansion';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { MatTableModule } from '@angular/material/table';
-import { MatTabsModule } from '@angular/material/tabs';
-import { RouterModule } from '@angular/router';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ChartsModule } from 'ng2-charts';
-import { NgxEchartsModule } from 'ngx-echarts';
-import * as echarts from 'echarts';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatIconModule } from "@angular/material/icon";
+import { MatListModule } from "@angular/material/list";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatTableModule } from "@angular/material/table";
+import { MatTabsModule } from "@angular/material/tabs";
+import { RouterModule } from "@angular/router";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { ChartsModule } from "ng2-charts";
+import { NgxEchartsModule } from "ngx-echarts";
+import * as echarts from "echarts";
 
-import { NgApexchartsModule } from 'ng-apexcharts';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-import { SharedPipesModule } from 'app/shared/pipes/shared-pipes.module';
+import { NgApexchartsModule } from "ng-apexcharts";
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { SharedPipesModule } from "app/shared/pipes/shared-pipes.module";
 
-import { DashboardRoutes } from './dashboard.routing';
-import { AnalyticsComponent } from './analytics/analytics.component';
-import { DashboardDarkComponent } from './dashboard-dark/dashboard-dark.component';
-import { CryptocurrencyComponent } from './cryptocurrency/cryptocurrency.component';
-import { DefaultDashboardComponent } from './default-dashboard/default-dashboard.component';
-import { LearningManagementComponent } from './learning-management/learning-management.component';
-import { AnalyticsAltComponent } from './analytics-alt/analytics-alt.component';
+import { DashboardRoutes } from "./dashboard.routing";
+import { AnalyticsComponent } from "./analytics/analytics.component";
+import { DashboardDarkComponent } from "./dashboard-dark/dashboard-dark.component";
+import { CryptocurrencyComponent } from "./cryptocurrency/cryptocurrency.component";
+import { DefaultDashboardComponent } from "./default-dashboard/default-dashboard.component";
+import { LearningManagementComponent } from "./learning-management/learning-management.component";
+import { AnalyticsAltComponent } from "./analytics-alt/analytics-alt.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   imports: [
@@ -45,13 +46,14 @@ import { AnalyticsAltComponent } from './analytics-alt/analytics-alt.component';
     MatGridListModule,
     FlexLayoutModule,
     ChartsModule,
+    TranslateModule,
     NgxEchartsModule.forRoot({
-      echarts
+      echarts,
     }),
     NgApexchartsModule,
     NgxDatatableModule,
     SharedPipesModule,
-    RouterModule.forChild(DashboardRoutes)
+    RouterModule.forChild(DashboardRoutes),
   ],
   declarations: [
     AnalyticsComponent,
@@ -59,9 +61,8 @@ import { AnalyticsAltComponent } from './analytics-alt/analytics-alt.component';
     CryptocurrencyComponent,
     DefaultDashboardComponent,
     LearningManagementComponent,
-    AnalyticsAltComponent],
-  exports: []
+    AnalyticsAltComponent,
+  ],
+  exports: [],
 })
-export class DashboardModule {
-
-}
+export class DashboardModule {}
