@@ -63,10 +63,12 @@ export class AddArticleComponent implements OnInit {
       datePublication: new Date(),
       icon: "",
       ...this.thirdFormGroup.value,
-      documents: this.uploader.queue,
+      documents: [],
+      // documents: this.uploader.queue,
     };
     console.log(posts);
     this.articleService.addArticle(posts).subscribe((re) => {
+      console.log(re);
       if (re === -1) {
         alert("Une erreur est survenue");
       } else {

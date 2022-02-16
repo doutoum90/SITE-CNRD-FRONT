@@ -7,9 +7,9 @@
             <mat-card-title>{{ article.title }}</mat-card-title>
             <p [innerHtml]="article.content"></p>
           </div>
-          <div fxFlex="100">
+          <div fxFlex="100" *ngIf="article?.documents?.length>0">
             <hr>
-            Document {{article?.documents | json}}
+            Documents
             <div *ngFor="let item of article?.documents">
               {{ item | json }}
             </div>
@@ -17,8 +17,8 @@
 
           <!--<div fxFlex="100">
             <div *ngFor="let commentaire of article.commentaires">
-              <p [innerHtml]="commentaire.content"></p>
-              <p>{{commentaire.datePublication | date: 'dd/MM/yyyy'}}</p>
+              <p [innerHtml]="commentaire?.content"></p>
+              <p>{{commentaire?.datePublication | date: 'dd/MM/yyyy'}}</p>
             </div>
 
             <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
@@ -69,14 +69,14 @@
                   <ul class="media-list">
                     <li class="media" *ngFor="let commentaire of article.commentaires">
                       <a href="#" class="pull-left">
-                        <img [src]="commentaire.user.image" alt="" class="img-circle">
+                        <img [src]="commentaire?.user?.image" alt="" class="img-circle">
                       </a>
                       <div class="media-body">
                         <span class="text-muted pull-right">
-                          <small class="text-muted">{{commentaire.datePublication | date: 'dd/MM/yyyy' }}</small>
+                          <small class="text-muted">{{commentaire?.datePublication | date: 'dd/MM/yyyy' }}</small>
                         </span>
-                        <strong class="text-success">{{commentaire.user.userName}}</strong>
-                        <p [innerHtml]="commentaire.content"></p>
+                        <strong class="text-success">{{commentaire?.user?.userName}}</strong>
+                        <p [innerHtml]="commentaire?.content"></p>
                       </div>
                     </li>
                   </ul>
@@ -114,16 +114,14 @@
               <ul class="media-list">
                 <li class="media" *ngFor="let commentaire of article.commentaires">
                   <a href="#" class="pull-left">
-                    <img [src]="commentaire.user.image" alt="" class="img-circle">
+                    <img [src]="commentaire?.user?.image" alt="" class="img-circle">
                   </a>
                   <div class="media-body">
                     <span class="text-muted pull-right">
-                      <small class="text-muted">{{commentaire.datePublication | date: 'dd/MM/yyyy' }}</small>
+                      <small class="text-muted">{{commentaire?.datePublication | date: 'dd/MM/yyyy' }}</small>
                     </span>
-                    <strong class="text-success">{{commentaire.user.userName}}</strong>
-                    <p [innerHtml]="commentaire.content"></p>
-
-
+                    <strong class="text-success">{{commentaire?.user.userName | json}}</strong>
+                    <p [innerHtml]="commentaire?.content"></p>
                   </div>
                 </li>
               </ul>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
+import { v4 as uuidv4 } from "uuid";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../articles.service";
 import { Article } from "../model/article.model";
@@ -22,6 +23,7 @@ export class HomeComponent implements OnInit {
     private readonly router: Router,
     private readonly translate: TranslateService
   ) {}
+
   ngOnInit(): void {
     this.archivedArticle$ = this.articleService.getArchivedArticle();
     this.articles$ = this.articleService.getArticles();

@@ -4,6 +4,7 @@ import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../articles.service";
 import { Article } from "../model/article.model";
+import { v4 as uuidv4 } from "uuid";
 
 @Component({
   selector: "app-article-view",
@@ -44,10 +45,12 @@ export class ArticleViewComponent implements OnInit {
   onSubmitComment() {
     // this.submitted = true;
     // stop here if form is invalid
+    console.log(1)
     if (this.commentForm.invalid) {
       return false;
     } else {
-      const currentUser = { id: "rereerre", image: "", userName: "John Doe" };
+      console.log(2)
+      const currentUser = { id: uuidv4(), image: "", userName: "John Doe" };
       this.articleService.addComment(
         { ...this.commentForm.value, datePublication: new Date() },
         currentUser.id,
