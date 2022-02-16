@@ -13,7 +13,13 @@ import { Article } from "../../articles/model/article.model";
   styleUrls: ["./edit-article.component.scss"],
 })
 export class EditArticleComponent implements OnInit {
-  editorData = `<h1>Titre article à éditer</h1>
+  editorContentData = `<h1>Titre article à éditer</h1>
+  <p><br></p><p><strong >Lorem Ipsum</strong>
+  <span>&nbsp;is simply dummy text of the printing and typesetting industry. 
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
+  galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</span></p>`;
+
+  editorShortContentData = `<h1>Titre article à éditer</h1>
   <p><br></p><p><strong >Lorem Ipsum</strong>
   <span>&nbsp;is simply dummy text of the printing and typesetting industry. 
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
@@ -29,7 +35,6 @@ export class EditArticleComponent implements OnInit {
     url: "https://evening-anchorage-315.herokuapp.com/api/",
   });
   public hasBaseDropZoneOver: boolean = false;
-  console = console;
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;
@@ -43,14 +48,28 @@ export class EditArticleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.createForm();
     this.article$ = this.articleService.getArticle(
       this._activatedRoute.snapshot.params.id
     );
-    this.createForm();
+    this.article$.subscribe((art) => {
+      this.firstFormGroup.patchValue({
+        postTitle: art.title,
+        id: art.id,
+        isArchived: art.isArchived,
+      });
+      this.thirdFormGroup.patchValue({
+        content: art.content,
+        shortContent: art.shortContent,
+      });
+    });
   }
+
   createForm() {
     this.firstFormGroup = this.fb.group({
-      firstCtrl: ["", Validators.required],
+      id: [""],
+      isArchived: [],
+      postTitle: ["", Validators.required],
     });
     this.secondFormGroup = this.fb.group({
       secondCtrl: ["", Validators.required],
@@ -66,23 +85,19 @@ export class EditArticleComponent implements OnInit {
 
   submit() {
     const posts: Article = {
-      id: uuidv4(),
-      title: this.firstFormGroup.value.firstCtrl,
-      isArchived: false,
-      datePublication: new Date(),
-      icon: "",
+      id: this.firstFormGroup.value.id,
+      title: this.firstFormGroup.value.postTitle,
+      dateModification: new Date(),
       ...this.thirdFormGroup.value,
       documents: [],
       // documents: this.uploader.queue,
     };
-    console.log(posts);
-    this.articleService.addArticle(posts).subscribe((re) => {
-      console.log(re);
+    this.articleService.editArticle(posts).subscribe((re) => {
       if (re === -1) {
         alert("Une erreur est survenue");
       } else {
-        alert("Article ajouté avec succès");
-        this.router.navigate(["/articles"]);
+        alert("Article modifié avec succès");
+        this.router.navigate(["/dashboard/articles"]);
       }
     });
   }

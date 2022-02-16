@@ -1,113 +1,98 @@
-<div class="">
-  <div fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100">
-      <mat-card class="p-24">
-        <div fxLayout="row wrap">
-          Liste des articles ....
-        </div>
-        <div fxLayout="row wrap">
+<div class="m-333">
+  <!-- <span fxFlex></span> -->
 
-          <div fxFlex="100" [@animate]="{ value: '*', params: { opacity: '0', y: '40px', delay: '400ms' } }">
-            <mat-card class="p-0 dark-blue">
-              <mat-table [dataSource]="articles$ | async" matSort>
-                <ng-container matColumnDef="title">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Titre
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="progress">
-                    {{ row.title }}
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="author">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Auteur
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="progress">
-                    Auteur TODO
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="isArchived">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Archivé
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="name">
-                    <!--<mat-checkbox [value]="">Archivé</mat-checkbox>-->
-                    <mat-checkbox [value]="row.isArchived"> &nbsp; Test</mat-checkbox>
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="datePublication">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Date de publication
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="color">
-                    {{ row.datePublication | date: 'dd/MM/yyyy' }}
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="dateModification">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Date de modification
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="color">
-                    {{ row.dateModification | date: 'dd/MM/yyyy' }}
-                  </mat-cell>
-                </ng-container>
-
-                <ng-container matColumnDef="dateArchivage">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Date d'archivage
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="color">
-                    {{ row.dateArchivage | date: 'dd/MM/yyyy' }}
-                  </mat-cell>
-                </ng-container>
-                <ng-container matColumnDef="commentaires">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header>
-                    Nombre de commentaires
-                  </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="color">
-                    {{ row?.commentaires?.length }} &nbsp; <mat-icon>comments</mat-icon>
-                  </mat-cell>
-                </ng-container>
-
-                <mat-header-row *matHeaderRowDef="[
-                  'title',
-                  'author',
-                  'commentaires',
-                  'isArchived',
-                  'datePublication',
-                  'dateModification',
-                  'dateArchivage',
-                  
-                ]"></mat-header-row>
-                <mat-row *matRowDef="
-                  let row;
-                  columns: [
-                    'title',
-                    'author',
-                    'commentaires',
-                    'isArchived',
-                    'datePublication',
-                    'dateModification',
-                    'dateArchivage'
-                  ]
-                ">
-                </mat-row>
-                <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
-              </mat-table>
-            </mat-card>
-          </div>
-          <div fxFlex="100">
-            <button [routerLink]="['/dashboard/articles/add']" routerLinkActive="router-link-active" mat-raised-button
-              color="primary">
-              Ajouter un Article
-            </button>
-          </div>
-
-        </div>
-      </mat-card>
-    </div>
-  </div>
+  <button
+    [routerLink]="['/dashboard/articles/add']"
+    routerLinkActive="router-link-active"
+    mat-raised-button
+    color="primary"
+  >
+    {{ "ADD ARTICLE" | translate }}
+  </button>
 </div>
+<mat-card
+  class="p-0"
+  [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
+>
+  <mat-card-content class="p-0">
+    <ngx-datatable
+      class="material ml-0 mr-0"
+      [rows]="articles$ | async"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [scrollbarH]="true"
+      [limit]="10"
+      [rowHeight]="50"
+    >
+      <ngx-datatable-column name="Title" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.title }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Author" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          Autor
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Commentaires" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.commentaires?.length ? row?.commentaires?.length : 0 }} &nbsp;
+          <mat-icon>comments</mat-icon>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Date de publication" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.datePublication | date: "dd/MM/yyyy" }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Date de modification" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.dateModification | date: "dd/MM/yyyy" }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="dateArchivage" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.dateArchivage | date: "dd/MM/yyyy" }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Archivé" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <mat-slide-toggle
+            class="example-margin"
+            [checked]="row.isArchived"
+            [disabled]="row.isArchived"
+            (toggleChange)="archiver(row)"
+          >
+            {{ row.isArchived ? "Archivé" : "Non archivé" }}
+          </mat-slide-toggle>
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Actions" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="primary"
+            class="mr-16"
+            (click)="detail(row)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="warn"
+            (click)="deleteItem(row)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </ngx-datatable>
+  </mat-card-content>
+</mat-card>

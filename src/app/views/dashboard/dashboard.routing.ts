@@ -14,6 +14,11 @@ import { ListArticleComponent } from "./list-article/list-article.component";
 
 export const DashboardRoutes: Routes = [
   {
+    path: "",
+    redirectTo: "articles",
+    pathMatch: "full",
+  },
+  {
     path: "articles",
     component: ListArticleComponent,
     canActivate: [UserRoleGuard],

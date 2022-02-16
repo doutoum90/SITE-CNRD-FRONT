@@ -12,7 +12,13 @@ import { Article } from "../../articles/model/article.model";
   styleUrls: ["./add-article.component.scss"],
 })
 export class AddArticleComponent implements OnInit {
-  editorData = `<h1>Titre article à éditer</h1>
+  editorContentData = `<h1>Titre article à éditer</h1>
+  <p><br></p><p><strong >Lorem Ipsum</strong>
+  <span>&nbsp;is simply dummy text of the printing and typesetting industry. 
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
+  galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</span></p>`;
+
+  editorShortContentData = `<h1>Titre article à éditer</h1>
   <p><br></p><p><strong >Lorem Ipsum</strong>
   <span>&nbsp;is simply dummy text of the printing and typesetting industry. 
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
@@ -27,7 +33,6 @@ export class AddArticleComponent implements OnInit {
     url: "https://evening-anchorage-315.herokuapp.com/api/",
   });
   public hasBaseDropZoneOver: boolean = false;
-  console = console;
 
   public fileOverBase(e: any): void {
     this.hasBaseDropZoneOver = e;

@@ -7,12 +7,12 @@
             <mat-horizontal-stepper [linear]="true">
               <mat-step [stepControl]="firstFormGroup">
                 <form [formGroup]="firstFormGroup">
-                  <ng-template matStepLabel>Fill out your name</ng-template>
+                  <ng-template matStepLabel>Remplir le titre</ng-template>
                   <mat-form-field class="pt-16 pb-16">
                     <input
                       matInput
                       placeholder="Last name, First name"
-                      formControlName="firstCtrl"
+                      formControlName="postTitle"
                       required
                     />
                   </mat-form-field>
@@ -23,7 +23,7 @@
                   </div>
                 </form>
               </mat-step>
-              <mat-step [stepControl]="secondFormGroup">
+              <!-- <mat-step [stepControl]="secondFormGroup">
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>Fill out your address</ng-template>
                   <mat-form-field class="pt-16 pb-16">
@@ -45,7 +45,7 @@
                     </button>
                   </div>
                 </form>
-              </mat-step>
+              </mat-step> -->
 
               <mat-step [stepControl]="thirdFormGroup">
                 <form [formGroup]="thirdFormGroup">
@@ -53,7 +53,10 @@
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
                       <quill-editor
+                        name="content"
                         formControlName="content"
+                        ngDefaultControl
+                        [(ngModel)]="editorContentData"
                         theme="snow"
                         (onContentChanged)="onContentChanged()"
                         onSelectionChanged="onSelectionChanged()"
@@ -64,7 +67,10 @@
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
                       <quill-editor
+                        name="shortContent"
                         formControlName="shortContent"
+                        ngDefaultControl
+                        [(ngModel)]="editorShortContentData"
                         theme="snow"
                         (onContentChanged)="onContentChanged()"
                         onSelectionChanged="onSelectionChanged()"

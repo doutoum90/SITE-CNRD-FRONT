@@ -53,7 +53,9 @@
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
                       <quill-editor
+                        name="content"
                         formControlName="content"
+                        ngDefaultControl
                         theme="snow"
                         (onContentChanged)="onContentChanged()"
                         onSelectionChanged="onSelectionChanged()"
@@ -64,13 +66,16 @@
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
                       <quill-editor
+                        name="shortContent"
                         formControlName="shortContent"
+                        ngDefaultControl
                         theme="snow"
                         (onContentChanged)="onContentChanged()"
                         onSelectionChanged="onSelectionChanged()"
                       ></quill-editor>
                     </mat-card-content>
                   </mat-card>
+                  testtestetet
                   <div fxLayout="row">
                     <button mat-raised-button color="accent" matStepperPrevious>
                       Back

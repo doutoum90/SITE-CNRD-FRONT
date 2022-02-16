@@ -37,6 +37,8 @@ import { FileUploadModule } from "ng2-file-upload";
 import { EditArticleComponent } from "./edit-article/edit-article.component";
 import { ListArticleComponent } from "./list-article/list-article.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { QuillModule } from "ngx-quill";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 
 @NgModule({
   imports: [
@@ -47,6 +49,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     MatIconModule,
     MatCardModule,
     MatMenuModule,
+    MatSlideToggleModule,
     MatProgressBarModule,
     FileUploadModule,
     MatExpansionModule,
@@ -59,6 +62,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     FlexLayoutModule,
     ChartsModule,
     TranslateModule,
+    QuillModule.forRoot(),
     NgxEchartsModule.forRoot({
       echarts,
     }),

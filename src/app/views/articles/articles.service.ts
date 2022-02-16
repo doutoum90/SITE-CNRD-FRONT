@@ -22,8 +22,15 @@ export class ArticlesService {
 
   getAllArticles() {
     return this.http.get<Article[]>(
-      `${this.BASE_URL}/posts?_page=1&_limit=10`
+      `${this.BASE_URL}/posts?_page=1&_limit=100`
     );
+  }
+
+  archiver(id: string, isArchived: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/posts/${id}`, {
+      isArchived,
+      dateArchivage: new Date(),
+    });
   }
 
   getArticle(id: string) {
@@ -31,7 +38,11 @@ export class ArticlesService {
   }
 
   addArticle(article: Article) {
-    return this.http.post(`${this.BASE_URL}/posts?_page=1&_limit=10`, article);
+    return this.http.post(`${this.BASE_URL}/posts`, article);
+  }
+
+  editArticle(article: Article) {
+    return this.http.patch(`${this.BASE_URL}/posts/${article.id}`, article);
   }
 
   addComment(comment: Commentaire, currentUserId: string, articleId: string) {
@@ -46,7 +57,7 @@ export class ArticlesService {
     });
     console.log(`${this.BASE_URL}/posts/${articleId}`);
     return this.http.put(`${this.BASE_URL}/posts/${articleId}`, {
-      "icon": "test Modification",
+      icon: "test Modification",
     });
   }
 }

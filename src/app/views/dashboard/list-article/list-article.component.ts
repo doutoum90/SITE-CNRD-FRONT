@@ -26,4 +26,18 @@ export class ListArticleComponent implements OnInit {
     // console.log(user);
     this.articles$ = this.articleService.getAllArticles();
   }
+
+  detail(data: Article) {
+    this.router.navigate(["/dashboard/articles/edit", data.id]);
+  }
+
+  deleteItem(data: Article) {
+    console.log(data);
+  }
+
+  archiver(data: Article) {
+    if (!data.isArchived) {
+      this.articleService.archiver(data.id, !data.isArchived);
+    }
+  }
 }
