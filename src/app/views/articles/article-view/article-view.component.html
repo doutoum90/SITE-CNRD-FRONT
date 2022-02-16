@@ -7,6 +7,13 @@
             <mat-card-title>{{ article.title }}</mat-card-title>
             <p [innerHtml]="article.content"></p>
           </div>
+          <div fxFlex="100">
+            <hr>
+            Document {{article?.documents | json}}
+            <div *ngFor="let item of article?.documents">
+              {{ item | json }}
+            </div>
+          </div>
 
           <!--<div fxFlex="100">
             <div *ngFor="let commentaire of article.commentaires">
@@ -115,6 +122,8 @@
                     </span>
                     <strong class="text-success">{{commentaire.user.userName}}</strong>
                     <p [innerHtml]="commentaire.content"></p>
+
+
                   </div>
                 </li>
               </ul>

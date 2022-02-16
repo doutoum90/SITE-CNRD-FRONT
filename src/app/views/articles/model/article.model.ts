@@ -8,6 +8,7 @@ export interface Article {
   dateModification?: Date;
   dateArchivage?: Date;
   icon: string;
+  documents?: any[];
   commentaires?: Commentaire[];
 }
 

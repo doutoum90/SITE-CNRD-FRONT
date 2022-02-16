@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
+import { v4 as uuidv4 } from "uuid";
+import { ArticlesService } from "../articles.service";
+import { Article } from "../model/article.model";
 
 @Component({
   selector: "app-add-article",
@@ -29,7 +33,11 @@ export class AddArticleComponent implements OnInit {
     this.hasBaseDropZoneOver = e;
   }
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private readonly articleService: ArticlesService
+  ) {}
 
   ngOnInit() {
     this.firstFormGroup = this.fb.group({
@@ -42,11 +50,30 @@ export class AddArticleComponent implements OnInit {
       content: ["", Validators.required],
       shortContent: [""],
     });
-    this.foorthFormGroup = this.fb.group({})
+    this.foorthFormGroup = this.fb.group({
+      files: [""],
+    });
   }
 
   submit() {
-   
+    const posts: Article = {
+      id: uuidv4(),
+      title: this.firstFormGroup.value.firstCtrl,
+      isArchived: false,
+      datePublication: new Date(),
+      icon: "",
+      ...this.thirdFormGroup.value,
+      documents: this.uploader.queue,
+    };
+    console.log(posts);
+    this.articleService.addArticle(posts).subscribe((re) => {
+      if (re === -1) {
+        alert("Une erreur est survenue");
+      } else {
+        alert("Article ajouté avec succès");
+        this.router.navigate(["/articles"]);
+      }
+    });
   }
 
   onContentChanged() {}
