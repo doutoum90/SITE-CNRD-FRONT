@@ -4,7 +4,7 @@ import {
   OnDestroy,
   HostBinding,
   Input,
-  HostListener
+  HostListener,
 } from "@angular/core";
 import { takeUntil } from "rxjs/operators";
 import { Subject } from "rxjs";
@@ -14,7 +14,7 @@ import { MatSidenav } from "@angular/material/sidenav";
 import { MediaObserver } from "@angular/flex-layout";
 
 @Directive({
-  selector: "[egretSidenavHelper]"
+  selector: "[egretSidenavHelper]",
 })
 export class EgretSidenavHelperDirective implements OnInit, OnDestroy {
   @HostBinding("class.is-open")
@@ -75,7 +75,7 @@ export class EgretSidenavHelperDirective implements OnInit, OnDestroy {
 }
 
 @Directive({
-  selector: "[egretSidenavToggler]"
+  selector: "[egretSidenavToggler]",
 })
 export class EgretSidenavTogglerDirective {
   @Input("egretSidenavToggler")
@@ -85,7 +85,6 @@ export class EgretSidenavTogglerDirective {
 
   @HostListener("click")
   onClick() {
-    // console.log(this.egretSidenavHelperService.getSidenav(this.id))
     this.egretSidenavHelperService.getSidenav(this.id).toggle();
   }
 }

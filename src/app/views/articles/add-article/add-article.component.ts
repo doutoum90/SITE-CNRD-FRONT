@@ -46,9 +46,7 @@ export class AddArticleComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.firstFormGroup.value);
-    console.log(this.secondFormGroup.value);
-    console.log(this.thirdFormGroup.value);
+   
   }
 
   onContentChanged() {}

@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, Renderer2 } from '@angular/core';
-import { NavigationService } from '../../services/navigation.service';
-import { LayoutService } from '../../services/layout.service';
-import PerfectScrollbar from 'perfect-scrollbar';
-import { CustomizerService } from 'app/shared/services/customizer.service';
-import { ThemeService, ITheme } from 'app/shared/services/theme.service';
+import { Component, OnInit, Renderer2 } from "@angular/core";
+import { NavigationService } from "../../services/navigation.service";
+import { LayoutService } from "../../services/layout.service";
+import { CustomizerService } from "app/shared/services/customizer.service";
+import { ThemeService, ITheme } from "app/shared/services/theme.service";
 
 @Component({
   selector: "app-customizer-front",
@@ -53,7 +52,6 @@ export class CustomizerFrontComponent implements OnInit {
     this.isTopbarFixed = this.layoutConf.topbarFixed;
     this.isRTL = this.layoutConf.dir === "rtl";
     this.egretThemes = this.themeService.egretThemes;
-    console.log('zezeze')
   }
   changeTheme(theme) {
     // this.themeService.changeTheme(theme);
@@ -63,7 +61,6 @@ export class CustomizerFrontComponent implements OnInit {
     this.layout.publishLayoutChange({ navigationPos: this.selectedLayout });
   }
   changeSidenavFront(data) {
-    console.log(data)
     this.navService.publishFrontNavigationChange(data.value);
   }
   toggleBreadcrumb(data) {

@@ -608,7 +608,6 @@ export class NavigationService {
   // Or you can customize this method to supply different menu for
   // different user type.
   publishNavigationChange(menuType: string) {
-    console.log("rerrer", menuType);
     switch (menuType) {
       case "separator-menu":
         this.menuItems.next(this.separatorMenu);
@@ -622,7 +621,6 @@ export class NavigationService {
   }
 
   publishFrontNavigationChange(menuType: string) {
-    console.log(menuType);
     switch (menuType) {
       case "separator-menu":
         this.menuFrontItems.next(this.separatorMenuFront);

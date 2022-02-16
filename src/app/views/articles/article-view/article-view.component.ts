@@ -42,7 +42,6 @@ export class ArticleViewComponent implements OnInit {
   }
 
   onSubmitComment() {
-    console.log(this.commentForm.value, this.commentForm.invalid);
     // this.submitted = true;
     // stop here if form is invalid
     if (this.commentForm.invalid) {

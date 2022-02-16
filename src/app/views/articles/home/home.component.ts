@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
   }
 
   readMoreArticle(index: number) {
-    console.log(index);
     this.readMore = index;
   }
 }

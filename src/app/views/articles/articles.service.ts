@@ -224,15 +224,6 @@ export class ArticlesService {
   }
 
   addComment(comment: Commentaire, currentUserId: string, articleId: string) {
-    console.log({
-      ...comment,
-      id: uuidv4(),
-      user: {
-        id: currentUserId,
-        userName: "@Username",
-        image: "https://bootdey.com/img/Content/user_3.jpg",
-      },
-    });
     this.articles.forEach((article) => {
       if (article.id === articleId) {
         article.commentaires.push({
