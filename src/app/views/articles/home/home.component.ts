@@ -27,8 +27,13 @@ export class HomeComponent implements OnInit {
     this.articles$ = this.articleService.getArticles();
   }
 
-  showArticle(article) {
-    this.router.navigate(["/articles", article.id]);
+  showArticle(article: Article) {
+    console.log(article.isArchived);
+    if (article.isArchived) {
+      this.router.navigate(["/articles", article.id, "archived"]);
+    } else {
+      this.router.navigate(["/articles", article.id]);
+    }
   }
 
   concatReadMore(content: string, index: number) {

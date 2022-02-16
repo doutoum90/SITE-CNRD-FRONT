@@ -222,22 +222,22 @@ export class LearningManagementComponent implements OnInit {
 
   reminders = [
     {
-      title: 'Data structure test',
+      title: 'Data structure',
       date: '23 December 2019',
       icon: 'view_week'
     },
     {
-      title: 'Design pattern test',
+      title: 'Design pattern',
       date: '24 December 2019',
       icon: 'library_books'
     },
     {
-      title: 'Algorithm test',
+      title: 'Algorithm',
       date: '24 December 2019',
       icon: 'games'
     },
     {
-      title: 'Code organizing test',
+      title: 'Code organizing',
       date: '27 December 2019',
       icon: 'library_books'
     }

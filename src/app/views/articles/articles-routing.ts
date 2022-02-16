@@ -41,4 +41,14 @@ export const ArticleRoutes: Routes = [
       roles: config.authRoles.sa,
     },
   },
+  {
+    path: ":id/archived",
+    component: ArticleViewComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Détail Article",
+      breadcrumb: "Détail Article",
+      roles: config.authRoles.sa,
+    },
+  },
 ];
