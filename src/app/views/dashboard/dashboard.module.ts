@@ -29,14 +29,26 @@ import { DefaultDashboardComponent } from "./default-dashboard/default-dashboard
 import { LearningManagementComponent } from "./learning-management/learning-management.component";
 import { AnalyticsAltComponent } from "./analytics-alt/analytics-alt.component";
 import { TranslateModule } from "@ngx-translate/core";
+import { AddArticleComponent } from "./add-article/add-article.component";
+import { MatStepperModule } from "@angular/material/stepper";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { FileUploadModule } from "ng2-file-upload";
+import { EditArticleComponent } from "./edit-article/edit-article.component";
+import { ListArticleComponent } from "./list-article/list-article.component";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatInputModule,
     MatIconModule,
     MatCardModule,
     MatMenuModule,
     MatProgressBarModule,
+    FileUploadModule,
     MatExpansionModule,
     MatButtonModule,
     MatChipsModule,
@@ -53,9 +65,14 @@ import { TranslateModule } from "@ngx-translate/core";
     NgApexchartsModule,
     NgxDatatableModule,
     SharedPipesModule,
+    MatStepperModule,
+    MatPaginatorModule,
     RouterModule.forChild(DashboardRoutes),
   ],
   declarations: [
+    AddArticleComponent,
+    ListArticleComponent,
+    EditArticleComponent,
     AnalyticsComponent,
     DashboardDarkComponent,
     CryptocurrencyComponent,

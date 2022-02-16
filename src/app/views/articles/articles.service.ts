@@ -20,6 +20,12 @@ export class ArticlesService {
     );
   }
 
+  getAllArticles() {
+    return this.http.get<Article[]>(
+      `${this.BASE_URL}/posts?_page=1&_limit=10`
+    );
+  }
+
   getArticle(id: string) {
     return this.http.get<Article>(`${this.BASE_URL}/posts/${id}`);
   }

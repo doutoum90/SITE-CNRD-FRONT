@@ -23,7 +23,6 @@ import { SharedPipesModule } from "app/shared/pipes/shared-pipes.module";
 
 import { ArticleRoutes } from "./articles-routing";
 import { HomeComponent } from "./home/home.component";
-import { AddArticleComponent } from "./add-article/add-article.component";
 import { ArticleViewComponent } from "./article-view/article-view.component";
 import { QuillModule } from "ngx-quill";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -61,7 +60,7 @@ import { FileUploadModule } from "ng2-file-upload";
     FileUploadModule,
     RouterModule.forChild(ArticleRoutes),
   ],
-  declarations: [HomeComponent, AddArticleComponent, ArticleViewComponent],
+  declarations: [HomeComponent, ArticleViewComponent],
   exports: [],
 })
 export class ArticlesModule {}

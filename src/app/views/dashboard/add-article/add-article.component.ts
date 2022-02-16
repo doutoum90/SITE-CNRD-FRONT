@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
 import { v4 as uuidv4 } from "uuid";
-import { ArticlesService } from "../articles.service";
-import { Article } from "../model/article.model";
+import { ArticlesService } from "../../articles/articles.service";
+import { Article } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-add-article",

@@ -61,6 +61,7 @@ export class NavigationService {
       svgIcon: "ulb_server",
       state: "dashboard",
       sub: [
+        { name: "Articles", state: "articles" },
         { name: "Default", state: "default" },
         {
           name: "LEARNING",

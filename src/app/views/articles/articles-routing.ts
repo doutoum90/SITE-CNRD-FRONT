@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { UserRoleGuard } from "app/shared/guards/user-role.guard";
 import { config } from "config";
-import { AddArticleComponent } from "./add-article/add-article.component";
+import { AddArticleComponent } from "../dashboard/add-article/add-article.component";
 import { ArticleViewComponent } from "./article-view/article-view.component";
 
 export const ArticleRoutes: Routes = [
@@ -21,16 +21,7 @@ export const ArticleRoutes: Routes = [
       roles: config.authRoles.sa,
     },
   },
-  {
-    path: "add",
-    component: AddArticleComponent,
-    canActivate: [UserRoleGuard],
-    data: {
-      title: "Ajout Article",
-      breadcrumb: "Ajout Article",
-      roles: config.authRoles.sa,
-    },
-  },
+  
   {
     path: ":id",
     component: ArticleViewComponent,
