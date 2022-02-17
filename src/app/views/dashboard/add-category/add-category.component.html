@@ -9,34 +9,17 @@
                 <form [formGroup]="categoryFormGroup">
                   <ng-template matStepLabel>Saisie des informations la category</ng-template>
                   <mat-form-field class="pt-16 pb-16">
-                    <input
-                      matInput
-                      placeholder="Title"
-                      formControlName="title"
-                      required
-                    />
+                    <input matInput placeholder="Title" formControlName="title" required />
                   </mat-form-field>
-                  <ng-template matStepLabel
-                    >Libellés de la category</ng-template
-                  >
+                  <br>
                   <mat-form-field class="pt-16 pb-16">
-                    <input
-                      matInput
-                      placeholder="Libellés"
-                      formControlName="libelles"
-                      required
-                    />
+                    <input matInput placeholder="Libellés" formControlName="libelles" required />
                   </mat-form-field>
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
-                      <quill-editor
-                        name="description"
-                        formControlName="description"
-                        ngDefaultControl
-                        theme="snow"
-                        (onContentChanged)="onContentChanged()"
-                        onSelectionChanged="onSelectionChanged()"
-                      ></quill-editor>
+                      <quill-editor name="description" [(ngModel)]="editorContentData" formControlName="description"
+                        ngDefaultControl theme="snow" (onContentChanged)="onContentChanged()"
+                        onSelectionChanged="onSelectionChanged()"></quill-editor>
                     </mat-card-content>
                   </mat-card>
 
@@ -54,9 +37,7 @@
               <mat-step>
                 <ng-template matStepLabel>Recapitulatif</ng-template>
                 <div>
-                  <mat-icon class="pt-16" [style.fontSize]="'36px'"
-                    >check</mat-icon
-                  >
+                  <mat-icon class="pt-16" [style.fontSize]="'36px'">check</mat-icon>
                 </div>
                 <div class="pb-16 mb-16">You Are Done.</div>
                 <div fxLayout="row">

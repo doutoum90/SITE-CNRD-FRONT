@@ -28,16 +28,16 @@ export class ListCategoryComponent implements OnInit {
   }
 
   detail(data: Article) {
-    this.router.navigate(["/dashboard/articles/edit", data.id]);
+    this.router.navigate(["/dashboard/categories/edit", data.id]);
   }
 
   deleteItem(data: Article) {
     console.log(data);
   }
 
-  archiver(data: Article) {
+  archiver(data: Categories) {
     if (!data.isArchived) {
-      this.articleService.archiver(data.id, !data.isArchived);
+      this.articleService.archiverCategory(data.id, !data.isArchived);
     }
   }
 }

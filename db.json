@@ -266,11 +266,35 @@
       "id": "45b4d793-30bc-410f-bcc3-88c293853e90",
       "title": "TITRE",
       "libelles": "LIBELLE",
-      "description": "<p>gehgergherhrehrgehgreherhrghhgreeghrgher</p>",
+      "description": "<h1>Hello world</h1><h2>un titre de niveau 2</h2><p><br></p><p><strong>bold</strong></p><p><em>italic</em></p><p><u>souligné</u></p><p><br></p><p><s>barrés</s></p><p><br></p><p>Hello world, how you doing !!!</p>",
       "datePublication": "2022-02-17T08:19:38.420Z",
+      "idUser": "idUser",
+      "isArchived": false,
+      "dateModification": "2022-02-17T08:57:04.056Z"
+    },
+
+    {
+      "id": "45b4d793-30bc-410f-bcc3-88c293853v50",
+      "title": "UN TITRE SPÉCIAL",
+      "libelles": "Un libéllé spécial",
+      "description": "<h1>Hello world</h1><h2>un titre de niveau 2</h2><p><br></p><p><strong>bold</strong></p><p><em>italic</em></p><p><u>souligné</u></p><p><br></p><p><s>barrés</s></p><p><br></p><p>Hello world, how you doing !!!</p>",
+      "datePublication": "2022-02-17T08:19:38.420Z",
+      "idUser": "idUser",
+      "isArchived": true,
+      "dateArchivage": "2022-02-17T08:57:04.056Z",
+      "dateModification": "2022-02-17T08:57:04.056Z"
+    },
+    {
+      "id": "e8a92c33-d8d6-4b78-8eac-bf90a6effea0",
+      "title": "Economie",
+      "libelles": "Economie",
+      "description": "<h1>Catégorie économique</h1><p><br></p><p><strong>Lorem Ipsum</strong>&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</p>",
+      "isArchived": false,
+      "datePublication": "2022-02-17T08:41:27.137Z",
       "idUser": "idUser"
     }
   ],
+  "users": [],
   "profile": {
     "name": "typicode"
   }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FileUploader } from "ng2-file-upload";
+import { Observable } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
 import { ArticlesService } from "../../articles/articles.service";
 import { Article, Categories } from "../../articles/model/article.model";
@@ -26,23 +27,32 @@ export class EditCategoryComponent implements OnInit {
 
   categoryFormGroup: FormGroup;
 
-  public uploader: FileUploader = new FileUploader({
-    url: "https://evening-anchorage-315.herokuapp.com/api/",
-  });
-  public hasBaseDropZoneOver: boolean = false;
-
-  public fileOverBase(e: any): void {
-    this.hasBaseDropZoneOver = e;
-  }
+  category$: Observable<Categories>;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private readonly articleService: ArticlesService
+    private readonly articleService: ArticlesService,
+    private readonly _activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
+    this.createForm();
+    this.category$ = this.articleService.getCatery(
+      this._activatedRoute.snapshot.params.id
+    );
+    this.category$.subscribe((art) => {
+      this.categoryFormGroup.patchValue({
+        title: art.title,
+        id: art.id,
+        libelles: art.libelles,
+        description: art.description,
+      });
+    });
+  }
+  createForm() {
     this.categoryFormGroup = this.fb.group({
+      id: [""],
       title: ["", Validators.required],
       libelles: ["", Validators.required],
       description: ["", Validators.required],
@@ -57,14 +67,14 @@ export class EditCategoryComponent implements OnInit {
       idUser: "idUser",
     };
     console.log(category);
-    /*  this.articleService.editCategory(category).subscribe((re) => {
+     this.articleService.editCategory(category).subscribe((re) => {
       if (re === -1) {
         alert("Une erreur est survenue");
       } else {
-        alert("Article ajouté avec succès");
-        this.router.navigate(["/articles"]);
+        alert("Catégory modifiée avec succès");
+        this.router.navigate(["/dashboard/categories"]);
       }
-    }); */
+    });
   }
 
   onContentChanged() {}

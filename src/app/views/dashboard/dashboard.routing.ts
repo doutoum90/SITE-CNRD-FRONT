@@ -47,7 +47,7 @@ export const DashboardRoutes: Routes = [
     canActivate: [UserRoleGuard],
     data: {
       title: "Ajout Category",
-      breadcrumb: "Ajout Category test",
+      breadcrumb: "Ajout Category",
       roles: config.authRoles.sa,
     },
   },

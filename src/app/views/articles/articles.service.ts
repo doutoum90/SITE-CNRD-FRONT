@@ -33,12 +33,22 @@ export class ArticlesService {
     });
   }
 
+  archiverCategory(id: string, isArchived: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/categories/${id}`, {
+      isArchived,
+      dateArchivage: new Date(),
+    });
+  }
+
   addCategory(category: Categories) {
     return this.http.post(`${this.BASE_URL}/categories`, category);
   }
 
   editCategory(category: Categories) {
-    return this.http.patch(`${this.BASE_URL}/posts/${category.id}`, category);
+    return this.http.patch(
+      `${this.BASE_URL}/categories/${category.id}`,
+      category
+    );
   }
 
   getAllCategories() {
@@ -47,6 +57,10 @@ export class ArticlesService {
 
   getArticle(id: string) {
     return this.http.get<Article>(`${this.BASE_URL}/posts/${id}`);
+  }
+
+  getCatery(id: string) {
+    return this.http.get<Categories>(`${this.BASE_URL}/categories/${id}`);
   }
 
   addArticle(article: Article) {
