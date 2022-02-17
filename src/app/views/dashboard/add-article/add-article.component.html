@@ -9,16 +9,11 @@
                 <form [formGroup]="firstFormGroup">
                   <ng-template matStepLabel>Fill out your name</ng-template>
                   <mat-form-field class="pt-16 pb-16">
-                    <input
-                      matInput
-                      placeholder="Last name, First name"
-                      formControlName="firstCtrl"
-                      required
-                    />
+                    <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required />
                   </mat-form-field>
                   <div>
                     <button mat-raised-button color="primary" matStepperNext>
-                      Next
+                      {{"NEXT" | translate}}
                     </button>
                   </div>
                 </form>
@@ -27,21 +22,16 @@
                 <form [formGroup]="secondFormGroup">
                   <ng-template matStepLabel>Fill out your address</ng-template>
                   <mat-form-field class="pt-16 pb-16">
-                    <input
-                      matInput
-                      placeholder="Address"
-                      formControlName="secondCtrl"
-                      required
-                    />
+                    <input matInput placeholder="Address" formControlName="secondCtrl" required />
                   </mat-form-field>
 
                   <div fxLayout="row">
                     <button mat-raised-button color="accent" matStepperPrevious>
-                      Back
+                      {{"BACK" | translate}}
                     </button>
                     <span fxFlex="8px"></span>
                     <button mat-raised-button color="primary" matStepperNext>
-                      Next
+                      {{"NEXT" | translate}}
                     </button>
                   </div>
                 </form>
@@ -52,36 +42,26 @@
                   <ng-template matStepLabel>Add your text here</ng-template>
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
-                      <quill-editor
-                        name="content"
-                        formControlName="content"
-                        ngDefaultControl
-                        theme="snow"
-                        (onContentChanged)="onContentChanged()"
-                        onSelectionChanged="onSelectionChanged()"
-                      ></quill-editor>
+                      <quill-editor name="content" formControlName="content" ngDefaultControl theme="snow"
+                        (onContentChanged)="onContentChanged()" onSelectionChanged="onSelectionChanged()">
+                      </quill-editor>
                     </mat-card-content>
                   </mat-card>
 
                   <mat-card class="p-0">
                     <mat-card-content class="p-0">
-                      <quill-editor
-                        name="shortContent"
-                        formControlName="shortContent"
-                        ngDefaultControl
-                        theme="snow"
-                        (onContentChanged)="onContentChanged()"
-                        onSelectionChanged="onSelectionChanged()"
-                      ></quill-editor>
+                      <quill-editor name="shortContent" formControlName="shortContent" ngDefaultControl theme="snow"
+                        (onContentChanged)="onContentChanged()" onSelectionChanged="onSelectionChanged()">
+                      </quill-editor>
                     </mat-card-content>
                   </mat-card>
                   <div fxLayout="row">
                     <button mat-raised-button color="accent" matStepperPrevious>
-                      Back
+                      {{"BACK" | translate}}
                     </button>
                     <span fxFlex="8px"></span>
                     <button mat-raised-button color="primary" matStepperNext>
-                      Next
+                      {{"NEXT" | translate}}
                     </button>
                   </div>
                 </form>
@@ -98,31 +78,17 @@
                     <mat-card-content>
                       <div class="mb-16">
                         <p>Multiple</p>
-                        <input
-                          type="file"
-                          ng2FileSelect
-                          formControlName="files"
-                          [uploader]="uploader"
-                          multiple
-                        /><br />
+                        <input type="file" ng2FileSelect formControlName="files" [uploader]="uploader" multiple /><br />
                       </div>
 
                       <div class="mb-16">
-                        <div
-                          ng2FileDrop
-                          [ngClass]="{ 'dz-file-over': hasBaseDropZoneOver }"
-                          (fileOver)="fileOverBase($event)"
-                          [uploader]="uploader"
-                          class="fileupload-drop-zone mb-24"
-                        >
+                        <div ng2FileDrop [ngClass]="{ 'dz-file-over': hasBaseDropZoneOver }"
+                          (fileOver)="fileOverBase($event)" [uploader]="uploader" class="fileupload-drop-zone mb-24">
                           Drop file here
                         </div>
                       </div>
 
-                      <table
-                        class="default-table mat-box-shadow mb-24"
-                        style="width: 100%"
-                      >
+                      <table class="default-table mat-box-shadow mb-24" style="width: 100%">
                         <thead>
                           <tr>
                             <th width="30%">Name</th>
@@ -137,67 +103,37 @@
                             <td>{{ item?.file?.name }}</td>
                             <td nowrap>
                               {{
-                                item?.file?.size / 1024 / 1024 | number: ".2"
+                              item?.file?.size / 1024 / 1024 | number: ".2"
                               }}
                               MB
                             </td>
                             <td>
                               <div class="progress" style="margin-bottom: 0">
-                                <div
-                                  class="progress-bar"
-                                  role="progressbar"
-                                  [ngStyle]="{ width: item.progress + '%' }"
-                                ></div>
-                                <mat-progress-bar
-                                  class=""
-                                  color="primary"
-                                  mode="determinate"
-                                  [value]="item.progress"
-                                >
+                                <div class="progress-bar" role="progressbar" [ngStyle]="{ width: item.progress + '%' }">
+                                </div>
+                                <mat-progress-bar class="" color="primary" mode="determinate" [value]="item.progress">
                                 </mat-progress-bar>
                               </div>
                             </td>
                             <td class="">
-                              <mat-icon *ngIf="item.isSuccess" color="primary"
-                                >check</mat-icon
-                              >
-                              <mat-icon *ngIf="item.isCancel" color="accent"
-                                >cancel</mat-icon
-                              >
-                              <mat-icon *ngIf="item.isError" color="warn"
-                                >error</mat-icon
-                              >
+                              <mat-icon *ngIf="item.isSuccess" color="primary">check</mat-icon>
+                              <mat-icon *ngIf="item.isCancel" color="accent">cancel</mat-icon>
+                              <mat-icon *ngIf="item.isError" color="warn">error</mat-icon>
                             </td>
                             <td nowrap>
-                              <button
-                                mat-raised-button
-                                color="primary"
-                                class="mx-4"
-                                (click)="item.upload()"
-                                [disabled]="
+                              <button mat-raised-button color="primary" class="mx-4" (click)="item.upload()" [disabled]="
                                   item.isReady ||
                                   item.isUploading ||
                                   item.isSuccess
-                                "
-                              >
+                                ">
                                 Upload
                               </button>
-                              <button
-                                mat-raised-button
-                                color="accent"
-                                class="mx-4"
-                                (click)="item.cancel()"
-                                [disabled]="!item.isUploading"
-                              >
+                              <button mat-raised-button color="accent" class="mx-4" (click)="item.cancel()"
+                                [disabled]="!item.isUploading">
                                 Cancel
                               </button>
 
-                              <button
-                                mat-raised-button
-                                color="warn"
-                                class="mx-4"
-                                (click)="item.remove()"
-                              >
+                              <button mat-raised-button color="warn" class="mx-4" (click)="item.remove()">
                                 Remove
                               </button>
                             </td>
@@ -213,42 +149,22 @@
                       <div>
                         <p>Queue progress:</p>
                         <div class="progress mb-16">
-                          <mat-progress-bar
-                            class=""
-                            color="primary"
-                            mode="determinate"
-                            [value]="uploader.progress"
-                          >
+                          <mat-progress-bar class="" color="primary" mode="determinate" [value]="uploader.progress">
                           </mat-progress-bar>
                         </div>
 
-                        <button
-                          mat-raised-button
-                          color="primary"
-                          class="mx-4"
-                          (click)="uploader.uploadAll()"
-                          [disabled]="!uploader.getNotUploadedItems().length"
-                        >
+                        <button mat-raised-button color="primary" class="mx-4" (click)="uploader.uploadAll()"
+                          [disabled]="!uploader.getNotUploadedItems().length">
                           Upload all
                         </button>
 
-                        <button
-                          mat-raised-button
-                          color="accent"
-                          class="mx-4"
-                          (click)="uploader.cancelAll()"
-                          [disabled]="!uploader.isUploading"
-                        >
+                        <button mat-raised-button color="accent" class="mx-4" (click)="uploader.cancelAll()"
+                          [disabled]="!uploader.isUploading">
                           Cancel all
                         </button>
 
-                        <button
-                          mat-raised-button
-                          color="warn"
-                          class="mx-4"
-                          (click)="uploader.clearQueue()"
-                          [disabled]="!uploader.queue.length"
-                        >
+                        <button mat-raised-button color="warn" class="mx-4" (click)="uploader.clearQueue()"
+                          [disabled]="!uploader.queue.length">
                           Remove all
                         </button>
                       </div>
@@ -257,11 +173,11 @@
 
                   <div fxLayout="row">
                     <button mat-raised-button color="accent" matStepperPrevious>
-                      Back
+                      {{"BACK" | translate}}
                     </button>
                     <span fxFlex="8px"></span>
                     <button mat-raised-button color="primary" matStepperNext>
-                      Next
+                      {{"NEXT" | translate}}
                     </button>
                   </div>
                 </form>
@@ -270,18 +186,16 @@
               <mat-step>
                 <ng-template matStepLabel>Done</ng-template>
                 <div>
-                  <mat-icon class="pt-16" [style.fontSize]="'36px'"
-                    >check</mat-icon
-                  >
+                  <mat-icon class="pt-16" [style.fontSize]="'36px'">check</mat-icon>
                 </div>
                 <div class="pb-16 mb-16">You Are Done.</div>
                 <div fxLayout="row">
                   <button mat-raised-button color="accent" matStepperPrevious>
-                    Back
+                    {{"BACK" | translate}}
                   </button>
                   <span fxFlex="8px"></span>
                   <button mat-raised-button color="primary" (click)="submit()">
-                    Submit
+                    {{"SUBMIT" | translate}}
                   </button>
                 </div>
               </mat-step>

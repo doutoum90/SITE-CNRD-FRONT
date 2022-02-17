@@ -1,0 +1,82 @@
+<div class="">
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100">
+      <mat-card class="p-24">
+        <div fxLayout="row wrap">
+          <div fxFlex="100">
+            <mat-horizontal-stepper [linear]="true">
+              <mat-step [stepControl]="categoryFormGroup">
+                <form [formGroup]="categoryFormGroup">
+                  <ng-template matStepLabel>Saisie des informations la category</ng-template>
+
+                  <div fxLayout="row">
+                    <div fxFlex="50">
+                      <mat-form-field class="pt-16 pb-16">
+                        <input matInput placeholder="Nom" formControlName="nom" required />
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field class="pt-16 pb-16">
+                        <input matInput placeholder="Prenom" formControlName="prenom" required />
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field class="pt-16 pb-16">
+                        <input matInput placeholder="Age" formControlName="age" required />
+                      </mat-form-field>
+                      <br>
+                      <mat-radio-group aria-label="Select an option" formControlName="genre">
+                        <mat-radio-button value="M">{{"MALE" | translate}}</mat-radio-button>
+                        <mat-radio-button value="F">{{"FEMALE" | translate}}</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+
+                    <div fxFlex="50">
+                      <mat-form-field class="pt-16 pb-16">
+                        <input matInput placeholder="Email" formControlName="email" required />
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field class="pt-16 pb-16">
+                        <input matInput placeholder="Identifiant" formControlName="userName" required />
+                      </mat-form-field>
+                      <br>
+                      <mat-form-field class="pt-16 pb-16">
+                        <input matInput placeholder="Telepone" formControlName="phone" required />
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <br>
+                  <div fxLayout="row">
+                    <div fxFlex="100">
+                      <button mat-raised-button color="accent" matStepperPrevious>
+                        {{"BACK" | translate}}
+                      </button>
+                      <span fxFlex="8px"></span>
+                      <button mat-raised-button color="primary" matStepperNext>
+                        {{"SUIVANT" | translate}}
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Recapitulatif</ng-template>
+                <div>
+                  <mat-icon class="pt-16" [style.fontSize]="'36px'">check</mat-icon>
+                </div>
+                <div class="pb-16 mb-16">You Are Done.</div>
+                <div fxLayout="row">
+                  <button mat-raised-button color="accent" matStepperPrevious>
+                    {{"BACK" | translate}}
+                  </button>
+                  <span fxFlex="8px"></span>
+                  <button mat-raised-button color="primary" (click)="submit()">
+                    {{"SUBMIT" | translate}}
+                  </button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

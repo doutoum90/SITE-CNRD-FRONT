@@ -11,7 +11,7 @@ import { Categories } from "../../articles/model/article.model";
   templateUrl: "./add-category.component.html",
   styleUrls: ["./add-category.component.scss"],
 })
-export class AddCategoryomponent implements OnInit {
+export class AddCategoryComponent implements OnInit {
   editorContentData = `<h1>Titre article à éditer</h1>
   <p><br></p><p><strong >Lorem Ipsum</strong>
   <span>&nbsp;is simply dummy text of the printing and typesetting industry. 

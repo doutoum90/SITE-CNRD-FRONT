@@ -96,6 +96,10 @@ export class ArticlesService {
     });
   }
 
+  getUser(id: string) {
+    return this.http.get<Users>(`${this.BASE_URL}/users/${id}`);
+  }
+
   addUser(user: Users) {
     return this.http.post(`${this.BASE_URL}/users`, user);
   }
@@ -106,5 +110,12 @@ export class ArticlesService {
 
   getAllUsers() {
     return this.http.get<Users[]>(`${this.BASE_URL}/users`);
+  }
+
+  activerDesactiverUser(id: string, isActive: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/users/${id}`, {
+      isActive,
+      dateArchivage: new Date(),
+    });
   }
 }

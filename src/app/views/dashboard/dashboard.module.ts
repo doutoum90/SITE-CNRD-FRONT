@@ -34,9 +34,13 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { QuillModule } from "ngx-quill";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ListCategoryComponent } from "./list-category/list-category.component";
-import { AddCategoryomponent } from "./add-category/add-category.component";
+import { AddCategoryComponent } from "./add-category/add-category.component";
 import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
+import { AddUserComponent } from "./add-user/add-user.component";
+import { EditUserComponent } from "./edit-user/edit-user.component";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatSelectModule } from "@angular/material/select";
 
 @NgModule({
   imports: [
@@ -68,6 +72,8 @@ import { ListUsersComponent } from "./list-user/list-user.component";
     NgxDatatableModule,
     SharedPipesModule,
     MatStepperModule,
+    MatRadioModule,
+    MatSelectModule,
     MatPaginatorModule,
     RouterModule.forChild(DashboardRoutes),
   ],
@@ -77,10 +83,12 @@ import { ListUsersComponent } from "./list-user/list-user.component";
     EditArticleComponent,
 
     ListCategoryComponent,
-    AddCategoryomponent,
+    AddCategoryComponent,
     EditCategoryComponent,
 
     ListUsersComponent,
+    AddUserComponent,
+    EditUserComponent,
   ],
   exports: [],
 })

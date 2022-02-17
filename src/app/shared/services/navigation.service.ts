@@ -63,7 +63,7 @@ export class NavigationService {
       sub: [
         { name: "Articles", state: "articles" },
         { name: "Categories", state: "categories" },
-        { name: "Users", state: "Users" },
+        { name: "Users", state: "users" },
       ],
     },
     {

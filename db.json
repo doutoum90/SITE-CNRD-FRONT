@@ -263,7 +263,7 @@
   ],
   "categories": [
     {
-      "id": "45b4d793-30bc-410f-bcc3-88c293853e90",
+      "id": "45b4d793-30bc-410f-bcc3-88c293853e70",
       "title": "TITRE",
       "libelles": "LIBELLE",
       "description": "<h1>Hello world</h1><h2>un titre de niveau 2</h2><p><br></p><p><strong>bold</strong></p><p><em>italic</em></p><p><u>souligné</u></p><p><br></p><p><s>barrés</s></p><p><br></p><p>Hello world, how you doing !!!</p>",
@@ -272,7 +272,6 @@
       "isArchived": false,
       "dateModification": "2022-02-17T08:57:04.056Z"
     },
-
     {
       "id": "45b4d793-30bc-410f-bcc3-88c293853v50",
       "title": "UN TITRE SPÉCIAL",
@@ -294,7 +293,26 @@
       "idUser": "idUser"
     }
   ],
-  "users": [],
+  "users": [
+    {
+      "id": "45b4d793-30bc-410f-bcc3-88c293853e90",
+      "nom": "John",
+      "prenom": "Doe",
+      "age": "45",
+      "email": "john@doe.com",
+      "motDePasse": "",
+      "roles": [
+        "SA"
+      ],
+      "userName": "@JohnDoe",
+      "phone": "0612345678",
+      "isActive": false,
+      "genre": "F",
+      "dateCreation": "2022-02-17T08:57:04.056Z",
+      "motDePasseConfirmation": "",
+      "dateModification": "2022-02-17T11:23:41.245Z"
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

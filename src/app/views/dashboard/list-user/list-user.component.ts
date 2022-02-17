@@ -28,7 +28,7 @@ export class ListUsersComponent implements OnInit {
   }
 
   detail(data: Article) {
-    this.router.navigate(["/dashboard/categories/edit", data.id]);
+    this.router.navigate(["/dashboard/users/edit", data.id]);
   }
 
   deleteItem(data: Article) {
@@ -37,7 +37,11 @@ export class ListUsersComponent implements OnInit {
 
   archiver(data: Categories) {
     if (!data.isArchived) {
-      this.articleService.archiverCategory(data.id, !data.isArchived);
+      this.articleService.archiverUsers(data.id, !data.isArchived);
     }
+  }
+
+  activerDesactiver(data: Users) {
+    this.articleService.activerDesactiverUser(data.id, !data.isActive);
   }
 }

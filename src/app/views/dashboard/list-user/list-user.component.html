@@ -1,28 +1,68 @@
 <div class="m-333">
   <!-- <span fxFlex></span> -->
 
-  <button [routerLink]="['/dashboard/categories/add']" routerLinkActive="router-link-active" mat-raised-button
+  <button [routerLink]="['/dashboard/users/add']" routerLinkActive="router-link-active" mat-raised-button
     color="primary">
     {{ "ADD CATEGORY" | translate }}
   </button>
 </div>
 <mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
   <mat-card-content class="p-0">
+
     <ngx-datatable class="material ml-0 mr-0" [rows]="users$ | async" [columnMode]="'force'" [headerHeight]="50"
       [footerHeight]="50" [scrollbarH]="true" [limit]="10" [rowHeight]="50">
-      <ngx-datatable-column name="Title" [flexGrow]="1">
+      <ngx-datatable-column name="Nom et prenom" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.title }}
+          {{ row?.nom }} {{ row?.prenom }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Author" [flexGrow]="1">
+      <ngx-datatable-column name="Age" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          Autor
+          {{ row?.age }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Date de publication" [flexGrow]="1">
+      <ngx-datatable-column name="Email" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.datePublication | date: "dd/MM/yyyy" }}
+          {{ row?.email }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Role" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.roles }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="userName" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.userName }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="phone" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.phone }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Active" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <mat-slide-toggle class="example-margin" [checked]="row.isActive" [disabled]="row.isActive"
+            (toggleChange)="activerDesactiver(row)">
+            {{ row.isActive ? "Active" : "Inactive" }}
+          </mat-slide-toggle>
+        </ng-template>
+      </ngx-datatable-column>
+
+
+      <ngx-datatable-column name="genre" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.genre }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Date de création" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.dateCreation | date: "dd/MM/yyyy" }}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Date de modification" [flexGrow]="1">
@@ -30,19 +70,8 @@
           {{ row?.dateModification | date: "dd/MM/yyyy" }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Date d'archivage" [flexGrow]="1">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.dateArchivage | date: "dd/MM/yyyy" }}
-        </ng-template>
-      </ngx-datatable-column>
-      <ngx-datatable-column name="Archivé" [flexGrow]="1">
-        <ng-template let-row="row" ngx-datatable-cell-template>
-          <mat-slide-toggle class="example-margin" [checked]="row.isArchived" [disabled]="row.isArchived"
-            (toggleChange)="archiver(row)">
-            {{ row.isArchived ? "Archivé" : "Non archivé" }}
-          </mat-slide-toggle>
-        </ng-template>
-      </ngx-datatable-column>
+
+
       <ngx-datatable-column name="Actions" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           <button mat-icon-button mat-sm-button color="primary" class="mr-16" (click)="detail(row)">

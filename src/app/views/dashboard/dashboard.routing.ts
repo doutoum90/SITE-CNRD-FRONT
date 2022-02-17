@@ -7,9 +7,11 @@ import { AddArticleComponent } from "./add-article/add-article.component";
 import { EditArticleComponent } from "./edit-article/edit-article.component";
 import { ListArticleComponent } from "./list-article/list-article.component";
 import { ListCategoryComponent } from "./list-category/list-category.component";
-import { AddCategoryomponent } from "./add-category/add-category.component";
+import { AddCategoryComponent } from "./add-category/add-category.component";
 import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
+import { AddUserComponent } from "./add-user/add-user.component";
+import { EditUserComponent } from "./edit-user/edit-user.component";
 
 export const DashboardRoutes: Routes = [
   {
@@ -47,9 +49,20 @@ export const DashboardRoutes: Routes = [
       roles: config.authRoles.sa,
     },
   },
+
+  {
+    path: "articles/add",
+    component: AddArticleComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Ajout Article",
+      breadcrumb: "Ajout Article",
+      roles: config.authRoles.sa,
+    },
+  },
   {
     path: "categories/add",
-    component: AddCategoryomponent,
+    component: AddCategoryComponent,
     canActivate: [UserRoleGuard],
     data: {
       title: "Ajout Category",
@@ -58,12 +71,22 @@ export const DashboardRoutes: Routes = [
     },
   },
   {
-    path: "articles/add",
-    component: AddArticleComponent,
+    path: "users/add",
+    component: AddUserComponent,
     canActivate: [UserRoleGuard],
     data: {
-      title: "Ajout Article",
-      breadcrumb: "Ajout Article",
+      title: "Ajout utilisateur",
+      breadcrumb: "Ajout utilisateur",
+      roles: config.authRoles.sa,
+    },
+  },
+  {
+    path: "articles/edit/:id",
+    component: EditArticleComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Modification Article",
+      breadcrumb: "Modification Article",
       roles: config.authRoles.sa,
     },
   },
@@ -78,12 +101,12 @@ export const DashboardRoutes: Routes = [
     },
   },
   {
-    path: "articles/edit/:id",
-    component: EditArticleComponent,
+    path: "users/edit/:id",
+    component: EditUserComponent,
     canActivate: [UserRoleGuard],
     data: {
-      title: "Modification Article",
-      breadcrumb: "Modification Article",
+      title: "Modification utilisateur",
+      breadcrumb: "Modification utilisateur",
       roles: config.authRoles.sa,
     },
   },
