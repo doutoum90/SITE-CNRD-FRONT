@@ -36,26 +36,32 @@ export class ArticleViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.article$ = this.articleService.getArticle(
-      this._activatedRoute.snapshot.params.id
-    );
+    this.loadData();
     this.createForm();
   }
 
-  onSubmitComment() {
-    // this.submitted = true;
-    // stop here if form is invalid
-    console.log(1)
+  private loadData() {
+    this.article$ = this.articleService.getArticle(
+      this._activatedRoute.snapshot.params.id
+    );
+  }
+
+  onSubmitComment(article: Article) {
     if (this.commentForm.invalid) {
       return false;
     } else {
-      console.log(2)
       const currentUser = { id: uuidv4(), image: "", userName: "John Doe" };
-      this.articleService.addComment(
-        { ...this.commentForm.value, datePublication: new Date() },
-        currentUser.id,
-        this._activatedRoute.snapshot.params.id
-      );
+      this.articleService
+        .addComment(
+          article,
+          { ...this.commentForm.value, datePublication: new Date() },
+          currentUser.id,
+          this._activatedRoute.snapshot.params.id
+        )
+        .subscribe((res) => {
+          this.createForm();
+          this.loadData();
+        });
     }
   }
 }

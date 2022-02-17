@@ -28,7 +28,6 @@ export const rootRouterConfig: Routes = [
   {
     path: "",
     component: FrontLayoutComponent,
-    canActivate: [AuthGuard],
     children: [
       {
         // vu

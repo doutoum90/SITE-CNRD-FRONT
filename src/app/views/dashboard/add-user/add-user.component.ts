@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { FileUploader } from "ng2-file-upload";
 import { Observable } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
@@ -19,10 +20,11 @@ export class AddUserComponent implements OnInit {
   user$: Observable<Users>;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
     private readonly articleService: ArticlesService,
-    private readonly _activatedRoute: ActivatedRoute
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
@@ -66,14 +68,17 @@ export class AddUserComponent implements OnInit {
       ...this.categoryFormGroup.value,
       dateCreation: new Date(),
     };
-    console.log(user);
     this.articleService.addUser(user).subscribe((re) => {
-      if (re === -1) {
-        alert("Une erreur est survenue");
-      } else {
-        alert("Utilisateur créé avec succès");
-        this.router.navigate(["/dashboard/users"]);
-      }
+      this.router.navigate(["/dashboard/users"]);
+      this.egretLoader.open(
+        `Utilisateur ${re.nom} ${re.prenom} ajouté avec succés`,
+        {
+          width: "320px",
+        }
+      );
+      setTimeout(() => {
+        this.egretLoader.close();
+      }, 2000);
     });
   }
 }

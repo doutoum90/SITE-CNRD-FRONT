@@ -32,7 +32,7 @@
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="userName" [flexGrow]="1">
+      <ngx-datatable-column name="Nom d'utilisateur" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{ row?.userName }}
         </ng-template>
@@ -46,8 +46,7 @@
 
       <ngx-datatable-column name="Active" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <mat-slide-toggle class="example-margin" [checked]="row.isActive" [disabled]="row.isActive"
-            (toggleChange)="activerDesactiver(row)">
+          <mat-slide-toggle class="example-margin" [checked]="row.isActive" (toggleChange)="activerDesactiver(row)">
             {{ row.isActive ? "Active" : "Inactive" }}
           </mat-slide-toggle>
         </ng-template>

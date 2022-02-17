@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   }
 
   showArticle(article: Article) {
-    console.log(article.isArchived);
     if (article.isArchived) {
       this.router.navigate(["/articles", article.id, "archived"]);
     } else {

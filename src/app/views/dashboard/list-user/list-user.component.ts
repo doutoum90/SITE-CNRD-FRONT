@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { egretAnimations } from "app/shared/animations/egret-animations";
+import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
@@ -16,9 +17,10 @@ export class ListUsersComponent implements OnInit {
   users$: Observable<Users[]>;
 
   constructor(
-    private router: Router,
-    private jwtAuth: JwtAuthService,
-    private readonly articleService: ArticlesService
+    private readonly router: Router,
+    private readonly jwtAuth: JwtAuthService,
+    private readonly articleService: ArticlesService,
+    private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
@@ -37,11 +39,31 @@ export class ListUsersComponent implements OnInit {
 
   archiver(data: Categories) {
     if (!data.isArchived) {
-      this.articleService.archiverUsers(data.id, !data.isArchived);
+      this.articleService
+        .archiverUsers(data.id, !data.isArchived)
+        .subscribe((r) => {
+          this.users$ = this.articleService.getAllUsers();
+          this.egretLoader.open(`Utilisateur ${r.nom} ${r.prenom} archivé avec succés`, {
+            width: "320px",
+          });
+          setTimeout(() => {
+            this.egretLoader.close();
+          }, 2000);
+        });
     }
   }
 
   activerDesactiver(data: Users) {
-    this.articleService.activerDesactiverUser(data.id, !data.isActive);
+    this.articleService
+      .activerDesactiverUser(data.id, !data.isActive)
+      .subscribe((r) => {
+        this.users$ = this.articleService.getAllUsers();
+        this.egretLoader.open(`Utilisateur ${r.nom} ${r.prenom} ${r.isActive? 'activé': 'desactivé'} avec succés`, {
+          width: "320px",
+        });
+        setTimeout(() => {
+          this.egretLoader.close();
+        }, 2000);
+      });
   }
 }

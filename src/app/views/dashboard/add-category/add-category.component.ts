@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { FileUploader } from "ng2-file-upload";
 import { v4 as uuidv4 } from "uuid";
 import { ArticlesService } from "../../articles/articles.service";
@@ -21,9 +22,10 @@ export class AddCategoryComponent implements OnInit {
   categoryFormGroup: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private readonly articleService: ArticlesService
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly articleService: ArticlesService,
+    private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
@@ -42,14 +44,14 @@ export class AddCategoryComponent implements OnInit {
       isArchived: false,
       idUser: "idUser",
     };
-    console.log(category);
     this.articleService.addCategory(category).subscribe((re) => {
-      if (re === -1) {
-        alert("Une erreur est survenue");
-      } else {
-        alert("Article ajouté avec succès");
-        this.router.navigate(["/dashboard/categories"]);
-      }
+      this.egretLoader.open(`Catégorie ${re.libelles} ajouté avec succés`, {
+        width: "320px",
+      });
+      setTimeout(() => {
+        this.egretLoader.close();
+      }, 2000);
+      this.router.navigate(["/dashboard/categories"]);
     });
   }
 

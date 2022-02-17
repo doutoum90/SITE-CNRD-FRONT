@@ -1,9 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
+import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
-import {  Users } from "../../articles/model/article.model";
+import { Users } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-edit-user",
@@ -17,10 +18,11 @@ export class EditUserComponent implements OnInit {
   user$: Observable<Users>;
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
     private readonly articleService: ArticlesService,
-    private readonly _activatedRoute: ActivatedRoute
+    private readonly _activatedRoute: ActivatedRoute,
+    private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
@@ -65,15 +67,17 @@ export class EditUserComponent implements OnInit {
       ...this.categoryFormGroup.value,
       dateModification: new Date(),
     };
-    console.log(user);
-     this.articleService.editUser(user).subscribe((re) => {
-      if (re === -1) {
-        alert("Une erreur est survenue");
-      } else {
-        alert("Utilisateur modifié avec succès");
-        this.router.navigate(["/dashboard/users"]);
-      }
+    this.articleService.editUser(user).subscribe((re) => {
+      this.egretLoader.open(
+        `Utilisateur ${re.nom} ${re.prenom} modifié avec succés`,
+        {
+          width: "320px",
+        }
+      );
+      setTimeout(() => {
+        this.egretLoader.close();
+      }, 2000);
+      this.router.navigate(["/dashboard/users"]);
     });
   }
-
 }

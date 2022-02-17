@@ -38,46 +38,55 @@ export class ArticlesService {
   }
 
   addArticle(article: Article) {
-    return this.http.post(`${this.BASE_URL}/posts`, article);
+    return this.http.post<Article>(`${this.BASE_URL}/posts`, article);
   }
 
   editArticle(article: Article) {
-    return this.http.patch(`${this.BASE_URL}/posts/${article.id}`, article);
+    return this.http.patch<Article>(
+      `${this.BASE_URL}/posts/${article.id}`,
+      article
+    );
   }
 
-  addComment(comment: Commentaire, currentUserId: string, articleId: string) {
-    console.log({
-      ...comment,
-      id: uuidv4(),
-      user: {
-        id: currentUserId,
-        userName: "@Username",
-        image: "https://bootdey.com/img/Content/user_3.jpg",
-      },
-    });
-    console.log(`${this.BASE_URL}/posts/${articleId}`);
-    return this.http.put(`${this.BASE_URL}/posts/${articleId}`, {
-      icon: "test Modification",
+  addComment(
+    article: Article,
+    comment: Commentaire,
+    currentUserId: string,
+    articleId: string
+  ) {
+    return this.http.patch<Article>(`${this.BASE_URL}/posts/${articleId}`, {
+      commentaires: [
+        ...article.commentaires,
+        {
+          ...comment,
+          id: uuidv4(),
+          user: {
+            id: currentUserId,
+            userName: "@Username",
+            image: "https://bootdey.com/img/Content/user_3.jpg",
+          },
+        },
+      ],
     });
   }
   // Categories
-  getCatery(id: string) {
+  getCategory(id: string) {
     return this.http.get<Categories>(`${this.BASE_URL}/categories/${id}`);
   }
 
   archiverCategory(id: string, isArchived: boolean) {
-    return this.http.patch<Article>(`${this.BASE_URL}/categories/${id}`, {
+    return this.http.patch<Categories>(`${this.BASE_URL}/categories/${id}`, {
       isArchived,
       dateArchivage: new Date(),
     });
   }
 
   addCategory(category: Categories) {
-    return this.http.post(`${this.BASE_URL}/categories`, category);
+    return this.http.post<Categories>(`${this.BASE_URL}/categories`, category);
   }
 
   editCategory(category: Categories) {
-    return this.http.patch(
+    return this.http.patch<Categories>(
       `${this.BASE_URL}/categories/${category.id}`,
       category
     );
@@ -90,7 +99,7 @@ export class ArticlesService {
   // users
 
   archiverUsers(id: string, isArchived: boolean) {
-    return this.http.patch<Article>(`${this.BASE_URL}/users/${id}`, {
+    return this.http.patch<Users>(`${this.BASE_URL}/users/${id}`, {
       isArchived,
       dateArchivage: new Date(),
     });
@@ -101,11 +110,11 @@ export class ArticlesService {
   }
 
   addUser(user: Users) {
-    return this.http.post(`${this.BASE_URL}/users`, user);
+    return this.http.post<Users>(`${this.BASE_URL}/users`, user);
   }
 
   editUser(user: Users) {
-    return this.http.patch(`${this.BASE_URL}/users/${user.id}`, user);
+    return this.http.patch<Users>(`${this.BASE_URL}/users/${user.id}`, user);
   }
 
   getAllUsers() {
@@ -113,7 +122,7 @@ export class ArticlesService {
   }
 
   activerDesactiverUser(id: string, isActive: boolean) {
-    return this.http.patch<Article>(`${this.BASE_URL}/users/${id}`, {
+    return this.http.patch<Users>(`${this.BASE_URL}/users/${id}`, {
       isActive,
       dateArchivage: new Date(),
     });

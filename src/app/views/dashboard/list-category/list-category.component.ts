@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { egretAnimations } from "app/shared/animations/egret-animations";
+import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
@@ -16,9 +17,10 @@ export class ListCategoryComponent implements OnInit {
   categories$: Observable<Categories[]>;
 
   constructor(
-    private router: Router,
-    private jwtAuth: JwtAuthService,
-    private readonly articleService: ArticlesService
+    private readonly router: Router,
+    private readonly jwtAuth: JwtAuthService,
+    private readonly articleService: ArticlesService,
+    private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
@@ -37,7 +39,20 @@ export class ListCategoryComponent implements OnInit {
 
   archiverCategory(data: Categories) {
     if (!data.isArchived) {
-      this.articleService.archiverCategory(data.id, !data.isArchived);
+      this.articleService
+        .archiverCategory(data.id, !data.isArchived)
+        .subscribe((r) => {
+          this.categories$ = this.articleService.getAllCategories();
+          this.egretLoader.open(
+            `Categorie ${r.libelles} archivés avec succés`,
+            {
+              width: "320px",
+            }
+          );
+          setTimeout(() => {
+            this.egretLoader.close();
+          }, 2000);
+        });
     }
   }
 }

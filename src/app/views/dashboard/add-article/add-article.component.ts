@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { FileUploader } from "ng2-file-upload";
 import { v4 as uuidv4 } from "uuid";
 import { ArticlesService } from "../../articles/articles.service";
@@ -39,9 +40,10 @@ export class AddArticleComponent implements OnInit {
   }
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private readonly articleService: ArticlesService
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly articleService: ArticlesService,
+    private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
@@ -71,15 +73,14 @@ export class AddArticleComponent implements OnInit {
       documents: [],
       // documents: this.uploader.queue,
     };
-    console.log(posts);
     this.articleService.addArticle(posts).subscribe((re) => {
-      console.log(re);
-      if (re === -1) {
-        alert("Une erreur est survenue");
-      } else {
-        alert("Article ajouté avec succès");
-        this.router.navigate(["/articles"]);
-      }
+      this.egretLoader.open(`Article ${re.title} ajouté avec succés`, {
+        width: "320px",
+      });
+      setTimeout(() => {
+        this.egretLoader.close();
+      }, 2000);
+      this.router.navigate(["/articles"]);
     });
   }
 

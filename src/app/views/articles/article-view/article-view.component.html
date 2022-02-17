@@ -88,7 +88,7 @@
           <div fxFlex="100">
             <div class="comment-box">
               <h2>Comments</h2>
-              <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()" class="form-group">
+              <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment(article)" class="form-group">
                 <input type="text" name="full_name" id="full_name" placeholder="nom" formControlName="full_name">
                 <input type="email" name="mail" id="mail" placeholder="john@doe.fr" formControlName="mail">
                 <textarea name="content" id="content" cols="30" rows="10" placeholder="Votre commentaire ici"

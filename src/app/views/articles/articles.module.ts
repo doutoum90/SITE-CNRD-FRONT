@@ -28,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatInputModule } from "@angular/material/input";
 import { FileUploadModule } from "ng2-file-upload";
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   imports: [
@@ -49,6 +50,7 @@ import { FileUploadModule } from "ng2-file-upload";
     FlexLayoutModule,
     MatStepperModule,
     ChartsModule,
+    TranslateModule,
     NgxEchartsModule.forRoot({
       echarts,
     }),
