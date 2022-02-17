@@ -63,15 +63,7 @@ export class NavigationService {
       sub: [
         { name: "Articles", state: "articles" },
         { name: "Categories", state: "categories" },
-        { name: "Default", state: "default" },
-        {
-          name: "LEARNING",
-          state: "LEARNING",
-        },
-        { name: "Analytics", state: "analytics" },
-        { name: "Analytics Alt", state: "analytics-alt" },
-        { name: "Cryptocurrency", state: "crypto" },
-        { name: "Dark Cards", state: "dark" },
+        { name: "Users", state: "Users" },
       ],
     },
     {

@@ -38,3 +38,20 @@ export interface Categories {
   dateModification?: Date;
   idUser: string;
 }
+
+export interface Users {
+  id: string;
+  nom: string;
+  prenom: string;
+  age: number;
+  email: string;
+  motDePasse: string;
+  roles: string[];
+  image?: string;
+  userName: string;
+  phone: string;
+  isActive: boolean;
+  genre: string;
+  dateCreation: Date;
+  dateModification?: Date;
+}

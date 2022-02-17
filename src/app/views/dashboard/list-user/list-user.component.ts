@@ -4,16 +4,16 @@ import { egretAnimations } from "app/shared/animations/egret-animations";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
-import { Article } from "../../articles/model/article.model";
+import { Article, Categories, Users } from "../../articles/model/article.model";
 
 @Component({
-  selector: "app-list-article",
-  templateUrl: "./list-article.component.html",
-  styleUrls: ["./list-article.component.scss"],
+  selector: "app-list-user",
+  templateUrl: "./list-user.component.html",
+  styleUrls: ["./list-user.component.scss"],
   animations: egretAnimations,
 })
-export class ListArticleComponent implements OnInit {
-  articles$: Observable<Article[]>;
+export class ListUsersComponent implements OnInit {
+  users$: Observable<Users[]>;
 
   constructor(
     private router: Router,
@@ -24,20 +24,20 @@ export class ListArticleComponent implements OnInit {
   ngOnInit() {
     // const user = this.jwtAuth.getUser();
     // console.log(user);
-    this.articles$ = this.articleService.getAllArticles();
+    this.users$ = this.articleService.getAllUsers();
   }
 
   detail(data: Article) {
-    this.router.navigate(["/dashboard/articles/edit", data.id]);
+    this.router.navigate(["/dashboard/categories/edit", data.id]);
   }
 
   deleteItem(data: Article) {
     console.log(data);
   }
 
-  archiverArticle(data: Article) {
+  archiver(data: Categories) {
     if (!data.isArchived) {
-      this.articleService.archiverArticle(data.id, !data.isArchived);
+      this.articleService.archiverCategory(data.id, !data.isArchived);
     }
   }
 }

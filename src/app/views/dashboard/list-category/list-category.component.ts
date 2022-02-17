@@ -35,7 +35,7 @@ export class ListCategoryComponent implements OnInit {
     console.log(data);
   }
 
-  archiver(data: Categories) {
+  archiverCategory(data: Categories) {
     if (!data.isArchived) {
       this.articleService.archiverCategory(data.id, !data.isArchived);
     }

@@ -22,12 +22,6 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { SharedPipesModule } from "app/shared/pipes/shared-pipes.module";
 
 import { DashboardRoutes } from "./dashboard.routing";
-import { AnalyticsComponent } from "./analytics/analytics.component";
-import { DashboardDarkComponent } from "./dashboard-dark/dashboard-dark.component";
-import { CryptocurrencyComponent } from "./cryptocurrency/cryptocurrency.component";
-import { DefaultDashboardComponent } from "./default-dashboard/default-dashboard.component";
-import { LearningManagementComponent } from "./learning-management/learning-management.component";
-import { AnalyticsAltComponent } from "./analytics-alt/analytics-alt.component";
 import { TranslateModule } from "@ngx-translate/core";
 import { AddArticleComponent } from "./add-article/add-article.component";
 import { MatStepperModule } from "@angular/material/stepper";
@@ -42,6 +36,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ListCategoryComponent } from "./list-category/list-category.component";
 import { AddCategoryomponent } from "./add-category/add-category.component";
 import { EditCategoryComponent } from "./edit-category/edit-category.component";
+import { ListUsersComponent } from "./list-user/list-user.component";
 
 @NgModule({
   imports: [
@@ -85,12 +80,7 @@ import { EditCategoryComponent } from "./edit-category/edit-category.component";
     AddCategoryomponent,
     EditCategoryComponent,
 
-    AnalyticsComponent,
-    DashboardDarkComponent,
-    CryptocurrencyComponent,
-    DefaultDashboardComponent,
-    LearningManagementComponent,
-    AnalyticsAltComponent,
+    ListUsersComponent,
   ],
   exports: [],
 })

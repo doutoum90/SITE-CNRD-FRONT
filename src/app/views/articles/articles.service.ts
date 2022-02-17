@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Article, Categories, Commentaire } from "./model/article.model";
+import { Article, Categories, Commentaire, Users } from "./model/article.model";
 import { v4 as uuidv4 } from "uuid";
 import { HttpClient } from "@angular/common/http";
 
@@ -9,7 +9,7 @@ import { HttpClient } from "@angular/common/http";
 export class ArticlesService {
   BASE_URL = "http://localhost:3000";
   constructor(private readonly http: HttpClient) {}
-
+  //   articles
   getArchivedArticle() {
     return this.http.get<Article[]>(`${this.BASE_URL}/posts?isArchived=true`);
   }
@@ -26,41 +26,15 @@ export class ArticlesService {
     );
   }
 
-  archiver(id: string, isArchived: boolean) {
+  archiverArticle(id: string, isArchived: boolean) {
     return this.http.patch<Article>(`${this.BASE_URL}/posts/${id}`, {
       isArchived,
       dateArchivage: new Date(),
     });
   }
 
-  archiverCategory(id: string, isArchived: boolean) {
-    return this.http.patch<Article>(`${this.BASE_URL}/categories/${id}`, {
-      isArchived,
-      dateArchivage: new Date(),
-    });
-  }
-
-  addCategory(category: Categories) {
-    return this.http.post(`${this.BASE_URL}/categories`, category);
-  }
-
-  editCategory(category: Categories) {
-    return this.http.patch(
-      `${this.BASE_URL}/categories/${category.id}`,
-      category
-    );
-  }
-
-  getAllCategories() {
-    return this.http.get<Categories[]>(`${this.BASE_URL}/categories`);
-  }
-
   getArticle(id: string) {
     return this.http.get<Article>(`${this.BASE_URL}/posts/${id}`);
-  }
-
-  getCatery(id: string) {
-    return this.http.get<Categories>(`${this.BASE_URL}/categories/${id}`);
   }
 
   addArticle(article: Article) {
@@ -85,5 +59,52 @@ export class ArticlesService {
     return this.http.put(`${this.BASE_URL}/posts/${articleId}`, {
       icon: "test Modification",
     });
+  }
+  // Categories
+  getCatery(id: string) {
+    return this.http.get<Categories>(`${this.BASE_URL}/categories/${id}`);
+  }
+
+  archiverCategory(id: string, isArchived: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/categories/${id}`, {
+      isArchived,
+      dateArchivage: new Date(),
+    });
+  }
+
+  addCategory(category: Categories) {
+    return this.http.post(`${this.BASE_URL}/categories`, category);
+  }
+
+  editCategory(category: Categories) {
+    return this.http.patch(
+      `${this.BASE_URL}/categories/${category.id}`,
+      category
+    );
+  }
+
+  getAllCategories() {
+    return this.http.get<Categories[]>(`${this.BASE_URL}/categories`);
+  }
+
+  // users
+
+  archiverUsers(id: string, isArchived: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/users/${id}`, {
+      isArchived,
+      dateArchivage: new Date(),
+    });
+  }
+
+  addUser(user: Users) {
+    return this.http.post(`${this.BASE_URL}/users`, user);
+  }
+
+  editUser(user: Users) {
+    return this.http.patch(`${this.BASE_URL}/users/${user.id}`, user);
+  }
+
+  getAllUsers() {
+    return this.http.get<Users[]>(`${this.BASE_URL}/users`);
   }
 }
