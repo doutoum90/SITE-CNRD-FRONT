@@ -1,0 +1,80 @@
+<div class="">
+  <div fxLayout="row wrap">
+    <div fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100">
+      <mat-card class="p-24">
+        <div fxLayout="row wrap">
+          <div fxFlex="100">
+            <mat-horizontal-stepper [linear]="true">
+              <mat-step [stepControl]="categoryFormGroup">
+                <form [formGroup]="categoryFormGroup">
+                  <ng-template matStepLabel
+                    >Saisie des informations la category</ng-template
+                  >
+                  <mat-form-field class="pt-16 pb-16">
+                    <input
+                      matInput
+                      placeholder="Title"
+                      formControlName="title"
+                      required
+                    />
+                  </mat-form-field>
+                  <ng-template matStepLabel
+                    >Libellés de la category</ng-template
+                  >
+                  <mat-form-field class="pt-16 pb-16">
+                    <input
+                      matInput
+                      placeholder="Libellés"
+                      formControlName="libelles"
+                      required
+                    />
+                  </mat-form-field>
+                  <mat-card class="p-0">
+                    <mat-card-content class="p-0">
+                      <quill-editor
+                        name="description"
+                        formControlName="description"
+                        ngDefaultControl
+                        theme="snow"
+                        (onContentChanged)="onContentChanged()"
+                        onSelectionChanged="onSelectionChanged()"
+                      ></quill-editor>
+                    </mat-card-content>
+                  </mat-card>
+
+                  <div fxLayout="row">
+                    <button mat-raised-button color="accent" matStepperPrevious>
+                      Back
+                    </button>
+                    <span fxFlex="8px"></span>
+                    <button mat-raised-button color="primary" matStepperNext>
+                      Next
+                    </button>
+                  </div>
+                </form>
+              </mat-step>
+              <mat-step>
+                <ng-template matStepLabel>Recapitulatif</ng-template>
+                <div>
+                  <mat-icon class="pt-16" [style.fontSize]="'36px'"
+                    >check</mat-icon
+                  >
+                </div>
+                <div class="pb-16 mb-16">You Are Done.</div>
+                <div fxLayout="row">
+                  <button mat-raised-button color="accent" matStepperPrevious>
+                    Back
+                  </button>
+                  <span fxFlex="8px"></span>
+                  <button mat-raised-button color="primary" (click)="submit()">
+                    Submit
+                  </button>
+                </div>
+              </mat-step>
+            </mat-horizontal-stepper>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

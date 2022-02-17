@@ -261,6 +261,16 @@
       "documents": []
     }
   ],
+  "categories": [
+    {
+      "id": "45b4d793-30bc-410f-bcc3-88c293853e90",
+      "title": "TITRE",
+      "libelles": "LIBELLE",
+      "description": "<p>gehgergherhrehrgehgreherhrghhgreeghrgher</p>",
+      "datePublication": "2022-02-17T08:19:38.420Z",
+      "idUser": "idUser"
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

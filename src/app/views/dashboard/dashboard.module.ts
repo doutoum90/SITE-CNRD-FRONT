@@ -39,6 +39,9 @@ import { ListArticleComponent } from "./list-article/list-article.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { QuillModule } from "ngx-quill";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { ListCategoryComponent } from "./list-category/list-category.component";
+import { AddCategoryomponent } from "./add-category/add-category.component";
+import { EditCategoryComponent } from "./edit-category/edit-category.component";
 
 @NgModule({
   imports: [
@@ -74,9 +77,14 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     RouterModule.forChild(DashboardRoutes),
   ],
   declarations: [
-    AddArticleComponent,
     ListArticleComponent,
+    AddArticleComponent,
     EditArticleComponent,
+
+    ListCategoryComponent,
+    AddCategoryomponent,
+    EditCategoryComponent,
+
     AnalyticsComponent,
     DashboardDarkComponent,
     CryptocurrencyComponent,

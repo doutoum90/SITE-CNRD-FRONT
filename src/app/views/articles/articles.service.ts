@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Article, Commentaire } from "./model/article.model";
+import { Article, Categories, Commentaire } from "./model/article.model";
 import { v4 as uuidv4 } from "uuid";
 import { HttpClient } from "@angular/common/http";
 
@@ -31,6 +31,18 @@ export class ArticlesService {
       isArchived,
       dateArchivage: new Date(),
     });
+  }
+
+  addCategory(category: Categories) {
+    return this.http.post(`${this.BASE_URL}/categories`, category);
+  }
+
+  editCategory(category: Categories) {
+    return this.http.patch(`${this.BASE_URL}/posts/${category.id}`, category);
+  }
+
+  getAllCategories() {
+    return this.http.get<Categories[]>(`${this.BASE_URL}/categories`);
   }
 
   getArticle(id: string) {

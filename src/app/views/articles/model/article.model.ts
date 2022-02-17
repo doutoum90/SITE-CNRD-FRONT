@@ -26,3 +26,13 @@ export interface User {
   image: string;
   userName: string;
 }
+
+export interface Categories {
+  id: string;
+  title: string;
+  libelles: string;
+  description: string;
+  datePublication: Date;
+  dateModification?: Date;
+  idUser: string;
+}

@@ -62,6 +62,7 @@ export class NavigationService {
       state: "dashboard",
       sub: [
         { name: "Articles", state: "articles" },
+        { name: "Categories", state: "categories" },
         { name: "Default", state: "default" },
         {
           name: "LEARNING",
