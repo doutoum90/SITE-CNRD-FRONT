@@ -23,15 +23,16 @@
       </mat-card>
 
       <div fxLayout="row wrap">
-        <div fxFlex="33"  style="cursor: pointer;" *ngFor="let article of articles$ | async;  let i = index">
+        <div
+          fxFlex="33"
+          style="cursor: pointer"
+          *ngFor="let article of articles$ | async; let i = index"
+        >
           <!--  -->
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
 
-            <p [innerHtml]="article.content | slice:0:250">
-
-
-            </p>
+            <p [innerHtml]="article.shortContent | slice: 0:250"></p>
             <!--<span>
               <a href="javascript:;" *ngIf="!readMore" (click)="readMoreArticle(i)">{{"READMORE" | translate }}</a>
             </span> ">
@@ -44,14 +45,22 @@
     <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
       <mat-card>
         <div class="mat-heading-label">Articles archivés</div>
-        <div class="d-flex mb-16" style="cursor: pointer;" *ngFor="let r of archivedArticle$ | async"
-          (click)="showArticle(r)">
-          <div class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center">
+        <div
+          class="d-flex mb-16"
+          style="cursor: pointer"
+          *ngFor="let r of archivedArticle$ | async"
+          (click)="showArticle(r)"
+        >
+          <div
+            class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center"
+          >
             <mat-icon>{{ r.icon }}</mat-icon>
           </div>
           <div class="d-flex flex-column justify-content-center flex-grow-1">
             <h6 class="mb-4">{{ r.title }}</h6>
-            <small class="text-muted">{{ r.datePublication | date: 'dd/MM/yyyy' }}</small>
+            <small class="text-muted">{{
+              r.datePublication | date: "dd/MM/yyyy"
+            }}</small>
           </div>
           <button mat-icon-button>
             <mat-icon class="text-muted">more_vert</mat-icon>
@@ -59,14 +68,23 @@
         </div>
         <div class="my-24"></div>
         <div class="mat-heading-label">Upcoming Challenges</div>
-        <div class="d-flex mb-16" style="cursor: pointer;" *ngFor="let r of archivedArticle$ | async" [class]="r.id"
-          (click)="showArticle(r)">
-          <div class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center">
+        <div
+          class="d-flex mb-16"
+          style="cursor: pointer"
+          *ngFor="let r of archivedArticle$ | async"
+          [class]="r.id"
+          (click)="showArticle(r)"
+        >
+          <div
+            class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center"
+          >
             <mat-icon>{{ r.icon }}</mat-icon>
           </div>
           <div class="d-flex flex-column justify-content-center flex-grow-1">
             <h6 class="mb-4">{{ r.title }}</h6>
-            <small class="text-muted">{{ r.datePublication | date: 'dd/MM/yyyy' }}</small>
+            <small class="text-muted">{{
+              r.datePublication | date: "dd/MM/yyyy"
+            }}</small>
           </div>
           <button mat-icon-button>
             <mat-icon class="text-muted">more_vert</mat-icon>
