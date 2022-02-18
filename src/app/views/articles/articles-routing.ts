@@ -1,5 +1,4 @@
 import { Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
 import { config } from "config";
 import { ArticleViewComponent } from "./article-view/article-view.component";
 
@@ -9,16 +8,6 @@ export const ArticleRoutes: Routes = [
     redirectTo: "home",
     pathMatch: "full",
   },
-  {
-    path: "home",
-    component: HomeComponent,
-    data: {
-      title: "Page d'acceuil",
-      breadcrumb: "Page d'acceuil",
-      roles: config.authRoles.sa,
-    },
-  },
-
   {
     path: ":id",
     component: ArticleViewComponent,

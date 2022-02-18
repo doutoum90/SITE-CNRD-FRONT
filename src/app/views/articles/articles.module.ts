@@ -22,7 +22,6 @@ import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { SharedPipesModule } from "app/shared/pipes/shared-pipes.module";
 
 import { ArticleRoutes } from "./articles-routing";
-import { HomeComponent } from "./home/home.component";
 import { ArticleViewComponent } from "./article-view/article-view.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatStepperModule } from "@angular/material/stepper";
@@ -60,7 +59,7 @@ import { TranslateModule } from "@ngx-translate/core";
     FileUploadModule,
     RouterModule.forChild(ArticleRoutes),
   ],
-  declarations: [HomeComponent, ArticleViewComponent],
+  declarations: [ArticleViewComponent],
   exports: [],
 })
 export class ArticlesModule {}

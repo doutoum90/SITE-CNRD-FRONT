@@ -22,6 +22,8 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ErrorHandlerService } from './shared/services/error-handler.service';
 import { TokenInterceptor } from './shared/interceptors/token.interceptor';
+import { ContactComponent } from './views/contact/contact.component';
+import { AboutComponent } from './views/about/about.component';
 
 
 // AoT requires an exported function for factories
@@ -50,7 +52,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true}),
     RouterModule.forRoot(rootRouterConfig, { useHash: false, relativeLinkResolution: 'legacy' })
   ],
-  declarations: [AppComponent],
+  declarations: [AppComponent, ContactComponent, AboutComponent],
   providers: [
     { provide: ErrorHandler, useClass: ErrorHandlerService },
     // { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },

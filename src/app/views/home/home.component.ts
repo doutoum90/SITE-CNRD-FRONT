@@ -1,115 +1,47 @@
-import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
-import { Router } from '@angular/router'
-import { AppLoaderService } from '../../shared/services/app-loader/app-loader.service';
-// import PerfectScrollbar from 'perfect-scrollbar';
-import { LayoutService } from 'app/shared/services/layout.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
+import { Observable } from "rxjs";
+import { ArticlesService } from "../articles/articles.service";
+import { Article } from "../articles/model/article.model";
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html'
+  selector: "article-home",
+  templateUrl: "./home.component.html",
 })
-export class HomeComponent implements OnInit, OnDestroy, AfterViewInit {
-  public mainVersion;
-  /****** Only for demo) **********/
-  public versions: any[] = [
-    {
-      name: 'Dark sidebar',
-      photo: 'assets/images/screenshots/black_sidebar.png',
-      dest: 'dashboard/learning-management',
-      conf: `{
-        "navigationPos": "side",
-        "sidebarStyle": "full",
-        "sidebarColor": "slate",
-        "topbarColor": "white",
-        "footerColor": "slate",
-        "dir": "ltr",
-        "useBreadcrumb": true,
-        "topbarFixed": false,
-        "breadcrumb": "simple",
-        "matTheme": "egret-navy"
-      }`
-    }, {
-      name: 'Light Sidebar',
-      photo: 'assets/images/screenshots/white_sidebar.png',
-      dest: 'dashboard/analytics',
-      conf: `{
-        "navigationPos": "side",
-        "sidebarStyle": "full",
-        "sidebarColor": "white",
-        "topbarColor": "white",
-        "footerColor":"slate",
-        "dir": "ltr",
-        "useBreadcrumb": true,
-        "topbarFixed": false,
-        "breadcrumb": "simple",
-        "matTheme": "egret-navy"
-      }`
-    },
-    {
-      name: 'Dark Theme',
-      photo: 'assets/images/screenshots/dark_theme.png',
-      dest: 'dashboard/analytics-alt',
-      conf: `{
-        "navigationPos": "side",
-        "sidebarStyle": "compact",
-        "sidebarColor": "slate",
-        "topbarColor": "slate",
-        "footerColor":"slate",
-        "dir": "ltr",
-        "useBreadcrumb": true,
-        "topbarFixed": false,
-        "breadcrumb": "simple",
-        "matTheme": "egret-navy-dark"
-      }`
-    },
-    {
-      name: 'Horizontal Navigation',
-      photo: 'assets/images/screenshots/horizontal_nav.png',
-      dest: 'dashboard/analytics-alt',
-      conf: `{
-        "navigationPos": "top",
-        "sidebarStyle": "compact",
-        "sidebarColor": "slate",
-        "topbarColor": "slate",
-        "footerColor":"slate",
-        "dir": "ltr",
-        "useBreadcrumb": true,
-        "topbarFixed": false,
-        "breadcrumb": "simple",
-        "matTheme": "egret-navy"
-      }`
-    },
-  ]
+export class HomeComponent implements OnInit {
+  user = "Mahamat";
+  archivedArticle$: Observable<Article[]>;
+  articles$: Observable<Article[]>;
+  readMore = undefined;
+  readMoreLabel = "";
 
-  // private homePS: PerfectScrollbar;
   constructor(
-    private router: Router,
-    private loader: AppLoaderService,
-    public layout: LayoutService
-  ) { }
+    private readonly articleService: ArticlesService,
+    private readonly router: Router,
+    private readonly translate: TranslateService
+  ) {}
 
-  ngOnInit() {
-    this.mainVersion = this.versions[0]
-  }
-
-  ngOnDestroy() {
-    // if (this.homePS) this.homePS.destroy();
-    this.loader.close();
-  }
-  ngAfterViewInit() {
-    // setTimeout(() => {
-    //   this.homePS = new PerfectScrollbar('.scrollable')
-    // });
+  ngOnInit(): void {
+    this.archivedArticle$ = this.articleService.getArchivedArticle();
+    this.articles$ = this.articleService.getArticles();
   }
 
-  /****** Remove this (Only for demo) **********/
-  goToDashboard(v) {
-    let origin = window.location.origin;
-    
-    window.location.href = `${origin}/${v.dest}/?layout=${v.conf}`;
+  showArticle(article: Article) {
+    if (article.isArchived) {
+      this.router.navigate(["/articles", article.id, "archived"]);
+    } else {
+      this.router.navigate(["/articles", article.id]);
+    }
   }
-  goToMainDash() {
-    this.loader.open();
-    this.router.navigateByUrl('/dashboard/analytics')
+
+  concatReadMore(content: string, index: number) {
+    const suite = ``;
+
+    return content + suite;
+  }
+
+  readMoreArticle(index: number) {
+    this.readMore = index;
   }
 }

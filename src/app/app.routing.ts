@@ -3,12 +3,13 @@ import { AdminLayoutComponent } from "./shared/components/layouts/admin-layout/a
 import { AuthLayoutComponent } from "./shared/components/layouts/auth-layout/auth-layout.component";
 import { FrontLayoutComponent } from "./shared/components/layouts/front-layout/front-layout.component";
 import { AuthGuard } from "./shared/guards/auth.guard";
-import { UserRoleGuard } from "./shared/guards/user-role.guard";
+import { AboutComponent } from "./views/about/about.component";
+import { ContactComponent } from "./views/contact/contact.component";
 
 export const rootRouterConfig: Routes = [
   {
     path: "",
-    redirectTo: "articles",
+    redirectTo: "home",
     pathMatch: "full",
   },
   {
@@ -37,6 +38,25 @@ export const rootRouterConfig: Routes = [
             (m) => m.ArticlesModule
           ),
         data: { title: "Articles", breadcrumb: "Articles" },
+      },
+      {
+        path: "contact",
+        component: ContactComponent,
+        data: { title: "contact", breadcrumb: "contact" },
+      },
+      {
+        path: "about",
+        component: AboutComponent,
+        data: { title: "about", breadcrumb: "about" },
+      },
+      {
+        path: "home",
+        loadChildren: () =>
+          import("./views/home/home.module").then((m) => m.HomeModule),
+        data: {
+          title: "Page d'acceuil",
+          breadcrumb: "Page d'acceuil",
+        },
       },
     ],
   },
