@@ -28,6 +28,7 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { MatInputModule } from "@angular/material/input";
 import { FileUploadModule } from "ng2-file-upload";
 import { TranslateModule } from "@ngx-translate/core";
+import { ArticleCatComponent } from './article-cat/article-cat.component';
 
 @NgModule({
   imports: [
@@ -59,7 +60,7 @@ import { TranslateModule } from "@ngx-translate/core";
     FileUploadModule,
     RouterModule.forChild(ArticleRoutes),
   ],
-  declarations: [ArticleViewComponent],
+  declarations: [ArticleViewComponent, ArticleCatComponent],
   exports: [],
 })
 export class ArticlesModule {}

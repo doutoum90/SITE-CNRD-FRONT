@@ -27,6 +27,11 @@ export const rootRouterConfig: Routes = [
     ],
   },
   {
+    path: "articles",
+    redirectTo: "home",
+    pathMatch: "full",
+  },
+  {
     path: "",
     component: FrontLayoutComponent,
     children: [
@@ -37,7 +42,7 @@ export const rootRouterConfig: Routes = [
           import("./views/articles/articles.module").then(
             (m) => m.ArticlesModule
           ),
-        data: { title: "Articles", breadcrumb: "Articles" },
+        data: { url: "/", title: "Articles", breadcrumb: "Articles" },
       },
       {
         path: "contact",

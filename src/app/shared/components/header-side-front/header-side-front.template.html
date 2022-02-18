@@ -9,20 +9,40 @@
   >
     <mat-icon>menu</mat-icon>
   </button>
+  <button mat-button [routerLink]="['/home']">
+    <mat-icon>home</mat-icon>
+    <span>&nbsp; Acceuil</span>
+  </button>
+
+  <div *ngFor="let cat of categories$ | async">
+    <div *ngIf="!cat?.subCategories?.length">
+      <button mat-button (click)="selectCat(cat.id)">{{cat.libelles}}</button>
+    </div>
+    <div *ngIf="cat?.subCategories?.length">
+      <button mat-button mat-button [matMenuTriggerFor]="aboveMenu">
+        {{cat.libelles}}
+      </button>
+      <mat-menu #aboveMenu="matMenu" yPosition="above">
+        <button
+          mat-menu-item
+          (click)="selectCat(sub.id)"
+          *ngFor="let sub of cat?.subCategories"
+        >
+          {{sub.libelles}}
+        </button>
+      </mat-menu>
+    </div>
+  </div>
 
   <span fxFlex></span>
 
-  <button mat-button [routerLink]="['/home']">
-    <mat-icon>home</mat-icon>
-    <span>Acceuil</span>
-  </button>
   <button mat-button [routerLink]="['/about']">
     <mat-icon>settings</mat-icon>
-    <span>A propos</span>
+    <span>&nbsp;A propos</span>
   </button>
   <button mat-button [routerLink]="['/contact']">
     <mat-icon>settings</mat-icon>
-    <span>Contact</span>
+    <span>&nbsp;Contact</span>
   </button>
 
   <!-- Language Switcher -->

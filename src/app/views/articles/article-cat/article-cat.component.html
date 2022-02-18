@@ -1,28 +1,19 @@
 <div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <mat-card class="p-24">
-        <div
-          fxLayout="row wrap"
-          *ngIf="articleAlaUne$ | async as articleAlaUne"
-        >
-          <div fxFlex="100">
-            <mat-card-title>{{ articleAlaUne[0].title }}</mat-card-title>
-            <p [innerHtml]="articleAlaUne[0].shortContent | slice: 0:250"></p>
-          </div>
-        </div>
-      </mat-card>
-
+ 
       <div
         fxLayout="row wrap"
         *ngIf="
           (articles$ | async) &&
-          (articles$ | async)?.length > 0 &&
-          (articles$ | async) as articles
+            (articles$ | async)?.length > 0 &&
+            (articles$ | async) as articles;
+          then thenBlock;
+          else notFoundBlock
         "
       >
         <div
-          fxFlex="33.33"
+          fxFlex="33"
           style="cursor: pointer"
           *ngFor="let article of articles$ | async; let i = index"
         >
@@ -86,3 +77,25 @@
     </div>
   </div>
 </div>
+
+<ng-template #thenBlock>
+  <div
+    fxFlex="33"
+    style="cursor: pointer"
+    *ngFor="let article of articles$ | async; let i = index"
+  >
+    <mat-card (click)="showArticle(article)">
+      <mat-card-title>{{ article.title }}</mat-card-title>
+      <p [innerHtml]="article.shortContent | slice: 0:250"></p>
+    </mat-card>
+  </div>
+</ng-template>
+<ng-template #notFoundBlock>
+  <div class="app-error">
+    <div class="fix">
+      <div class="error-text">
+        <div class="error-subtitle">Pas d'article pour cette categorie</div>
+      </div>
+    </div>
+  </div>
+</ng-template>

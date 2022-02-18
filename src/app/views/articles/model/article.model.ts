@@ -2,13 +2,16 @@ export interface Article {
   id: string;
   title: string;
   isArchived: boolean;
+  isAlaUne: boolean;
   content: string;
   shortContent: string;
   datePublication: Date;
   dateModification?: Date;
   dateArchivage?: Date;
+  dateAlaUne?: Date;
   icon: string;
   documents?: any[];
+  cats: string[];
   commentaires?: Commentaire[];
 }
 

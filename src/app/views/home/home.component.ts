@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   user = "Mahamat";
   archivedArticle$: Observable<Article[]>;
   articles$: Observable<Article[]>;
+  articleAlaUne$: Observable<Article[]>;
   readMore = undefined;
   readMoreLabel = "";
 
@@ -25,6 +26,8 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.archivedArticle$ = this.articleService.getArchivedArticle();
     this.articles$ = this.articleService.getArticles();
+    this.articleAlaUne$ = this.articleService.getArticleAlaUne();
+    this.articleAlaUne$.subscribe(console.log);
   }
 
   showArticle(article: Article) {

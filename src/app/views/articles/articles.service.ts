@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Article, Categories, Commentaire, Users } from "./model/article.model";
 import { v4 as uuidv4 } from "uuid";
 import { HttpClient } from "@angular/common/http";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -25,6 +26,17 @@ export class ArticlesService {
       `${this.BASE_URL}/posts?_page=1&_limit=100`
     );
   }
+  
+  getArticleAlaUne() {
+    return this.http.get<Article[]>(`${this.BASE_URL}/posts?isAlaUne=true`);
+  }
+
+  mettreAlaUneArticle(id: string, isAlaUne: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/posts/${id}`, {
+      isAlaUne,
+      dateAlaUne: new Date(),
+    });
+  }
 
   archiverArticle(id: string, isArchived: boolean) {
     return this.http.patch<Article>(`${this.BASE_URL}/posts/${id}`, {
@@ -32,7 +44,13 @@ export class ArticlesService {
       dateArchivage: new Date(),
     });
   }
-
+  getArticlesByCat(catId: string) {
+    return this.http.get<Article[]>(`${this.BASE_URL}/posts/`).pipe(
+      map((posts) => {
+        return posts.filter((post) => post?.cats?.includes(catId));
+      })
+    );
+  }
   getArticle(id: string) {
     return this.http.get<Article>(`${this.BASE_URL}/posts/${id}`);
   }

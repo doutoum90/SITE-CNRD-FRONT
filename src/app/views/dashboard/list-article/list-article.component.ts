@@ -37,6 +37,20 @@ export class ListArticleComponent implements OnInit {
     console.log(data);
   }
 
+  mettreAlaUne(data: Article) {
+    this.articleService
+      .mettreAlaUneArticle(data.id, !data.isAlaUne)
+      .subscribe((r) => {
+        this.articles$ = this.articleService.getAllArticles();
+        this.egretLoader.open(`Article ${r.title} archivé avec succés`, {
+          width: "320px",
+        });
+        setTimeout(() => {
+          this.egretLoader.close();
+        }, 2000);
+      });
+  }
+
   archiverArticle(data: Article) {
     if (!data.isArchived) {
       this.articleService
