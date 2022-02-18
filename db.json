@@ -444,6 +444,15 @@
       "metier": "MEDECIN",
       "photo": "PHOTO JEAN",
       "isPresident": false
+    },
+    {
+      "id": "272b1bbe-0ea1-4b23-b640-4750ed342b1b",
+      "nom": "JEAN-PAUL",
+      "prenom": "SARTRE",
+      "fonction": "SG ADJOINT",
+      "metier": "ARCHITECTE",
+      "photo": "SARTRE",
+      "isPresident": false
     }
   ],
   "users": [

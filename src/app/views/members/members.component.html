@@ -1,89 +1,44 @@
-<!--<div class="">
+<div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <mat-card class="p-24">
-        <div class="propic text-center">
-          <img
-            src="assets/images/sq-face-220.jpg"
-            style="height: 100px; width: 100px"
-            alt=""
-          />
-        </div>
-        <div class="profile-title text-center mb-16">
-          <div class="main-title">John Doe</div>
-          <div class="subtitle mb-8">Fonction</div>
-          <div class="subtitle mb-8">Metier</div>
+      <mat-card class="p-24" style="cursor: pointer">
+        <div
+          fxLayout="row wrap"
+          *ngIf="getPresident(members$ | async) as president"
+        >
+          <div fxFlex="75">
+            <img
+              mat-list-avatar
+              class="mr-16"
+              src="assets/images/sq-face-220.jpg"
+              alt=""
+            />
+            <div class="main-title">
+              {{ president?.nom }} {{ president?.prenom }}
+            </div>
+            <div class="subtitle mb-8">{{ president?.fonction }}</div>
+            <div class="subtitle mb-8">{{ president?.metier }}</div>
+          </div>
         </div>
       </mat-card>
 
       <div fxLayout="row wrap">
         <div fxFlex="25" style="cursor: pointer">
           <mat-card
-            class="p-24"
-            *ngFor="let user of users"
-            class="profile-sidebar"
+            *ngFor="
+              let member of getOtherMembres(members$ | async);
+              let i = index
+            "
           >
-            <div class="propic">
-              <img
-                src="assets/images/sq-face-220.jpg"
-                style="height: 100px; width: 100px"
-                alt=""
-              />
-            </div>
-            <div class="profile-title text-center mb-16">
-              <div class="main-title">John Doe</div>
-              <div class="subtitle mb-8">Fonction</div>
-              <div class="subtitle mb-8">Metier</div>
-            </div>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-
-    <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">Hello world !!!</div>
-  </div>
-</div>-->
-
-<div class="">
-  <div fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <mat-card class="p-24" style="cursor: pointer">
-        <div fxLayout="row wrap">
-          <div fxFlex="100">
             <img
               mat-list-avatar
               class="mr-16"
               src="assets/images/sq-face-220.jpg"
               alt=""
             />
-            <div>
-              <!--  {{ user | json }} -->
-              <div class="main-title">Test</div>
-              <div class="subtitle mb-8">Fonction</div>
-              <div class="subtitle mb-8">Metier</div>
-            </div>
-          </div>
-        </div>
-      </mat-card>
-
-      <div fxLayout="row wrap">
-        <div fxFlex="25" style="cursor: pointer" *ngFor="let user of users">
-          <mat-card>
-            <!--<img style="height: 100px; width: 100px"
-              alt=""
-            /> -->
-            <img
-              mat-list-avatar
-              class="mr-16"
-              src="assets/images/sq-face-220.jpg"
-              alt=""
-            />
-            <div>
-              <!--  {{ user | json }} -->
-              <div class="main-title">{{ user.title }}</div>
-              <div class="subtitle mb-8">Fonction</div>
-              <div class="subtitle mb-8">Metier</div>
-            </div>
+            <div class="main-title">{{ member?.nom }} {{ member?.prenom }}</div>
+            <div class="subtitle mb-8">{{ member?.fonction }}</div>
+            <div class="subtitle mb-8">{{ member?.metier }}</div>
           </mat-card>
         </div>
       </div>
@@ -92,10 +47,10 @@
     <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
       <mat-card>
         <div class="mat-heading-label">Articles archivés</div>
-        TESTETZETZETEZT
-        <div class="my-24"></div>
-        <div class="mat-heading-label">Upcoming Challenges</div>
-        test
+        <div class="d-flex mb-16" style="cursor: pointer">
+          <div>HEHEZEJEZEHJ ZEHZHEZ</div>
+        </div>
+        <mat-card-title>Un titre spécial</mat-card-title>
       </mat-card>
     </div>
   </div>
