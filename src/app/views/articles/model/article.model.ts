@@ -58,3 +58,12 @@ export interface Users {
   dateCreation: Date;
   dateModification?: Date;
 }
+export interface Membre {
+  id: string;
+  nom: string;
+  prenom: string;
+  fonction: string;
+  metier: string;
+  photo?: string;
+  isPresident: boolean;
+}

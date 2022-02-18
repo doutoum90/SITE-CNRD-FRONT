@@ -64,6 +64,7 @@ export class NavigationService {
         { name: "Articles", state: "articles" },
         { name: "Categories", state: "categories" },
         { name: "Users", state: "users" },
+        { name: "Membres", state: "members" },
       ],
     },
     {

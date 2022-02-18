@@ -426,6 +426,26 @@
       "idUser": "idUser"
     }
   ],
+  "members": [
+    {
+      "id": "e1fd08e0-ec2c-4bbf-b702-86194a5ccd77",
+      "nom": "JOHN",
+      "prenom": "DOE",
+      "fonction": "PRESIDENT",
+      "metier": "AVOCAT",
+      "photo": "PHOTO",
+      "isPresident": true
+    },
+    {
+      "id": "f4b94086-3f68-4c8c-a7d2-e150875877bc",
+      "nom": "JEAN",
+      "prenom": "DUPPONT",
+      "fonction": "SG",
+      "metier": "MEDECIN",
+      "photo": "PHOTO JEAN",
+      "isPresident": false
+    }
+  ],
   "users": [
     {
       "id": "45b4d793-30bc-410f-bcc3-88c293853e90",

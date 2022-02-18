@@ -1,5 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Article, Categories, Commentaire, Users } from "./model/article.model";
+import {
+  Article,
+  Categories,
+  Commentaire,
+  Membre,
+  Users,
+} from "./model/article.model";
 import { v4 as uuidv4 } from "uuid";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
@@ -26,7 +32,7 @@ export class ArticlesService {
       `${this.BASE_URL}/posts?_page=1&_limit=100`
     );
   }
-  
+
   getArticleAlaUne() {
     return this.http.get<Article[]>(`${this.BASE_URL}/posts?isAlaUne=true`);
   }
@@ -144,5 +150,24 @@ export class ArticlesService {
       isActive,
       dateArchivage: new Date(),
     });
+  }
+
+  getAllMembers() {
+    return this.http.get<Membre[]>(`${this.BASE_URL}/members`);
+  }
+
+  addMembre(membre: Membre) {
+    return this.http.post<Membre>(`${this.BASE_URL}/members`, membre);
+  }
+
+  getMembreById(id: string) {
+    return this.http.get<Membre>(`${this.BASE_URL}/members/${id}`);
+  }
+
+  editMember(member: Membre) {
+    return this.http.patch<Membre>(
+      `${this.BASE_URL}/members/${member.id}`,
+      member
+    );
   }
 }

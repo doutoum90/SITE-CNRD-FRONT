@@ -12,6 +12,9 @@ import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
 import { AddUserComponent } from "./add-user/add-user.component";
 import { EditUserComponent } from "./edit-user/edit-user.component";
+import { AddMembreComponent } from "./add-membre/add-membre.component";
+import { ListMemberComponent } from "./list-member/list-member.component";
+import { EditMemberComponent } from "./edit-membre/edit-membre.component";
 
 export const DashboardRoutes: Routes = [
   {
@@ -49,6 +52,16 @@ export const DashboardRoutes: Routes = [
       roles: config.authRoles.sa,
     },
   },
+  {
+    path: "members",
+    component: ListMemberComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Liste des membres",
+      breadcrumb: "Liste des membres",
+      roles: config.authRoles.sa,
+    },
+  },
 
   {
     path: "articles/add",
@@ -81,6 +94,16 @@ export const DashboardRoutes: Routes = [
     },
   },
   {
+    path: "members/add",
+    component: AddMembreComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Ajout membre",
+      breadcrumb: "Ajout membre",
+      roles: config.authRoles.sa,
+    },
+  },
+  {
     path: "articles/edit/:id",
     component: EditArticleComponent,
     canActivate: [UserRoleGuard],
@@ -103,6 +126,16 @@ export const DashboardRoutes: Routes = [
   {
     path: "users/edit/:id",
     component: EditUserComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Modification utilisateur",
+      breadcrumb: "Modification utilisateur",
+      roles: config.authRoles.sa,
+    },
+  },
+  {
+    path: "members/edit/:id",
+    component: EditMemberComponent,
     canActivate: [UserRoleGuard],
     data: {
       title: "Modification utilisateur",

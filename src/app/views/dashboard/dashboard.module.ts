@@ -41,6 +41,10 @@ import { AddUserComponent } from "./add-user/add-user.component";
 import { EditUserComponent } from "./edit-user/edit-user.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
+import { AddMembreComponent } from "./add-membre/add-membre.component";
+import { EditMemberComponent } from "./edit-membre/edit-membre.component";
+import { ListMemberComponent } from "./list-member/list-member.component";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   imports: [
@@ -73,6 +77,7 @@ import { MatSelectModule } from "@angular/material/select";
     SharedPipesModule,
     MatStepperModule,
     MatRadioModule,
+    MatCheckboxModule,
     MatSelectModule,
     MatPaginatorModule,
     RouterModule.forChild(DashboardRoutes),
@@ -89,6 +94,10 @@ import { MatSelectModule } from "@angular/material/select";
     ListUsersComponent,
     AddUserComponent,
     EditUserComponent,
+
+    ListMemberComponent,
+    AddMembreComponent,
+    EditMemberComponent,
   ],
   exports: [],
 })
