@@ -34,12 +34,7 @@ export class HeaderSideFrontComponent implements OnInit {
       name: "EN",
       code: "en",
       flag: "flag-icon-us",
-    },
-    {
-      name: "ES",
-      code: "es",
-      flag: "flag-icon-es",
-    },
+    }
   ];
   currentLang = this.availableLangs[0];
   categories$: Observable<Categories[]>;

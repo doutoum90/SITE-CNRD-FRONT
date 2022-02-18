@@ -4,7 +4,10 @@ import { AuthLayoutComponent } from "./shared/components/layouts/auth-layout/aut
 import { FrontLayoutComponent } from "./shared/components/layouts/front-layout/front-layout.component";
 import { AuthGuard } from "./shared/guards/auth.guard";
 import { AboutComponent } from "./views/about/about.component";
+import { AdhererComponent } from "./views/adherer/adherer.component";
 import { ContactComponent } from "./views/contact/contact.component";
+import { DocumentsComponent } from "./views/documents/documents.component";
+import { MembersComponent } from "./views/members/members.component";
 
 export const rootRouterConfig: Routes = [
   {
@@ -53,6 +56,21 @@ export const rootRouterConfig: Routes = [
         path: "about",
         component: AboutComponent,
         data: { title: "about", breadcrumb: "about" },
+      },
+      {
+        path: "docs",
+        component: DocumentsComponent,
+        data: { title: "Documents", breadcrumb: "Documents" },
+      },
+      {
+        path: "adherer",
+        component: AdhererComponent,
+        data: { title: "Adhesion", breadcrumb: "Adhesion" },
+      },
+      {
+        path: "membres",
+        component: MembersComponent,
+        data: { title: "Membres du bureau", breadcrumb: "Membres du bureau" },
       },
       {
         path: "home",

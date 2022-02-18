@@ -1,10 +1,14 @@
 <div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <mat-card class="p-24">
+      <!-- <p>
+        Article à la une
+      </p> -->
+      <mat-card class="p-24" style="cursor: pointer">
         <div
           fxLayout="row wrap"
           *ngIf="articleAlaUne$ | async as articleAlaUne"
+          (click)="showArticle(articleAlaUne)"
         >
           <div fxFlex="100">
             <mat-card-title>{{ articleAlaUne[0].title }}</mat-card-title>

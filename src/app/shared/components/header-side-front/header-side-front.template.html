@@ -10,6 +10,14 @@
     <mat-icon>menu</mat-icon>
   </button>
   <button mat-button [routerLink]="['/home']">
+    <img
+      src="assets/images/egret.png"
+      style="height: 50px; width: 50px"
+      alt=""
+      class="app-logo"
+    />
+  </button>
+  <button mat-button [routerLink]="['/home']">
     <mat-icon>home</mat-icon>
     <span>&nbsp; Acceuil</span>
   </button>
@@ -41,8 +49,22 @@
     <span>&nbsp;A propos</span>
   </button>
   <button mat-button [routerLink]="['/contact']">
-    <mat-icon>settings</mat-icon>
+    <mat-icon>contact_page</mat-icon>
     <span>&nbsp;Contact</span>
+  </button>
+
+  <button mat-button [routerLink]="['/docs']">
+    <mat-icon>folder</mat-icon>
+    <span>&nbsp;Documents</span>
+  </button>
+
+  <button mat-button [routerLink]="['/adherer']">
+    <mat-icon>card_membership</mat-icon>
+    <span>&nbsp;Adherer</span>
+  </button>
+  <button mat-button [routerLink]="['/membres']">
+    <mat-icon>people</mat-icon>
+    <span>&nbsp;Membres</span>
   </button>
 
   <!-- Language Switcher -->

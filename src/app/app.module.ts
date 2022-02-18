@@ -1,30 +1,41 @@
-import { NgModule, ErrorHandler } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { BrowserModule, HAMMER_GESTURE_CONFIG } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, ErrorHandler } from "@angular/core";
+import { RouterModule } from "@angular/router";
+import {
+  BrowserModule,
+} from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 // import { GestureConfig } from '@angular/material/core';
-import { 
-  PerfectScrollbarModule, 
-  PERFECT_SCROLLBAR_CONFIG, 
-  PerfectScrollbarConfigInterface
-} from 'ngx-perfect-scrollbar';
+import {
+  PerfectScrollbarModule,
+  PERFECT_SCROLLBAR_CONFIG,
+  PerfectScrollbarConfigInterface,
+} from "ngx-perfect-scrollbar";
 
+import { InMemoryWebApiModule } from "angular-in-memory-web-api";
+import { InMemoryDataService } from "./shared/inmemory-db/inmemory-db.service";
 
-import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './shared/inmemory-db/inmemory-db.service';
+import { rootRouterConfig } from "./app.routing";
+import { SharedModule } from "./shared/shared.module";
+import { AppComponent } from "./app.component";
 
-import { rootRouterConfig } from './app.routing';
-import { SharedModule } from './shared/shared.module';
-import { AppComponent } from './app.component';
-
-import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ErrorHandlerService } from './shared/services/error-handler.service';
-import { TokenInterceptor } from './shared/interceptors/token.interceptor';
-import { ContactComponent } from './views/contact/contact.component';
-import { AboutComponent } from './views/about/about.component';
-
+import {
+  HttpClient,
+  HttpClientModule,
+  HTTP_INTERCEPTORS,
+} from "@angular/common/http";
+import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { ErrorHandlerService } from "./shared/services/error-handler.service";
+import { TokenInterceptor } from "./shared/interceptors/token.interceptor";
+import { ContactComponent } from "./views/contact/contact.component";
+import { AboutComponent } from "./views/about/about.component";
+import { DocumentsComponent } from "./views/documents/documents.component";
+import { AdhererComponent } from "./views/adherer/adherer.component";
+import { MatListModule } from "@angular/material/list";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatIconModule } from "@angular/material/icon";
+import { MembersComponent } from './views/members/members.component';
+import { MatCardModule } from "@angular/material/card";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -32,7 +43,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
 }
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
-  suppressScrollX: true
+  suppressScrollX: true,
 };
 
 @NgModule({
@@ -41,22 +52,41 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     BrowserAnimationsModule,
     SharedModule,
     HttpClientModule,
+    MatListModule,
+    MatDividerModule,
+    MatCardModule,
+    MatIconModule,
     PerfectScrollbarModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
-        deps: [HttpClient]
-      }
+        deps: [HttpClient],
+      },
     }),
-    InMemoryWebApiModule.forRoot(InMemoryDataService, { passThruUnknownUrl: true}),
-    RouterModule.forRoot(rootRouterConfig, { useHash: false, relativeLinkResolution: 'legacy' })
+    InMemoryWebApiModule.forRoot(InMemoryDataService, {
+      passThruUnknownUrl: true,
+    }),
+    RouterModule.forRoot(rootRouterConfig, {
+      useHash: false,
+      relativeLinkResolution: "legacy",
+    }),
   ],
-  declarations: [AppComponent, ContactComponent, AboutComponent],
+  declarations: [
+    AppComponent,
+    ContactComponent,
+    AboutComponent,
+    DocumentsComponent,
+    AdhererComponent,
+    MembersComponent,
+  ],
   providers: [
     { provide: ErrorHandler, useClass: ErrorHandlerService },
     // { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
-    { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG },
+    {
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,
+    },
     // REQUIRED IF YOU USE JWT AUTHENTICATION
     {
       provide: HTTP_INTERCEPTORS,
@@ -64,6 +94,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       multi: true,
     },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
