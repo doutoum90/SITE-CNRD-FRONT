@@ -1,4 +1,4 @@
-<div class="">
+<!-- <div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
       <mat-card class="p-24" style="cursor: pointer">
@@ -55,3 +55,49 @@
     </div>
   </div>
 </div>
+ -->
+
+<mat-grid-list cols="5">
+  <mat-grid-tile colspan="2" rowspan="1"> </mat-grid-tile>
+  <mat-grid-tile colspan="1" rowspan="1">
+    <mat-card class="p-24" style="cursor: pointer">
+      <div
+        fxLayout="row wrap"
+        *ngIf="getPresident(members$ | async) as president"
+      >
+        <div fxFlex="75">
+          <img
+            mat-list-avatar
+            class="mr-16"
+            [src]="member?.photo || 'assets/images/sq-face-220.jpg'"
+            alt=""
+          />
+          <div class="main-title text-center">
+            {{ president?.nom }} {{ president?.prenom }}
+          </div>
+          <div class="subtitle mb-8 text-center">{{ president?.fonction }}</div>
+          <div class="subtitle mb-8 text-center">{{ president?.metier }}</div>
+        </div>
+      </div>
+    </mat-card>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="2" rowspan="1"> </mat-grid-tile>
+
+  <mat-grid-tile
+    colspan="1"
+    rowspan="1"
+    *ngFor="let member of getOtherMembres(members$ | async); let i = index"
+  >
+    <mat-card>
+      <img
+        mat-list-avatar
+        class="mr-16"
+        [src]="member?.photo || 'assets/images/sq-face-220.jpg'"
+        alt=""
+      />
+      <div class="main-title text-center">{{ member?.nom }} {{ member?.prenom }}</div>
+      <div class="subtitle mb-8 text-center">{{ member?.fonction }}</div>
+      <div class="subtitle mb-8 text-center">{{ member?.metier }}</div>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

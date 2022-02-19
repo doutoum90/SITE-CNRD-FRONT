@@ -67,3 +67,29 @@ export interface Membre {
   photo?: string;
   isPresident: boolean;
 }
+
+export interface Folder {
+  name: string;
+  files?: File[];
+}
+export interface File {
+  name: string;
+  lien: string;
+}
+
+export interface Adherant {
+  id: string;
+  nom: string;
+  prenom: string;
+  dateNaissance: Date;
+  LieuNaissance: string;
+  nationalite: string;
+
+  profession: string;
+  adresse: string;
+  phone: string;
+  mail: string;
+  photo: string;
+
+  cotisation: number;
+}

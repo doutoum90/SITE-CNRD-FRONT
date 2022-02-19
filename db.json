@@ -433,7 +433,7 @@
       "prenom": "DOE",
       "fonction": "PRESIDENT",
       "metier": "AVOCAT",
-      "photo": "PHOTO",
+      "photo": "assets/images/sq-face-220.jpg",
       "isPresident": true
     },
     {
@@ -442,7 +442,7 @@
       "prenom": "DUPPONT",
       "fonction": "SG",
       "metier": "MEDECIN",
-      "photo": "PHOTO JEAN",
+      "photo": "assets/images/sq-face-220.jpg",
       "isPresident": false
     },
     {
@@ -451,7 +451,7 @@
       "prenom": "SARTRE",
       "fonction": "SG ADJOINT",
       "metier": "ARCHITECTE",
-      "photo": "SARTRE",
+      "photo": "assets/images/sq-face-220.jpg",
       "isPresident": false
     }
   ],

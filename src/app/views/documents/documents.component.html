@@ -1,17 +1,36 @@
 <mat-list>
-  <h3 mat-subheader>Folders</h3>
-  <mat-list-item *ngFor="let folder of folders">
+  <h3 mat-subheader>{{ "ALL FOLDERS" | translate }}</h3>
+  <mat-list-item
+    *ngFor="let folder of folders"
+    style="cursor: pointer"
+    (click)="open(folder)"
+  >
     <mat-icon mat-list-icon>folder</mat-icon>
-    <h4 mat-line>{{folder.name}}</h4>
-    <p mat-line> {{folder.updated | date}} </p>
+    <h4 mat-line>{{ folder.name }}</h4>
   </mat-list-item>
-  <mat-divider></mat-divider>
-  <h3 mat-subheader>Notes</h3>
-  <mat-list-item *ngFor="let note of notes">
+  <mat-divider *ngIf="selectedFolder && selectedFolder?.files"></mat-divider>
+  <h3 mat-subheader *ngIf="selectedFolder && selectedFolder?.files">
+    {{ "ALL FILES" | translate }}
+  </h3>
+  <mat-list-item
+    *ngFor="let file of selectedFolder?.files"
+    style="cursor: pointer"
+    (click)="openFile(file)"
+  >
     <mat-icon mat-list-icon>note</mat-icon>
-    <h4 mat-line>{{note.name}}</h4>
-    <p mat-line> {{note.updated | date}} </p>
+    <h4 mat-line>{{ file.name }}</h4>
   </mat-list-item>
 </mat-list>
 
-<mat-icon>code</mat-icon>
+<embed
+  *ngIf="url"
+  [src]="url"
+  style="width: 100%; height: 1000px"
+  type="application/pdf"
+/>
+<!-- <mat-icon>code</mat-icon>
+  <pdf-viewer [src]="assets/adhesion/Nouvelle démande d\'adhesion CNRD-2022.pdf'" 
+              [render-text]="true"
+              [original-size]="false"
+              style="width: 400px; height: 500px"
+  ></pdf-viewer> -->

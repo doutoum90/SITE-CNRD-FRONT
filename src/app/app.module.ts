@@ -1,8 +1,6 @@
 import { NgModule, ErrorHandler } from "@angular/core";
 import { RouterModule } from "@angular/router";
-import {
-  BrowserModule,
-} from "@angular/platform-browser";
+import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 // import { GestureConfig } from '@angular/material/core';
 import {
@@ -34,8 +32,22 @@ import { AdhererComponent } from "./views/adherer/adherer.component";
 import { MatListModule } from "@angular/material/list";
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from "@angular/material/icon";
-import { MembersComponent } from './views/members/members.component';
+import { MembersComponent } from "./views/members/members.component";
 import { MatCardModule } from "@angular/material/card";
+import { NgxPaginationModule } from "ngx-pagination";
+import { ShopService } from "./views/shop/shop.service";
+import { MatGridListModule } from "@angular/material/grid-list";
+import { MatRadioModule } from "@angular/material/radio";
+import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { MatInputModule } from "@angular/material/input";
+import { MatNativeDateModule } from "@angular/material/core";
+import { MatProgressBarModule } from "@angular/material/progress-bar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatStepperModule } from "@angular/material/stepper";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -56,7 +68,26 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatDividerModule,
     MatCardModule,
     MatIconModule,
+    NgxPaginationModule,
     PerfectScrollbarModule,
+    MatGridListModule,
+    MatRadioModule,
+    MatInputModule,
+    MatListModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressBarModule,
+    MatRadioModule,
+    MatCheckboxModule,
+    MatButtonModule,
+    MatIconModule,
+    MatStepperModule,
+    FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -81,6 +112,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MembersComponent,
   ],
   providers: [
+    ShopService,
     { provide: ErrorHandler, useClass: ErrorHandlerService },
     // { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
     {

@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
+import { Folder, File } from "../articles/model/article.model";
 
 @Component({
   selector: "app-documents",
@@ -6,37 +8,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ["./documents.component.scss"],
 })
 export class DocumentsComponent implements OnInit {
-  folders: Section[] = [
+  url: any;
+  folders: Folder[] = [
     {
-      name: "Photos",
-      updated: new Date("1/1/16"),
+      name: "docs",
+      files: [
+        { name: "2022 STATUTS CNRD.pdf", lien: "2022_STATUTS_CNRD.pdf" },
+        {
+          name: "REGLEMENT INTERIEUR CNR-VF.pdf",
+          lien: "REGLEMENT_INTERIEUR_CNR_VF.pdf",
+        },
+      ],
     },
     {
-      name: "Recipes",
-      updated: new Date("1/17/16"),
-    },
-    {
-      name: "Work",
-      updated: new Date("1/28/16"),
-    },
-  ];
-  notes: Section[] = [
-    {
-      name: "Vacation Itinerary",
-      updated: new Date("2/20/16"),
-    },
-    {
-      name: "Kitchen Remodel",
-      updated: new Date("1/18/16"),
+      name: "adhesion",
+      files: [
+        {
+          name: "Nouvelle démande d'adhesion CNRD-2022.pdf",
+          lien: "Nouvelle démande_adhesion_CNRD_2022.pdf",
+        },
+      ],
     },
   ];
-  constructor() {}
+  selectedFolder: Folder;
+  constructor(private readonly sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {}
-}
+  open(folder: Folder) {
+    this.selectedFolder = folder;
+    this.url = undefined;
+  }
 
-export interface Section {
-  name: string;
-  updated: Date;
+  openFile(file: File) {
+    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(
+      `./assets/${this.selectedFolder.name}/${file.lien}`
+    );
+  }
 }
-

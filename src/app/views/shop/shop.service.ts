@@ -97,7 +97,7 @@ export class ShopService {
   public getFilteredProduct(filterForm: FormGroup): Observable<Product[]> {
     return combineLatest(
       this.getProducts(),
-      filterForm.valueChanges
+      filterForm?.valueChanges
       .pipe(
         startWith(this.initialFilters),
         debounceTime(400)
