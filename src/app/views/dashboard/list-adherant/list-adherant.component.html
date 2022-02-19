@@ -1,0 +1,118 @@
+<div class="m-333">
+  <!-- <span fxFlex></span> -->
+
+  <button
+    [routerLink]="['/dashboard/adherants/add']"
+    routerLinkActive="router-link-active"
+    mat-raised-button
+    color="primary"
+  >
+    {{ "ADD ADHERANT" | translate }}
+  </button>
+</div>
+<mat-card
+  class="p-0"
+  [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
+>
+  <mat-card-content class="p-0">
+    <ngx-datatable
+      class="material ml-0 mr-0"
+      [rows]="adherants$ | async"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [scrollbarH]="true"
+      [limit]="10"
+      [rowHeight]="50"
+    >
+      <!-- 
+  dateNaissance: Date;
+  LieuNaissance: string;
+  nationalite: string;
+
+  profession: string;
+  adresse: string;
+  phone: string;
+  mail: string;
+  photo: string;
+
+  cotisation: number;
+    -->
+      <ngx-datatable-column name="Nom et prénom" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.nom }} {{ row?.prenom }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Date de naissance" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.dateNaissance | date: "dd/MM/yyyy" }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Lieu de naissance" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.LieuNaissance }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Nationalité" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.nationalite }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Profession" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.profession }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Adresse" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.adresse }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Telephone" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.phone }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="E-mail" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.mail }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Type de souscription" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.cotisation?.libelle }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Cotisation" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row?.cotisation?.montant }} {{ row?.cotisation?.devise }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Actions" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="primary"
+            class="mr-16"
+            (click)="detail(row)"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="warn"
+            (click)="deleteItem(row)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-template>
+      </ngx-datatable-column>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
+    </ngx-datatable>
+  </mat-card-content>
+</mat-card>

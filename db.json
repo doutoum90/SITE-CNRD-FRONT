@@ -494,6 +494,27 @@
       "dateModification": "2022-02-18T18:16:43.394Z"
     }
   ],
+  "adherant": [
+    {
+      "id": "4b8ef2b8-87fc-4724-a90e-bf2af54573cd",
+      "nom": "MEMBRE",
+      "prenom": "MEMBRE",
+      "dateNaissance": "2000-01-12T23:00:00.000Z",
+      "LieuNaissance": "ABECHE",
+      "nationalite": "TCHADIENNE",
+      "cotisation": {
+        "libelle": "Militant résident en Europe",
+        "montant": 50,
+        "devise": "Euro"
+      },
+      "profession": "INFORMATICIEN",
+      "adresse": "21 RUE robert degert",
+      "phone": "+33768450879",
+      "mail": "kikigneaa@gmail.com",
+      "photo": "A FOURNIR",
+      "agreed": true
+    }
+  ],
   "profile": {
     "name": "typicode"
   }

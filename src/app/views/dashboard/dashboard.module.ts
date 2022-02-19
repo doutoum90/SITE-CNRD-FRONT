@@ -46,6 +46,9 @@ import { ListMemberComponent } from "./list-member/list-member.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatChipsModule } from "@angular/material/chips";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { ListAdherantComponent } from "./list-adherant/list-adherant.component";
+import { EditAdherantComponent } from "./edit-adherant/edit-adherant.component";
+import { MatDatepickerModule } from "@angular/material/datepicker";
 
 @NgModule({
   imports: [
@@ -81,6 +84,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     SharedPipesModule,
     MatStepperModule,
     MatRadioModule,
+    MatDatepickerModule,
     MatCheckboxModule,
     MatSelectModule,
     MatPaginatorModule,
@@ -102,6 +106,9 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
     ListMemberComponent,
     AddMembreComponent,
     EditMemberComponent,
+
+    ListAdherantComponent,
+    EditAdherantComponent,
   ],
   exports: [],
 })

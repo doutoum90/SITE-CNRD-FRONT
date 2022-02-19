@@ -1,0 +1,356 @@
+<mat-card class="p-0">
+  <mat-card-title class="">
+    <div class="card-title-text">Form validation</div>
+    <mat-divider></mat-divider>
+  </mat-card-title>
+  <mat-card-content>
+    <mat-horizontal-stepper [linear]="true">
+      <mat-step [stepControl]="basicForm">
+        <ng-template matStepLabel>Saisie des informations</ng-template>
+        <form [formGroup]="basicForm">
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    name="nom"
+                    formControlName="nom"
+                    placeholder="Votre nom"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="
+                    basicForm.controls['nom'].hasError('minlength') &&
+                    basicForm.controls['nom'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  nom require at least
+                  {{
+                    basicForm.controls["nom"].errors.minlength.requiredLength
+                  }}
+                  characters
+                </small>
+                <small
+                  *ngIf="
+                    basicForm.controls['nom'].hasError('maxlength') &&
+                    basicForm.controls['nom'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  nom can not contain more than
+                  {{
+                    basicForm.controls["nom"].errors.maxlength.requiredLength
+                  }}
+                  characters
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    name="prenom"
+                    formControlName="prenom"
+                    placeholder="First name"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="
+                    basicForm.controls['prenom'].hasError('required') &&
+                    basicForm.controls['prenom'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  First name is required
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    name="dateNaissance"
+                    formControlName="dateNaissance"
+                    placeholder="Votre date de naissance"
+                    [matDatepicker]="appDatepicker"
+                  />
+
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="appDatepicker"
+                  ></mat-datepicker-toggle>
+                </mat-form-field>
+                <mat-datepicker #appDatepicker></mat-datepicker>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    type="LieuNaissance"
+                    name="LieuNaissance"
+                    formControlName="LieuNaissance"
+                    placeholder="Votre lieu de naissance"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="
+                    basicForm.controls['LieuNaissance'].hasError('required') &&
+                    basicForm.controls['LieuNaissance'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  Lieu Naissance is required
+                </small>
+                <small
+                  *ngIf="
+                    basicForm.controls['LieuNaissance'].hasError(
+                      'LieuNaissance'
+                    ) && basicForm.controls['LieuNaissance'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  Invaild LieuNaissance address
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    name="nationalite"
+                    formControlName="nationalite"
+                    placeholder="Votre nationalité"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="
+                    basicForm.controls['nationalite'].hasError('url') &&
+                    basicForm.controls['nationalite'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  Invaild web address
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <Label id="cotisation">Cotisation*</Label><br />
+                <mat-radio-group
+                  name="cotisation"
+                  aria-labelledby="cotisation"
+                  class="radio-group"
+                  formControlName="cotisation"
+                >
+                  <mat-radio-button
+                    class="radio-button"
+                    *ngFor="let cot of cots"
+                    [value]="cot"
+                  >
+                    {{ cot.libelle }} ( {{ cot.montant + " " + cot.devise }} )
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            </div>
+
+            <div fxFlex="100" fxFlex.gt-xs="50">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    matInput
+                    name="profession"
+                    formControlName="profession"
+                    placeholder="Votre profession"
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="
+                    basicForm.controls['profession'].hasError('creditCard') &&
+                    basicForm.controls['profession'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  Invaild card number
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    name="adresse"
+                    matInput
+                    formControlName="adresse"
+                    placeholder="adresse"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="
+                    basicForm.controls['adresse'].hasError('required') &&
+                    basicForm.controls['adresse'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  adresse is required
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    name="phone"
+                    matInput
+                    formControlName="phone"
+                    placeholder="Votre telephone"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['phone'].hasError('equalTo')"
+                  class="form-error-msg"
+                >
+                  Password mismatch
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    name="mail"
+                    type="email"
+                    matInput
+                    formControlName="mail"
+                    placeholder="Votre email"
+                    value=""
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['mail'].hasError('email')"
+                  class="form-error-msg"
+                >
+                  E-mail obligatoire
+                </small>
+              </div>
+
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <input
+                    name="photo"
+                    matInput
+                    formControlName="photo"
+                    placeholder="Votre photo"
+                  />
+                </mat-form-field>
+                <small
+                  *ngIf="basicForm.controls['photo'].hasError('email')"
+                  class="form-error-msg"
+                >
+                  Photo obligatoire
+                </small>
+              </div>
+
+              <div class="pb-16 pt-8">
+                <mat-checkbox
+                  name="agreed"
+                  formControlName="agreed"
+                  class="pb-16"
+                  >I have read and agree to the terms of service.</mat-checkbox
+                >
+
+                <small
+                  *ngIf="
+                    basicForm.controls['agreed'].hasError('agreed') &&
+                    basicForm.controls['agreed'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  You must agree to the terms and conditions
+                </small>
+              </div>
+            </div>
+          </div>
+          <button
+            mat-raised-button
+            color="primary"
+            matStepperNext
+            [disabled]="basicForm.invalid"
+          >
+            {{ "SUBMIT" | translate }}
+          </button>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Recapitulatif</ng-template>
+        <div fxLayout="row wrap">
+          <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+            <div class="pb-16">
+              <div class="pb-16 mb-16">
+                <label>Nom et prénom : </label>
+                {{ basicForm.value?.nom }}
+                {{ basicForm.value?.prenom }}
+              </div>
+              <div class="pb-16 mb-16">
+                <label>Date de naissance: </label>
+                {{ basicForm.value?.dateNaissance | date }}
+              </div>
+              <div class="pb-16 mb-16">
+                <label>Lieu de naissance: </label>
+                {{ basicForm.value?.LieuNaissance }}
+              </div>
+              <div class="pb-16 mb-16">
+                <label>Nationnalité: </label>
+                {{ basicForm.value?.nationalite }}
+              </div>
+              <div class="pb-16 mb-16">
+                <label>Type de cotisation: </label>
+                {{ basicForm.value?.cotisation?.libelle }}
+              </div>
+              <div class="pb-16 mb-16">
+                <label>Montant de la cotisation: </label>
+                {{
+                  basicForm.value?.cotisation?.montant +
+                    " " +
+                    basicForm.value?.cotisation?.devise
+                }}
+              </div>
+            </div>
+          </div>
+          <div class="pb-16">
+            <div class="pb-16 mb-16">
+              <label>Profession : </label>
+              {{ basicForm.value?.profession }}
+            </div>
+            <div class="pb-16 mb-16">
+              <label>Telephone: </label>
+              {{ basicForm.value?.phone }}
+            </div>
+            <div class="pb-16 mb-16">
+              <label>E-mail: </label>
+              {{ basicForm.value?.mail }}
+            </div>
+            <div class="pb-16 mb-16">
+              <label>Photo: </label>
+              {{ basicForm.value?.photo }}
+            </div>
+          </div>
+        </div>
+
+        <div fxLayout="row">
+          <button mat-raised-button color="accent" matStepperPrevious>
+            {{ "BACK" | translate }}
+          </button>
+          <span fxFlex="8px"></span>
+          <button mat-raised-button color="primary" (click)="submit()">
+            {{ "SUBMIT" | translate }}
+          </button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>

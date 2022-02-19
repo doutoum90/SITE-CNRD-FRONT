@@ -15,6 +15,8 @@ import { EditUserComponent } from "./edit-user/edit-user.component";
 import { AddMembreComponent } from "./add-membre/add-membre.component";
 import { ListMemberComponent } from "./list-member/list-member.component";
 import { EditMemberComponent } from "./edit-membre/edit-membre.component";
+import { ListAdherantComponent } from "./list-adherant/list-adherant.component";
+import { EditAdherantComponent } from "./edit-adherant/edit-adherant.component";
 
 export const DashboardRoutes: Routes = [
   {
@@ -64,6 +66,17 @@ export const DashboardRoutes: Routes = [
   },
 
   {
+    path: "adherants",
+    component: ListAdherantComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Liste des adherants",
+      breadcrumb: "Liste des adherants",
+      roles: config.authRoles.sa,
+    },
+  },
+
+  {
     path: "articles/add",
     component: AddArticleComponent,
     canActivate: [UserRoleGuard],
@@ -103,6 +116,7 @@ export const DashboardRoutes: Routes = [
       roles: config.authRoles.sa,
     },
   },
+
   {
     path: "articles/edit/:id",
     component: EditArticleComponent,
@@ -140,6 +154,16 @@ export const DashboardRoutes: Routes = [
     data: {
       title: "Modification utilisateur",
       breadcrumb: "Modification utilisateur",
+      roles: config.authRoles.sa,
+    },
+  },
+  {
+    path: "adherants/edit/:id",
+    component: EditAdherantComponent,
+    canActivate: [UserRoleGuard],
+    data: {
+      title: "Modification adherant",
+      breadcrumb: "Modification adherant",
       roles: config.authRoles.sa,
     },
   },

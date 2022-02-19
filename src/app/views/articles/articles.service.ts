@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import {
+  Adherant,
   Article,
   Categories,
   Commentaire,
@@ -16,6 +17,33 @@ import { map } from "rxjs/operators";
 export class ArticlesService {
   BASE_URL = "http://localhost:3000";
   constructor(private readonly http: HttpClient) {}
+  /* addAdherant */
+  addAdherant(adherant: Adherant) {
+    return this.http.post<Adherant>(`${this.BASE_URL}/adherant`, adherant);
+  }
+
+  getAllAdherants() {
+    return this.http.get<Adherant[]>(`${this.BASE_URL}/adherant`);
+  }
+
+  getAllAdherantById(id: string) {
+    return this.http.get<Adherant>(`${this.BASE_URL}/adherant/${id}`);
+  }
+
+  deleteAdherant(id: string) {
+    return this.http.delete<Adherant>(`${this.BASE_URL}/adherant/${id}`);
+  }
+
+  updateAdherant(adherant: Adherant) {
+    console.log(adherant)
+    return this.http.patch<Adherant>(
+      `${this.BASE_URL}/adherant/${adherant.id}`,
+      {
+        ...adherant,
+      }
+    );
+  }
+
   //   articles
   getArchivedArticle() {
     return this.http.get<Article[]>(`${this.BASE_URL}/posts?isArchived=true`);
@@ -71,7 +99,7 @@ export class ArticlesService {
       article
     );
   }
-  
+
   deleteArticle(id: string) {
     return this.http.delete<Users>(`${this.BASE_URL}/posts/${id}`);
   }

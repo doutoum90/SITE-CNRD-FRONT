@@ -1,18 +1,17 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
-import { Adherant } from "../articles/model/article.model";
-
-import { v4 as uuidv4 } from "uuid";
-import { ArticlesService } from "../articles/articles.service";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
-import { Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { ArticlesService } from "../../articles/articles.service";
+import { Adherant } from "../../articles/model/article.model";
 
 @Component({
-  selector: "app-adherer",
-  templateUrl: "./adherer.component.html",
-  styleUrls: ["./adherer.component.scss"],
+  selector: "app-edit-adherant",
+  templateUrl: "./edit-adherant.component.html",
+  styleUrls: ["./edit-adherant.component.scss"],
 })
-export class AdhererComponent implements OnInit {
+export class EditAdherantComponent implements OnInit {
   basicForm: FormGroup;
   cots = [
     {
@@ -36,16 +35,48 @@ export class AdhererComponent implements OnInit {
       devise: "Euro",
     },
   ];
+  adherant$;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly articleService: ArticlesService,
+    private readonly _activatedRoute: ActivatedRoute,
     private readonly egretLoader: AppLoaderService
   ) {}
 
   ngOnInit() {
+    this.createForm();
+    this.adherant$ = this.articleService.getAllAdherantById(
+      this._activatedRoute.snapshot.params.id
+    );
+    this.adherant$.subscribe((ad) => {
+      console.log(ad);
+      this.basicForm.patchValue({
+        id: ad.id,
+        isArchived: ad.isArchived,
+
+        content: ad.content,
+        shortContent: ad.shortContent,
+
+        nom: ad?.nom,
+        prenom: ad?.prenom,
+        dateNaissance: ad?.dateNaissance,
+        LieuNaissance: ad?.LieuNaissance,
+        nationalite: ad?.nationalite,
+        cotisation: ad?.cotisation,
+
+        profession: ad?.profession,
+        adresse: ad?.adresse,
+        phone: ad?.phone,
+        mail: ad?.mail,
+        photo: ad?.photo,
+      });
+    });
+  }
+  createForm() {
     this.basicForm = this.fb.group({
+      id: [""],
       nom: [""],
       prenom: [""],
       dateNaissance: [],
@@ -64,13 +95,11 @@ export class AdhererComponent implements OnInit {
   }
   submit() {
     const adherant: Adherant = {
-      id: uuidv4(),
       ...this.basicForm.value,
-      // documents: this.uploader.queue,
     };
-    this.articleService.addAdherant(adherant).subscribe((re) => {
+    this.articleService.updateAdherant(adherant).subscribe((re) => {
       this.egretLoader.open(
-        `Article ${re.nom} ${re.prenom} ajouté avec succés`,
+        `Adherant ${re.nom} ${re.prenom} modifié avec succés`,
         {
           width: "320px",
         }
