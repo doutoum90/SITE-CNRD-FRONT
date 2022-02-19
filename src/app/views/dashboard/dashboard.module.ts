@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { MatChipsModule } from "@angular/material/chips";
 import { MatExpansionModule } from "@angular/material/expansion";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatIconModule } from "@angular/material/icon";
@@ -45,6 +44,8 @@ import { AddMembreComponent } from "./add-membre/add-membre.component";
 import { EditMemberComponent } from "./edit-membre/edit-membre.component";
 import { ListMemberComponent } from "./list-member/list-member.component";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatChipsModule } from "@angular/material/chips";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 @NgModule({
   imports: [
@@ -59,6 +60,7 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     MatProgressBarModule,
     FileUploadModule,
     MatExpansionModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatChipsModule,
     MatListModule,
@@ -68,6 +70,8 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
     FlexLayoutModule,
     ChartsModule,
     TranslateModule,
+    FlexLayoutModule,
+    MatAutocompleteModule,
     QuillModule.forRoot(),
     NgxEchartsModule.forRoot({
       echarts,

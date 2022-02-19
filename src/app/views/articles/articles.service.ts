@@ -71,6 +71,10 @@ export class ArticlesService {
       article
     );
   }
+  
+  deleteArticle(id: string) {
+    return this.http.delete<Users>(`${this.BASE_URL}/posts/${id}`);
+  }
 
   addComment(
     article: Article,
@@ -120,7 +124,11 @@ export class ArticlesService {
     return this.http.get<Categories[]>(`${this.BASE_URL}/categories`);
   }
 
-  // users
+  deleteCategories(id: string) {
+    return this.http.delete<Users>(`${this.BASE_URL}/categories/${id}`);
+  }
+
+  /** Users */
 
   archiverUsers(id: string, isArchived: boolean) {
     return this.http.patch<Users>(`${this.BASE_URL}/users/${id}`, {
@@ -152,6 +160,10 @@ export class ArticlesService {
     });
   }
 
+  deleteUser(id: string) {
+    return this.http.delete<Users>(`${this.BASE_URL}/users/${id}`);
+  }
+  /** Membres */
   getAllMembers() {
     return this.http.get<Membre[]>(`${this.BASE_URL}/members`);
   }
@@ -169,5 +181,9 @@ export class ArticlesService {
       `${this.BASE_URL}/members/${member.id}`,
       member
     );
+  }
+
+  deleteMember(id: string) {
+    return this.http.delete<Users>(`${this.BASE_URL}/members/${id}`);
   }
 }

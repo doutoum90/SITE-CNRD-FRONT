@@ -12,8 +12,7 @@ import { Users } from "../../articles/model/article.model";
   styleUrls: ["./edit-user.component.scss"],
 })
 export class EditUserComponent implements OnInit {
-  ROLES = ["SA", "Admin", "Editor", "User", "Guest"];
-  categoryFormGroup: FormGroup;
+  addUserFormGroup: FormGroup;
 
   user$: Observable<Users>;
 
@@ -31,7 +30,7 @@ export class EditUserComponent implements OnInit {
       this._activatedRoute.snapshot.params.id
     );
     this.user$.subscribe((user) => {
-      this.categoryFormGroup.patchValue({
+      this.addUserFormGroup.patchValue({
         id: user.id,
         nom: user.nom,
         prenom: user.prenom,
@@ -46,7 +45,7 @@ export class EditUserComponent implements OnInit {
     });
   }
   createForm() {
-    this.categoryFormGroup = this.fb.group({
+    this.addUserFormGroup = this.fb.group({
       id: [""],
       nom: [""],
       prenom: [""],
@@ -64,7 +63,7 @@ export class EditUserComponent implements OnInit {
 
   submit() {
     const user: Users = {
-      ...this.categoryFormGroup.value,
+      ...this.addUserFormGroup.value,
       dateModification: new Date(),
     };
     this.articleService.editUser(user).subscribe((re) => {

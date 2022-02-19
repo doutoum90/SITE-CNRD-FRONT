@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
-import { FileUploader } from "ng2-file-upload";
 import { Observable } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
 import { ArticlesService } from "../../articles/articles.service";
-import { Categories, Users } from "../../articles/model/article.model";
+import { Users } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-add-user",
@@ -14,10 +13,13 @@ import { Categories, Users } from "../../articles/model/article.model";
   styleUrls: ["./add-user.component.scss"],
 })
 export class AddUserComponent implements OnInit {
-  ROLES = ["SA", "Admin", "Editor", "User", "Guest"];
-  categoryFormGroup: FormGroup;
+  ALL_ROLES: string[] = ["SA", "Admin", "Editor"];
+  SELECT_ROLE: string[] = ["SA"];
 
   user$: Observable<Users>;
+  addUserFormGroup: FormGroup;
+
+  allComplete: boolean = false;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -29,32 +31,16 @@ export class AddUserComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.user$ = this.articleService.getUser(
-      this._activatedRoute.snapshot.params.id
-    );
-    this.user$.subscribe((user) => {
-      this.categoryFormGroup.patchValue({
-        id: user.id,
-        nom: user.nom,
-        prenom: user.prenom,
-        age: user.age,
-        email: user.email,
-        roles: user.roles,
-        image: user.image,
-        userName: user.userName,
-        phone: user.phone,
-        genre: user.genre,
-      });
-    });
   }
+
   createForm() {
-    this.categoryFormGroup = this.fb.group({
+    this.addUserFormGroup = this.fb.group({
       id: [""],
       nom: [""],
       prenom: [""],
       age: [0],
       email: [""],
-      roles: [""],
+      roles: this.fb.array(["SA", "Admin", "Editor"]),
       image: [""],
       userName: [""],
       phone: [""],
@@ -65,7 +51,7 @@ export class AddUserComponent implements OnInit {
   submit() {
     const user: Users = {
       id: uuidv4(),
-      ...this.categoryFormGroup.value,
+      ...this.addUserFormGroup.value,
       dateCreation: new Date(),
     };
     this.articleService.addUser(user).subscribe((re) => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { egretAnimations } from "app/shared/animations/egret-animations";
+import { AppConfirmService } from "app/shared/services/app-confirm/app-confirm.service";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
@@ -20,7 +21,8 @@ export class ListArticleComponent implements OnInit {
     private readonly router: Router,
     private readonly jwtAuth: JwtAuthService,
     private readonly articleService: ArticlesService,
-    private readonly egretLoader: AppLoaderService
+    private readonly egretLoader: AppLoaderService,
+    private readonly appConfirmService: AppConfirmService
   ) {}
 
   ngOnInit() {
@@ -34,7 +36,24 @@ export class ListArticleComponent implements OnInit {
   }
 
   deleteItem(data: Article) {
-    console.log(data);
+    this.appConfirmService
+      .confirm({
+        title: "Suppression",
+        message: "Etes-vous sur de vouloir supprimer?",
+      })
+      .subscribe((v) => {
+        if (v) {
+          this.articleService.deleteArticle(data.id).subscribe((r) => {
+            this.articles$ = this.articleService.getAllArticles();
+            this.egretLoader.open("Article supprimé avec succés", {
+              width: "320px",
+            });
+            setTimeout(() => {
+              this.egretLoader.close();
+            }, 2000);
+          });
+        }
+      });
   }
 
   mettreAlaUne(data: Article) {
