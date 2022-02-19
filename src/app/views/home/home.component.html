@@ -8,7 +8,7 @@
         <div
           fxLayout="row wrap"
           *ngIf="articleAlaUne$ | async as articleAlaUne"
-          (click)="showArticle(articleAlaUne)"
+          (click)="showArticle(articleAlaUne[0])"
         >
           <div fxFlex="100">
             <mat-card-title>{{ articleAlaUne[0].title }}</mat-card-title>
