@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
-import { User } from '../../shared/models/user.model';
-import { Observable } from 'rxjs';
+import { User } from "../../shared/models/user.model";
+import { Observable } from "rxjs";
 
 @Component({
   selector: "app-profile",

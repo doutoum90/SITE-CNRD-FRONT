@@ -1,0 +1,24 @@
+<div class="profile-picture" [formGroup]="form">
+  <img *ngIf="imageData" width="300" height="300" src="{{ imageData }}" />
+  <label
+    *ngIf="editmode"
+    for="uploader-input"
+    ng2FileDrop
+    [ngClass]="{ 'drag-over': hasDragOver }"
+    (fileOver)="fileOver($event)"
+    [uploader]="uploader"
+  >
+    <div class="infotext">
+      <span *ngIf="!url" [innerHtml]="'UPLOAD LABEL' | translate"></span>
+    </div>
+  </label>
+  <input
+    (change)="readURL($event)"
+    *ngIf="editmode"
+    type="file"
+    ng2FileSelect
+    [uploader]="uploader"
+    id="uploader-input"
+    style="display: none"
+  />
+</div>

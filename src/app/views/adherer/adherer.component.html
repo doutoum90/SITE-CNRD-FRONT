@@ -9,6 +9,35 @@
         <ng-template matStepLabel>Saisie des informations</ng-template>
         <form [formGroup]="basicForm">
           <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+              <div class="pb-16 mb-16">
+                <h2>Uploader votre photo de profile</h2>
+
+                <div class="row">
+                  <div class="col">
+                    <app-profile-picture
+                      [form]="basicForm"
+                      [imageData]="imageData"
+                      [photo]="basicForm.get('photo')"
+                      (imageSrcChange)="upadateImage($event)"
+                      [editmode]="editEnabled"
+                    ></app-profile-picture>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button
+                      mat-icon-button
+                      mat-sm-button
+                      color="warn"
+                      (click)="clear()"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
             <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
               <div class="pb-16">
                 <mat-form-field class="full-width">
@@ -120,27 +149,6 @@
               </div>
 
               <div class="pb-16">
-                <mat-form-field class="full-width">
-                  <input
-                    matInput
-                    name="nationalite"
-                    formControlName="nationalite"
-                    placeholder="Votre nationalité"
-                    value=""
-                  />
-                </mat-form-field>
-                <small
-                  *ngIf="
-                    basicForm.controls['nationalite'].hasError('url') &&
-                    basicForm.controls['nationalite'].touched
-                  "
-                  class="form-error-msg"
-                >
-                  Invaild web address
-                </small>
-              </div>
-
-              <div class="pb-16">
                 <Label id="cotisation">Cotisation*</Label><br />
                 <mat-radio-group
                   name="cotisation"
@@ -241,17 +249,21 @@
               <div class="pb-16">
                 <mat-form-field class="full-width">
                   <input
-                    name="photo"
                     matInput
-                    formControlName="photo"
-                    placeholder="Votre photo"
+                    name="nationalite"
+                    formControlName="nationalite"
+                    placeholder="Votre nationalité"
+                    value=""
                   />
                 </mat-form-field>
                 <small
-                  *ngIf="basicForm.controls['photo'].hasError('email')"
+                  *ngIf="
+                    basicForm.controls['nationalite'].hasError('url') &&
+                    basicForm.controls['nationalite'].touched
+                  "
                   class="form-error-msg"
                 >
-                  Photo obligatoire
+                  Invaild web address
                 </small>
               </div>
 
@@ -288,6 +300,16 @@
       <mat-step>
         <ng-template matStepLabel>Recapitulatif</ng-template>
         <div fxLayout="row wrap">
+          <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+            <div class="pb-16 mb-16">
+              <img
+                *ngIf="imageData"
+                width="300"
+                height="300"
+                src="{{ imageData }}"
+              />
+            </div>
+          </div>
           <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
             <div class="pb-16">
               <div class="pb-16 mb-16">
@@ -308,24 +330,12 @@
                 {{ basicForm.value?.nationalite }}
               </div>
               <div class="pb-16 mb-16">
-                <label>Type de cotisation: </label>
-                {{ basicForm.value?.cotisation?.libelle }}
-              </div>
-              <div class="pb-16 mb-16">
-                <label>Montant de la cotisation: </label>
-                {{
-                  basicForm.value?.cotisation?.montant +
-                    " " +
-                    basicForm.value?.cotisation?.devise
-                }}
+                <label>Profession : </label>
+                {{ basicForm.value?.profession }}
               </div>
             </div>
           </div>
           <div class="pb-16">
-            <div class="pb-16 mb-16">
-              <label>Profession : </label>
-              {{ basicForm.value?.profession }}
-            </div>
             <div class="pb-16 mb-16">
               <label>Telephone: </label>
               {{ basicForm.value?.phone }}
@@ -335,10 +345,19 @@
               {{ basicForm.value?.mail }}
             </div>
             <div class="pb-16 mb-16">
-              <label>Photo: </label>
-              {{ basicForm.value?.photo }}
+              <label>Type de cotisation: </label>
+              {{ basicForm.value?.cotisation?.libelle }}
+            </div>
+            <div class="pb-16 mb-16">
+              <label>Montant de la cotisation: </label>
+              {{
+                basicForm.value?.cotisation?.montant +
+                  " " +
+                  basicForm.value?.cotisation?.devise
+              }}
             </div>
           </div>
+          
         </div>
 
         <div fxLayout="row">

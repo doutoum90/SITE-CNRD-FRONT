@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Adherant } from "../articles/model/article.model";
 
 import { v4 as uuidv4 } from "uuid";
@@ -13,6 +13,13 @@ import { Router } from "@angular/router";
   styleUrls: ["./adherer.component.scss"],
 })
 export class AdhererComponent implements OnInit {
+  public editEnabled = true;
+  imageData: string | ArrayBuffer;
+
+  public clear() {
+    console.log("suppression");
+    this.imageData = "";
+  }
   basicForm: FormGroup;
   cots = [
     {
@@ -44,6 +51,10 @@ export class AdhererComponent implements OnInit {
     private readonly egretLoader: AppLoaderService
   ) {}
 
+  upadateImage(event) {
+    this.imageData = event;
+  }
+
   ngOnInit() {
     this.basicForm = this.fb.group({
       nom: [""],
@@ -57,7 +68,7 @@ export class AdhererComponent implements OnInit {
       adresse: [""],
       phone: [""],
       mail: [""],
-      photo: [""],
+      photo: ["", [Validators.required]],
 
       agreed: [],
     });
@@ -66,11 +77,11 @@ export class AdhererComponent implements OnInit {
     const adherant: Adherant = {
       id: uuidv4(),
       ...this.basicForm.value,
-      // documents: this.uploader.queue,
     };
+    console.log(adherant);
     this.articleService.addAdherant(adherant).subscribe((re) => {
       this.egretLoader.open(
-        `Article ${re.nom} ${re.prenom} ajouté avec succés`,
+        `Adherant ${re.nom} ${re.prenom} ajouté avec succés`,
         {
           width: "320px",
         }

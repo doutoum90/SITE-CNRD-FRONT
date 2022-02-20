@@ -48,6 +48,8 @@ import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatStepperModule } from "@angular/material/stepper";
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { ProfilePictureComponent } from "./views/profile-picture/profile-picture.component";
+import { FileUploadModule } from "ng2-file-upload";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -82,6 +84,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatCheckboxModule,
     MatButtonModule,
     MatIconModule,
+    FileUploadModule,
     MatStepperModule,
     FlexLayoutModule,
     FormsModule,
@@ -110,6 +113,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DocumentsComponent,
     AdhererComponent,
     MembersComponent,
+    ProfilePictureComponent,
   ],
   providers: [
     ShopService,

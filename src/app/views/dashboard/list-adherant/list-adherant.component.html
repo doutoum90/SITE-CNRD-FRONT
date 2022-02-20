@@ -1,15 +1,3 @@
-<div class="m-333">
-  <!-- <span fxFlex></span> -->
-
-  <button
-    [routerLink]="['/dashboard/adherants/add']"
-    routerLinkActive="router-link-active"
-    mat-raised-button
-    color="primary"
-  >
-    {{ "ADD ADHERANT" | translate }}
-  </button>
-</div>
 <mat-card
   class="p-0"
   [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
@@ -25,19 +13,6 @@
       [limit]="10"
       [rowHeight]="50"
     >
-      <!-- 
-  dateNaissance: Date;
-  LieuNaissance: string;
-  nationalite: string;
-
-  profession: string;
-  adresse: string;
-  phone: string;
-  mail: string;
-  photo: string;
-
-  cotisation: number;
-    -->
       <ngx-datatable-column name="Nom et prénom" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{ row?.nom }} {{ row?.prenom }}
