@@ -1,5 +1,10 @@
 <div class="profile-picture" [formGroup]="form">
-  <img *ngIf="imageData" width="300" height="300" src="{{ imageData }}" />
+  <img
+    *ngIf="form.value?.photo"
+    width="300"
+    height="300"
+    src="{{ form.value?.photo }}"
+  />
   <label
     *ngIf="editmode"
     for="uploader-input"

@@ -1,11 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { Adherant } from "../articles/model/article.model";
 
 import { v4 as uuidv4 } from "uuid";
-import { ArticlesService } from "../articles/articles.service";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { Router } from "@angular/router";
+import { ArticlesService } from "app/views/articles/articles.service";
+import { Adherant } from "app/views/articles/model/article.model";
 
 @Component({
   selector: "app-adherer",
@@ -13,13 +13,6 @@ import { Router } from "@angular/router";
   styleUrls: ["./adherer.component.scss"],
 })
 export class AdhererComponent implements OnInit {
-  public editEnabled = true;
-  imageData: string | ArrayBuffer;
-
-  public clear() {
-    console.log("suppression");
-    this.imageData = "";
-  }
   basicForm: FormGroup;
   cots = [
     {
@@ -50,9 +43,10 @@ export class AdhererComponent implements OnInit {
     private readonly articleService: ArticlesService,
     private readonly egretLoader: AppLoaderService
   ) {}
-
-  upadateImage(event) {
-    this.imageData = event;
+  public editEnabled = true;
+  public clear() {
+    console.log("suppression");
+    this.basicForm.get("photo").setValue(null);
   }
 
   ngOnInit() {

@@ -3,11 +3,6 @@ import { AdminLayoutComponent } from "./shared/components/layouts/admin-layout/a
 import { AuthLayoutComponent } from "./shared/components/layouts/auth-layout/auth-layout.component";
 import { FrontLayoutComponent } from "./shared/components/layouts/front-layout/front-layout.component";
 import { AuthGuard } from "./shared/guards/auth.guard";
-import { AboutComponent } from "./views/about/about.component";
-import { AdhererComponent } from "./views/adherer/adherer.component";
-import { ContactComponent } from "./views/contact/contact.component";
-import { DocumentsComponent } from "./views/documents/documents.component";
-import { MembersComponent } from "./views/members/members.component";
 
 export const rootRouterConfig: Routes = [
   {
@@ -38,6 +33,13 @@ export const rootRouterConfig: Routes = [
     path: "",
     component: FrontLayoutComponent,
     children: [
+
+      {
+        path: "",
+        loadChildren: () =>
+          import("./views/public/public.module").then((m) => m.PublicModule),
+        data: { url: "/", title: "Public", breadcrumb: "Public" },
+      },
       {
         // vu
         path: "articles",
@@ -46,40 +48,6 @@ export const rootRouterConfig: Routes = [
             (m) => m.ArticlesModule
           ),
         data: { url: "/", title: "Articles", breadcrumb: "Articles" },
-      },
-      {
-        path: "contact",
-        component: ContactComponent,
-        data: { title: "contact", breadcrumb: "contact" },
-      },
-      {
-        path: "about",
-        component: AboutComponent,
-        data: { title: "about", breadcrumb: "about" },
-      },
-      {
-        path: "docs",
-        component: DocumentsComponent,
-        data: { title: "Documents", breadcrumb: "Documents" },
-      },
-      {
-        path: "adherer",
-        component: AdhererComponent,
-        data: { title: "Adhesion", breadcrumb: "Adhesion" },
-      },
-      {
-        path: "membres",
-        component: MembersComponent,
-        data: { title: "Membres du bureau", breadcrumb: "Membres du bureau" },
-      },
-      {
-        path: "home",
-        loadChildren: () =>
-          import("./views/home/home.module").then((m) => m.HomeModule),
-        data: {
-          title: "Page d'acceuil",
-          breadcrumb: "Page d'acceuil",
-        },
       },
     ],
   },

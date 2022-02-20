@@ -1,14 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder } from "@angular/forms";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { egretAnimations } from "app/shared/animations/egret-animations";
-import { Product } from "app/shared/models/product.model";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
+import { ArticlesService } from "app/views/articles/articles.service";
+import { Membre } from "app/views/articles/model/article.model";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { ArticlesService } from "../articles/articles.service";
-import { Membre } from "../articles/model/article.model";
-import { ShopService } from "../shop/shop.service";
 
 @Component({
   selector: "app-members",
@@ -27,7 +25,6 @@ export class MembersComponent implements OnInit {
 
   constructor(
     private readonly articleService: ArticlesService,
-    private shopService: ShopService,
     private fb: FormBuilder,
     private snackBar: MatSnackBar,
     private loader: AppLoaderService

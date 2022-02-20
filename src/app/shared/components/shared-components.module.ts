@@ -3,7 +3,7 @@ import { RouterModule } from "@angular/router";
 import { SharedMaterialModule } from "../shared-material.module";
 import { TranslateModule } from "@ngx-translate/core";
 import { CommonModule } from "@angular/common";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 import { SearchModule } from "../search/search.module";
 import { SharedPipesModule } from "../pipes/shared-pipes.module";
@@ -44,6 +44,8 @@ import { SidenavFrontComponent } from "./sidenav-front/sidenav-front.component";
 import { HeaderSideFrontComponent } from "./header-side-front/header-side-front.component";
 import { SidebarSideFrontComponent } from "./sidebar-side-front/sidebar-side-front.component";
 import { CustomizerFrontComponent } from "./customizer-front/customizer-front.component";
+import { ProfilePictureComponent } from "app/shared/components/profile-picture/profile-picture.component";
+import { HttpClientModule } from "@angular/common/http";
 
 const components = [
   HeaderTopComponent,
@@ -75,12 +77,15 @@ const components = [
   BottomSheetShareComponent,
   EgretExampleViewerComponent,
   EgretExampleViewerTemplateComponent,
+  ProfilePictureComponent,
 ];
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     RouterModule,
     TranslateModule,
     FlexLayoutModule,

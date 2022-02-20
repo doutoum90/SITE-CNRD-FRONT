@@ -17,9 +17,7 @@
                   <div class="col">
                     <app-profile-picture
                       [form]="basicForm"
-                      [imageData]="imageData"
                       [photo]="basicForm.get('photo')"
-                      (imageSrcChange)="upadateImage($event)"
                       [editmode]="editEnabled"
                     ></app-profile-picture>
                   </div>
@@ -303,10 +301,10 @@
           <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
             <div class="pb-16 mb-16">
               <img
-                *ngIf="imageData"
+                *ngIf="this.basicForm.value?.photo"
                 width="300"
                 height="300"
-                src="{{ imageData }}"
+                src="{{ this.basicForm.value?.photo }}"
               />
             </div>
           </div>

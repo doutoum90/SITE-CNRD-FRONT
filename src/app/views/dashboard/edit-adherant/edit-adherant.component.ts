@@ -35,7 +35,12 @@ export class EditAdherantComponent implements OnInit {
       devise: "Euro",
     },
   ];
-  adherant$;
+  adherant$: Observable<Adherant>;
+  public editEnabled = true;
+  public clear() {
+    console.log("suppression");
+    this.basicForm.get("photo").setValue(null);
+  }
 
   constructor(
     private readonly fb: FormBuilder,
@@ -54,11 +59,6 @@ export class EditAdherantComponent implements OnInit {
       console.log(ad);
       this.basicForm.patchValue({
         id: ad.id,
-        isArchived: ad.isArchived,
-
-        content: ad.content,
-        shortContent: ad.shortContent,
-
         nom: ad?.nom,
         prenom: ad?.prenom,
         dateNaissance: ad?.dateNaissance,

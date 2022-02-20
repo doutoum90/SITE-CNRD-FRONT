@@ -8,7 +8,6 @@ import { FileUploader } from "ng2-file-upload";
   styleUrls: ["./profile-picture.component.scss"],
 })
 export class ProfilePictureComponent implements OnInit {
-  @Input()
   imageData: string | ArrayBuffer;
 
   //
@@ -40,16 +39,13 @@ export class ProfilePictureComponent implements OnInit {
   ngOnInit() {}
 
   openModal() {
-    // this.file;
   }
   readURL(event): void {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
       const reader = new FileReader();
       reader.onload = (e) => {
-        this.imageData = reader.result;
-        this.form.patchValue({ photo: this.imageData });
-        this.imageSrcChange.emit(this.imageData);
+        this.form.patchValue({ photo: reader.result });
       };
       reader.readAsDataURL(file);
     }

@@ -49,6 +49,7 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { ListAdherantComponent } from "./list-adherant/list-adherant.component";
 import { EditAdherantComponent } from "./edit-adherant/edit-adherant.component";
 import { MatDatepickerModule } from "@angular/material/datepicker";
+import { SharedComponentsModule } from "app/shared/components/shared-components.module";
 
 @NgModule({
   imports: [
@@ -88,6 +89,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
     MatCheckboxModule,
     MatSelectModule,
     MatPaginatorModule,
+    SharedComponentsModule,
     RouterModule.forChild(DashboardRoutes),
   ],
   declarations: [
@@ -109,6 +111,7 @@ import { MatDatepickerModule } from "@angular/material/datepicker";
 
     ListAdherantComponent,
     EditAdherantComponent,
+
   ],
   exports: [],
 })

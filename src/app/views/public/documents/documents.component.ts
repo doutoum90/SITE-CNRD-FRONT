@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
-import { Folder, File } from "../articles/model/article.model";
+import { Folder, File } from "app/views/articles/model/article.model";
 
 @Component({
   selector: "app-documents",
