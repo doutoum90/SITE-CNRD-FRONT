@@ -1,77 +1,13 @@
-<!-- <div class="">
-  <div fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <mat-card class="p-24" style="cursor: pointer">
-        <div
-          fxLayout="row wrap"
-          *ngIf="getPresident(members$ | async) as president"
-        >
-          <div fxFlex="75">
-            <img
-              mat-list-avatar
-              class="mr-16"
-              src="assets/images/sq-face-220.jpg"
-              alt=""
-            />
-            <div class="main-title">
-              {{ president?.nom }} {{ president?.prenom }}
-            </div>
-            <div class="subtitle mb-8">{{ president?.fonction }}</div>
-            <div class="subtitle mb-8">{{ president?.metier }}</div>
-          </div>
-        </div>
-      </mat-card>
-
-      <div fxLayout="row wrap">
-        <div fxFlex="25" style="cursor: pointer">
-          <mat-card
-            *ngFor="
-              let member of getOtherMembres(members$ | async);
-              let i = index
-            "
-          >
-            <img
-              mat-list-avatar
-              class="mr-16"
-              src="assets/images/sq-face-220.jpg"
-              alt=""
-            />
-            <div class="main-title">{{ member?.nom }} {{ member?.prenom }}</div>
-            <div class="subtitle mb-8">{{ member?.fonction }}</div>
-            <div class="subtitle mb-8">{{ member?.metier }}</div>
-          </mat-card>
-        </div>
-      </div>
-    </div>
-
-    <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
-      <mat-card>
-        <div class="mat-heading-label">Articles archivés</div>
-        <div class="d-flex mb-16" style="cursor: pointer">
-          <div>HEHEZEJEZEHJ ZEHZHEZ</div>
-        </div>
-        <mat-card-title>Un titre spécial</mat-card-title>
-      </mat-card>
-    </div>
-  </div>
-</div>
- -->
-
 <mat-grid-list cols="5">
   <mat-grid-tile colspan="2" rowspan="1"> </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1">
-    <mat-card class="p-24" style="cursor: pointer">
+    <mat-card class="p-24">
       <div
         fxLayout="row wrap"
         *ngIf="getPresident(members$ | async) as president"
       >
         <div fxFlex="75">
-          <img
-            mat-list-avatar
-            class="mr-16"
-            [src]="member?.photo || 'assets/images/sq-face-220.jpg'"
-            alt=""
-          />
+          <img mat-list-avatar class="mr-16" [src]="president?.photo" alt="" />
           <div class="main-title text-center">
             {{ president?.nom }} {{ president?.prenom }}
           </div>
@@ -89,13 +25,11 @@
     *ngFor="let member of getOtherMembres(members$ | async); let i = index"
   >
     <mat-card>
-      <img
-        mat-list-avatar
-        class="mr-16"
-        [src]="member?.photo || 'assets/images/sq-face-220.jpg'"
-        alt=""
-      />
-      <div class="main-title text-center">{{ member?.nom }} {{ member?.prenom }}</div>
+      <img mat-list-avatar class="mr-16" [src]="member?.photo" alt="" />
+      {{ members | json }}
+      <div class="main-title text-center">
+        {{ member?.nom }} {{ member?.prenom }}
+      </div>
       <div class="subtitle mb-8 text-center">{{ member?.fonction }}</div>
       <div class="subtitle mb-8 text-center">{{ member?.metier }}</div>
     </mat-card>

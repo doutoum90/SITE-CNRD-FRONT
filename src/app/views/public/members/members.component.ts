@@ -36,6 +36,7 @@ export class MembersComponent implements OnInit {
     }); */
     this.members$ = this.articleService.getAllMembers().pipe(
       map((members) => {
+        console.log(this.getPresident(members));
         this.loader.close();
         return members;
       })

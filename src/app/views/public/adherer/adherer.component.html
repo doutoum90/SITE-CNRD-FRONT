@@ -1,8 +1,4 @@
 <mat-card class="p-0">
-  <mat-card-title class="">
-    <div class="card-title-text">Form validation</div>
-    <mat-divider></mat-divider>
-  </mat-card-title>
   <mat-card-content>
     <mat-horizontal-stepper [linear]="true">
       <mat-step [stepControl]="basicForm">
@@ -270,9 +266,9 @@
                   name="agreed"
                   formControlName="agreed"
                   class="pb-16"
-                  >I have read and agree to the terms of service.</mat-checkbox
                 >
-
+                  {{ "ACCEPT MESSAGE" | translate }}
+                </mat-checkbox>
                 <small
                   *ngIf="
                     basicForm.controls['agreed'].hasError('agreed') &&
@@ -280,7 +276,7 @@
                   "
                   class="form-error-msg"
                 >
-                  You must agree to the terms and conditions
+                  {{ "ACCEPT ERROR" | translate }}
                 </small>
               </div>
             </div>
@@ -355,7 +351,6 @@
               }}
             </div>
           </div>
-          
         </div>
 
         <div fxLayout="row">

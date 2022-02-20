@@ -1,5 +1,10 @@
 import { Component, OnInit } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl,
+} from "@angular/forms";
 
 import { v4 as uuidv4 } from "uuid";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
@@ -50,21 +55,31 @@ export class AdhererComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.basicForm = this.fb.group({
-      nom: [""],
-      prenom: [""],
-      dateNaissance: [],
-      LieuNaissance: [""],
-      nationalite: [""],
-      cotisation: [],
-
-      profession: [""],
-      adresse: [""],
-      phone: [""],
-      mail: [""],
-      photo: ["", [Validators.required]],
-
-      agreed: [],
+    this.basicForm = new FormGroup({
+      id: new FormControl(""),
+      nom: new FormControl("", [Validators.required]),
+      prenom: new FormControl("", [Validators.required]),
+      dateNaissance: new FormControl(),
+      nationalite: new FormControl(),
+      LieuNaissance: new FormControl(),
+      adresse: new FormControl(),
+      profession: new FormControl(),
+      cotisation: new FormControl(),
+      mail: new FormControl("", [Validators.required, Validators.email]),
+      userName: new FormControl("", [
+        Validators.minLength(4),
+        Validators.maxLength(9),
+      ]),
+      phone: new FormControl("", [Validators.required]),
+      genre: new FormControl(""),
+      photo: new FormControl("", [Validators.required]),
+      agreed: new FormControl("", (control: FormControl) => {
+        const agreed = control.value;
+        if (!agreed) {
+          return { agreed: true };
+        }
+        return null;
+      }),
     });
   }
   submit() {

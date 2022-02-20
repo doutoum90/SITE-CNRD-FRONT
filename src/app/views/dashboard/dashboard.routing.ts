@@ -152,8 +152,8 @@ export const DashboardRoutes: Routes = [
     component: EditMemberComponent,
     canActivate: [UserRoleGuard],
     data: {
-      title: "Modification utilisateur",
-      breadcrumb: "Modification utilisateur",
+      title: "Modification d'un membre",
+      breadcrumb: "Modification d'un membre",
       roles: config.authRoles.sa,
     },
   },

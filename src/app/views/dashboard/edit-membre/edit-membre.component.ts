@@ -14,12 +14,13 @@ import { Membre } from "../../articles/model/article.model";
   styleUrls: ["./edit-membre.component.scss"],
 })
 export class EditMemberComponent implements OnInit {
-  addMemberFormGroup: FormGroup;
+  editMemberFormGroup: FormGroup;
   member$: Observable<Membre>;
+  public editEnabled = true;
 
-  public uploader: FileUploader = new FileUploader({
-    url: "https://evening-anchorage-315.herokuapp.com/api/",
-  });
+  public clear() {
+    this.editMemberFormGroup.get("photo").setValue(null);
+  }
 
   constructor(
     private readonly fb: FormBuilder,
@@ -35,7 +36,7 @@ export class EditMemberComponent implements OnInit {
       this._activatedRoute.snapshot.params.id
     );
     this.member$.subscribe((member) => {
-      this.addMemberFormGroup.patchValue({
+      this.editMemberFormGroup.patchValue({
         id: member.id,
         nom: member.nom,
         prenom: member.prenom,
@@ -47,7 +48,7 @@ export class EditMemberComponent implements OnInit {
     });
   }
   createForm() {
-    this.addMemberFormGroup = this.fb.group({
+    this.editMemberFormGroup = this.fb.group({
       id: [""],
       nom: ["", Validators.required],
       prenom: ["", Validators.required],
@@ -60,7 +61,7 @@ export class EditMemberComponent implements OnInit {
 
   submit() {
     const membre: Membre = {
-      ...this.addMemberFormGroup.value,
+      ...this.editMemberFormGroup.value,
     };
     this.articleService.editMember(membre).subscribe((re) => {
       this.egretLoader.open(

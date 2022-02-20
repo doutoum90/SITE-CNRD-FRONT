@@ -11,6 +11,33 @@
                     >Saisie des informations de l'utilisateur</ng-template
                   >
                   <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+                      <div class="pb-16 mb-16">
+                        <h2>Uploader votre photo de profile</h2>
+
+                        <div class="row">
+                          <div class="col">
+                            <app-profile-picture
+                              [form]="addUserFormGroup"
+                              [photo]="addUserFormGroup.get('photo')"
+                              [editmode]="editEnabled"
+                            ></app-profile-picture>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <button
+                              mat-icon-button
+                              mat-sm-button
+                              color="warn"
+                              (click)="clear()"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
                       <div class="pb-16">
                         <mat-form-field class="full-width">
@@ -18,19 +45,91 @@
                             matInput
                             name="nom"
                             formControlName="nom"
-                            placeholder="Votre nom"
-                            required
+                            placeholder="nom (Min Length: 4, Max Length: 9)"
+                            value=""
                           />
                         </mat-form-field>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['nom'].hasError(
+                              'minlength'
+                            ) && addUserFormGroup.controls['nom'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          nom require at least
+                          {{
+                            addUserFormGroup.controls["nom"].errors.minlength
+                              .requiredLength
+                          }}
+                          characters
+                        </small>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['nom'].hasError(
+                              'maxlength'
+                            ) && addUserFormGroup.controls['nom'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          nom can not contain more than
+                          {{
+                            addUserFormGroup.controls["nom"].errors.maxlength
+                              .requiredLength
+                          }}
+                          characters
+                        </small>
                       </div>
 
                       <div class="pb-16">
                         <mat-form-field class="full-width">
                           <input
                             matInput
-                            placeholder="Prenom"
+                            name="prenom"
                             formControlName="prenom"
-                            required
+                            placeholder="prenom (Min Length: 4, Max Length: 9)"
+                            value=""
+                          />
+                        </mat-form-field>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['prenom'].hasError(
+                              'minlength'
+                            ) && addUserFormGroup.controls['prenom'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          prenom require at least
+                          {{
+                            addUserFormGroup.controls["prenom"].errors.minlength
+                              .requiredLength
+                          }}
+                          characters
+                        </small>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['prenom'].hasError(
+                              'maxlength'
+                            ) && addUserFormGroup.controls['prenom'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          prenom can not contain more than
+                          {{
+                            addUserFormGroup.controls["prenom"].errors.maxlength
+                              .requiredLength
+                          }}
+                          characters
+                        </small>
+                      </div>
+                      <div class="pb-16">
+                        <mat-form-field class="full-width">
+                          <input
+                            matInput
+                            name="userName"
+                            formControlName="userName"
+                            placeholder="userName (Min Length: 4, Max Length: 9)"
+                            value=""
                           />
                         </mat-form-field>
                       </div>
@@ -38,14 +137,112 @@
                       <div class="pb-16">
                         <mat-form-field class="full-width">
                           <input
+                            type="password"
+                            name="password"
                             matInput
-                            placeholder="Age"
-                            formControlName="age"
+                            formControlName="password"
+                            placeholder="Password"
+                            value=""
+                          />
+                        </mat-form-field>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['password'].hasError(
+                              'required'
+                            ) && addUserFormGroup.controls['password'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          Password is required
+                        </small>
+                      </div>
+
+                      <div class="pb-16">
+                        <mat-form-field class="full-width">
+                          <input
+                            type="password"
+                            name="confirmPassword"
+                            matInput
+                            appEqualValidator="password"
+                            formControlName="confirmPassword"
+                            placeholder="Confirm Password"
+                            value=""
+                          />
+                        </mat-form-field>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls[
+                              'confirmPassword'
+                            ].hasError('equalTo')
+                          "
+                          class="form-error-msg"
+                        >
+                          Password mismatch
+                        </small>
+                      </div>
+                    </div>
+
+                    <div fxFlex="100" fxFlex.gt-xs="50">
+                      <div class="pb-16">
+                        <mat-form-field class="full-width">
+                          <input
+                            matInput
+                            type="email"
+                            name="email"
+                            formControlName="email"
+                            placeholder="Your Email"
+                            value=""
+                          />
+                        </mat-form-field>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['email'].hasError(
+                              'required'
+                            ) && addUserFormGroup.controls['email'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          Email is required
+                        </small>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['email'].hasError(
+                              'email'
+                            ) && addUserFormGroup.controls['email'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          Invaild email address
+                        </small>
+                      </div>
+
+                      <div class="pb-16">
+                        <mat-form-field class="full-width">
+                          <input
+                            matInput
+                            name="dateNaissance"
+                            formControlName="dateNaissance"
+                            placeholder="Date de naissance"
+                            [matDatepicker]="appDatepicker"
+                          />
+
+                          <mat-datepicker-toggle
+                            matSuffix
+                            [for]="appDatepicker"
+                          ></mat-datepicker-toggle>
+                        </mat-form-field>
+                        <mat-datepicker #appDatepicker></mat-datepicker>
+                      </div>
+                      <div class="pb-16">
+                        <mat-form-field class="full-width">
+                          <input
+                            matInput
+                            placeholder="Telepone"
+                            formControlName="phone"
                             required
                           />
                         </mat-form-field>
                       </div>
-
                       <div class="pb-16">
                         <Label id="genre">Genre*</Label><br />
                         <mat-radio-group
@@ -62,40 +259,25 @@
                           }}</mat-radio-button>
                         </mat-radio-group>
                       </div>
-                    </div>
 
-                    <div fxFlex="100" fxFlex.gt-xs="50">
-                      <div class="pb-16">
-                        <mat-form-field class="full-width">
-                          <input
-                            matInput
-                            placeholder="Email"
-                            formControlName="email"
-                            required
-                          />
-                        </mat-form-field>
-                      </div>
-
-                      <div class="pb-16">
-                        <mat-form-field class="full-width">
-                          <input
-                            matInput
-                            placeholder="Identifiant"
-                            formControlName="userName"
-                            required
-                          />
-                        </mat-form-field>
-                      </div>
-
-                      <div class="pb-16">
-                        <mat-form-field class="full-width">
-                          <input
-                            matInput
-                            placeholder="Telepone"
-                            formControlName="phone"
-                            required
-                          />
-                        </mat-form-field>
+                      <div class="pb-16 pt-8">
+                        <mat-checkbox
+                          name="agreed"
+                          formControlName="agreed"
+                          class="pb-16"
+                        >
+                          {{ "ACCEPT MESSAGE" | translate }}
+                        </mat-checkbox>
+                        <small
+                          *ngIf="
+                            addUserFormGroup.controls['agreed'].hasError(
+                              'agreed'
+                            ) && addUserFormGroup.controls['agreed'].touched
+                          "
+                          class="form-error-msg"
+                        >
+                          {{ "ACCEPT ERROR" | translate }}
+                        </small>
                       </div>
                     </div>
                   </div>
@@ -115,10 +297,10 @@
                   <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                     <div class="pb-16 mb-16">
                       <img
-                        [src]="
-                          addUserFormGroup.value?.photo ||
-                          'assets/images/sq-face-220.jpg'
-                        "
+                        *ngIf="this.addUserFormGroup.value?.photo"
+                        width="300"
+                        height="300"
+                        src="{{ this.addUserFormGroup.value?.photo }}"
                       />
                     </div>
                   </div>
@@ -130,8 +312,11 @@
                         {{ addUserFormGroup.value?.prenom }}
                       </div>
                       <div class="pb-16 mb-16">
-                        <label>Age: </label>
-                        {{ addUserFormGroup.value?.age }}
+                        <label>Date de naissance: </label>
+                        {{
+                          addUserFormGroup.value?.dateNaissance
+                            | date: "dd/MM/yyyy"
+                        }}
                       </div>
                       <div class="pb-16 mb-16">
                         <label>Genre: </label>
@@ -148,6 +333,7 @@
                       <label>Identifiant: </label>
                       {{ addUserFormGroup.value?.userName }}
                     </div>
+
                     <div class="pb-16 mb-16">
                       <label>Telephone: </label>
                       {{ addUserFormGroup.value?.phone }}

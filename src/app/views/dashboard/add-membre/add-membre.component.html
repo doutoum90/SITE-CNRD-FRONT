@@ -6,70 +6,100 @@
           <div fxFlex="100">
             <mat-horizontal-stepper [linear]="true">
               <mat-step [stepControl]="addMemberFormGroup">
+                <ng-template matStepLabel
+                  >Saisie des informations du nouveau membre</ng-template
+                >
                 <form [formGroup]="addMemberFormGroup">
-                  <ng-template matStepLabel
-                    >Saisie des informations du nouveau membre</ng-template
-                  >
+                  <div fxLayout="row wrap">
+                    <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+                      <div class="pb-16 mb-16">
+                        <h2>Uploader votre photo de profile</h2>
 
-                  <div fxFlex="59">
-                    <mat-form-field class="pt-16 pb-16">
-                      <input
-                        matInput
-                        placeholder="Nom du membre"
-                        formControlName="nom"
-                        required
-                      />
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field class="pt-16 pb-16">
-                      <input
-                        matInput
-                        placeholder="Prenom du membre"
-                        formControlName="prenom"
-                        required
-                      />
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field class="pt-16 pb-16">
-                      <input
-                        matInput
-                        placeholder="Photo du membre"
-                        formControlName="photo"
-                        required
-                      />
-                    </mat-form-field>
-                    <br />
-                  </div>
-                  <div fxFlex="50">
-                    <mat-form-field class="pt-16 pb-16">
-                      <input
-                        matInput
-                        placeholder="Fonction du membre"
-                        formControlName="fonction"
-                        required
-                      />
-                    </mat-form-field>
-                    <br />
-                    <mat-form-field class="pt-16 pb-16">
-                      <input
-                        matInput
-                        placeholder="Metier du membre"
-                        formControlName="metier"
-                        required
-                      />
-                    </mat-form-field>
-                    <br />
-                    <mat-checkbox formControlName="isPresident"
-                      >Président</mat-checkbox
-                    >
-                  </div>
+                        <div class="row">
+                          <div class="col">
+                            <app-profile-picture
+                              [form]="addMemberFormGroup"
+                              [photo]="addMemberFormGroup.get('photo')"
+                              [editmode]="editEnabled"
+                            ></app-profile-picture>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <button
+                              mat-icon-button
+                              mat-sm-button
+                              color="warn"
+                              (click)="clear()"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+                      <div class="pb-16">
+                        <mat-form-field class="pt-16 pb-16">
+                          <input
+                            matInput
+                            placeholder="Nom du membre"
+                            formControlName="nom"
+                            required
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div class="pb-16">
+                        <mat-form-field class="pt-16 pb-16">
+                          <input
+                            matInput
+                            placeholder="Prenom du membre"
+                            formControlName="prenom"
+                            required
+                          />
+                        </mat-form-field>
+                      </div>
+                      <div class="p-16">
+                        <mat-checkbox formControlName="isPresident"
+                          >Président</mat-checkbox
+                        >
+                      </div>
+                    </div>
+                    <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+                      <div class="pb-16">
+                        <mat-form-field class="pt-16 pb-16">
+                          <input
+                            matInput
+                            placeholder="Fonction du membre"
+                            formControlName="fonction"
+                            required
+                          />
+                        </mat-form-field>
+                      </div>
 
-                  <div fxFlex="100">
-                    <div fxLayout="row">
-                      <span fxFlex="8px"></span>
-                      <button mat-raised-button color="primary" matStepperNext>
-                        {{ "SUIVANT" | translate }}
-                      </button>
+                      <div class="pb-16">
+                        <mat-form-field class="pt-16 pb-16">
+                          <input
+                            matInput
+                            placeholder="Metier du membre"
+                            formControlName="metier"
+                            required
+                          />
+                        </mat-form-field>
+                      </div>
+                    </div>
+
+                    <div fxFlex="100">
+                      <div fxLayout="row">
+                        <span fxFlex="8px"></span>
+                        <button
+                          mat-raised-button
+                          color="primary"
+                          matStepperNext
+                        >
+                          {{ "SUIVANT" | translate }}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
@@ -77,22 +107,35 @@
 
               <mat-step>
                 <ng-template matStepLabel>Recapitulatif</ng-template>
-
-                <div class="pb-16 mb-16">
-                  <label>Nom et prénom : </label>
-                  {{ addMemberFormGroup.value?.nom }}
-                  {{ addMemberFormGroup.value?.prenom }}
+                <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+                  <div class="pb-16 mb-16">
+                    <img
+                      *ngIf="this.addMemberFormGroup.value?.photo"
+                      width="300"
+                      height="300"
+                      src="{{ this.addMemberFormGroup.value?.photo }}"
+                    />
+                  </div>
                 </div>
+                <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+                  <div class="pb-16">
+                    <div class="pb-16 mb-16">
+                      <label>Nom et prénom : </label>
+                      {{ addMemberFormGroup.value?.nom }}
+                      {{ addMemberFormGroup.value?.prenom }}
+                    </div>
 
-                <div class="pb-16 mb-16">
-                  <label>Fonction: </label>
-                  {{ addMemberFormGroup.value?.fonction }}
+                    <div class="pb-16 mb-16">
+                      <label>Fonction: </label>
+                      {{ addMemberFormGroup.value?.fonction }}
+                    </div>
+
+                    <div class="pb-16 mb-16">
+                      <label>Metier: </label>
+                      {{ addMemberFormGroup.value?.metier }}
+                    </div>
+                  </div>
                 </div>
-
-                <div class="pb-16 mb-16">
-                  <label>Metier: </label> {{ addMemberFormGroup.value?.metier }}
-                </div>
-
                 <div fxLayout="row">
                   <button mat-raised-button color="accent" matStepperPrevious>
                     {{ "BACK" | translate }}

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
-import { Adherant } from "../../articles/model/article.model";
+import { Adherant, Cotisation } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-edit-adherant",
@@ -37,8 +37,8 @@ export class EditAdherantComponent implements OnInit {
   ];
   adherant$: Observable<Adherant>;
   public editEnabled = true;
+
   public clear() {
-    console.log("suppression");
     this.basicForm.get("photo").setValue(null);
   }
 
@@ -50,13 +50,19 @@ export class EditAdherantComponent implements OnInit {
     private readonly egretLoader: AppLoaderService
   ) {}
 
+  compare(cot: Cotisation, cotisationCourant: Cotisation) {
+    return (
+      cot?.devise === cotisationCourant?.devise &&
+      cot?.libelle === cotisationCourant?.libelle &&
+      cot?.montant === cotisationCourant?.montant
+    );
+  }
   ngOnInit() {
     this.createForm();
     this.adherant$ = this.articleService.getAllAdherantById(
       this._activatedRoute.snapshot.params.id
     );
     this.adherant$.subscribe((ad) => {
-      console.log(ad);
       this.basicForm.patchValue({
         id: ad.id,
         nom: ad?.nom,
@@ -107,7 +113,7 @@ export class EditAdherantComponent implements OnInit {
       setTimeout(() => {
         this.egretLoader.close();
       }, 2000);
-      this.router.navigate(["/"]);
+      this.router.navigate(["/dashboard/adherants"]);
     });
   }
 }

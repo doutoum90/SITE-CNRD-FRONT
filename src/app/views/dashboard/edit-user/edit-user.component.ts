@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
+import { CustomValidators } from "ngx-custom-validators";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
 import { Users } from "../../articles/model/article.model";
@@ -15,9 +21,13 @@ export class EditUserComponent implements OnInit {
   addUserFormGroup: FormGroup;
 
   user$: Observable<Users>;
+  public editEnabled = true;
+
+  public clear() {
+    this.addUserFormGroup.get("photo").setValue(null);
+  }
 
   constructor(
-    private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly articleService: ArticlesService,
     private readonly _activatedRoute: ActivatedRoute,
@@ -34,30 +44,37 @@ export class EditUserComponent implements OnInit {
         id: user.id,
         nom: user.nom,
         prenom: user.prenom,
-        age: user.age,
         email: user.email,
         roles: user.roles,
-        image: user.image,
         userName: user.userName,
         phone: user.phone,
         genre: user.genre,
+        photo: user.photo,
+        dateNaissance: user.dateNaissance
       });
     });
   }
   createForm() {
-    this.addUserFormGroup = this.fb.group({
-      id: [""],
-      nom: [""],
-      prenom: [""],
-      age: [0],
-      email: ["", Validators.email],
-      roles: [""],
-      image: [""],
-      userName: [""],
-      phone: [""],
-      genre: [""],
-      motDePasse: [""],
-      motDePasseConfirmation: [""],
+    this.addUserFormGroup = new FormGroup({
+      id:new FormControl(''),
+      nom: new FormControl("", [Validators.required]),
+      prenom: new FormControl("", [Validators.required]),
+      dateNaissance: new FormControl(),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      userName: new FormControl("", [
+        Validators.minLength(4),
+        Validators.maxLength(9),
+      ]),
+      phone: new FormControl("", [Validators.required]),
+      genre: new FormControl(""),
+      photo: new FormControl("", [Validators.required]),
+      agreed: new FormControl("", (control: FormControl) => {
+        const agreed = control.value;
+        if (!agreed) {
+          return { agreed: true };
+        }
+        return null;
+      }),
     });
   }
 

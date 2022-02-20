@@ -46,18 +46,19 @@ export interface Users {
   id: string;
   nom: string;
   prenom: string;
-  age: number;
+  dateNaissance: Date;
   email: string;
   motDePasse: string;
   roles: string[];
-  image?: string;
   userName: string;
   phone: string;
   isActive: boolean;
   genre: string;
   dateCreation: Date;
+  photo: string;
   dateModification?: Date;
 }
+
 export interface Membre {
   id: string;
   nom: string;
@@ -91,5 +92,11 @@ export interface Adherant {
   mail: string;
   photo: string;
 
-  cotisation: number;
+  cotisation: Cotisation;
+}
+
+export interface Cotisation {
+  libelle: string;
+  montant: number;
+  devise: string;
 }

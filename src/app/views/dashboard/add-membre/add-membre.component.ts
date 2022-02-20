@@ -13,12 +13,12 @@ import { Membre } from "../../articles/model/article.model";
   styleUrls: ["./add-membre.component.scss"],
 })
 export class AddMembreComponent implements OnInit {
-
   addMemberFormGroup: FormGroup;
+  public editEnabled = true;
 
-  public uploader: FileUploader = new FileUploader({
-    url: "https://evening-anchorage-315.herokuapp.com/api/",
-  });
+  public clear() {
+    this.addMemberFormGroup.get("photo").setValue(null);
+  }
 
   constructor(
     private readonly fb: FormBuilder,
@@ -44,14 +44,16 @@ export class AddMembreComponent implements OnInit {
       ...this.addMemberFormGroup.value,
     };
     this.articleService.addMembre(membre).subscribe((re) => {
-      this.egretLoader.open(`Le membre ${re.nom} + ${re.prenom} ajouté avec succés`, {
-        width: "320px",
-      });
+      this.egretLoader.open(
+        `Le membre ${re.nom} + ${re.prenom} ajouté avec succés`,
+        {
+          width: "320px",
+        }
+      );
       setTimeout(() => {
         this.egretLoader.close();
       }, 2000);
       this.router.navigate(["dashboard/members"]);
     });
   }
-
 }

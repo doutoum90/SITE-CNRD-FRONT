@@ -1,7 +1,13 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
+import { CustomValidators } from "ngx-custom-validators";
 import { Observable } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
 import { ArticlesService } from "../../articles/articles.service";
@@ -20,6 +26,11 @@ export class AddUserComponent implements OnInit {
   addUserFormGroup: FormGroup;
 
   allComplete: boolean = false;
+  public editEnabled = true;
+
+  public clear() {
+    this.addUserFormGroup.get("photo").setValue(null);
+  }
 
   constructor(
     private readonly fb: FormBuilder,
@@ -34,17 +45,34 @@ export class AddUserComponent implements OnInit {
   }
 
   createForm() {
-    this.addUserFormGroup = this.fb.group({
-      id: [""],
-      nom: [""],
-      prenom: [""],
-      age: [0],
-      email: [""],
-      roles: this.fb.array(["SA", "Admin", "Editor"]),
-      image: [""],
-      userName: [""],
-      phone: [""],
-      genre: [""],
+    let password = new FormControl("", Validators.required);
+    let confirmPassword = new FormControl(
+      "",
+      CustomValidators.equalTo(password)
+    );
+
+    this.addUserFormGroup = new FormGroup({
+      nom: new FormControl("", [Validators.required]),
+      prenom: new FormControl("", [Validators.required]),
+      dateNaissance: new FormControl(),
+      email: new FormControl("", [Validators.required, Validators.email]),
+      userName: new FormControl("", [
+        Validators.minLength(4),
+        Validators.maxLength(9),
+      ]),
+      phone: new FormControl("", [Validators.required]),
+      genre: new FormControl(""),
+      photo: new FormControl("", [Validators.required]),
+
+      password: password,
+      confirmPassword: confirmPassword,
+      agreed: new FormControl("", (control: FormControl) => {
+        const agreed = control.value;
+        if (!agreed) {
+          return { agreed: true };
+        }
+        return null;
+      }),
     });
   }
 
