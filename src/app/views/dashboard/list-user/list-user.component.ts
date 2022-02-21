@@ -5,6 +5,7 @@ import { AppConfirmService } from "app/shared/services/app-confirm/app-confirm.s
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
 import { ArticlesService } from "../../articles/articles.service";
 import { Article, Categories, Users } from "../../articles/model/article.model";
 
@@ -26,16 +27,16 @@ export class ListUsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const user = this.jwtAuth.getUser();
-    // console.log(user);
     this.users$ = this.articleService.getAllUsers();
   }
 
-  detail(data: Article) {
-    this.router.navigate(["/dashboard/users/edit", data.id]);
+  detail(data: Users) {
+    console.log(data);
+    this.router.navigate(["/dashboard/users/edit", data._id]);
   }
 
-  deleteItem(data: Article) {
+  deleteItem(data: Users) {
+    console.log(data);
     this.appConfirmService
       .confirm({
         title: "Suppression",
@@ -43,14 +44,11 @@ export class ListUsersComponent implements OnInit {
       })
       .subscribe((v) => {
         if (v) {
-          this.articleService.deleteUser(data.id).subscribe((r) => {
+          this.articleService.deleteUser(data._id).subscribe((r) => {
             this.users$ = this.articleService.getAllUsers();
-            this.egretLoader.open(
-              "Utilisateur supprimé avec succés",
-              {
-                width: "320px",
-              }
-            );
+            this.egretLoader.open("Utilisateur supprimé avec succés", {
+              width: "320px",
+            });
             setTimeout(() => {
               this.egretLoader.close();
             }, 2000);
@@ -62,7 +60,7 @@ export class ListUsersComponent implements OnInit {
   archiver(data: Categories) {
     if (!data.isArchived) {
       this.articleService
-        .archiverUsers(data.id, !data.isArchived)
+        .archiverUsers(data._id, !data.isArchived)
         .subscribe((r) => {
           this.users$ = this.articleService.getAllUsers();
           this.egretLoader.open(
@@ -80,7 +78,7 @@ export class ListUsersComponent implements OnInit {
 
   activerDesactiver(data: Users) {
     this.articleService
-      .activerDesactiverUser(data.id, !data.isActive)
+      .activerDesactiverUser(data._id, !data.isActive)
       .subscribe((r) => {
         this.users$ = this.articleService.getAllUsers();
         this.egretLoader.open(

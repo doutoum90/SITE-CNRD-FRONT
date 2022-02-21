@@ -1,5 +1,5 @@
 export interface Article {
-  id: string;
+  _id: string;
   title: string;
   isArchived: boolean;
   isAlaUne: boolean;
@@ -16,7 +16,7 @@ export interface Article {
 }
 
 export interface Commentaire {
-  id: string;
+  _id: string;
   content: string;
   datePublication: Date;
   dateModification?: Date;
@@ -25,13 +25,13 @@ export interface Commentaire {
 }
 
 export interface User {
-  id: string;
+  _id: string;
   image: string;
   userName: string;
 }
 
 export interface Categories {
-  id: string;
+  _id: string;
   title: string;
   libelles: string;
   description: string;
@@ -43,7 +43,7 @@ export interface Categories {
 }
 
 export interface Users {
-  id: string;
+  _id: string;
   nom: string;
   prenom: string;
   dateNaissance: Date;
@@ -60,7 +60,7 @@ export interface Users {
 }
 
 export interface Membre {
-  id: string;
+  _id: string;
   nom: string;
   prenom: string;
   fonction: string;
@@ -79,7 +79,7 @@ export interface File {
 }
 
 export interface Adherant {
-  id: string;
+  _id: string;
   nom: string;
   prenom: string;
   dateNaissance: Date;

@@ -57,7 +57,7 @@ export class EditArticleComponent implements OnInit {
     this.article$.subscribe((art) => {
       this.firstFormGroup.patchValue({
         postTitle: art.title,
-        id: art.id,
+        _id: art._id,
         isArchived: art.isArchived,
       });
       this.thirdFormGroup.patchValue({
@@ -69,7 +69,7 @@ export class EditArticleComponent implements OnInit {
 
   createForm() {
     this.firstFormGroup = this.fb.group({
-      id: [""],
+      _id: [""],
       isArchived: [],
       postTitle: ["", Validators.required],
     });
@@ -87,7 +87,7 @@ export class EditArticleComponent implements OnInit {
 
   submit() {
     const posts: Article = {
-      id: this.firstFormGroup.value.id,
+      _id: this.firstFormGroup.value._id,
       title: this.firstFormGroup.value.postTitle,
       dateModification: new Date(),
       ...this.thirdFormGroup.value,

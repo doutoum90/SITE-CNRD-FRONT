@@ -37,7 +37,7 @@ export class EditMemberComponent implements OnInit {
     );
     this.member$.subscribe((member) => {
       this.editMemberFormGroup.patchValue({
-        id: member.id,
+        _id: member._id,
         nom: member.nom,
         prenom: member.prenom,
         fonction: member.fonction,
@@ -49,7 +49,7 @@ export class EditMemberComponent implements OnInit {
   }
   createForm() {
     this.editMemberFormGroup = this.fb.group({
-      id: [""],
+      _id: [""],
       nom: ["", Validators.required],
       prenom: ["", Validators.required],
       fonction: ["", Validators.required],

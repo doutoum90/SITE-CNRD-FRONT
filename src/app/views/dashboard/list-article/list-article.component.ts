@@ -32,7 +32,7 @@ export class ListArticleComponent implements OnInit {
   }
 
   detail(data: Article) {
-    this.router.navigate(["/dashboard/articles/edit", data.id]);
+    this.router.navigate(["/dashboard/articles/edit", data._id]);
   }
 
   deleteItem(data: Article) {
@@ -43,7 +43,7 @@ export class ListArticleComponent implements OnInit {
       })
       .subscribe((v) => {
         if (v) {
-          this.articleService.deleteArticle(data.id).subscribe((r) => {
+          this.articleService.deleteArticle(data._id).subscribe((r) => {
             this.articles$ = this.articleService.getAllArticles();
             this.egretLoader.open("Article supprimé avec succés", {
               width: "320px",
@@ -58,7 +58,7 @@ export class ListArticleComponent implements OnInit {
 
   mettreAlaUne(data: Article) {
     this.articleService
-      .mettreAlaUneArticle(data.id, !data.isAlaUne)
+      .mettreAlaUneArticle(data._id, !data.isAlaUne)
       .subscribe((r) => {
         this.articles$ = this.articleService.getAllArticles();
         this.egretLoader.open(`Article ${r.title} archivé avec succés`, {
@@ -73,7 +73,7 @@ export class ListArticleComponent implements OnInit {
   archiverArticle(data: Article) {
     if (!data.isArchived) {
       this.articleService
-        .archiverArticle(data.id, !data.isArchived)
+        .archiverArticle(data._id, !data.isArchived)
         .subscribe((r) => {
           this.articles$ = this.articleService.getAllArticles();
           this.egretLoader.open(`Article ${r.title} archivé avec succés`, {

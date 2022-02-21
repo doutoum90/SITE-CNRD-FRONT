@@ -15,7 +15,7 @@ import { map } from "rxjs/operators";
   providedIn: "root",
 })
 export class ArticlesService {
-  BASE_URL = "http://localhost:3000";
+  BASE_URL = "http://localhost:3001";
   constructor(private readonly http: HttpClient) {}
   /* addAdherant */
   addAdherant(adherant: Adherant) {
@@ -26,18 +26,18 @@ export class ArticlesService {
     return this.http.get<Adherant[]>(`${this.BASE_URL}/adherant`);
   }
 
-  getAllAdherantById(id: string) {
-    return this.http.get<Adherant>(`${this.BASE_URL}/adherant/${id}`);
+  getAllAdherantById(_id: string) {
+    return this.http.get<Adherant>(`${this.BASE_URL}/adherant/${_id}`);
   }
 
-  deleteAdherant(id: string) {
-    return this.http.delete<Adherant>(`${this.BASE_URL}/adherant/${id}`);
+  deleteAdherant(_id: string) {
+    return this.http.delete<Adherant>(`${this.BASE_URL}/adherant/${_id}`);
   }
 
   updateAdherant(adherant: Adherant) {
-    console.log(adherant)
+    console.log(adherant);
     return this.http.patch<Adherant>(
-      `${this.BASE_URL}/adherant/${adherant.id}`,
+      `${this.BASE_URL}/adherant/${adherant._id}`,
       {
         ...adherant,
       }
@@ -65,15 +65,15 @@ export class ArticlesService {
     return this.http.get<Article[]>(`${this.BASE_URL}/posts?isAlaUne=true`);
   }
 
-  mettreAlaUneArticle(id: string, isAlaUne: boolean) {
-    return this.http.patch<Article>(`${this.BASE_URL}/posts/${id}`, {
+  mettreAlaUneArticle(_id: string, isAlaUne: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/posts/${_id}`, {
       isAlaUne,
       dateAlaUne: new Date(),
     });
   }
 
-  archiverArticle(id: string, isArchived: boolean) {
-    return this.http.patch<Article>(`${this.BASE_URL}/posts/${id}`, {
+  archiverArticle(_id: string, isArchived: boolean) {
+    return this.http.patch<Article>(`${this.BASE_URL}/posts/${_id}`, {
       isArchived,
       dateArchivage: new Date(),
     });
@@ -85,8 +85,8 @@ export class ArticlesService {
       })
     );
   }
-  getArticle(id: string) {
-    return this.http.get<Article>(`${this.BASE_URL}/posts/${id}`);
+  getArticle(_id: string) {
+    return this.http.get<Article>(`${this.BASE_URL}/posts/${_id}`);
   }
 
   addArticle(article: Article) {
@@ -95,13 +95,13 @@ export class ArticlesService {
 
   editArticle(article: Article) {
     return this.http.patch<Article>(
-      `${this.BASE_URL}/posts/${article.id}`,
+      `${this.BASE_URL}/posts/${article._id}`,
       article
     );
   }
 
-  deleteArticle(id: string) {
-    return this.http.delete<Users>(`${this.BASE_URL}/posts/${id}`);
+  deleteArticle(_id: string) {
+    return this.http.delete<Users>(`${this.BASE_URL}/posts/${_id}`);
   }
 
   addComment(
@@ -115,9 +115,9 @@ export class ArticlesService {
         ...article.commentaires,
         {
           ...comment,
-          id: uuidv4(),
+          _id: uuidv4(),
           user: {
-            id: currentUserId,
+            _id: currentUserId,
             userName: "@Username",
             image: "https://bootdey.com/img/Content/user_3.jpg",
           },
@@ -126,12 +126,12 @@ export class ArticlesService {
     });
   }
   // Categories
-  getCategory(id: string) {
-    return this.http.get<Categories>(`${this.BASE_URL}/categories/${id}`);
+  getCategory(_id: string) {
+    return this.http.get<Categories>(`${this.BASE_URL}/categories/${_id}`);
   }
 
-  archiverCategory(id: string, isArchived: boolean) {
-    return this.http.patch<Categories>(`${this.BASE_URL}/categories/${id}`, {
+  archiverCategory(_id: string, isArchived: boolean) {
+    return this.http.patch<Categories>(`${this.BASE_URL}/categories/${_id}`, {
       isArchived,
       dateArchivage: new Date(),
     });
@@ -143,7 +143,7 @@ export class ArticlesService {
 
   editCategory(category: Categories) {
     return this.http.patch<Categories>(
-      `${this.BASE_URL}/categories/${category.id}`,
+      `${this.BASE_URL}/categories/${category._id}`,
       category
     );
   }
@@ -152,21 +152,21 @@ export class ArticlesService {
     return this.http.get<Categories[]>(`${this.BASE_URL}/categories`);
   }
 
-  deleteCategories(id: string) {
-    return this.http.delete<Users>(`${this.BASE_URL}/categories/${id}`);
+  deleteCategories(_id: string) {
+    return this.http.delete<Categories>(`${this.BASE_URL}/categories/${_id}`);
   }
 
   /** Users */
 
-  archiverUsers(id: string, isArchived: boolean) {
-    return this.http.patch<Users>(`${this.BASE_URL}/users/${id}`, {
+  archiverUsers(_id: string, isArchived: boolean) {
+    return this.http.patch<Users>(`${this.BASE_URL}/users/${_id}`, {
       isArchived,
       dateArchivage: new Date(),
     });
   }
 
-  getUser(id: string) {
-    return this.http.get<Users>(`${this.BASE_URL}/users/${id}`);
+  getUser(_id: string) {
+    return this.http.get<Users>(`${this.BASE_URL}/users/${_id}`);
   }
 
   addUser(user: Users) {
@@ -174,22 +174,22 @@ export class ArticlesService {
   }
 
   editUser(user: Users) {
-    return this.http.patch<Users>(`${this.BASE_URL}/users/${user.id}`, user);
+    return this.http.patch<Users>(`${this.BASE_URL}/users/${user._id}`, user);
   }
 
   getAllUsers() {
     return this.http.get<Users[]>(`${this.BASE_URL}/users`);
   }
 
-  activerDesactiverUser(id: string, isActive: boolean) {
-    return this.http.patch<Users>(`${this.BASE_URL}/users/${id}`, {
+  activerDesactiverUser(_id: string, isActive: boolean) {
+    return this.http.patch<Users>(`${this.BASE_URL}/users/${_id}`, {
       isActive,
       dateArchivage: new Date(),
     });
   }
 
-  deleteUser(id: string) {
-    return this.http.delete<Users>(`${this.BASE_URL}/users/${id}`);
+  deleteUser(_id: string) {
+    return this.http.delete<Users>(`${this.BASE_URL}/users/${_id}`);
   }
   /** Membres */
   getAllMembers() {
@@ -200,18 +200,18 @@ export class ArticlesService {
     return this.http.post<Membre>(`${this.BASE_URL}/members`, membre);
   }
 
-  getMembreById(id: string) {
-    return this.http.get<Membre>(`${this.BASE_URL}/members/${id}`);
+  getMembreById(_id: string) {
+    return this.http.get<Membre>(`${this.BASE_URL}/members/${_id}`);
   }
 
   editMember(member: Membre) {
     return this.http.patch<Membre>(
-      `${this.BASE_URL}/members/${member.id}`,
+      `${this.BASE_URL}/members/${member._id}`,
       member
     );
   }
 
-  deleteMember(id: string) {
-    return this.http.delete<Users>(`${this.BASE_URL}/members/${id}`);
+  deleteMember(_id: string) {
+    return this.http.delete<Membre>(`${this.BASE_URL}/members/${_id}`);
   }
 }

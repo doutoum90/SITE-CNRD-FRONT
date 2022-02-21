@@ -40,7 +40,6 @@ export class AddMembreComponent implements OnInit {
 
   submit() {
     const membre: Membre = {
-      id: uuidv4(),
       ...this.addMemberFormGroup.value,
     };
     this.articleService.addMembre(membre).subscribe((re) => {

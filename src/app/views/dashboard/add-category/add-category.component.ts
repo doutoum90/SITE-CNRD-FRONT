@@ -38,7 +38,6 @@ export class AddCategoryComponent implements OnInit {
 
   submit() {
     const category: Categories = {
-      id: uuidv4(),
       ...this.categoryFormGroup.value,
       datePublication: new Date(),
       isArchived: false,

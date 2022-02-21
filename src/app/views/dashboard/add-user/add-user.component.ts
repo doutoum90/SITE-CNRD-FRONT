@@ -78,11 +78,11 @@ export class AddUserComponent implements OnInit {
 
   submit() {
     const user: Users = {
-      id: uuidv4(),
       ...this.addUserFormGroup.value,
       dateCreation: new Date(),
     };
     this.articleService.addUser(user).subscribe((re) => {
+      console.log(user)
       this.router.navigate(["/dashboard/users"]);
       this.egretLoader.open(
         `Utilisateur ${re.nom} ${re.prenom} ajouté avec succés`,

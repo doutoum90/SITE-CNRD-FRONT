@@ -36,11 +36,11 @@ export class ListMemberComponent implements OnInit {
     this.members$ = this.articleService.getAllMembers();
   }
 
-  detail(data: Article) {
-    this.router.navigate(["/dashboard/members/edit", data.id]);
+  detail(data: Membre) {
+    this.router.navigate(["/dashboard/members/edit", data._id]);
   }
 
-  deleteItem(data: Article) {
+  deleteItem(data: Membre) {
     this.appConfirmService
       .confirm({
         title: "Suppression",
@@ -48,7 +48,7 @@ export class ListMemberComponent implements OnInit {
       })
       .subscribe((v) => {
         if (v) {
-          this.articleService.deleteMember(data.id).subscribe((r) => {
+          this.articleService.deleteMember(data._id).subscribe((r) => {
             this.members$ = this.articleService.getAllMembers();
             this.egretLoader.open("Membre supprimé avec succés", {
               width: "320px",
@@ -64,7 +64,7 @@ export class ListMemberComponent implements OnInit {
   archiver(data: Categories) {
     if (!data.isArchived) {
       this.articleService
-        .archiverUsers(data.id, !data.isArchived)
+        .archiverUsers(data._id, !data.isArchived)
         .subscribe((r) => {
           this.members$ = this.articleService.getAllMembers();
           this.egretLoader.open(
@@ -82,7 +82,7 @@ export class ListMemberComponent implements OnInit {
 
   activerDesactiver(data: Users) {
     this.articleService
-      .activerDesactiverUser(data.id, !data.isActive)
+      .activerDesactiverUser(data._id, !data.isActive)
       .subscribe((r) => {
         this.members$ = this.articleService.getAllMembers();
         this.egretLoader.open(

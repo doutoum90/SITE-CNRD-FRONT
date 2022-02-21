@@ -56,7 +56,6 @@ export class AdhererComponent implements OnInit {
 
   ngOnInit() {
     this.basicForm = new FormGroup({
-      id: new FormControl(""),
       nom: new FormControl("", [Validators.required]),
       prenom: new FormControl("", [Validators.required]),
       dateNaissance: new FormControl(),
@@ -84,10 +83,8 @@ export class AdhererComponent implements OnInit {
   }
   submit() {
     const adherant: Adherant = {
-      id: uuidv4(),
       ...this.basicForm.value,
     };
-    console.log(adherant);
     this.articleService.addAdherant(adherant).subscribe((re) => {
       this.egretLoader.open(
         `Adherant ${re.nom} ${re.prenom} ajouté avec succés`,

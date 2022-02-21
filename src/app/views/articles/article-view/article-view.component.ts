@@ -50,12 +50,12 @@ export class ArticleViewComponent implements OnInit {
     if (this.commentForm.invalid) {
       return false;
     } else {
-      const currentUser = { id: uuidv4(), image: "", userName: "John Doe" };
+      const currentUser = { _id: uuidv4(), image: "", userName: "John Doe" };
       this.articleService
         .addComment(
           article,
           { ...this.commentForm.value, datePublication: new Date() },
-          currentUser.id,
+          currentUser._id,
           this._activatedRoute.snapshot.params.id
         )
         .subscribe((res) => {

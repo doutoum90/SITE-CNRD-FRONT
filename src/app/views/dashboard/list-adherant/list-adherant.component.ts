@@ -32,7 +32,7 @@ export class ListAdherantComponent implements OnInit {
   }
 
   detail(data: Adherant) {
-    this.router.navigate(["/dashboard/adherants/edit", data.id]);
+    this.router.navigate(["/dashboard/adherants/edit", data._id]);
   }
 
   deleteItem(data: Adherant) {
@@ -43,7 +43,7 @@ export class ListAdherantComponent implements OnInit {
       })
       .subscribe((v) => {
         if (v) {
-          this.articleService.deleteAdherant(data.id).subscribe((r) => {
+          this.articleService.deleteAdherant(data._id).subscribe((r) => {
             this.adherants$ = this.articleService.getAllAdherants();
             this.egretLoader.open("Adherant supprimé avec succés", {
               width: "320px",
@@ -55,5 +55,4 @@ export class ListAdherantComponent implements OnInit {
         }
       });
   }
-
 }

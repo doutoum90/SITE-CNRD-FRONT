@@ -36,12 +36,14 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
+    // console.log(this._activatedRoute.snapshot.params.id);
     this.user$ = this.articleService.getUser(
       this._activatedRoute.snapshot.params.id
     );
     this.user$.subscribe((user) => {
+      console.log(user);
       this.addUserFormGroup.patchValue({
-        id: user.id,
+        _id: user._id,
         nom: user.nom,
         prenom: user.prenom,
         email: user.email,
@@ -50,13 +52,13 @@ export class EditUserComponent implements OnInit {
         phone: user.phone,
         genre: user.genre,
         photo: user.photo,
-        dateNaissance: user.dateNaissance
+        dateNaissance: user.dateNaissance,
       });
     });
   }
   createForm() {
     this.addUserFormGroup = new FormGroup({
-      id:new FormControl(''),
+      _id: new FormControl(""),
       nom: new FormControl("", [Validators.required]),
       prenom: new FormControl("", [Validators.required]),
       dateNaissance: new FormControl(),

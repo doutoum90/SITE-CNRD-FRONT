@@ -46,7 +46,7 @@ export class EditCategoryComponent implements OnInit {
     this.category$.subscribe((art) => {
       this.categoryFormGroup.patchValue({
         title: art.title,
-        id: art.id,
+        _id: art._id,
         libelles: art.libelles,
         description: art.description,
       });
@@ -54,7 +54,7 @@ export class EditCategoryComponent implements OnInit {
   }
   createForm() {
     this.categoryFormGroup = this.fb.group({
-      id: [""],
+      _id: [""],
       title: ["", Validators.required],
       libelles: ["", Validators.required],
       description: ["", Validators.required],
@@ -63,7 +63,6 @@ export class EditCategoryComponent implements OnInit {
 
   submit() {
     const category: Categories = {
-      id: uuidv4(),
       ...this.categoryFormGroup.value,
       dateModification: new Date(),
       idUser: "idUser",

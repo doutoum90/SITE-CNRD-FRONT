@@ -64,7 +64,7 @@ export class EditAdherantComponent implements OnInit {
     );
     this.adherant$.subscribe((ad) => {
       this.basicForm.patchValue({
-        id: ad.id,
+        _id: ad._id,
         nom: ad?.nom,
         prenom: ad?.prenom,
         dateNaissance: ad?.dateNaissance,
@@ -82,7 +82,7 @@ export class EditAdherantComponent implements OnInit {
   }
   createForm() {
     this.basicForm = this.fb.group({
-      id: [""],
+      _id: [""],
       nom: [""],
       prenom: [""],
       dateNaissance: [],

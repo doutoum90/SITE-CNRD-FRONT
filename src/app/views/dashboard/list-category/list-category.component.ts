@@ -32,11 +32,11 @@ export class ListCategoryComponent implements OnInit {
     this.categories$ = this.articleService.getAllCategories();
   }
 
-  detail(data: Article) {
-    this.router.navigate(["/dashboard/categories/edit", data.id]);
+  detail(data: Categories) {
+    this.router.navigate(["/dashboard/categories/edit", data._id]);
   }
 
-  deleteItem(data: Article) {
+  deleteItem(data: Categories) {
     this.appConfirmService
       .confirm({
         title: "Suppression",
@@ -44,7 +44,7 @@ export class ListCategoryComponent implements OnInit {
       })
       .subscribe((v) => {
         if (v) {
-          this.articleService.deleteCategories(data.id).subscribe((r) => {
+          this.articleService.deleteCategories(data._id).subscribe((r) => {
             this.categories$ = this.articleService.getAllCategories();
             this.egretLoader.open("Categorie supprimé avec succés", {
               width: "320px",
@@ -60,7 +60,7 @@ export class ListCategoryComponent implements OnInit {
   archiverCategory(data: Categories) {
     if (!data.isArchived) {
       this.articleService
-        .archiverCategory(data.id, !data.isArchived)
+        .archiverCategory(data._id, !data.isArchived)
         .subscribe((r) => {
           this.categories$ = this.articleService.getAllCategories();
           this.egretLoader.open(

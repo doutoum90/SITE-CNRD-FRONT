@@ -90,7 +90,6 @@ export class AddArticleComponent implements OnInit {
 
   submit() {
     const posts: Article = {
-      id: uuidv4(),
       title: this.firstFormGroup.value.firstCtrl,
       isArchived: false,
       datePublication: new Date(),

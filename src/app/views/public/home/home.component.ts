@@ -32,9 +32,9 @@ export class HomeComponent implements OnInit {
 
   showArticle(article: Article) {
     if (article.isArchived) {
-      this.router.navigate(["/articles", article.id, "archived"]);
+      this.router.navigate(["/articles", article._id, "archived"]);
     } else {
-      this.router.navigate(["/articles", article.id]);
+      this.router.navigate(["/articles", article._id]);
     }
   }
 

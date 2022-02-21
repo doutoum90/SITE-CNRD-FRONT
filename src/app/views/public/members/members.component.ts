@@ -31,12 +31,11 @@ export class MembersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    /* setTimeout(() => {
+    setTimeout(() => {
       this.loader.open();
-    }); */
+    });
     this.members$ = this.articleService.getAllMembers().pipe(
       map((members) => {
-        console.log(this.getPresident(members));
         this.loader.close();
         return members;
       })
