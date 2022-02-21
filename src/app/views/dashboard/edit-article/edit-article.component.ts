@@ -33,16 +33,18 @@ export class EditArticleComponent implements OnInit {
 
   ngOnInit() {
     this.categories$ = this.articleService.getAllCategories();
+    this.categories$.subscribe(console.log);
     this.createForm();
     this.article$ = this.articleService.getArticle(
       this._activatedRoute.snapshot.params.id
     );
     this.article$.subscribe((art) => {
+      console.log(art.cats);
       this.editPostFormGroup.patchValue({
         _id: art._id,
         title: art.title,
         content: art.content,
-        cats: art.cats,
+        cats: art.cats || "",
       });
     });
   }

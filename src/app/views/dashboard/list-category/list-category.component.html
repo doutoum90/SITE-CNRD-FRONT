@@ -55,8 +55,7 @@
           <mat-slide-toggle
             class="example-margin"
             [checked]="row.isArchived"
-            [disabled]="row.isArchived"
-            (toggleChange)="archiver(row)"
+            (toggleChange)="archiverCategory(row)"
           >
             {{ row.isArchived ? "Archivé" : "Non archivé" }}
           </mat-slide-toggle>

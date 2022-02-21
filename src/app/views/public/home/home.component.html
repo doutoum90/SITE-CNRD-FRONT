@@ -12,7 +12,7 @@
         <div fxLayout="row wrap" (click)="showArticle(articleAlaUne)">
           <div fxFlex="100">
             <mat-card-title>{{ articleAlaUne?.title }}</mat-card-title>
-            <p [innerHtml]="articleAlaUne?.shortContent | slice: 0:250"></p>
+            <p [innerHtml]="articleAlaUne?.content | slice: 0:250"></p>
           </div>
         </div>
       </mat-card>

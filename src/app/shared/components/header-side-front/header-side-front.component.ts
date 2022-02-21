@@ -34,7 +34,7 @@ export class HeaderSideFrontComponent implements OnInit {
       name: "EN",
       code: "en",
       flag: "flag-icon-us",
-    }
+    },
   ];
   currentLang = this.availableLangs[0];
   categories$: Observable<Categories[]>;
@@ -55,8 +55,9 @@ export class HeaderSideFrontComponent implements OnInit {
     this.egretThemes = this.themeService.egretThemes;
     this.layoutConf = this.layout.layoutConf;
     this.translate.use(this.currentLang.code);
-    this.categories$ = this.articleService.getAllCategories();
+    this.categories$ = this.articleService.getAllNonArchivedCategory();
   }
+
   setLang(lng) {
     this.currentLang = lng;
     this.translate.use(lng.code);

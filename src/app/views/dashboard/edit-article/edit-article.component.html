@@ -55,11 +55,22 @@
                               [label]="cat?.libelles"
                             >
                               <mat-option
-                                *ngFor="let subCat of cat?.subs"
-                                [value]="subCat._id"
+                                *ngIf="
+                                  !cat?.subs || cat?.subs?.length == 0;
+                                  else test
+                                "
+                                [value]="cat._id"
                               >
-                                {{ subCat.libelles }}
+                                {{ cat?.libelles }}
                               </mat-option>
+                              <ng-template #test>
+                                <mat-option
+                                  *ngFor="let subCat of cat?.subs"
+                                  [value]="subCat._id"
+                                >
+                                  {{ subCat.libelles }}
+                                </mat-option>
+                              </ng-template>
                               <mat-option
                                 *ngFor="let subCat of cat?.subs"
                                 [value]="subCat._id"

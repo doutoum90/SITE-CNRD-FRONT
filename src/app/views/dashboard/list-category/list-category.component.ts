@@ -56,21 +56,16 @@ export class ListCategoryComponent implements OnInit {
   }
 
   archiverCategory(data: Categories) {
-    if (!data.isArchived) {
-      this.articleService
-        .archiverCategory(data._id, !data.isArchived)
-        .subscribe((r) => {
-          this.categories$ = this.articleService.getAllCategories();
-          this.egretLoader.open(
-            `Categorie ${r.libelles} archivés avec succés`,
-            {
-              width: "320px",
-            }
-          );
-          setTimeout(() => {
-            this.egretLoader.close();
-          }, 2000);
+    this.articleService
+      .archiverCategory(data._id, !data.isArchived)
+      .subscribe((r) => {
+        this.categories$ = this.articleService.getAllCategories();
+        this.egretLoader.open(`Categorie ${r.libelles} archivés avec succés`, {
+          width: "320px",
         });
-    }
+        setTimeout(() => {
+          this.egretLoader.close();
+        }, 2000);
+      });
   }
 }

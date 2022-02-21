@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.archivedArticle$ = this.articleService.getArchivedArticle();
-    this.articles$ = this.articleService.getAllArticles();
+    this.articles$ = this.articleService.getArticles();
     this.articleAlaUne$ = this.articleService.getArticleAlaUne();
   }
 

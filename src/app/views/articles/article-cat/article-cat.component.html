@@ -18,7 +18,7 @@
         >
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
-            <p [innerHtml]="article.shortContent | slice: 0:250"></p>
+            <p [innerHtml]="article.content | slice: 0:250"></p>
           </mat-card>
         </div>
       </div>
@@ -85,7 +85,7 @@
   >
     <mat-card (click)="showArticle(article)">
       <mat-card-title>{{ article.title }}</mat-card-title>
-      <p [innerHtml]="article.shortContent | slice: 0:250"></p>
+      <p [innerHtml]="article.content | slice: 0:250"></p>
     </mat-card>
   </div>
 </ng-template>

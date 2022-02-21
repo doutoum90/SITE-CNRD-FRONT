@@ -45,11 +45,11 @@ export class ArticlesService {
 
   //   articles
   getArchivedArticle() {
-    return this.http.get<Article[]>(`${this.BASE_URL}/posts?isArchived=true`);
+    return this.http.get<Article[]>(`${this.BASE_URL}/posts?crit=archived`);
   }
 
   getArticles() {
-    return this.http.get<Article[]>(`${this.BASE_URL}/posts?isArchived=false`);
+    return this.http.get<Article[]>(`${this.BASE_URL}/posts?crit=nonArchived`);
   }
 
   getAllArticles() {
@@ -58,7 +58,7 @@ export class ArticlesService {
 
   getArticleAlaUne() {
     return this.http
-      .get<Article[]>(`${this.BASE_URL}/posts?isAlaUne=true`)
+      .get<Article[]>(`${this.BASE_URL}/posts?crit=une`)
       .pipe(map((arts) => arts[0]));
   }
 
@@ -148,6 +148,18 @@ export class ArticlesService {
 
   getAllCategories() {
     return this.http.get<Categories[]>(`${this.BASE_URL}/categories`);
+  }
+
+  getAllNonArchivedCategory() {
+    return this.http.get<Categories[]>(
+      `${this.BASE_URL}/categories?crit=nonArchived`
+    );
+  }
+
+  getAllArchivedCategory() {
+    return this.http.get<Categories[]>(
+      `${this.BASE_URL}/categories?crit=archived`
+    );
   }
 
   deleteCategories(_id: string) {

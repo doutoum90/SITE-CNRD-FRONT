@@ -1,137 +1,126 @@
 <div class="">
   <div fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
+    <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="100">
       <mat-card class="p-24" *ngIf="article$ | async as article">
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-card-title>{{ article.title }}</mat-card-title>
             <p [innerHtml]="article.content"></p>
-          </div>
-          <div fxFlex="100" *ngIf="article?.documents?.length>0">
-            <hr>
-            Documents
-            <div *ngFor="let item of article?.documents">
-              {{ item | json }}
-            </div>
-          </div>
 
-          <!--<div fxFlex="100">
-            <div *ngFor="let commentaire of article.commentaires">
-              <p [innerHtml]="commentaire?.content"></p>
-              <p>{{commentaire?.datePublication | date: 'dd/MM/yyyy'}}</p>
-            </div>
-
-            <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment()">
-
-              <div class="commentfields">
-                <label>Comments <span>*</span></label>
-                <br>
-
-                <textarea cols="30" rows="5" formControlName="comment"
-                  [ngClass]="{ 'is-invalid': submitted && commentForm.controls['comment'].errors }"
-                  class="comment comment-textarea required" name="comment"></textarea>
-                <div class="invalid-feedback" *ngIf="submitted && commentForm.controls['comment'].errors">
-                  <div *ngIf="commentForm.controls['comment'].errors.required">Comment is required</div>
-                  <div *ngIf="commentForm.controls['comment'].errors.minlength">Comment must be at least 6 characters
+            <form
+              [formGroup]="commentForm"
+              (ngSubmit)="onSubmitComment(article)"
+            >
+              <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="33.33" class="pr-16">
+                  <div class="pb-16 mb-16">
+                    <mat-form-field class="full-width">
+                      <input
+                        matInput
+                        placeholder="Nom"
+                        formControlName="nom"
+                        required
+                      />
+                    </mat-form-field>
                   </div>
-                  <div *ngIf="commentForm.controls['comment'].errors.maxlength">Comment must be at most 100 characters
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33.33" class="pr-16">
+                  <div class="pb-16 mb-16">
+                    <mat-form-field class="full-width">
+                      <mat-label>E-Mail:</mat-label>
+                      <input
+                        matInput
+                        placeholder="john@doe.fr"
+                        formControlName="mail"
+                        type="email"
+                        required
+                      />
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="33.33" class="pr-16">
+                  <div class="pb-16 mb-16">
+                    <mat-form-field class="full-width">
+                      <mat-label>Commentaire</mat-label>
+                      <textarea
+                        matInput
+                        placeholder="Votre commentaire ici"
+                        formControlName="content"
+                        name="content"
+                        id="content"
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                      ></textarea>
+                    </mat-form-field>
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="
+                        submitted && commentForm.controls['comment'].errors
+                      "
+                    >
+                      <div
+                        *ngIf="commentForm.controls['comment'].errors.required"
+                      >
+                        Comment is required
+                      </div>
+                      <div
+                        *ngIf="commentForm.controls['comment'].errors.minlength"
+                      >
+                        Comment must be at least 6 characters
+                      </div>
+                      <div
+                        *ngIf="commentForm.controls['comment'].errors.maxlength"
+                      >
+                        Comment must be at most 100 characters
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div class="commentfields">
-                <button type="submit" class="btn btn-success">Post Comment</button>
+              <div>
+                <button mat-raised-button color="primary">
+                  {{ "NEXT" | translate }}
+                </button>
               </div>
             </form>
-          </div>-->
-
-          <!--<div fxFlex="100">
-            <div class="comment-wrapper">
-              <div class="panel panel-info">
-
-                <div class="panel-body">
-                  <div class="clearfix"></div>
-                  <textarea cols="30" rows="5" formControlName="comment" placeholder="write a comment..."
-                    [ngClass]="{ 'is-invalid': submitted && commentForm.controls['comment'].errors }"
-                    class="comment comment-textarea required">
-                </textarea>
-                  <div class="invalid-feedback" *ngIf="submitted && commentForm.controls['comment'].errors">
-                    <div *ngIf="commentForm.controls['comment'].errors.required">Comment is required</div>
-                    <div *ngIf="commentForm.controls['comment'].errors.minlength">Comment must be at least 6 characters
-                    </div>
-                    <div *ngIf="commentForm.controls['comment'].errors.maxlength">Comment must be at most 100 characters
-                    </div>
-                  </div>
-                  <br>
-                  <button type="button" class="btn btn-info pull-right">Post</button>
-                  <div class="clearfix"></div>
-                  <hr>
-                  <ul class="media-list">
-                    <li class="media" *ngFor="let commentaire of article.commentaires">
-                      <a href="#" class="pull-left">
-                        <img [src]="commentaire?.user?.image" alt="" class="img-circle">
-                      </a>
-                      <div class="media-body">
-                        <span class="text-muted pull-right">
-                          <small class="text-muted">{{commentaire?.datePublication | date: 'dd/MM/yyyy' }}</small>
-                        </span>
-                        <strong class="text-success">{{commentaire?.user?.userName}}</strong>
-                        <p [innerHtml]="commentaire?.content"></p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>-->
-
+          </div>
+        </div>
+        <div fxLayout="row wrap">
           <div fxFlex="100">
-            <div class="comment-box">
-              <h2>Comments</h2>
-              <form [formGroup]="commentForm" (ngSubmit)="onSubmitComment(article)" class="form-group">
-                <input type="text" name="full_name" id="full_name" placeholder="nom" formControlName="full_name">
-                <input type="email" name="mail" id="mail" placeholder="john@doe.fr" formControlName="mail">
-                <textarea name="content" id="content" cols="30" rows="10" placeholder="Votre commentaire ici"
-                  formControlName="content"
-                  [ngClass]="{ 'is-invalid': submitted && commentForm.controls['comment'].errors }"
-                  class="comment comment-textarea required"></textarea>
-                <div class="invalid-feedback" *ngIf="submitted && commentForm.controls['comment'].errors">
-                  <div *ngIf="commentForm.controls['comment'].errors.required">Comment is required</div>
-                  <div *ngIf="commentForm.controls['comment'].errors.minlength">Comment must be at least 6 characters
-                  </div>
-                  <div *ngIf="commentForm.controls['comment'].errors.maxlength">Comment must be at most 100 characters
-                  </div>
-                </div>
-                <div>
-                  <button type="submit">{{"SUBMIT" | translate}}</button>
-                </div>
-              </form>
-            </div>
-            <div class="clearfix"></div>
             <div>
-
-
-              <ul class="media-list">
-                <li class="media" *ngFor="let commentaire of article.commentaires">
+              <mat-list>
+                <mat-list-item
+                  class="media"
+                  *ngFor="let commentaire of article?.commentaires"
+                >
                   <a href="#" class="pull-left">
-                    <img [src]="commentaire?.user?.image" alt="" class="img-circle">
+                    <img
+                      [src]="commentaire?.user?.image"
+                      alt=""
+                      class="img-circle"
+                    />
                   </a>
                   <div class="media-body">
                     <span class="text-muted pull-right">
-                      <small class="text-muted">{{commentaire?.datePublication | date: 'dd/MM/yyyy' }}</small>
+                      <small class="text-muted">{{
+                        commentaire?.datePublication | date: "dd/MM/yyyy"
+                      }}</small>
                     </span>
-                    <strong class="text-success">{{commentaire?.user.userName | json}}</strong>
+                    <strong class="text-success">{{
+                      commentaire?.user.userName | json
+                    }}</strong>
                     <p [innerHtml]="commentaire?.content"></p>
                   </div>
-                </li>
-              </ul>
+                </mat-list-item>
+              </mat-list>
             </div>
           </div>
         </div>
       </mat-card>
-
     </div>
-
     <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
       <mat-card>
         <div class="mat-heading-label">Articles Connexes</div>
