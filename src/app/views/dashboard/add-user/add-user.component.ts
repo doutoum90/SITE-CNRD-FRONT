@@ -79,11 +79,10 @@ export class AddUserComponent implements OnInit {
   submit() {
     const user: Users = {
       ...this.addUserFormGroup.value,
+      isActive: false,
       dateCreation: new Date(),
     };
     this.articleService.addUser(user).subscribe((re) => {
-      console.log(user)
-      this.router.navigate(["/dashboard/users"]);
       this.egretLoader.open(
         `Utilisateur ${re.nom} ${re.prenom} ajouté avec succés`,
         {
@@ -93,6 +92,7 @@ export class AddUserComponent implements OnInit {
       setTimeout(() => {
         this.egretLoader.close();
       }, 2000);
+      this.router.navigate(["/dashboard/users"]);
     });
   }
 }

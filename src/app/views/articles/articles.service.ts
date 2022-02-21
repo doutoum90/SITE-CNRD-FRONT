@@ -35,7 +35,6 @@ export class ArticlesService {
   }
 
   updateAdherant(adherant: Adherant) {
-    console.log(adherant);
     return this.http.patch<Adherant>(
       `${this.BASE_URL}/adherant/${adherant._id}`,
       {
@@ -50,19 +49,17 @@ export class ArticlesService {
   }
 
   getArticles() {
-    return this.http.get<Article[]>(
-      `${this.BASE_URL}/posts?isArchived=false&?_page=1&_limit=10`
-    );
+    return this.http.get<Article[]>(`${this.BASE_URL}/posts?isArchived=false`);
   }
 
   getAllArticles() {
-    return this.http.get<Article[]>(
-      `${this.BASE_URL}/posts?_page=1&_limit=100`
-    );
+    return this.http.get<Article[]>(`${this.BASE_URL}/posts`);
   }
 
   getArticleAlaUne() {
-    return this.http.get<Article[]>(`${this.BASE_URL}/posts?isAlaUne=true`);
+    return this.http
+      .get<Article[]>(`${this.BASE_URL}/posts?isAlaUne=true`)
+      .pipe(map((arts) => arts[0]));
   }
 
   mettreAlaUneArticle(_id: string, isAlaUne: boolean) {
@@ -125,7 +122,8 @@ export class ArticlesService {
       ],
     });
   }
-  // Categories
+
+  /** Categories */
   getCategory(_id: string) {
     return this.http.get<Categories>(`${this.BASE_URL}/categories/${_id}`);
   }
@@ -157,7 +155,6 @@ export class ArticlesService {
   }
 
   /** Users */
-
   archiverUsers(_id: string, isArchived: boolean) {
     return this.http.patch<Users>(`${this.BASE_URL}/users/${_id}`, {
       isArchived,
@@ -191,6 +188,7 @@ export class ArticlesService {
   deleteUser(_id: string) {
     return this.http.delete<Users>(`${this.BASE_URL}/users/${_id}`);
   }
+
   /** Membres */
   getAllMembers() {
     return this.http.get<Membre[]>(`${this.BASE_URL}/members`);

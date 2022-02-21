@@ -10,12 +10,9 @@ import { Observable } from "rxjs";
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit {
-  user = "Mahamat";
   archivedArticle$: Observable<Article[]>;
   articles$: Observable<Article[]>;
-  articleAlaUne$: Observable<Article[]>;
-  readMore = undefined;
-  readMoreLabel = "";
+  articleAlaUne$: Observable<Article>;
 
   constructor(
     private readonly articleService: ArticlesService,
@@ -25,9 +22,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.archivedArticle$ = this.articleService.getArchivedArticle();
-    this.articles$ = this.articleService.getArticles();
+    this.articles$ = this.articleService.getAllArticles();
     this.articleAlaUne$ = this.articleService.getArticleAlaUne();
-    this.articleAlaUne$.subscribe(console.log);
   }
 
   showArticle(article: Article) {
@@ -36,15 +32,5 @@ export class HomeComponent implements OnInit {
     } else {
       this.router.navigate(["/articles", article._id]);
     }
-  }
-
-  concatReadMore(content: string, index: number) {
-    const suite = ``;
-
-    return content + suite;
-  }
-
-  readMoreArticle(index: number) {
-    this.readMore = index;
   }
 }

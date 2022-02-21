@@ -24,7 +24,7 @@
 
   <div *ngFor="let cat of categories$ | async">
     <div *ngIf="!cat?.subCategories?.length">
-      <button mat-button (click)="selectCat(cat.id)">{{cat.libelles}}</button>
+      <button mat-button (click)="selectCat(cat._id)">{{cat.libelles}}</button>
     </div>
     <div *ngIf="cat?.subCategories?.length">
       <button mat-button mat-button [matMenuTriggerFor]="aboveMenu">
@@ -33,7 +33,7 @@
       <mat-menu #aboveMenu="matMenu" yPosition="above">
         <button
           mat-menu-item
-          (click)="selectCat(sub.id)"
+          (click)="selectCat(sub._id)"
           *ngFor="let sub of cat?.subCategories"
         >
           {{sub.libelles}}

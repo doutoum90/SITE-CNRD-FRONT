@@ -49,8 +49,8 @@ export class AdhererComponent implements OnInit {
     private readonly egretLoader: AppLoaderService
   ) {}
   public editEnabled = true;
+  
   public clear() {
-    console.log("suppression");
     this.basicForm.get("photo").setValue(null);
   }
 

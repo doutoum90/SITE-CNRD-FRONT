@@ -12,7 +12,6 @@ import { Article } from "../model/article.model";
 export class ArticleCatComponent implements OnInit {
   articles$: Observable<Article[]>;
   archivedArticle$: Observable<Article[]>;
-  articleAlaUne$: Observable<Article[]>;
   constructor(
     private readonly articleService: ArticlesService,
     private readonly _activatedRoute: ActivatedRoute,
@@ -24,8 +23,6 @@ export class ArticleCatComponent implements OnInit {
 
     this.articles$ = this.articleService.getArticlesByCat(catId);
     this.archivedArticle$ = this.articleService.getArchivedArticle();
-    this.articleAlaUne$ = this.articleService.getArticleAlaUne();
-    this.articleAlaUne$.subscribe(console.log);
   }
 
   showArticle(article: Article) {

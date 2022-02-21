@@ -19,7 +19,7 @@ export class AddCategoryComponent implements OnInit {
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
   galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</span></p>`;
 
-  categoryFormGroup: FormGroup;
+  addCategoryFormGroup: FormGroup;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -29,7 +29,7 @@ export class AddCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.categoryFormGroup = this.fb.group({
+    this.addCategoryFormGroup = this.fb.group({
       title: ["", Validators.required],
       libelles: ["", Validators.required],
       description: ["", Validators.required],
@@ -38,7 +38,7 @@ export class AddCategoryComponent implements OnInit {
 
   submit() {
     const category: Categories = {
-      ...this.categoryFormGroup.value,
+      ...this.addCategoryFormGroup.value,
       datePublication: new Date(),
       isArchived: false,
       idUser: "idUser",

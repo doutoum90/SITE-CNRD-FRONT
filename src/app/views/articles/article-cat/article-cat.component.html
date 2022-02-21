@@ -1,7 +1,6 @@
 <div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
- 
       <div
         fxLayout="row wrap"
         *ngIf="
@@ -91,11 +90,13 @@
   </div>
 </ng-template>
 <ng-template #notFoundBlock>
-  <div class="app-error">
-    <div class="fix">
-      <div class="error-text">
-        <div class="error-subtitle">Pas d'article pour cette categorie</div>
+  <mat-card>
+    <div class="app-error">
+      <div class="fix">
+        <div class="error-text">
+          <div class="error-subtitle">Pas d'article pour cette categorie</div>
+        </div>
       </div>
     </div>
-  </div>
+  </mat-card>
 </ng-template>

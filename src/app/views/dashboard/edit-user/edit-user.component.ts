@@ -36,12 +36,10 @@ export class EditUserComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    // console.log(this._activatedRoute.snapshot.params.id);
     this.user$ = this.articleService.getUser(
       this._activatedRoute.snapshot.params.id
     );
     this.user$.subscribe((user) => {
-      console.log(user);
       this.addUserFormGroup.patchValue({
         _id: user._id,
         nom: user.nom,

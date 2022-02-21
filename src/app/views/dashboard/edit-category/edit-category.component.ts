@@ -26,7 +26,7 @@ export class EditCategoryComponent implements OnInit {
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
   galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</span></p>`;
 
-  categoryFormGroup: FormGroup;
+  editCategoryFormGroup: FormGroup;
 
   category$: Observable<Categories>;
 
@@ -44,7 +44,7 @@ export class EditCategoryComponent implements OnInit {
       this._activatedRoute.snapshot.params.id
     );
     this.category$.subscribe((art) => {
-      this.categoryFormGroup.patchValue({
+      this.editCategoryFormGroup.patchValue({
         title: art.title,
         _id: art._id,
         libelles: art.libelles,
@@ -53,7 +53,7 @@ export class EditCategoryComponent implements OnInit {
     });
   }
   createForm() {
-    this.categoryFormGroup = this.fb.group({
+    this.editCategoryFormGroup = this.fb.group({
       _id: [""],
       title: ["", Validators.required],
       libelles: ["", Validators.required],
@@ -63,7 +63,7 @@ export class EditCategoryComponent implements OnInit {
 
   submit() {
     const category: Categories = {
-      ...this.categoryFormGroup.value,
+      ...this.editCategoryFormGroup.value,
       dateModification: new Date(),
       idUser: "idUser",
     };

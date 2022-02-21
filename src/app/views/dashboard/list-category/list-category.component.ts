@@ -27,8 +27,6 @@ export class ListCategoryComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const user = this.jwtAuth.getUser();
-    // console.log(user);
     this.categories$ = this.articleService.getAllCategories();
   }
 

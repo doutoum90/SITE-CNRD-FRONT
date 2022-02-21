@@ -52,6 +52,5 @@ export class ProfilePictureComponent implements OnInit {
   }
   onchange(event) {
     this.selectedFile = event.target.files[0];
-    console.log(event);
   }
 }

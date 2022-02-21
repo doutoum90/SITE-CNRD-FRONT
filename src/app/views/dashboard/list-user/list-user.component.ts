@@ -31,12 +31,10 @@ export class ListUsersComponent implements OnInit {
   }
 
   detail(data: Users) {
-    console.log(data);
     this.router.navigate(["/dashboard/users/edit", data._id]);
   }
 
   deleteItem(data: Users) {
-    console.log(data);
     this.appConfirmService
       .confirm({
         title: "Suppression",

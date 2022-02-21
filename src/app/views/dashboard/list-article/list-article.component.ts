@@ -26,8 +26,6 @@ export class ListArticleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const user = this.jwtAuth.getUser();
-    // console.log(user);
     this.articles$ = this.articleService.getAllArticles();
   }
 

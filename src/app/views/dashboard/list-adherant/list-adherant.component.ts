@@ -26,8 +26,6 @@ export class ListAdherantComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // const user = this.jwtAuth.getUser();
-    // console.log(user);
     this.adherants$ = this.articleService.getAllAdherants();
   }
 

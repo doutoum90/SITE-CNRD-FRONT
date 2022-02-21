@@ -4,15 +4,15 @@
       <!-- <p>
         Article à la une
       </p> -->
-      <mat-card class="p-24" style="cursor: pointer">
-        <div
-          fxLayout="row wrap"
-          *ngIf="articleAlaUne$ | async as articleAlaUne"
-          (click)="showArticle(articleAlaUne[0])"
-        >
+      <mat-card
+        *ngIf="articleAlaUne$ | async as articleAlaUne"
+        class="p-24"
+        style="cursor: pointer"
+      >
+        <div fxLayout="row wrap" (click)="showArticle(articleAlaUne)">
           <div fxFlex="100">
-            <mat-card-title>{{ articleAlaUne[0].title }}</mat-card-title>
-            <p [innerHtml]="articleAlaUne[0].shortContent | slice: 0:250"></p>
+            <mat-card-title>{{ articleAlaUne?.title }}</mat-card-title>
+            <p [innerHtml]="articleAlaUne?.shortContent | slice: 0:250"></p>
           </div>
         </div>
       </mat-card>
@@ -32,7 +32,7 @@
         >
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
-            <p [innerHtml]="article.shortContent | slice: 0:250"></p>
+            <p [innerHtml]="article.content | slice: 0:250"></p>
           </mat-card>
         </div>
       </div>
