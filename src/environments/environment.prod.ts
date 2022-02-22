@@ -2,5 +2,5 @@ import { config } from "config";
 
 export const environment = {
   production: true,
-  apiURL: config.apiUrl
+  apiURL: "https://cnrd-api.herokuapp.com/api",
 };

@@ -15,7 +15,7 @@
     "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\"",
     "precommit": "run-s format:fix lint",
     "lint": "tslint --fix -c ./tslint.json 'src/**/*{.ts}'",
-    "heroku-postbuild": "ng build"
+    "heroku-postbuild": "ng build --configuration production"
   },
   "private": true,
   "dependencies": {
