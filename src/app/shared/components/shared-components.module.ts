@@ -19,7 +19,6 @@ import { HeaderTopComponent } from "./header-top/header-top.component";
 import { SidebarTopComponent } from "./sidebar-top/sidebar-top.component";
 
 // ONLY FOR DEMO
-import { CustomizerComponent } from "./customizer/customizer.component";
 
 // ALWAYS REQUIRED
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
@@ -36,14 +35,12 @@ import {
   EgretSidebarTogglerDirective,
 } from "./egret-sidebar/egret-sidebar.component";
 import { BottomSheetShareComponent } from "./bottom-sheet-share/bottom-sheet-share.component";
-import { EgretExampleViewerComponent } from "./example-viewer/example-viewer.component";
 import { EgretExampleViewerTemplateComponent } from "./example-viewer-template/example-viewer-template.component";
 import { EgretNotifications2Component } from "./egret-notifications2/egret-notifications2.component";
 import { FrontLayoutComponent } from "./layouts/front-layout/front-layout.component";
 import { SidenavFrontComponent } from "./sidenav-front/sidenav-front.component";
 import { HeaderSideFrontComponent } from "./header-side-front/header-side-front.component";
 import { SidebarSideFrontComponent } from "./sidebar-side-front/sidebar-side-front.component";
-import { CustomizerFrontComponent } from "./customizer-front/customizer-front.component";
 import { ProfilePictureComponent } from "app/shared/components/profile-picture/profile-picture.component";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -68,14 +65,11 @@ const components = [
   AppComfirmComponent,
   AppLoaderComponent,
   EgretNotifications2Component,
-  CustomizerComponent,
-  CustomizerFrontComponent,
   ButtonLoadingComponent,
   EgretSidebarComponent,
   FooterComponent,
   EgretSidebarTogglerDirective,
   BottomSheetShareComponent,
-  EgretExampleViewerComponent,
   EgretExampleViewerTemplateComponent,
   ProfilePictureComponent,
 ];
