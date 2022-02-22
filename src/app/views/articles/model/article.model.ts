@@ -49,7 +49,7 @@ export interface Users {
   dateNaissance: Date;
   email: string;
   motDePasse: string;
-  roles: string[];
+  roles: string;
   userName: string;
   phone: string;
   isActive: boolean;

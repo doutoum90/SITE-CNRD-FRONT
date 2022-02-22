@@ -18,7 +18,7 @@ export class UserRoleGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const user = this.jwtAuth.getUser();
-    if (user && route?.data?.roles?.includes(user?.role)) {
+    if (user && route?.data?.roles?.includes(user?.roles)) {
       return true;
     } else {
       this.snack.open("You do not have access to this page!", "OK");

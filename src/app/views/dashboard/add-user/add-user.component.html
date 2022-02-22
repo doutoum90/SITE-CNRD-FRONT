@@ -45,7 +45,7 @@
                             matInput
                             name="nom"
                             formControlName="nom"
-                            placeholder="nom (Min Length: 4, Max Length: 9)"
+                            placeholder="Votre nom"
                             value=""
                           />
                         </mat-form-field>
@@ -57,12 +57,12 @@
                           "
                           class="form-error-msg"
                         >
-                          nom require at least
+                          Le nom doit avoir au moins
                           {{
                             addUserFormGroup.controls["nom"].errors.minlength
                               .requiredLength
                           }}
-                          characters
+                          caracteres
                         </small>
                         <small
                           *ngIf="
@@ -72,12 +72,12 @@
                           "
                           class="form-error-msg"
                         >
-                          nom can not contain more than
+                          Le nom ne doit pas contenir plus de
                           {{
                             addUserFormGroup.controls["nom"].errors.maxlength
                               .requiredLength
                           }}
-                          characters
+                          caracteres
                         </small>
                       </div>
 
@@ -87,7 +87,7 @@
                             matInput
                             name="prenom"
                             formControlName="prenom"
-                            placeholder="prenom (Min Length: 4, Max Length: 9)"
+                            placeholder="Votre prénom"
                             value=""
                           />
                         </mat-form-field>
@@ -99,12 +99,12 @@
                           "
                           class="form-error-msg"
                         >
-                          prenom require at least
+                          Le prenom doit avoir une longueur minimale de
                           {{
                             addUserFormGroup.controls["prenom"].errors.minlength
                               .requiredLength
                           }}
-                          characters
+                          caracteres
                         </small>
                         <small
                           *ngIf="
@@ -114,12 +114,12 @@
                           "
                           class="form-error-msg"
                         >
-                          prenom can not contain more than
+                          Le prenom ne doit pas contenir plus de 
                           {{
                             addUserFormGroup.controls["prenom"].errors.maxlength
                               .requiredLength
                           }}
-                          characters
+                          caracteres
                         </small>
                       </div>
                       <div class="pb-16">
@@ -128,7 +128,8 @@
                             matInput
                             name="userName"
                             formControlName="userName"
-                            placeholder="userName (Min Length: 4, Max Length: 9)"
+                            placeholder="Votre nom d'utilisateur"
+                            required
                             value=""
                           />
                         </mat-form-field>
@@ -138,22 +139,22 @@
                         <mat-form-field class="full-width">
                           <input
                             type="password"
-                            name="password"
+                            name="motDePasse"
                             matInput
-                            formControlName="password"
-                            placeholder="Password"
+                            formControlName="motDePasse"
+                            placeholder="votre mot de passe"
                             value=""
                           />
                         </mat-form-field>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['password'].hasError(
+                            addUserFormGroup.controls['motDePasse'].hasError(
                               'required'
-                            ) && addUserFormGroup.controls['password'].touched
+                            ) && addUserFormGroup.controls['motDePasse'].touched
                           "
                           class="form-error-msg"
                         >
-                          Password is required
+                          Le mot de passe est obligatoire
                         </small>
                       </div>
 
@@ -177,7 +178,7 @@
                           "
                           class="form-error-msg"
                         >
-                          Password mismatch
+                          Les deux mots de passe ne correspondent pas
                         </small>
                       </div>
                     </div>
@@ -297,10 +298,10 @@
                   <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                     <div class="pb-16 mb-16">
                       <img
-                        *ngIf="this.addUserFormGroup.value?.photo"
+                        *ngIf="addUserFormGroup.value?.photo"
                         width="300"
                         height="300"
-                        src="{{ this.addUserFormGroup.value?.photo }}"
+                        src="{{ addUserFormGroup.value?.photo }}"
                       />
                     </div>
                   </div>

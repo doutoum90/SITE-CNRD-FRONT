@@ -64,7 +64,7 @@ export class AddUserComponent implements OnInit {
       genre: new FormControl(""),
       photo: new FormControl("", [Validators.required]),
 
-      password: password,
+      motDePasse: password,
       confirmPassword: confirmPassword,
       agreed: new FormControl("", (control: FormControl) => {
         const agreed = control.value;
@@ -80,6 +80,7 @@ export class AddUserComponent implements OnInit {
     const user: Users = {
       ...this.addUserFormGroup.value,
       isActive: false,
+      roles: "SA",
       dateCreation: new Date(),
     };
     this.articleService.addUser(user).subscribe((re) => {

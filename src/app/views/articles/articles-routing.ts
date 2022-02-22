@@ -10,7 +10,6 @@ export const ArticleRoutes: Routes = [
     data: {
       title: "Articles par categories",
       breadcrumb: "Articles par categories",
-      roles: config.authRoles.sa,
     },
   },
   {
@@ -19,7 +18,6 @@ export const ArticleRoutes: Routes = [
     data: {
       title: "Détail Article",
       breadcrumb: "Détail Article",
-      roles: config.authRoles.sa,
     },
   },
   {
@@ -28,7 +26,6 @@ export const ArticleRoutes: Routes = [
     data: {
       title: "Détail Article",
       breadcrumb: "Détail Article",
-      roles: config.authRoles.sa,
     },
   },
 ];

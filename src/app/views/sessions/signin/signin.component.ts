@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
 
   signinForm: FormGroup;
   errorMsg = "";
-  // return: string;
+  return: string;
 
   private _unsubscribeAll: Subject<any>;
 
@@ -41,17 +41,17 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.signinForm = new FormGroup({
       username: new FormControl("Watson", Validators.required),
-      password: new FormControl("12345678", Validators.required),
+      password: new FormControl("testtest", Validators.required),
       rememberMe: new FormControl(true),
     });
 
-    // this.route.queryParams
-    //   .pipe(takeUntil(this._unsubscribeAll))
-    //   .subscribe(params => this.return = params['return'] || '/');
+    this.route.queryParams
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe((params) => (this.return = params["return"] || "/"));
   }
 
   ngAfterViewInit() {
-    // this.autoSignIn();
+    this.autoSignIn();
   }
 
   ngOnDestroy() {
@@ -73,7 +73,6 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
         this.submitButton.disabled = false;
         this.progressBar.mode = "determinate";
         this.errorMsg = err.message;
-        // console.log(err);
       }
     );
   }
@@ -91,7 +90,6 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
     );
     setTimeout(() => {
       this.signin();
-      console.log("autoSignIn");
       this.egretLoader.close();
     }, 2000);
   }
