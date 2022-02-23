@@ -7,9 +7,10 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
+import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
-import { Article, Categories } from "../../articles/model/article.model";
+import { Article, Categories, Users } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-add-article",
@@ -26,20 +27,34 @@ export class AddArticleComponent implements OnInit {
   addPostFormGroup: FormGroup;
   categoryFormControl = new FormControl();
   categories$: Observable<Categories[]>;
+  currentUser: Users;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly articleService: ArticlesService,
-    private readonly egretLoader: AppLoaderService
+    private readonly egretLoader: AppLoaderService,
+    public jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {
     this.categories$ = this.articleService.getAllCategories();
+    this.createForm();
+    this.currentUser = this.jwtAuth.getUser();
+    this.addPostFormGroup.patchValue({
+      auteur: {
+        nom: this.currentUser.nom,
+        prenom: this.currentUser.prenom,
+        photo: this.currentUser.photo,
+      },
+    });
+  }
+  createForm() {
     this.addPostFormGroup = new FormGroup({
       title: new FormControl("", [Validators.required]),
       content: new FormControl("", [Validators.required]),
       cats: this.categoryFormControl,
+      auteur: new FormControl(),
     });
   }
 

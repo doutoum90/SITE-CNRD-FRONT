@@ -2,16 +2,13 @@
   <div fxFlex="100" fxFlex.gt-md="300px" fxFlex.gt-sm="50">
     <mat-card class="profile-sidebar mb-16 pb-0">
       <div class="propic text-center">
-        <img [src]="(user | async)?.photo" alt="" />
+        <img [src]="currentUser?.photo" alt="" />
       </div>
       <div class="profile-title text-center mb-16">
-        <div class="main-title">{{ (user | async)?.nom }}</div>
+        <div class="main-title">{{ currentUser?.nom }}</div>
         <div class="subtitle mb-8">Big Data Expert</div>
         <div class="text-muted">
-          {{
-            (user | async)?.message ||
-              " Hi I'm Jhone, sit amet consectetur adipisicing elit. Aperiam repellendus nam perspiciatis."
-          }}
+          Hi I'm Jhone, sit amet consectetur adipisicing elit. Aperiam repellendus nam perspiciatis.
         </div>
       </div>
     </mat-card>
@@ -21,22 +18,22 @@
       <mat-card-title>Contact Information</mat-card-title>
       <mat-card-content class="pt-0">
         <mat-list>
-          <mat-list-item
-            ><mat-icon class="mr-16">public</mat-icon>
-            www.mhrafi.com</mat-list-item
-          >
-          <mat-list-item
-            ><mat-icon class="mr-16">email</mat-icon>
-            example@gmail.com</mat-list-item
-          >
-          <mat-list-item
-            ><mat-icon class="mr-16">phone</mat-icon>
-            8801822778800</mat-list-item
-          >
-          <mat-list-item
-            ><mat-icon class="mr-16">add_location</mat-icon> SUST, Sylhet,
-            BD</mat-list-item
-          >
+          <mat-list-item>
+            <mat-icon class="mr-16">public</mat-icon>
+            www.mhrafi.com
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon class="mr-16">email</mat-icon>
+            example@gmail.com
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon class="mr-16">phone</mat-icon>
+            8801822778800
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon class="mr-16">add_location</mat-icon> SUST, Sylhet,
+            BD
+          </mat-list-item>
         </mat-list>
       </mat-card-content>
     </mat-card>

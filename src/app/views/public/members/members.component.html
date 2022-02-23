@@ -1,37 +1,33 @@
 <mat-grid-list cols="5">
   <mat-grid-tile colspan="2" rowspan="1"> </mat-grid-tile>
   <mat-grid-tile colspan="1" rowspan="1">
-    <mat-card class="p-24">
-      <div
-        fxLayout="row wrap"
-        *ngIf="getPresident(members$ | async) as president"
-      >
-        <div fxFlex="75">
-          <img mat-list-avatar class="mr-16" [src]="president?.photo" alt="" />
-          <div class="main-title text-center">
-            {{ president?.nom }} {{ president?.prenom }}
-          </div>
-          <div class="subtitle mb-8 text-center">{{ president?.fonction }}</div>
-          <div class="subtitle mb-8 text-center">{{ president?.metier }}</div>
+    <mat-card class="p-24 profile-sidebar mb-16 pb-0" *ngIf="getPresident(members$ | async) as president">
+      <div class="propic text-center">
+        <img [src]="president?.photo" alt="" />
+      </div>
+      <div class="profile-title text-center">
+        <div class="subtitle mb-8 text-center">{{ president?.nom }} {{ president?.prenom }}</div>
+        <div class="subtitle mb-8 text-center">{{ president?.fonction }}</div>
+        <div class="text-muted">
+          {{ president?.metier }}
         </div>
       </div>
     </mat-card>
   </mat-grid-tile>
   <mat-grid-tile colspan="2" rowspan="1"> </mat-grid-tile>
 
-  <mat-grid-tile
-    colspan="1"
-    rowspan="1"
-    *ngFor="let member of getOtherMembres(members$ | async); let i = index"
-  >
-    <mat-card>
-      <img mat-list-avatar class="mr-16" [src]="member?.photo" alt="" />
-      {{ members | json }}
-      <div class="main-title text-center">
-        {{ member?.nom }} {{ member?.prenom }}
+  <mat-grid-tile colspan="1" rowspan="1" *ngFor="let member of getOtherMembres(members$ | async); let i = index">
+    <mat-card class="p-24 profile-sidebar mb-16 pb-0">
+      <div class="propic text-center">
+        <img [src]="member?.photo" alt="" />
       </div>
-      <div class="subtitle mb-8 text-center">{{ member?.fonction }}</div>
-      <div class="subtitle mb-8 text-center">{{ member?.metier }}</div>
+      <div class="profile-title text-center">
+        <div class="subtitle mb-8 text-center">{{ member?.nom }} {{ member?.prenom }}</div>
+        <div class="subtitle mb-8 text-center">{{ member?.fonction }}</div>
+        <div class="text-muted">
+          {{ member?.metier }}
+        </div>
+      </div>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>

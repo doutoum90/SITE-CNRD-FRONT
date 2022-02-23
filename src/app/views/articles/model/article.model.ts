@@ -8,11 +8,18 @@ export interface Article {
   datePublication: Date;
   dateModification?: Date;
   dateArchivage?: Date;
+  auteur: Auteur;
   dateAlaUne?: Date;
   icon: string;
   documents?: any[];
   cats: string[];
   commentaires?: Commentaire[];
+}
+
+export interface Auteur {
+  nom: string;
+  prenom: string;
+  photo: string;
 }
 
 export interface Commentaire {
@@ -40,6 +47,7 @@ export interface Categories {
   isArchived: boolean;
   dateModification?: Date;
   idUser: string;
+  author: Auteur;
 }
 
 export interface Users {

@@ -21,7 +21,6 @@ import { ThemeService } from "../../../services/theme.service";
 import { LayoutService } from "../../../services/layout.service";
 import { filter } from "rxjs/operators";
 import { JwtAuthService } from "../../../services/auth/jwt-auth.service";
-import { User } from "app/views/app-chats/chat.service";
 
 @Component({
   selector: "app-admin-layout",
@@ -32,7 +31,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   private moduleLoaderSub: Subscription;
   private layoutConfSub: Subscription;
   private routerEventSub: Subscription;
-  user: User;
   public scrollConfig = {};
   public layoutConf: any = {};
   public adminContainerClasses: any = {};
@@ -59,7 +57,6 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     // Translator init
     const browserLang: string = translate.getBrowserLang();
     translate.use(browserLang.match(/en|fr/) ? browserLang : "en");
-    this.user = this.jwtAuth.getUser();
   }
 
   ngOnInit() {

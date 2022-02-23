@@ -2,11 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
+import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { FileUploader } from "ng2-file-upload";
 import { Observable } from "rxjs";
 import { v4 as uuidv4 } from "uuid";
 import { ArticlesService } from "../../articles/articles.service";
-import { Article, Categories } from "../../articles/model/article.model";
+import { Article, Categories, Users } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-edit-category",
@@ -29,13 +30,15 @@ export class EditCategoryComponent implements OnInit {
   editCategoryFormGroup: FormGroup;
 
   category$: Observable<Categories>;
+  currentUser: Users;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly articleService: ArticlesService,
     private readonly _activatedRoute: ActivatedRoute,
-    private readonly egretLoader: AppLoaderService
+    private readonly egretLoader: AppLoaderService,
+    public jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {
@@ -43,12 +46,19 @@ export class EditCategoryComponent implements OnInit {
     this.category$ = this.articleService.getCategory(
       this._activatedRoute.snapshot.params.id
     );
-    this.category$.subscribe((art) => {
+    this.currentUser = this.jwtAuth.getUser();
+    this.category$.subscribe((cat) => {
+      console.log(cat);
       this.editCategoryFormGroup.patchValue({
-        title: art.title,
-        _id: art._id,
-        libelles: art.libelles,
-        description: art.description,
+        title: cat.title,
+        _id: cat._id,
+        libelles: cat.libelles,
+        description: cat.description,
+        auteur: {
+          nom: this.currentUser.nom,
+          prenom: this.currentUser.prenom,
+          photo: this.currentUser.photo,
+        },
       });
     });
   }
@@ -58,6 +68,7 @@ export class EditCategoryComponent implements OnInit {
       title: ["", Validators.required],
       libelles: ["", Validators.required],
       description: ["", Validators.required],
+      auteur: [],
     });
   }
 
@@ -65,7 +76,6 @@ export class EditCategoryComponent implements OnInit {
     const category: Categories = {
       ...this.editCategoryFormGroup.value,
       dateModification: new Date(),
-      idUser: "idUser",
     };
     this.articleService.editCategory(category).subscribe((re) => {
       this.egretLoader.open(`Categorie ${re.libelles} modifiée avec succés`, {

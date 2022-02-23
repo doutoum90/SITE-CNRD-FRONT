@@ -11,7 +11,7 @@ import { Users } from "../articles/model/article.model";
 })
 export class ProfileComponent implements OnInit {
   activeView: string = "overview";
-  user: Observable<Partial<Users>>;
+  currentUser: Users;
   // Doughnut
   doughnutChartColors: any[] = [
     {
@@ -50,6 +50,6 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.activeView = this.router.snapshot.params["view"];
-    this.user = this.jwtAuth.user$;
+    this.currentUser = this.jwtAuth.getUser();
   }
 }

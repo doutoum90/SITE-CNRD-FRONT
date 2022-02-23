@@ -14,9 +14,9 @@
           {{ row?.nom }} {{ row?.prenom }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Age" [flexGrow]="1">
+      <ngx-datatable-column name="Date de naissance" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.age }}
+          {{ row?.dateNaissance | date: "dd/MM/yyyy" }}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Email" [flexGrow]="1">

@@ -55,7 +55,7 @@ export class JwtAuthService {
   public checkTokenIsValid() {
     return this.http.get(`${environment.apiURL}/users/profile`).pipe(
       map((profile: Users) => {
-        this.setUserAndToken(this.getJwtToken(), profile, true);
+        this.setUserAndToken(this.getJwtToken(), profile, true, false);
         return profile;
       }),
       catchError((error) => {
@@ -81,12 +81,19 @@ export class JwtAuthService {
     return this.ls.getItem(this.User);
   }
 
-  setUserAndToken(token: String, user: Users, isAuthenticated: Boolean) {
+  setUserAndToken(
+    token: String,
+    user: Users,
+    isAuthenticated: Boolean,
+    rewrite = true
+  ) {
     this.isAuthenticated = isAuthenticated;
     this.token = token;
-    this.user = user;
-    this.user$.next(user);
-    this.ls.setItem(this.JWT_TOKEN, token);
-    this.ls.setItem(this.User, user);
+    if (rewrite) {
+      this.user = user;
+      this.user$.next(user);
+      this.ls.setItem(this.JWT_TOKEN, token);
+      this.ls.setItem(this.User, user);
+    }
   }
 }
