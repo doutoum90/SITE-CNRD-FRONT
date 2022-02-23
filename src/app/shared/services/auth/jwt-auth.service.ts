@@ -3,12 +3,12 @@ import { LocalStoreService } from "../local-store.service";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { map, catchError, delay } from "rxjs/operators";
-import { User } from "../../models/user.model";
 import { of, BehaviorSubject, throwError } from "rxjs";
 import { environment } from "environments/environment";
+import { Users } from "app/views/articles/model/article.model";
 
 interface Profile {
-  user: User;
+  user: Users;
   access_token: string;
 }
 
@@ -18,8 +18,8 @@ interface Profile {
 export class JwtAuthService {
   token;
   isAuthenticated: Boolean;
-  user: User = {};
-  user$ = new BehaviorSubject<User>(this.user);
+  user: Partial<Users> = {};
+  user$ = new BehaviorSubject<Partial<Users>>(this.user);
   signingIn: Boolean;
   return: string;
   JWT_TOKEN = "JWT_TOKEN";
@@ -54,7 +54,7 @@ export class JwtAuthService {
 
   public checkTokenIsValid() {
     return this.http.get(`${environment.apiURL}/users/profile`).pipe(
-      map((profile: User) => {
+      map((profile: Users) => {
         this.setUserAndToken(this.getJwtToken(), profile, true);
         return profile;
       }),
@@ -81,7 +81,7 @@ export class JwtAuthService {
     return this.ls.getItem(this.User);
   }
 
-  setUserAndToken(token: String, user: User, isAuthenticated: Boolean) {
+  setUserAndToken(token: String, user: Users, isAuthenticated: Boolean) {
     this.isAuthenticated = isAuthenticated;
     this.token = token;
     this.user = user;

@@ -12,6 +12,7 @@ import { LayoutService } from "../../services/layout.service";
 import { TranslateService } from "@ngx-translate/core";
 import { JwtAuthService } from "../../services/auth/jwt-auth.service";
 import { EgretNotifications2Component } from "../egret-notifications2/egret-notifications2.component";
+import { Users } from "app/views/articles/model/article.model";
 
 @Component({
   selector: "app-header-side",
@@ -19,6 +20,7 @@ import { EgretNotifications2Component } from "../egret-notifications2/egret-noti
 })
 export class HeaderSideComponent implements OnInit {
   @Input() notificPanel;
+  user: Users;
   @ViewChildren(EgretNotifications2Component) noti;
   public availableLangs = [
     {
@@ -30,7 +32,7 @@ export class HeaderSideComponent implements OnInit {
       name: "EN",
       code: "en",
       flag: "flag-icon-us",
-    }
+    },
   ];
   currentLang = this.availableLangs[0];
 
@@ -44,6 +46,7 @@ export class HeaderSideComponent implements OnInit {
     public jwtAuth: JwtAuthService
   ) {}
   ngOnInit() {
+    this.user = this.jwtAuth.getUser();
     this.egretThemes = this.themeService.egretThemes;
     this.layoutConf = this.layout.layoutConf;
     this.translate.use(this.currentLang.code);

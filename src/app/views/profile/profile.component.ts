@@ -3,6 +3,7 @@ import { ActivatedRoute } from "@angular/router";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { User } from "../../shared/models/user.model";
 import { Observable } from "rxjs";
+import { Users } from "../articles/model/article.model";
 
 @Component({
   selector: "app-profile",
@@ -10,7 +11,7 @@ import { Observable } from "rxjs";
 })
 export class ProfileComponent implements OnInit {
   activeView: string = "overview";
-  user: Observable<User>;
+  user: Observable<Partial<Users>>;
   // Doughnut
   doughnutChartColors: any[] = [
     {

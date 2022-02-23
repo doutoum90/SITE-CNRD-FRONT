@@ -31,8 +31,6 @@ export class FrontLayoutComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private jwtAuth: JwtAuthService
   ) {
-    // Check Auth Token is valid
-    this.jwtAuth.checkTokenIsValid().subscribe();
 
     // Close sidenav after route change in mobile
     this.routerEventSub = router.events
