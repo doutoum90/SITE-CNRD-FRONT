@@ -2,14 +2,11 @@ import { NgModule, ErrorHandler } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-// import { GestureConfig } from '@angular/material/core';
+
 import {
   PERFECT_SCROLLBAR_CONFIG,
   PerfectScrollbarConfigInterface,
 } from "ngx-perfect-scrollbar";
-
-import { InMemoryWebApiModule } from "angular-in-memory-web-api";
-import { InMemoryDataService } from "./shared/inmemory-db/inmemory-db.service";
 
 import { rootRouterConfig } from "./app.routing";
 import { SharedModule } from "./shared/shared.module";
@@ -20,8 +17,6 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { ErrorHandlerService } from "./shared/services/error-handler.service";
 import { TokenInterceptor } from "./shared/interceptors/token.interceptor";
-
-import { ShopService } from "./views/shop/shop.service";
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -44,9 +39,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         deps: [HttpClient],
       },
     }),
-    InMemoryWebApiModule.forRoot(InMemoryDataService, {
-      passThruUnknownUrl: true,
-    }),
+
     RouterModule.forRoot(rootRouterConfig, {
       useHash: false,
       relativeLinkResolution: "legacy",
@@ -54,9 +47,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   declarations: [AppComponent],
   providers: [
-    ShopService,
     { provide: ErrorHandler, useClass: ErrorHandlerService },
-    // { provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
       useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG,

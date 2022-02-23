@@ -33,7 +33,6 @@ export const rootRouterConfig: Routes = [
     path: "",
     component: FrontLayoutComponent,
     children: [
-
       {
         path: "",
         loadChildren: () =>
@@ -73,62 +72,10 @@ export const rootRouterConfig: Routes = [
         data: { title: "Profile", breadcrumb: "PROFILE" },
       },
       {
-        // vu
-        path: "others",
-        loadChildren: () =>
-          import("./views/others/others.module").then((m) => m.OthersModule),
-        data: { title: "Others", breadcrumb: "OTHERS" },
-      },
-      {
-        //vu
-        path: "inbox",
-        loadChildren: () =>
-          import("./views/app-inbox/app-inbox.module").then(
-            (m) => m.AppInboxModule
-          ),
-        data: { title: "Inbox", breadcrumb: "INBOX" },
-      },
-      {
-        // vu
-        path: "chat",
-        loadChildren: () =>
-          import("./views/app-chats/app-chats.module").then(
-            (m) => m.AppChatsModule
-          ),
-        data: { title: "Chat", breadcrumb: "CHAT" },
-      },
-      {
-        //vu
-        path: "shop",
-        loadChildren: () =>
-          import("./views/shop/shop.module").then((m) => m.ShopModule),
-        data: { title: "Shop", breadcrumb: "SHOP" },
-      },
-      {
         path: "search",
         loadChildren: () =>
           import("./views/search-view/search-view.module").then(
             (m) => m.SearchViewModule
-          ),
-      },
-      {
-        // vu
-        path: "invoice",
-        loadChildren: () =>
-          import("./views/invoice/invoice.module").then((m) => m.InvoiceModule),
-      },
-      {
-        // vu
-        path: "todo",
-        loadChildren: () =>
-          import("./views/todo/todo.module").then((m) => m.TodoModule),
-      },
-      {
-        // vu
-        path: "page-layouts",
-        loadChildren: () =>
-          import("./views/page-layouts/page-layouts.module").then(
-            (m) => m.PageLayoutsModule
           ),
       },
     ],
