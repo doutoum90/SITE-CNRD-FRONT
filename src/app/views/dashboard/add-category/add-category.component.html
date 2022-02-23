@@ -5,8 +5,8 @@
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-horizontal-stepper [linear]="true">
-              <mat-step [stepControl]="addCategoryFormGroup">
-                <form [formGroup]="addCategoryFormGroup">
+              <mat-step [stepControl]="addEditCategoryFormGroup">
+                <form [formGroup]="addEditCategoryFormGroup">
                   <ng-template matStepLabel
                     >Saisie des informations la category</ng-template
                   >
@@ -70,11 +70,13 @@
                   <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                     <mat-card>
                       <mat-card-title>{{
-                        addCategoryFormGroup.value?.title
+                        addEditCategoryFormGroup.value?.title
                       }}</mat-card-title>
-                      <p>{{ addCategoryFormGroup.value?.libelles }}</p>
+                      <p>{{ addEditCategoryFormGroup.value?.libelles }}</p>
                       <p
-                        [innerHtml]="addCategoryFormGroup.value?.description"
+                        [innerHtml]="
+                          addEditCategoryFormGroup.value?.description
+                        "
                       ></p>
                     </mat-card>
                   </div>

@@ -7,7 +7,6 @@ import { AddArticleComponent } from "./add-article/add-article.component";
 import { ListArticleComponent } from "./list-article/list-article.component";
 import { ListCategoryComponent } from "./list-category/list-category.component";
 import { AddCategoryComponent } from "./add-category/add-category.component";
-import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
 import { AddUserComponent } from "./add-user/add-user.component";
 import { EditUserComponent } from "./edit-user/edit-user.component";
@@ -128,7 +127,7 @@ export const DashboardRoutes: Routes = [
   },
   {
     path: "categories/edit/:id",
-    component: EditCategoryComponent,
+    component: AddCategoryComponent,
     canActivate: [UserRoleGuard],
     data: {
       title: "Modification de la category",

@@ -143,16 +143,14 @@ export class ArticlesService {
     );
   }
 
-  addCategory(category: Categories) {
+  addEditCategory(category: Categories, edition = false) {
+    if (edition)
+      return this.http.patch<Categories>(
+        `${environment.apiURL}/categories/${category._id}`,
+        category
+      );
     return this.http.post<Categories>(
       `${environment.apiURL}/categories`,
-      category
-    );
-  }
-
-  editCategory(category: Categories) {
-    return this.http.patch<Categories>(
-      `${environment.apiURL}/categories/${category._id}`,
       category
     );
   }

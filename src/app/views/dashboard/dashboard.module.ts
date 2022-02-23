@@ -33,7 +33,6 @@ import { QuillModule } from "ngx-quill";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { ListCategoryComponent } from "./list-category/list-category.component";
 import { AddCategoryComponent } from "./add-category/add-category.component";
-import { EditCategoryComponent } from "./edit-category/edit-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
 import { AddUserComponent } from "./add-user/add-user.component";
 import { EditUserComponent } from "./edit-user/edit-user.component";
@@ -97,7 +96,6 @@ import { SharedComponentsModule } from "app/shared/components/shared-components.
 
     ListCategoryComponent,
     AddCategoryComponent,
-    EditCategoryComponent,
 
     ListUsersComponent,
     AddUserComponent,
@@ -109,7 +107,6 @@ import { SharedComponentsModule } from "app/shared/components/shared-components.
 
     ListAdherantComponent,
     EditAdherantComponent,
-
   ],
   exports: [],
 })
