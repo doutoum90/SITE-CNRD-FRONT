@@ -9,7 +9,6 @@ import { ListCategoryComponent } from "./list-category/list-category.component";
 import { AddCategoryComponent } from "./add-category/add-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
 import { AddUserComponent } from "./add-user/add-user.component";
-import { EditUserComponent } from "./edit-user/edit-user.component";
 import { AddMembreComponent } from "./add-membre/add-membre.component";
 import { ListMemberComponent } from "./list-member/list-member.component";
 import { EditMemberComponent } from "./edit-membre/edit-membre.component";
@@ -137,7 +136,7 @@ export const DashboardRoutes: Routes = [
   },
   {
     path: "users/edit/:id",
-    component: EditUserComponent,
+    component: AddUserComponent,
     canActivate: [UserRoleGuard],
     data: {
       title: "Modification utilisateur",

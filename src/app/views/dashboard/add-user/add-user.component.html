@@ -5,8 +5,8 @@
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-horizontal-stepper [linear]="true">
-              <mat-step [stepControl]="addUserFormGroup">
-                <form [formGroup]="addUserFormGroup">
+              <mat-step [stepControl]="addEditUserFormGroup">
+                <form [formGroup]="addEditUserFormGroup">
                   <ng-template matStepLabel
                     >Saisie des informations de l'utilisateur</ng-template
                   >
@@ -18,8 +18,8 @@
                         <div class="row">
                           <div class="col">
                             <app-profile-picture
-                              [form]="addUserFormGroup"
-                              [photo]="addUserFormGroup.get('photo')"
+                              [form]="addEditUserFormGroup"
+                              [photo]="addEditUserFormGroup.get('photo')"
                               [editmode]="editEnabled"
                             ></app-profile-picture>
                           </div>
@@ -51,31 +51,31 @@
                         </mat-form-field>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['nom'].hasError(
+                            addEditUserFormGroup.controls['nom'].hasError(
                               'minlength'
-                            ) && addUserFormGroup.controls['nom'].touched
+                            ) && addEditUserFormGroup.controls['nom'].touched
                           "
                           class="form-error-msg"
                         >
                           Le nom doit avoir au moins
                           {{
-                            addUserFormGroup.controls["nom"].errors.minlength
-                              .requiredLength
+                            addEditUserFormGroup.controls["nom"].errors
+                              .minlength.requiredLength
                           }}
                           caracteres
                         </small>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['nom'].hasError(
+                            addEditUserFormGroup.controls['nom'].hasError(
                               'maxlength'
-                            ) && addUserFormGroup.controls['nom'].touched
+                            ) && addEditUserFormGroup.controls['nom'].touched
                           "
                           class="form-error-msg"
                         >
                           Le nom ne doit pas contenir plus de
                           {{
-                            addUserFormGroup.controls["nom"].errors.maxlength
-                              .requiredLength
+                            addEditUserFormGroup.controls["nom"].errors
+                              .maxlength.requiredLength
                           }}
                           caracteres
                         </small>
@@ -93,31 +93,31 @@
                         </mat-form-field>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['prenom'].hasError(
+                            addEditUserFormGroup.controls['prenom'].hasError(
                               'minlength'
-                            ) && addUserFormGroup.controls['prenom'].touched
+                            ) && addEditUserFormGroup.controls['prenom'].touched
                           "
                           class="form-error-msg"
                         >
                           Le prenom doit avoir une longueur minimale de
                           {{
-                            addUserFormGroup.controls["prenom"].errors.minlength
-                              .requiredLength
+                            addEditUserFormGroup.controls["prenom"].errors
+                              .minlength.requiredLength
                           }}
                           caracteres
                         </small>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['prenom'].hasError(
+                            addEditUserFormGroup.controls['prenom'].hasError(
                               'maxlength'
-                            ) && addUserFormGroup.controls['prenom'].touched
+                            ) && addEditUserFormGroup.controls['prenom'].touched
                           "
                           class="form-error-msg"
                         >
-                          Le prenom ne doit pas contenir plus de 
+                          Le prenom ne doit pas contenir plus de
                           {{
-                            addUserFormGroup.controls["prenom"].errors.maxlength
-                              .requiredLength
+                            addEditUserFormGroup.controls["prenom"].errors
+                              .maxlength.requiredLength
                           }}
                           caracteres
                         </small>
@@ -135,7 +135,7 @@
                         </mat-form-field>
                       </div>
 
-                      <div class="pb-16">
+                      <div class="pb-16" *ngIf="!edition">
                         <mat-form-field class="full-width">
                           <input
                             type="password"
@@ -148,9 +148,10 @@
                         </mat-form-field>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['motDePasse'].hasError(
-                              'required'
-                            ) && addUserFormGroup.controls['motDePasse'].touched
+                            addEditUserFormGroup.controls[
+                              'motDePasse'
+                            ].hasError('required') &&
+                            addEditUserFormGroup.controls['motDePasse'].touched
                           "
                           class="form-error-msg"
                         >
@@ -158,7 +159,7 @@
                         </small>
                       </div>
 
-                      <div class="pb-16">
+                      <div class="pb-16" *ngIf="!edition">
                         <mat-form-field class="full-width">
                           <input
                             type="password"
@@ -172,7 +173,7 @@
                         </mat-form-field>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls[
+                            addEditUserFormGroup.controls[
                               'confirmPassword'
                             ].hasError('equalTo')
                           "
@@ -197,9 +198,9 @@
                         </mat-form-field>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['email'].hasError(
+                            addEditUserFormGroup.controls['email'].hasError(
                               'required'
-                            ) && addUserFormGroup.controls['email'].touched
+                            ) && addEditUserFormGroup.controls['email'].touched
                           "
                           class="form-error-msg"
                         >
@@ -207,9 +208,9 @@
                         </small>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['email'].hasError(
+                            addEditUserFormGroup.controls['email'].hasError(
                               'email'
-                            ) && addUserFormGroup.controls['email'].touched
+                            ) && addEditUserFormGroup.controls['email'].touched
                           "
                           class="form-error-msg"
                         >
@@ -271,9 +272,9 @@
                         </mat-checkbox>
                         <small
                           *ngIf="
-                            addUserFormGroup.controls['agreed'].hasError(
+                            addEditUserFormGroup.controls['agreed'].hasError(
                               'agreed'
-                            ) && addUserFormGroup.controls['agreed'].touched
+                            ) && addEditUserFormGroup.controls['agreed'].touched
                           "
                           class="form-error-msg"
                         >
@@ -286,7 +287,7 @@
                     mat-raised-button
                     color="primary"
                     matStepperNext
-                    [disabled]="addUserFormGroup.invalid"
+                    [disabled]="addEditUserFormGroup.invalid"
                   >
                     {{ "SUBMIT" | translate }}
                   </button>
@@ -298,10 +299,10 @@
                   <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                     <div class="pb-16 mb-16">
                       <img
-                        *ngIf="addUserFormGroup.value?.photo"
+                        *ngIf="addEditUserFormGroup.value?.photo"
                         width="300"
                         height="300"
-                        src="{{ addUserFormGroup.value?.photo }}"
+                        src="{{ addEditUserFormGroup.value?.photo }}"
                       />
                     </div>
                   </div>
@@ -309,35 +310,35 @@
                     <div class="pb-16">
                       <div class="pb-16 mb-16">
                         <label>Nom et prénom : </label>
-                        {{ addUserFormGroup.value?.nom }}
-                        {{ addUserFormGroup.value?.prenom }}
+                        {{ addEditUserFormGroup.value?.nom }}
+                        {{ addEditUserFormGroup.value?.prenom }}
                       </div>
                       <div class="pb-16 mb-16">
                         <label>Date de naissance: </label>
                         {{
-                          addUserFormGroup.value?.dateNaissance
+                          addEditUserFormGroup.value?.dateNaissance
                             | date: "dd/MM/yyyy"
                         }}
                       </div>
                       <div class="pb-16 mb-16">
                         <label>Genre: </label>
-                        {{ addUserFormGroup.value?.genre }}
+                        {{ addEditUserFormGroup.value?.genre }}
                       </div>
                     </div>
                   </div>
                   <div class="pb-16">
                     <div class="pb-16 mb-16">
                       <label>Email : </label>
-                      {{ addUserFormGroup.value?.email }}
+                      {{ addEditUserFormGroup.value?.email }}
                     </div>
                     <div class="pb-16 mb-16">
                       <label>Identifiant: </label>
-                      {{ addUserFormGroup.value?.userName }}
+                      {{ addEditUserFormGroup.value?.userName }}
                     </div>
 
                     <div class="pb-16 mb-16">
                       <label>Telephone: </label>
-                      {{ addUserFormGroup.value?.phone }}
+                      {{ addEditUserFormGroup.value?.phone }}
                     </div>
                   </div>
                 </div>

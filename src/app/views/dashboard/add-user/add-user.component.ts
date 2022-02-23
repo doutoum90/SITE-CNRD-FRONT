@@ -23,13 +23,14 @@ export class AddUserComponent implements OnInit {
   SELECT_ROLE: string[] = ["SA"];
 
   user$: Observable<Users>;
-  addUserFormGroup: FormGroup;
+  addEditUserFormGroup: FormGroup;
 
   allComplete: boolean = false;
   public editEnabled = true;
+  edition = false;
 
   public clear() {
-    this.addUserFormGroup.get("photo").setValue(null);
+    this.addEditUserFormGroup.get("photo").setValue(null);
   }
 
   constructor(
@@ -41,51 +42,98 @@ export class AddUserComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.edition = !!this._activatedRoute.snapshot.params.id;
     this.createForm();
+    if (this._activatedRoute.snapshot.params.id) {
+      this.user$ = this.articleService.getUser(
+        this._activatedRoute.snapshot.params.id
+      );
+      this.user$.subscribe((user) => {
+        this.addEditUserFormGroup.patchValue({
+          _id: user._id,
+          nom: user.nom,
+          prenom: user.prenom,
+          email: user.email,
+          roles: user.roles,
+          userName: user.userName,
+          phone: user.phone,
+          genre: user.genre,
+          photo: user.photo,
+          dateNaissance: user.dateNaissance,
+        });
+      });
+    }
   }
 
   createForm() {
-    let password = new FormControl("", Validators.required);
-    let confirmPassword = new FormControl(
-      "",
-      CustomValidators.equalTo(password)
-    );
+    if (!this.edition) {
+      const password = new FormControl("", Validators.required);
+      const confirmPassword = new FormControl(
+        "",
+        CustomValidators.equalTo(password)
+      );
+      this.addEditUserFormGroup = new FormGroup({
+        _id: new FormControl(""),
+        nom: new FormControl("", [Validators.required]),
+        prenom: new FormControl("", [Validators.required]),
+        dateNaissance: new FormControl(),
+        email: new FormControl("", [Validators.required, Validators.email]),
+        userName: new FormControl("", [
+          Validators.minLength(4),
+          Validators.maxLength(9),
+        ]),
+        phone: new FormControl("", [Validators.required]),
+        genre: new FormControl(""),
+        photo: new FormControl("", [Validators.required]),
 
-    this.addUserFormGroup = new FormGroup({
-      nom: new FormControl("", [Validators.required]),
-      prenom: new FormControl("", [Validators.required]),
-      dateNaissance: new FormControl(),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      userName: new FormControl("", [
-        Validators.minLength(4),
-        Validators.maxLength(9),
-      ]),
-      phone: new FormControl("", [Validators.required]),
-      genre: new FormControl(""),
-      photo: new FormControl("", [Validators.required]),
+        motDePasse: password,
+        confirmPassword: confirmPassword,
+        agreed: new FormControl("", (control: FormControl) => {
+          const agreed = control.value;
+          if (!agreed) {
+            return { agreed: true };
+          }
+          return null;
+        }),
+      });
+    } else {
+      this.addEditUserFormGroup = new FormGroup({
+        _id: new FormControl(""),
+        nom: new FormControl("", [Validators.required]),
+        prenom: new FormControl("", [Validators.required]),
+        dateNaissance: new FormControl(),
+        email: new FormControl("", [Validators.required, Validators.email]),
+        userName: new FormControl("", [
+          Validators.minLength(4),
+          Validators.maxLength(9),
+        ]),
+        phone: new FormControl("", [Validators.required]),
+        genre: new FormControl(""),
+        photo: new FormControl("", [Validators.required]),
 
-      motDePasse: password,
-      confirmPassword: confirmPassword,
-      agreed: new FormControl("", (control: FormControl) => {
-        const agreed = control.value;
-        if (!agreed) {
-          return { agreed: true };
-        }
-        return null;
-      }),
-    });
+        agreed: new FormControl("", (control: FormControl) => {
+          const agreed = control.value;
+          if (!agreed) {
+            return { agreed: true };
+          }
+          return null;
+        }),
+      });
+    }
   }
 
   submit() {
     const user: Users = {
-      ...this.addUserFormGroup.value,
+      ...this.addEditUserFormGroup.value,
       isActive: false,
       roles: "SA",
       dateCreation: new Date(),
     };
-    this.articleService.addUser(user).subscribe((re) => {
+    this.articleService.addEditUser(user, this.edition).subscribe((re) => {
       this.egretLoader.open(
-        `Utilisateur ${re.nom} ${re.prenom} ajouté avec succés`,
+        `Utilisateur ${re.nom} ${re.prenom} ${
+          this.edition ? "modifié" : "ajouté"
+        } avec succés`,
         {
           width: "320px",
         }

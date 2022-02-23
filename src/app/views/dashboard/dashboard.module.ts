@@ -35,7 +35,6 @@ import { ListCategoryComponent } from "./list-category/list-category.component";
 import { AddCategoryComponent } from "./add-category/add-category.component";
 import { ListUsersComponent } from "./list-user/list-user.component";
 import { AddUserComponent } from "./add-user/add-user.component";
-import { EditUserComponent } from "./edit-user/edit-user.component";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { AddMembreComponent } from "./add-membre/add-membre.component";
@@ -99,7 +98,6 @@ import { SharedComponentsModule } from "app/shared/components/shared-components.
 
     ListUsersComponent,
     AddUserComponent,
-    EditUserComponent,
 
     ListMemberComponent,
     AddMembreComponent,

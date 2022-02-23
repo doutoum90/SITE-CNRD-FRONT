@@ -189,16 +189,15 @@ export class ArticlesService {
     return this.http.get<Users>(`${environment.apiURL}/users/${_id}`);
   }
 
-  addUser(user: Users) {
-    return this.http.post<Users>(`${environment.apiURL}/users`, user);
-  }
-
-  editUser(user: Users) {
+  addEditUser(user: Users, edition=false) {
+    if (edition)
     return this.http.patch<Users>(
       `${environment.apiURL}/users/${user._id}`,
       user
     );
+      return this.http.post<Users>(`${environment.apiURL}/users`, user);
   }
+
 
   getAllUsers() {
     return this.http.get<Users[]>(`${environment.apiURL}/users`);
