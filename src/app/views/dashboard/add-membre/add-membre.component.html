@@ -5,11 +5,11 @@
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-horizontal-stepper [linear]="true">
-              <mat-step [stepControl]="addMemberFormGroup">
+              <mat-step [stepControl]="addEditMemberFormGroup">
                 <ng-template matStepLabel
                   >Saisie des informations du nouveau membre</ng-template
                 >
-                <form [formGroup]="addMemberFormGroup">
+                <form [formGroup]="addEditMemberFormGroup">
                   <div fxLayout="row wrap">
                     <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                       <div class="pb-16 mb-16">
@@ -18,8 +18,8 @@
                         <div class="row">
                           <div class="col">
                             <app-profile-picture
-                              [form]="addMemberFormGroup"
-                              [photo]="addMemberFormGroup.get('photo')"
+                              [form]="addEditMemberFormGroup"
+                              [photo]="addEditMemberFormGroup.get('photo')"
                               [editmode]="editEnabled"
                             ></app-profile-picture>
                           </div>
@@ -110,10 +110,10 @@
                 <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                   <div class="pb-16 mb-16">
                     <img
-                      *ngIf="this.addMemberFormGroup.value?.photo"
+                      *ngIf="this.addEditMemberFormGroup.value?.photo"
                       width="300"
                       height="300"
-                      src="{{ this.addMemberFormGroup.value?.photo }}"
+                      src="{{ this.addEditMemberFormGroup.value?.photo }}"
                     />
                   </div>
                 </div>
@@ -121,18 +121,18 @@
                   <div class="pb-16">
                     <div class="pb-16 mb-16">
                       <label>Nom et prénom : </label>
-                      {{ addMemberFormGroup.value?.nom }}
-                      {{ addMemberFormGroup.value?.prenom }}
+                      {{ addEditMemberFormGroup.value?.nom }}
+                      {{ addEditMemberFormGroup.value?.prenom }}
                     </div>
 
                     <div class="pb-16 mb-16">
                       <label>Fonction: </label>
-                      {{ addMemberFormGroup.value?.fonction }}
+                      {{ addEditMemberFormGroup.value?.fonction }}
                     </div>
 
                     <div class="pb-16 mb-16">
                       <label>Metier: </label>
-                      {{ addMemberFormGroup.value?.metier }}
+                      {{ addEditMemberFormGroup.value?.metier }}
                     </div>
                   </div>
                 </div>

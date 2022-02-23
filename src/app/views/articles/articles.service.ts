@@ -189,15 +189,14 @@ export class ArticlesService {
     return this.http.get<Users>(`${environment.apiURL}/users/${_id}`);
   }
 
-  addEditUser(user: Users, edition=false) {
+  addEditUser(user: Users, edition = false) {
     if (edition)
-    return this.http.patch<Users>(
-      `${environment.apiURL}/users/${user._id}`,
-      user
-    );
-      return this.http.post<Users>(`${environment.apiURL}/users`, user);
+      return this.http.patch<Users>(
+        `${environment.apiURL}/users/${user._id}`,
+        user
+      );
+    return this.http.post<Users>(`${environment.apiURL}/users`, user);
   }
-
 
   getAllUsers() {
     return this.http.get<Users[]>(`${environment.apiURL}/users`);
@@ -219,19 +218,17 @@ export class ArticlesService {
     return this.http.get<Membre[]>(`${environment.apiURL}/members`);
   }
 
-  addMembre(membre: Membre) {
+  addEditMembre(membre: Membre, edition = true) {
+    if (edition)
+      return this.http.patch<Membre>(
+        `${environment.apiURL}/members/${membre._id}`,
+        membre
+      );
     return this.http.post<Membre>(`${environment.apiURL}/members`, membre);
   }
 
   getMembreById(_id: string) {
     return this.http.get<Membre>(`${environment.apiURL}/members/${_id}`);
-  }
-
-  editMember(member: Membre) {
-    return this.http.patch<Membre>(
-      `${environment.apiURL}/members/${member._id}`,
-      member
-    );
   }
 
   deleteMember(_id: string) {

@@ -11,7 +11,6 @@ import { ListUsersComponent } from "./list-user/list-user.component";
 import { AddUserComponent } from "./add-user/add-user.component";
 import { AddMembreComponent } from "./add-membre/add-membre.component";
 import { ListMemberComponent } from "./list-member/list-member.component";
-import { EditMemberComponent } from "./edit-membre/edit-membre.component";
 import { ListAdherantComponent } from "./list-adherant/list-adherant.component";
 import { EditAdherantComponent } from "./edit-adherant/edit-adherant.component";
 
@@ -146,7 +145,7 @@ export const DashboardRoutes: Routes = [
   },
   {
     path: "members/edit/:id",
-    component: EditMemberComponent,
+    component: AddMembreComponent,
     canActivate: [UserRoleGuard],
     data: {
       title: "Modification d'un membre",
