@@ -19,7 +19,7 @@ import { JwtAuthService } from "../../../shared/services/auth/jwt-auth.service";
   templateUrl: "./signin.component.html",
   styleUrls: ["./signin.component.css"],
 })
-export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
+export class SigninComponent implements OnInit, OnDestroy {
   @ViewChild(MatProgressBar) progressBar: MatProgressBar;
   @ViewChild(MatButton) submitButton: MatButton;
 
@@ -50,10 +50,6 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe((params) => (this.return = params["return"] || "/"));
   }
 
-  ngAfterViewInit() {
-    this.autoSignIn();
-  }
-
   ngOnDestroy() {
     this._unsubscribeAll.next();
     this._unsubscribeAll.complete();
@@ -75,22 +71,5 @@ export class SigninComponent implements OnInit, AfterViewInit, OnDestroy {
         this.errorMsg = err.message;
       }
     );
-  }
-
-  autoSignIn() {
-    if (this.jwtAuth.return === "/") {
-      return;
-    }
-    this.egretLoader.open(
-      `Automatically Signing you in! \n Return url: ${this.jwtAuth.return.substring(
-        0,
-        20
-      )}...`,
-      { width: "320px" }
-    );
-    setTimeout(() => {
-      this.signin();
-      this.egretLoader.close();
-    }, 2000);
   }
 }
