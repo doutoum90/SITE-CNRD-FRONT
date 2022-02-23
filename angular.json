@@ -37,14 +37,8 @@
             "main": "src/main.ts",
             "tsConfig": "src/tsconfig.app.json",
             "polyfills": "src/polyfills.ts",
-            "assets": [
-              "src/assets",
-              "src/assets/docs",
-              "src/favicon.ico"
-            ],
-            "styles": [
-              "src/assets/styles/app.scss"
-            ],
+            "assets": ["src/assets", "src/assets/docs", "src/favicon.ico"],
+            "styles": ["src/assets/styles/app.scss"],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
@@ -74,9 +68,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "scripts": [
-                "src/assets/scripts/analytics.js"
-              ]
+              "scripts": []
             }
           }
         },
@@ -104,16 +96,9 @@
             "karmaConfig": "./karma.conf.js",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.spec.json",
-            "scripts": [
-              "./node_modules/quill/dist/quill.js"
-            ],
-            "styles": [
-              "src/assets/styles/app.scss"
-            ],
-            "assets": [
-              "src/assets",
-              "src/favicon.ico"
-            ]
+            "scripts": ["./node_modules/quill/dist/quill.js"],
+            "styles": ["src/assets/styles/app.scss"],
+            "assets": ["src/assets", "src/favicon.ico"]
           }
         }
       }
