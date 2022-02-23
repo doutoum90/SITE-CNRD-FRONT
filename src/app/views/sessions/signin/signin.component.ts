@@ -30,7 +30,7 @@ export class SigninComponent implements OnInit, OnDestroy {
   private _unsubscribeAll: Subject<any>;
 
   constructor(
-    private jwtAuth: JwtAuthService,
+    private readonly jwtAuth: JwtAuthService,
     private egretLoader: AppLoaderService,
     private router: Router,
     private route: ActivatedRoute

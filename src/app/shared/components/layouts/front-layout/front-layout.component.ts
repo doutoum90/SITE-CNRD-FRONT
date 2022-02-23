@@ -29,7 +29,7 @@ export class FrontLayoutComponent implements OnInit {
     public themeService: ThemeService,
     private layout: LayoutService,
     private cdr: ChangeDetectorRef,
-    private jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {
 
     // Close sidenav after route change in mobile

@@ -5,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from "@angular/forms";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
@@ -24,49 +24,77 @@ export class AddArticleComponent implements OnInit {
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a 
   galley of type and scrambled it to make a type specimen book. It has survived not only five centuries</span></p>`;
 
-  addPostFormGroup: FormGroup;
+  addEditPostFormGroup: FormGroup;
+
   categoryFormControl = new FormControl();
+  article$: Observable<Article>;
   categories$: Observable<Categories[]>;
   currentUser: Users;
 
   constructor(
-    private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly articleService: ArticlesService,
+    private readonly _activatedRoute: ActivatedRoute,
     private readonly egretLoader: AppLoaderService,
-    public jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {
-    this.categories$ = this.articleService.getAllCategories();
     this.createForm();
     this.currentUser = this.jwtAuth.getUser();
-    this.addPostFormGroup.patchValue({
-      auteur: {
-        nom: this.currentUser.nom,
-        prenom: this.currentUser.prenom,
-        photo: this.currentUser.photo,
-      },
-    });
+    this.categories$ = this.articleService.getAllCategories();
+    if (this._activatedRoute.snapshot.params.id) {
+      this.article$ = this.articleService.getArticle(
+        this._activatedRoute.snapshot.params.id
+      );
+      this.article$.subscribe((art) => {
+        this.addEditPostFormGroup.patchValue({
+          _id: art._id,
+          title: art.title,
+          content: art.content,
+          cats: art.cats || "",
+          auteur: {
+            nom: this.currentUser.nom,
+            prenom: this.currentUser.prenom,
+            photo: this.currentUser.photo,
+          },
+        });
+      });
+    } else {
+      this.addEditPostFormGroup.patchValue({
+        auteur: {
+          nom: this.currentUser.nom,
+          prenom: this.currentUser.prenom,
+          photo: this.currentUser.photo,
+        },
+      });
+    }
   }
+
   createForm() {
-    this.addPostFormGroup = new FormGroup({
+    this.addEditPostFormGroup = new FormGroup({
+      _id: new FormControl(""),
       title: new FormControl("", [Validators.required]),
       content: new FormControl("", [Validators.required]),
       cats: this.categoryFormControl,
-      auteur: new FormControl(),
+      auteur: new FormControl(""),
     });
   }
 
   submit() {
+    const edition = !!this._activatedRoute.snapshot.params.id;
     const posts: Article = {
-      ...this.addPostFormGroup.value,
-      datePublication: new Date(),
+      dateModification: new Date(),
+      ...this.addEditPostFormGroup.value,
     };
-    this.articleService.addArticle(posts).subscribe((re) => {
-      this.egretLoader.open(`Article ${re.title} ajouté avec succés`, {
-        width: "320px",
-      });
+    console.log(posts);
+    this.articleService.addEditArticle(posts, edition).subscribe((re) => {
+      this.egretLoader.open(
+        `Article ${re.title} ${edition ? "modifié" : "publié"} avec succés`,
+        {
+          width: "320px",
+        }
+      );
       setTimeout(() => {
         this.egretLoader.close();
       }, 2000);

@@ -27,7 +27,6 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatInputModule } from "@angular/material/input";
 import { FileUploadModule } from "ng2-file-upload";
-import { EditArticleComponent } from "./edit-article/edit-article.component";
 import { ListArticleComponent } from "./list-article/list-article.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { QuillModule } from "ngx-quill";
@@ -95,7 +94,6 @@ import { SharedComponentsModule } from "app/shared/components/shared-components.
   declarations: [
     ListArticleComponent,
     AddArticleComponent,
-    EditArticleComponent,
 
     ListCategoryComponent,
     AddCategoryComponent,

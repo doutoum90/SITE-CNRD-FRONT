@@ -43,7 +43,7 @@ export class HeaderSideComponent implements OnInit {
     private layout: LayoutService,
     public translate: TranslateService,
     private renderer: Renderer2,
-    public jwtAuth: JwtAuthService
+    public readonly jwtAuth: JwtAuthService
   ) {}
   ngOnInit() {
     this.user = this.jwtAuth.getUser();

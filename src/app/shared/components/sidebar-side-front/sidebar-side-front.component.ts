@@ -22,7 +22,7 @@ export class SidebarSideFrontComponent
     private navService: NavigationService,
     public themeService: ThemeService,
     private layout: LayoutService,
-    public jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {

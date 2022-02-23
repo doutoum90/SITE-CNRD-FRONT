@@ -4,7 +4,6 @@ import { UserRoleGuard } from "app/shared/guards/user-role.guard";
 
 import { config } from "config";
 import { AddArticleComponent } from "./add-article/add-article.component";
-import { EditArticleComponent } from "./edit-article/edit-article.component";
 import { ListArticleComponent } from "./list-article/list-article.component";
 import { ListCategoryComponent } from "./list-category/list-category.component";
 import { AddCategoryComponent } from "./add-category/add-category.component";
@@ -119,7 +118,7 @@ export const DashboardRoutes: Routes = [
 
   {
     path: "articles/edit/:id",
-    component: EditArticleComponent,
+    component: AddArticleComponent,
     canActivate: [UserRoleGuard],
     data: {
       title: "Modification Article",

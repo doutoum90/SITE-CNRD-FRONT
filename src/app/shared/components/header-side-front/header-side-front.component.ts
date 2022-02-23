@@ -46,7 +46,7 @@ export class HeaderSideFrontComponent implements OnInit {
     private layout: LayoutService,
     public translate: TranslateService,
     private renderer: Renderer2,
-    public jwtAuth: JwtAuthService,
+    private readonly jwtAuth: JwtAuthService,
     private readonly articleService: ArticlesService,
     private readonly router: Router
   ) {}

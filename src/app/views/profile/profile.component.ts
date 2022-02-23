@@ -46,7 +46,7 @@ export class ProfileComponent implements OnInit {
     },
   };
 
-  constructor(private router: ActivatedRoute, public jwtAuth: JwtAuthService) {}
+  constructor(private router: ActivatedRoute, private readonly jwtAuth: JwtAuthService) {}
 
   ngOnInit() {
     this.activeView = this.router.snapshot.params["view"];

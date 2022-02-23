@@ -11,7 +11,7 @@ import { JwtAuthService } from "../services/auth/jwt-auth.service";
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(private jwtAuth: JwtAuthService) {}
+  constructor(private readonly jwtAuth: JwtAuthService) {}
 
   intercept(
     req: HttpRequest<any>,

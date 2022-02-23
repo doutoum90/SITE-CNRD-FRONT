@@ -20,7 +20,7 @@ export class SidebarSideComponent implements OnInit, OnDestroy, AfterViewInit {
     private navService: NavigationService,
     public themeService: ThemeService,
     private layout: LayoutService,
-    public jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {

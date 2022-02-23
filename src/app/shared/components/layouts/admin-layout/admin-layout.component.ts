@@ -41,7 +41,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     public themeService: ThemeService,
     private layout: LayoutService,
     private cdr: ChangeDetectorRef,
-    private jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {
     // Check Auth Token is valid
     this.jwtAuth.checkTokenIsValid().subscribe();

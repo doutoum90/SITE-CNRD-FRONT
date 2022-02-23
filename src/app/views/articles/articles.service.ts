@@ -90,15 +90,13 @@ export class ArticlesService {
     return this.http.get<Article>(`${environment.apiURL}/posts/${_id}`);
   }
 
-  addArticle(article: Article) {
+  addEditArticle(article: Article, edit = true) {
+    if (edit)
+      return this.http.patch<Article>(
+        `${environment.apiURL}/posts/${article._id}`,
+        article
+      );
     return this.http.post<Article>(`${environment.apiURL}/posts`, article);
-  }
-
-  editArticle(article: Article) {
-    return this.http.patch<Article>(
-      `${environment.apiURL}/posts/${article._id}`,
-      article
-    );
   }
 
   deleteArticle(_id: string) {

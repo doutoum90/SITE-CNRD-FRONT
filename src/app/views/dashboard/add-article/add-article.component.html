@@ -5,8 +5,8 @@
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-horizontal-stepper [linear]="true">
-              <mat-step [stepControl]="addPostFormGroup">
-                <form [formGroup]="addPostFormGroup">
+              <mat-step [stepControl]="addEditPostFormGroup">
+                <form [formGroup]="addEditPostFormGroup">
                   <ng-template matStepLabel
                     >Saisie des details de l'article</ng-template
                   >
@@ -27,7 +27,10 @@
                       <div class="pb-16 mb-16">
                         <mat-form-field class="full-width">
                           <mat-label>Categories</mat-label>
-                          <mat-select [formControl]="categoryFormControl" multiple>
+                          <mat-select
+                            [formControl]="categoryFormControl"
+                            multiple
+                          >
                             <mat-select-trigger>
                               {{
                                 categoryFormControl?.value
@@ -51,11 +54,9 @@
                               *ngFor="let cat of categories$ | async"
                               [label]="cat?.libelles"
                             >
-                            <mat-option
-                                [value]="cat._id"
-                              >
-                              {{cat?.libelles}}
-                            </mat-option>
+                              <mat-option [value]="cat._id">
+                                {{ cat?.libelles }}
+                              </mat-option>
                               <mat-option
                                 *ngFor="let subCat of cat?.subs"
                                 [value]="subCat._id"
@@ -114,9 +115,9 @@
                   <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
                     <mat-card>
                       <mat-card-title>{{
-                        addPostFormGroup.value?.title
+                        addEditPostFormGroup.value?.title
                       }}</mat-card-title>
-                      <p [innerHtml]="addPostFormGroup.value?.content"></p>
+                      <p [innerHtml]="addEditPostFormGroup.value?.content"></p>
                     </mat-card>
                   </div>
                 </div>

@@ -38,7 +38,7 @@ export class EditCategoryComponent implements OnInit {
     private readonly articleService: ArticlesService,
     private readonly _activatedRoute: ActivatedRoute,
     private readonly egretLoader: AppLoaderService,
-    public jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {

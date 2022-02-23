@@ -33,7 +33,7 @@ export class HeaderTopComponent implements OnInit, OnDestroy {
     public themeService: ThemeService,
     public translate: TranslateService,
     private renderer: Renderer2,
-    public jwtAuth: JwtAuthService
+    public readonly jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {

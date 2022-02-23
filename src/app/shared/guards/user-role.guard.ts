@@ -12,7 +12,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class UserRoleGuard implements CanActivate {
   constructor(
     private router: Router,
-    private jwtAuth: JwtAuthService,
+    private readonly jwtAuth: JwtAuthService,
     private snack: MatSnackBar
   ) {}
 

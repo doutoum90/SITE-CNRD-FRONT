@@ -27,7 +27,7 @@ export class AddCategoryComponent implements OnInit {
     private readonly router: Router,
     private readonly articleService: ArticlesService,
     private readonly egretLoader: AppLoaderService,
-    public jwtAuth: JwtAuthService
+    private readonly jwtAuth: JwtAuthService
   ) {}
 
   ngOnInit() {
