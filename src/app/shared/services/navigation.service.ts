@@ -74,33 +74,6 @@ export class NavigationService {
       tooltip: "Profile",
       icon: "person",
       state: "profile",
-      badges: [{ color: "primary", value: "2" }],
-      sub: [
-        { name: "OVERVIEW", state: "overview" },
-        { name: "SETTINGS", state: "settings" },
-        { name: "BLANK", state: "blank" },
-      ],
-    },
-    {
-      name: "SESSIONS",
-      type: "dropDown",
-      tooltip: "Pages",
-      icon: "view_carousel",
-      state: "sessions",
-      sub: [
-        { name: "SIGNUP", state: "signup" },
-        { name: "Signup 2", state: "signup2" },
-        { name: "Signup 3", state: "signup3" },
-        { name: "Signup 4", state: "signup4" },
-        { name: "SIGNIN", state: "signin" },
-        { name: "Signin 2", state: "signin2" },
-        { name: "Signin 3", state: "signin3" },
-        { name: "Signin 4", state: "signin4" },
-        { name: "FORGOT", state: "forgot-password" },
-        { name: "LOCKSCREEN", state: "lockscreen" },
-        { name: "NOTFOUND", state: "404" },
-        { name: "ERROR", state: "error" },
-      ],
     },
   ];
   iconMenuFront: IMenuItem[] = [];
@@ -124,22 +97,6 @@ export class NavigationService {
       tooltip: "Profile",
       icon: "person",
       state: "profile",
-      sub: [
-        { name: "OVERVIEW", state: "overview" },
-        { name: "SETTINGS", state: "settings" },
-        { name: "BLANK", state: "blank" },
-      ],
-    },
-    {
-      name: "TOUR",
-      type: "link",
-      tooltip: "Tour",
-      icon: "flight_takeoff",
-      state: "tour",
-    },
-    {
-      type: "separator",
-      name: "Integrated components",
     },
   ];
   separatorMenuFront: IMenuItem[] = [
