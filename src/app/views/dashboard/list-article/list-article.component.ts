@@ -6,7 +6,7 @@ import { AppLoaderService } from "app/shared/services/app-loader/app-loader.serv
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
-import { Article } from "../../articles/model/article.model";
+import { Article, Pagination } from "../../articles/model/article.model";
 
 @Component({
   selector: "app-list-article",
@@ -16,6 +16,7 @@ import { Article } from "../../articles/model/article.model";
 })
 export class ListArticleComponent implements OnInit {
   articles$: Observable<Article[]>;
+  page: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
 
   constructor(
     private readonly router: Router,
@@ -26,7 +27,7 @@ export class ListArticleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.articles$ = this.articleService.getAllArticles();
+    this.articles$ = this.articleService.getAllArticles(this.page);
   }
 
   detail(data: Article) {
@@ -42,7 +43,7 @@ export class ListArticleComponent implements OnInit {
       .subscribe((v) => {
         if (v) {
           this.articleService.deleteArticle(data._id).subscribe((r) => {
-            this.articles$ = this.articleService.getAllArticles();
+            this.articles$ = this.articleService.getAllArticles(this.page);
             this.egretLoader.open("Article supprimé avec succés", {
               width: "320px",
             });
@@ -58,7 +59,7 @@ export class ListArticleComponent implements OnInit {
     this.articleService
       .mettreAlaUneArticle(data._id, !data.isAlaUne)
       .subscribe((r) => {
-        this.articles$ = this.articleService.getAllArticles();
+        this.articles$ = this.articleService.getAllArticles(this.page);
         this.egretLoader.open(`Article ${r.title} archivé avec succés`, {
           width: "320px",
         });
@@ -73,7 +74,7 @@ export class ListArticleComponent implements OnInit {
       this.articleService
         .archiverArticle(data._id, !data.isArchived)
         .subscribe((r) => {
-          this.articles$ = this.articleService.getAllArticles();
+          this.articles$ = this.articleService.getAllArticles(this.page);
           this.egretLoader.open(`Article ${r.title} archivé avec succés`, {
             width: "320px",
           });
@@ -84,7 +85,8 @@ export class ListArticleComponent implements OnInit {
     }
   }
 
-  pageinationCallBack(event) {
-    console.log(event);
+  paginationCallBack(event) {
+    this.page = event;
+    this.articles$ = this.articleService.getAllArticles(this.page);
   }
 }

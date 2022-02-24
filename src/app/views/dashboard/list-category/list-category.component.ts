@@ -68,7 +68,7 @@ export class ListCategoryComponent implements OnInit {
         }, 2000);
       });
   }
-  pageinationCallBack(event) {
+  paginationCallBack(event) {
     console.log(event);
   }
 }

@@ -4,7 +4,7 @@
 >
   <mat-card-content class="p-0">
     <ngx-datatable
-      (page)="pageinationCallBack($event)"
+      (page)="paginationCallBack($event)"
       class="material ml-0 mr-0"
       [rows]="adherants$ | async"
       [columnMode]="'force'"

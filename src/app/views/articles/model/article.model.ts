@@ -108,3 +108,9 @@ export interface Cotisation {
   montant: number;
   devise: string;
 }
+export interface Pagination {
+  count: number;
+  pageSize: number;
+  limit: number;
+  offset: number;
+}

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService } from "app/shared/search/search.service";
 import { ArticlesService } from "app/views/articles/articles.service";
+import { Pagination } from "app/views/articles/model/article.model";
 import { Observable, Subscription } from "rxjs";
-import { CountryService } from "../country.service";
 
 @Component({
   selector: "app-result-page",
@@ -12,6 +12,7 @@ import { CountryService } from "../country.service";
 export class ResultPageComponent implements OnInit, OnDestroy {
   articles$: Observable<any[]>;
   searchTermSub: Subscription;
+  page: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
 
   constructor(
     public searchService: SearchService,
@@ -20,16 +21,16 @@ export class ResultPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchTermSub = this.searchService.searchTerm$.subscribe((term) => {
-      console.log(term);
-      this.articles$ = this.articleService.getArticleByKeyWord(term);
-      this.articles$.subscribe(console.log);
+      this.articles$ = this.articleService.getArticleByKeyWord(term, this.page);
     });
   }
-  readValue() {
-    console.log("erjhehrjer");
-  }
-  pageinationCallBack(event) {
-    console.log(event);
+  readValue() {}
+  paginationCallBack(event) {
+    this.page = event;
+    this.searchService.searchTerm$.subscribe((term) => {
+      console.log(event, term);
+      this.articles$ = this.articleService.getArticleByKeyWord(term, event);
+    });
   }
 
   ngOnDestroy() {

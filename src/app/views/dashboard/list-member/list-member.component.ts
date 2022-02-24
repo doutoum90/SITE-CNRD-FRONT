@@ -96,7 +96,7 @@ export class ListMemberComponent implements OnInit {
         }, 2000);
       });
   }
-  pageinationCallBack(event) {
+  paginationCallBack(event) {
     console.log(event);
   }
 }

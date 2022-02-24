@@ -5,6 +5,7 @@ import {
   Categories,
   Commentaire,
   Membre,
+  Pagination,
   Users,
 } from "./model/article.model";
 import { v4 as uuidv4 } from "uuid";
@@ -44,28 +45,53 @@ export class ArticlesService {
   }
 
   //   articles
-  getArchivedArticle() {
+  getArchivedArticle(pagination: Pagination) {
     return this.http.get<Article[]>(
-      `${environment.apiURL}/posts?crit=archived`
+      `${environment.apiURL}/posts?crit=archived`,
+      {
+        headers: {
+          pagination: JSON.stringify(pagination),
+        },
+      }
     );
   }
 
-  getArticles() {
+  getArticles(pagination: Pagination) {
     return this.http.get<Article[]>(
-      `${environment.apiURL}/posts?crit=nonArchived`
+      `${environment.apiURL}/posts?crit=nonArchived`,
+      {
+        headers: {
+          pagination: JSON.stringify(pagination),
+        },
+      }
     );
   }
-  getArticleByKeyWord(term: string) {
-    return this.http.get<Article[]>(`${environment.apiURL}/posts/search?term=${term}`);
+  getArticleByKeyWord(term: string, pagination: Pagination) {
+    return this.http.get<Article[]>(
+      `${environment.apiURL}/posts/search?term=${term}`,
+      {
+        headers: {
+          pagination: JSON.stringify(pagination),
+        },
+      }
+    );
   }
 
-  getAllArticles() {
-    return this.http.get<Article[]>(`${environment.apiURL}/posts`);
+  getAllArticles(pagination: Pagination) {
+    return this.http.get<Article[]>(`${environment.apiURL}/posts`, {
+      headers: {
+        pagination: JSON.stringify(pagination),
+      },
+    });
   }
 
-  getArticleAlaUne() {
+  getArticleAlaUne(pagination: Pagination) {
     return this.http
-      .get<Article[]>(`${environment.apiURL}/posts?crit=une`)
+      .get<Article[]>(`${environment.apiURL}/posts?crit=une`, {
+        headers: {
+          pagination: JSON.stringify(pagination),
+        },
+      })
       .pipe(map((arts) => arts[0]));
   }
 

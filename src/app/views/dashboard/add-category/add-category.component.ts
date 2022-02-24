@@ -50,7 +50,6 @@ export class AddCategoryComponent implements OnInit {
       );
       this.currentUser = this.jwtAuth.getUser();
       this.category$.subscribe((cat) => {
-        console.log(cat);
         this.addEditCategoryFormGroup.patchValue({
           title: cat.title,
           _id: cat._id,

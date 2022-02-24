@@ -87,7 +87,6 @@ export class AddArticleComponent implements OnInit {
       dateModification: new Date(),
       ...this.addEditPostFormGroup.value,
     };
-    console.log(posts);
     this.articleService.addEditArticle(posts, edition).subscribe((re) => {
       this.egretLoader.open(
         `Article ${re.title} ${edition ? "modifié" : "publié"} avec succés`,
