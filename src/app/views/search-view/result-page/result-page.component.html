@@ -1,5 +1,7 @@
 <div class="m-333">
-    <h6 class="mt-0">Search result for "{{ searchService.searchTerm$ | async }}"</h6>
+  <h6 class="mt-0">
+    Recherche du mot clé: "{{ searchService.searchTerm$ | async }}"
+  </h6>
 </div>
 
 <div class="mat-box-shadow margin-333">
@@ -9,58 +11,43 @@
     [headerHeight]="50"
     [footerHeight]="50"
     [rowHeight]="50"
-    [limit]="8"
-    [rows]="countries$ | async"
+    [limit]="5"
+    [rows]="articles$ | async"
     [scrollbarH]="true"
+    (page)="pageinationCallBack($event)"
+    (click)="readValue()"
+    style="cursor: pointer"
   >
     <ngx-datatable-column name="flag" [maxWidth]="160">
-      <ng-template ngx-datatable-header-template>
-        Flag
-      </ng-template>
+      <ng-template ngx-datatable-header-template> Titre </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <img
-          height="32px"
-          width="auto"
-          style="border-radius: 4px"
-          [src]="value"
-          alt=""
-        />
+        {{ row?.title }}
       </ng-template>
     </ngx-datatable-column>
 
     <ngx-datatable-column name="name" [maxWidth]="250">
-      <ng-template ngx-datatable-header-template>
-        Name
-      </ng-template>
+      <ng-template ngx-datatable-header-template> Auteur </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ value }}
+        {{ row?.auteur?.nom }}
+        {{ row?.auteur?.prenom }}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="region" [maxWidth]="250">
-      <ng-template ngx-datatable-header-template>
-        Region
-      </ng-template>
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ value }}
+    <ngx-datatable-column name="Date de publication" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.datePublication | date: "dd/MM/yyyy" }}
       </ng-template>
     </ngx-datatable-column>
-
-    <ngx-datatable-column name="capital" [maxWidth]="250">
-      <ng-template ngx-datatable-header-template>
-        Capital
-      </ng-template>
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ value }}
+    <ngx-datatable-column name="Date de modification" [flexGrow]="1">
+      <ng-template let-row="row" ngx-datatable-cell-template>
+        {{ row?.dateModification | date: "dd/MM/yyyy" }}
       </ng-template>
     </ngx-datatable-column>
 
     <ngx-datatable-column name="population" [maxWidth]="250">
-      <ng-template ngx-datatable-header-template>
-        Population
-      </ng-template>
+      <ng-template ngx-datatable-header-template> Contenu </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ value }}
+        {{ row?.content }}
       </ng-template>
     </ngx-datatable-column>
   </ngx-datatable>

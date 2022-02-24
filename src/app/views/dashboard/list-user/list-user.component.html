@@ -1,14 +1,29 @@
 <div class="m-333">
-  <button [routerLink]="['/dashboard/users/add']" routerLinkActive="router-link-active" mat-raised-button
-    color="primary">
+  <button
+    [routerLink]="['/dashboard/users/add']"
+    routerLinkActive="router-link-active"
+    mat-raised-button
+    color="primary"
+  >
     {{ "ADD USER" | translate }}
   </button>
 </div>
-<mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+<mat-card
+  class="p-0"
+  [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
+>
   <mat-card-content class="p-0">
-
-    <ngx-datatable class="material ml-0 mr-0" [rows]="users$ | async" [columnMode]="'force'" [headerHeight]="50"
-      [footerHeight]="50" [scrollbarH]="true" [limit]="10" [rowHeight]="50">
+    <ngx-datatable
+      class="material ml-0 mr-0"
+      [rows]="users$ | async"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [scrollbarH]="true"
+      [limit]="10"
+      [rowHeight]="50"
+      (page)="pageinationCallBack($event)"
+    >
       <ngx-datatable-column name="Nom et prenom" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{ row?.nom }} {{ row?.prenom }}
@@ -44,12 +59,15 @@
 
       <ngx-datatable-column name="Active" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <mat-slide-toggle class="example-margin" [checked]="row.isActive" (toggleChange)="activerDesactiver(row)">
+          <mat-slide-toggle
+            class="example-margin"
+            [checked]="row.isActive"
+            (toggleChange)="activerDesactiver(row)"
+          >
             {{ row.isActive ? "Active" : "Inactive" }}
           </mat-slide-toggle>
         </ng-template>
       </ngx-datatable-column>
-
 
       <ngx-datatable-column name="genre" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
@@ -68,18 +86,31 @@
         </ng-template>
       </ngx-datatable-column>
 
-
       <ngx-datatable-column name="Actions" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          <button mat-icon-button mat-sm-button color="primary" class="mr-16" (click)="detail(row)">
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="primary"
+            class="mr-16"
+            (click)="detail(row)"
+          >
             <mat-icon>edit</mat-icon>
           </button>
-          <button mat-icon-button mat-sm-button color="warn" (click)="deleteItem(row)">
+          <button
+            mat-icon-button
+            mat-sm-button
+            color="warn"
+            (click)="deleteItem(row)"
+          >
             <mat-icon>delete</mat-icon>
           </button>
         </ng-template>
       </ngx-datatable-column>
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+      ></mat-paginator>
     </ngx-datatable>
   </mat-card-content>
 </mat-card>

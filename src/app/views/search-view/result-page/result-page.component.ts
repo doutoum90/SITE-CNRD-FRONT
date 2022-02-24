@@ -1,26 +1,35 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService } from "app/shared/search/search.service";
+import { ArticlesService } from "app/views/articles/articles.service";
 import { Observable, Subscription } from "rxjs";
 import { CountryService } from "../country.service";
 
 @Component({
   selector: "app-result-page",
   templateUrl: "./result-page.component.html",
-  styleUrls: ["./result-page.component.scss"]
+  styleUrls: ["./result-page.component.scss"],
 })
 export class ResultPageComponent implements OnInit, OnDestroy {
-  countries$: Observable<any[]>;
+  articles$: Observable<any[]>;
   searchTermSub: Subscription;
 
   constructor(
     public searchService: SearchService,
-    public countryService: CountryService
+    public articleService: ArticlesService
   ) {}
 
   ngOnInit() {
-    this.searchTermSub = this.searchService.searchTerm$.subscribe(term => {
-      this.countries$ = this.countryService.getCountries(term);
+    this.searchTermSub = this.searchService.searchTerm$.subscribe((term) => {
+      console.log(term);
+      this.articles$ = this.articleService.getArticleByKeyWord(term);
+      this.articles$.subscribe(console.log);
     });
+  }
+  readValue() {
+    console.log("erjhehrjer");
+  }
+  pageinationCallBack(event) {
+    console.log(event);
   }
 
   ngOnDestroy() {
@@ -28,5 +37,4 @@ export class ResultPageComponent implements OnInit, OnDestroy {
       this.searchTermSub.unsubscribe();
     }
   }
-  
 }

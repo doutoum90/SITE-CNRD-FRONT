@@ -44,6 +44,11 @@
 
   <span fxFlex></span>
 
+  <egret-search-input-over
+    placeholder="Un super titre d'article"
+    resultPage="/search"
+  >
+  </egret-search-input-over>
   <button mat-button [routerLink]="['/about']">
     <mat-icon>settings</mat-icon>
     <span>&nbsp;A propos</span>
@@ -68,7 +73,7 @@
   </button>
 
   <!-- Language Switcher -->
-  <button mat-button [matMenuTriggerFor]="menu">
+  <!-- <button mat-button [matMenuTriggerFor]="menu">
     <span class="flag-icon {{currentLang.flag}} mr-8"></span>
     <span>{{currentLang.name}}</span>
   </button>
@@ -81,5 +86,5 @@
       <span class="flag-icon mr-8 {{lang.flag}}"></span>
       <span>{{lang.name}}</span>
     </button>
-  </mat-menu>
+  </mat-menu> -->
 </mat-toolbar>

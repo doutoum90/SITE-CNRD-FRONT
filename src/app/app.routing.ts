@@ -48,6 +48,13 @@ export const rootRouterConfig: Routes = [
           ),
         data: { url: "/", title: "Articles", breadcrumb: "Articles" },
       },
+      {
+        path: "search",
+        loadChildren: () =>
+          import("./views/search-view/search-view.module").then(
+            (m) => m.SearchViewModule
+          ),
+      },
     ],
   },
   {
@@ -70,13 +77,6 @@ export const rootRouterConfig: Routes = [
         loadChildren: () =>
           import("./views/profile/profile.module").then((m) => m.ProfileModule),
         data: { title: "Profile", breadcrumb: "PROFILE" },
-      },
-      {
-        path: "search",
-        loadChildren: () =>
-          import("./views/search-view/search-view.module").then(
-            (m) => m.SearchViewModule
-          ),
       },
     ],
   },

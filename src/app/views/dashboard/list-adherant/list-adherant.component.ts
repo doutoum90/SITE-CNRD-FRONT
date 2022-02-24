@@ -53,4 +53,7 @@ export class ListAdherantComponent implements OnInit {
         }
       });
   }
+  pageinationCallBack(event) {
+    console.log(event);
+  }
 }

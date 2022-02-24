@@ -55,6 +55,9 @@ export class ArticlesService {
       `${environment.apiURL}/posts?crit=nonArchived`
     );
   }
+  getArticleByKeyWord(term: string) {
+    return this.http.get<Article[]>(`${environment.apiURL}/posts/search?term=${term}`);
+  }
 
   getAllArticles() {
     return this.http.get<Article[]>(`${environment.apiURL}/posts`);

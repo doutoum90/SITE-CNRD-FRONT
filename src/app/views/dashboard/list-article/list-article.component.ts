@@ -83,4 +83,8 @@ export class ListArticleComponent implements OnInit {
         });
     }
   }
+
+  pageinationCallBack(event) {
+    console.log(event);
+  }
 }

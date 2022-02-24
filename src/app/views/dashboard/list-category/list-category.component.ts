@@ -68,4 +68,7 @@ export class ListCategoryComponent implements OnInit {
         }, 2000);
       });
   }
+  pageinationCallBack(event) {
+    console.log(event);
+  }
 }
