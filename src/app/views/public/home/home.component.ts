@@ -33,7 +33,6 @@ export class HomeComponent implements OnInit {
     );
     this.articles$ = this.articleService.getArticles(this.page);
     this.articleAlaUne$ = this.articleService.getArticleAlaUne(this.page);
-    this.articleAlaUne$.subscribe(console.log);
   }
 
   showArticle(article: Article) {
