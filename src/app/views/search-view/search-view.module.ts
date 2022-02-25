@@ -4,7 +4,6 @@ import { CommonModule } from "@angular/common";
 import { SearchViewRoutingModule } from "./search-view-routing.module";
 import { ResultPageComponent } from "./result-page/result-page.component";
 import { MatCardModule } from "@angular/material/card";
-import { SearchModule } from "app/shared/search/search.module";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { MatPaginatorModule } from "@angular/material/paginator";
 

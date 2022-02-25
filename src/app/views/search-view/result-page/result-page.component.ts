@@ -5,6 +5,7 @@ import {
   ArticlePagine,
   Pagination,
 } from "app/views/articles/model/article.model";
+import { Router } from "@angular/router";
 import { Observable, Subscription } from "rxjs";
 
 @Component({
@@ -18,17 +19,22 @@ export class ResultPageComponent implements OnInit, OnDestroy {
   page: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
 
   constructor(
-    public searchService: SearchService,
-    public articleService: ArticlesService
+    public readonly searchService: SearchService,
+    public readonly articleService: ArticlesService,
+    private readonly router: Router
   ) {}
 
   ngOnInit() {
     this.searchTermSub = this.searchService.searchTerm$.subscribe((term) => {
       this.articles$ = this.articleService.getArticleByKeyWord(term, this.page);
-      this.articles$.subscribe(console.log);
     });
   }
-  readValue() {}
+  readValue(event) {
+    if (event.type == "click") {
+      this.router.navigate([`articles/${event.row?._id}`]);
+    }
+  }
+
   paginationCallBack(event) {
     this.page = event;
     this.searchService.searchTerm$.subscribe((term) => {

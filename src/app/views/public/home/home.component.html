@@ -1,9 +1,6 @@
 <div class="">
   <div fxLayout="row wrap">
     <div fxFlex="100" fxFlex.gt-md="75" fxFlex.md="75">
-      <!-- <p>
-        Article à la une
-      </p> -->
       <mat-card
         *ngIf="articleAlaUne$ | async as articleAlaUne"
         class="p-24"
@@ -118,35 +115,17 @@
           *ngFor="let r of (archivedArticle$ | async)?.data"
           (click)="showArticle(r)"
         >
-          <div
-            class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center"
-          >
-            <mat-icon>{{ r.icon }}</mat-icon>
-          </div>
-          <div class="d-flex flex-column justify-content-center flex-grow-1">
-            <h6 class="mb-4">{{ r.title }}</h6>
-            <small class="text-muted">{{
-              r.datePublication | date: "dd/MM/yyyy"
-            }}</small>
-          </div>
-          <button mat-icon-button>
-            <mat-icon class="text-muted">more_vert</mat-icon>
-          </button>
-        </div>
-        <div class="my-24"></div>
-        <div class="mat-heading-label">Upcoming Challenges</div>
-        <div
-          class="d-flex mb-16"
-          style="cursor: pointer"
-          *ngFor="let r of (archivedArticle$ | async)?.data"
-          [class]="r.id"
-          (click)="showArticle(r)"
-        >
-          <div
-            class="w-40 h-40 mr-16 rounded-circle mat-bg-chip d-flex align-items-center justify-content-center"
-          >
-            <mat-icon>{{ r.icon }}</mat-icon>
-          </div>
+          <mat-card-header>
+            <div
+              mat-card-avatar
+              [ngStyle]="{
+                  'background-image': r?.auteurs?.[0]?.photo,
+                  'background-size': 'cover'
+                }"
+            >
+              <img mat-card-avatar [src]="r?.auteurs?.[0]?.photo" />
+            </div>
+          </mat-card-header>
           <div class="d-flex flex-column justify-content-center flex-grow-1">
             <h6 class="mb-4">{{ r.title }}</h6>
             <small class="text-muted">{{

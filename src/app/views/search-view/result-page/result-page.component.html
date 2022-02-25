@@ -15,7 +15,7 @@
     [rows]="(articles$ | async)?.data"
     [scrollbarH]="true"
     style="cursor: pointer"
-    
+    (activate)="readValue($event)"
   >
     <ngx-datatable-column name="flag" [maxWidth]="160">
       <ng-template ngx-datatable-header-template> Titre </ng-template>
@@ -27,8 +27,8 @@
     <ngx-datatable-column name="name" [maxWidth]="250">
       <ng-template ngx-datatable-header-template> Auteur </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ row?.auteur?.nom }}
-        {{ row?.auteur?.prenom }}
+        {{ row?.auteurs?.[0]?.nom }}
+        {{ row?.auteurs?.[0]?.prenom }}
       </ng-template>
     </ngx-datatable-column>
 
@@ -46,7 +46,7 @@
     <ngx-datatable-column name="Contenu" [maxWidth]="250">
       <ng-template ngx-datatable-header-template> Contenu </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <p [innerHtml]="row?.content | slice: 0:20"></p>
+        <p [innerHtml]="row?.content | slice: 0:100"></p>
       </ng-template>
     </ngx-datatable-column>
     <mat-paginator

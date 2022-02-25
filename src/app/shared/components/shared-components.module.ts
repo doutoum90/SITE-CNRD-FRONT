@@ -36,7 +36,6 @@ import {
 } from "./egret-sidebar/egret-sidebar.component";
 import { BottomSheetShareComponent } from "./bottom-sheet-share/bottom-sheet-share.component";
 import { EgretExampleViewerTemplateComponent } from "./example-viewer-template/example-viewer-template.component";
-import { EgretNotifications2Component } from "./egret-notifications2/egret-notifications2.component";
 import { FrontLayoutComponent } from "./layouts/front-layout/front-layout.component";
 import { SidenavFrontComponent } from "./sidenav-front/sidenav-front.component";
 import { HeaderSideFrontComponent } from "./header-side-front/header-side-front.component";
@@ -64,7 +63,6 @@ const components = [
   BreadcrumbComponent,
   AppComfirmComponent,
   AppLoaderComponent,
-  EgretNotifications2Component,
   ButtonLoadingComponent,
   EgretSidebarComponent,
   FooterComponent,

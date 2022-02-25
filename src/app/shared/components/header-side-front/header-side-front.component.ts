@@ -1,17 +1,13 @@
 import {
   Component,
   OnInit,
-  EventEmitter,
   Input,
-  ViewChildren,
-  Output,
   Renderer2,
 } from "@angular/core";
 import { ThemeService } from "../../services/theme.service";
 import { LayoutService } from "../../services/layout.service";
 import { TranslateService } from "@ngx-translate/core";
 import { JwtAuthService } from "../../services/auth/jwt-auth.service";
-import { EgretNotifications2Component } from "../egret-notifications2/egret-notifications2.component";
 import { Observable } from "rxjs";
 import { Categories } from "app/views/articles/model/article.model";
 import { ArticlesService } from "app/views/articles/articles.service";
@@ -23,7 +19,6 @@ import { Router } from "@angular/router";
 })
 export class HeaderSideFrontComponent implements OnInit {
   @Input() notificPanel;
-  @ViewChildren(EgretNotifications2Component) noti;
   public availableLangs = [
     {
       name: "FR",

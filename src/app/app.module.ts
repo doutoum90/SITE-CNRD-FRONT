@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from "@angular/core";
+import { NgModule, ErrorHandler, LOCALE_ID } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -17,6 +17,10 @@ import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { ErrorHandlerService } from "./shared/services/error-handler.service";
 import { TokenInterceptor } from "./shared/interceptors/token.interceptor";
+import localeFr from "@angular/common/locales/fr";
+import { registerLocaleData } from "@angular/common";
+
+registerLocaleData(localeFr);
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -47,6 +51,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   ],
   declarations: [AppComponent],
   providers: [
+    { provide: LOCALE_ID, useValue: "fr" },
     { provide: ErrorHandler, useClass: ErrorHandlerService },
     {
       provide: PERFECT_SCROLLBAR_CONFIG,
