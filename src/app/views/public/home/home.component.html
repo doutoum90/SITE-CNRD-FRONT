@@ -11,7 +11,27 @@
       >
         <div fxLayout="row wrap" (click)="showArticle(articleAlaUne)">
           <div fxFlex="100">
-            <mat-card-title>{{ articleAlaUne?.title }}</mat-card-title>
+            <mat-card-title>{{ articleAlaUne.title }}</mat-card-title>
+            <mat-card-header>
+              <div
+                mat-card-avatar
+                [ngStyle]="{
+                  'background-image': articleAlaUne?.auteurs?.[0]?.photo,
+                  'background-size': 'cover'
+                }"
+              >
+                <img
+                  mat-card-avatar
+                  [src]="articleAlaUne?.auteurs?.[0]?.photo"
+                />
+              </div>
+              <mat-card-subtitle>
+                {{ articleAlaUne?.auteurs?.[0]?.nom }}
+                {{ articleAlaUne?.auteurs?.[0]?.prenom
+
+                }}
+              </mat-card-subtitle>
+            </mat-card-header>
             <p [innerHtml]="articleAlaUne?.content | slice: 0:250"></p>
           </div>
         </div>
@@ -32,6 +52,24 @@
         >
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
+
+            <mat-card-header>
+              <div
+                mat-card-avatar
+                [ngStyle]="{
+                  'background-image': article?.auteurs?.[0]?.photo,
+                  'background-size': 'cover'
+                }"
+              >
+                <img mat-card-avatar [src]="article?.auteurs?.[0]?.photo" />
+              </div>
+              <mat-card-subtitle>
+                {{ article?.auteurs?.[0]?.nom }}
+                {{ article?.auteurs?.[0]?.prenom
+
+                }}
+              </mat-card-subtitle>
+            </mat-card-header>
             <mat-card-content>
               <p [innerHtml]="article.content | slice: 0:250"></p>
             </mat-card-content>

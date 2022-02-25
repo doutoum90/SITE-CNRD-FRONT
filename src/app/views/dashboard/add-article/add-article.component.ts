@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
@@ -29,7 +28,9 @@ export class AddArticleComponent implements OnInit {
   categoryFormControl = new FormControl();
   article$: Observable<Article>;
   categories$: Observable<Categories[]>;
+  categories: Categories[];
   currentUser: Users;
+  nouvelleDate = new Date();
 
   constructor(
     private readonly router: Router,
@@ -43,6 +44,9 @@ export class AddArticleComponent implements OnInit {
     this.createForm();
     this.currentUser = this.jwtAuth.getUser();
     this.categories$ = this.articleService.getAllCategories();
+    this.categories$.subscribe((cats) => {
+      this.categories = cats;
+    });
     if (this._activatedRoute.snapshot.params.id) {
       this.article$ = this.articleService.getArticle(
         this._activatedRoute.snapshot.params.id
@@ -73,6 +77,10 @@ export class AddArticleComponent implements OnInit {
     });
   }
 
+  getCat(cats: Categories[]) {
+    return cats?.map((cat) => cat.libelles);
+  }
+
   submit() {
     const edition = !!this._activatedRoute.snapshot.params.id;
     let posts: Article = this.addEditPostFormGroup.value;
@@ -80,12 +88,18 @@ export class AddArticleComponent implements OnInit {
       posts = {
         datePublication: new Date(),
         ...posts,
+        categories: this.categories
+          .filter((cat) => posts.categories.includes(cat.libelles))
+          .map((cat) => cat._id),
       };
       delete posts._id;
     } else {
       posts = {
         dateModification: new Date(),
         ...posts,
+        categories: this.categories
+          .filter((cat) => posts.categories.includes(cat.libelles))
+          .map((cat) => cat._id),
       };
     }
     this.articleService.addEditArticle(posts, edition).subscribe((re) => {

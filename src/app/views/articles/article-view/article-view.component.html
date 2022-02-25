@@ -9,15 +9,17 @@
               <div
                 mat-card-avatar
                 [ngStyle]="{
-                  'background-image': article?.auteur?.photo,
+                  'background-image': article?.auteurs?.[0]?.photo,
                   'background-size': 'cover'
                 }"
               >
-                <img mat-card-avatar [src]="article?.auteur?.photo" />
+                <img mat-card-avatar [src]="article?.auteurs?.[0]?.photo" />
               </div>
               <mat-card-title></mat-card-title>
               <mat-card-subtitle>
-                Ecrit par {{ article?.auteur?.nom }} {{ article?.auteur?.prenom
+                Ecrit par {{ article?.auteurs?.[0]?.nom }}
+                {{ article?.auteurs?.[0]?.prenom
+
                 }}<br />
                 Publié le
                 {{ article.datePublication | date: "EEEE d MMMM y" }}

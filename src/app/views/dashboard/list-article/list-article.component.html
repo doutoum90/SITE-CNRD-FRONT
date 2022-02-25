@@ -22,7 +22,7 @@
       [headerHeight]="50"
       [footerHeight]="50"
       [scrollbarH]="true"
-      [limit]="5"
+      [limit]="10"
       [rowHeight]="50"
       (page)="paginationCallBack($event)"
     >
@@ -33,7 +33,7 @@
       </ngx-datatable-column>
       <ngx-datatable-column name="Author" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.auteur?.nom }} {{ row?.auteur?.prenom }}
+          {{ row?.auteurs?.[0]?.nom }} {{ row?.auteurs?.[0]?.prenom }}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Commentaires" [flexGrow]="1">
