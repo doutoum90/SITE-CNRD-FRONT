@@ -72,20 +72,21 @@ export class AddArticleComponent implements OnInit {
       auteur: new FormControl(""),
     });
   }
-  getUser(userId: string) {
-    const users$ = this.articleService.getUser(userId);
-    users$.subscribe(console.log);
-    return users$;
-  }
 
   submit() {
     const edition = !!this._activatedRoute.snapshot.params.id;
-    const posts: Article = {
-      dateModification: new Date(),
-      ...this.addEditPostFormGroup.value,
-    };
+    let posts: Article = this.addEditPostFormGroup.value;
     if (!edition) {
+      posts = {
+        datePublication: new Date(),
+        ...posts,
+      };
       delete posts._id;
+    } else {
+      posts = {
+        dateModification: new Date(),
+        ...posts,
+      };
     }
     this.articleService.addEditArticle(posts, edition).subscribe((re) => {
       this.egretLoader.open(

@@ -7,19 +7,12 @@
             <mat-horizontal-stepper [linear]="true">
               <mat-step [stepControl]="addEditPostFormGroup">
                 <form [formGroup]="addEditPostFormGroup">
-                  <ng-template matStepLabel
-                    >Saisie des details de l'article</ng-template
-                  >
+                  <ng-template matStepLabel>Saisie des details de l'article</ng-template>
                   <div fxLayout="row wrap">
                     <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
                       <div class="pb-16 mb-16">
                         <mat-form-field class="full-width">
-                          <input
-                            matInput
-                            placeholder="Un super titre d'article"
-                            formControlName="title"
-                            required
-                          />
+                          <input matInput placeholder="Un super titre d'article" formControlName="title" required />
                         </mat-form-field>
                       </div>
                     </div>
@@ -27,46 +20,31 @@
                       <div class="pb-16 mb-16">
                         <mat-form-field class="full-width">
                           <mat-label>Categories</mat-label>
-                          <mat-select
-                            [formControl]="categoryFormControl"
-                            multiple
-                          >
+                          <mat-select [formControl]="categoryFormControl" multiple>
                             <mat-select-trigger>
                               {{
-                                categoryFormControl?.value
-                                  ? categoryFormControl?.value[0]
-                                  : ""
+                              categoryFormControl?.value
+                              ? categoryFormControl?.value[0]
+                              : ""
                               }}
-                              <span
-                                *ngIf="categoryFormControl?.value?.length > 1"
-                                class="example-additional-selection"
-                              >
+                              <span *ngIf="categoryFormControl?.value?.length > 1" class="example-additional-selection">
                                 (+{{ categoryFormControl?.value.length - 1 }}
                                 {{
-                                  categoryFormControl.value?.length === 2
-                                    ? "other"
-                                    : "others"
+                                categoryFormControl.value?.length === 2
+                                ? "other"
+                                : "others"
                                 }})
                               </span>
                             </mat-select-trigger>
 
-                            <mat-optgroup
-                              *ngFor="let cat of categories$ | async"
-                              [label]="cat?.libelles"
-                            >
+                            <mat-optgroup *ngFor="let cat of categories$ | async" [label]="cat?.libelles">
                               <mat-option [value]="cat._id">
                                 {{ cat?.libelles }}
                               </mat-option>
-                              <mat-option
-                                *ngFor="let subCat of cat?.subs"
-                                [value]="subCat._id"
-                              >
+                              <mat-option *ngFor="let subCat of cat?.subs" [value]="subCat._id">
                                 {{ subCat.libelles }}
                               </mat-option>
-                              <mat-option
-                                *ngFor="let subCat of cat?.subs"
-                                [value]="subCat._id"
-                              >
+                              <mat-option *ngFor="let subCat of cat?.subs" [value]="subCat._id">
                                 {{ subCat.libelles }}
                               </mat-option>
 
@@ -86,14 +64,8 @@
                       <div class="pb-16 mb-16">
                         <mat-card class="p-0">
                           <mat-card-content class="p-0">
-                            <quill-editor
-                              name="content"
-                              formControlName="content"
-                              ngDefaultControl
-                              theme="snow"
-                              (onContentChanged)="onContentChanged()"
-                              onSelectionChanged="onSelectionChanged()"
-                            >
+                            <quill-editor name="content" formControlName="content" ngDefaultControl theme="snow"
+                              (onContentChanged)="onContentChanged()" onSelectionChanged="onSelectionChanged()">
                             </quill-editor>
                           </mat-card-content>
                         </mat-card>
@@ -116,47 +88,36 @@
                     <mat-card>
                       <mat-card-title>{{
                         addEditPostFormGroup.value?.title
-                      }}</mat-card-title>
+                        }}</mat-card-title>
                       <mat-card-header>
-                        <div
-                          mat-card-avatar
-                          [ngStyle]="{
-                            'background-image': (
-                              getUser(addEditPostFormGroup.value?.auteur)
-                              | async
-                            )?.photo,
+                        <div mat-card-avatar [ngStyle]="{
+                            'background-image':
+                             addEditPostFormGroup.value?.auteur?.photo,
                             'background-size': 'cover'
-                          }"
-                        >
-                          <img
-                            mat-card-avatar
-                            [src]="
+                          }">
+                          <img mat-card-avatar [src]="
                               (
-                                getUser(addEditPostFormGroup.value?.auteur)
-                                | async
+                                addEditPostFormGroup.value?.auteur
                               )?.photo
-                            "
-                          />
+                            " />
                         </div>
                         <mat-card-title></mat-card-title>
                         <mat-card-subtitle>
                           Ecrit par
                           {{
-                            (
-                              getUser(addEditPostFormGroup.value?.auteur)
-                              | async
-                            )?.nom
+                          (
+                          addEditPostFormGroup.value?.auteur
+                          )?.nom
                           }}
                           {{
-                            (
-                              getUser(addEditPostFormGroup.value?.auteur)
-                              | async
-                            )?.prenom
+                          (
+                          addEditPostFormGroup.value?.auteur
+                          )?.prenom
                           }}<br />
                           Publié le
                           {{
-                            addEditPostFormGroup.value?.datePublication
-                              | date: "EEEE d MMMM y"
+                          addEditPostFormGroup.value?.datePublication
+                          | date: "EEEE d MMMM y"
                           }}
                           <br />
                           Dans les categories

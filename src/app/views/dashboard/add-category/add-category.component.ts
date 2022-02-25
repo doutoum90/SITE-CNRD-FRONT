@@ -67,13 +67,22 @@ export class AddCategoryComponent implements OnInit {
 
   submit() {
     const edition = !!this._activatedRoute.snapshot.params.id;
-    const category: Categories = {
+    let category: Categories = {
       ...this.addEditCategoryFormGroup.value,
-      datePublication: new Date(),
       isArchived: false,
     };
+
     if (!edition) {
+      category = {
+        datePublication: new Date(),
+        ...category,
+      };
       delete category._id;
+    } else {
+      category = {
+        dateModification: new Date(),
+        ...category,
+      };
     }
     this.articleService.addEditCategory(category, edition).subscribe((re) => {
       this.egretLoader.open(

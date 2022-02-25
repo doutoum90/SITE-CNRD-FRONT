@@ -97,6 +97,7 @@ export class ArticlesService {
   }
 
   mettreAlaUneArticle(_id: string, isAlaUne: boolean) {
+    console.log("à la une", isAlaUne, `${environment.apiURL}/posts/${_id}`,);
     return this.http.patch<Article>(`${environment.apiURL}/posts/${_id}`, {
       isAlaUne,
       dateAlaUne: new Date(),
@@ -146,7 +147,7 @@ export class ArticlesService {
 
   addComment(comment: Commentaire, articleId: string) {
     return this.http.patch<Article>(
-      `${environment.apiURL}/posts/${articleId}`,
+      `${environment.apiURL}/posts/comments/${articleId}`,
       comment
     );
   }
