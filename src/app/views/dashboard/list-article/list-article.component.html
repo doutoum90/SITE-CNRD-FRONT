@@ -17,12 +17,12 @@
   <mat-card-content class="p-0">
     <ngx-datatable
       class="material ml-0 mr-0"
-      [rows]="articles$ | async"
+      [rows]="(articles$ | async)?.data"
       [columnMode]="'force'"
       [headerHeight]="50"
       [footerHeight]="50"
       [scrollbarH]="true"
-      [limit]="10"
+      [limit]="5"
       [rowHeight]="50"
       (page)="paginationCallBack($event)"
     >
@@ -40,6 +40,7 @@
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{ row?.commentaires?.length ? row?.commentaires?.length : 0 }} &nbsp;
           <mat-icon>comments</mat-icon>
+          {{ row?.commentaires | json }}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Date de publication" [flexGrow]="1">

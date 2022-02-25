@@ -37,11 +37,7 @@ export class AddCategoryComponent implements OnInit {
 
     this.createForm();
     this.addEditCategoryFormGroup.patchValue({
-      auteur: {
-        nom: this.currentUser.nom,
-        prenom: this.currentUser.prenom,
-        photo: this.currentUser.photo,
-      },
+      auteur: this.currentUser._id,
     });
 
     if (this._activatedRoute.snapshot.params.id) {
@@ -76,6 +72,9 @@ export class AddCategoryComponent implements OnInit {
       datePublication: new Date(),
       isArchived: false,
     };
+    if (!edition) {
+      delete category._id;
+    }
     this.articleService.addEditCategory(category, edition).subscribe((re) => {
       this.egretLoader.open(
         `Catégorie ${re.libelles} ${

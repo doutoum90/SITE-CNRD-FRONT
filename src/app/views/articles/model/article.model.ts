@@ -8,11 +8,11 @@ export interface Article {
   datePublication: Date;
   dateModification?: Date;
   dateArchivage?: Date;
-  auteur: Auteur;
+  auteur: string;
   dateAlaUne?: Date;
   icon: string;
   documents?: any[];
-  cats: string[];
+  categories: string[];
   commentaires?: Commentaire[];
 }
 
@@ -27,8 +27,8 @@ export interface Commentaire {
   content: string;
   datePublication: Date;
   dateModification?: Date;
-  auteur: string;
-  user: User;
+  nom: string;
+  mail: string;
 }
 
 export interface User {
@@ -113,4 +113,11 @@ export interface Pagination {
   pageSize: number;
   limit: number;
   offset: number;
+}
+
+export interface ArticlePagine {
+  total: number;
+  offset: number;
+  last_page: number;
+  data: Article[];
 }

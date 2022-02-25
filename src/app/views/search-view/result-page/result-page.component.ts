@@ -1,7 +1,10 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { SearchService } from "app/shared/search/search.service";
 import { ArticlesService } from "app/views/articles/articles.service";
-import { Pagination } from "app/views/articles/model/article.model";
+import {
+  ArticlePagine,
+  Pagination,
+} from "app/views/articles/model/article.model";
 import { Observable, Subscription } from "rxjs";
 
 @Component({
@@ -10,7 +13,7 @@ import { Observable, Subscription } from "rxjs";
   styleUrls: ["./result-page.component.scss"],
 })
 export class ResultPageComponent implements OnInit, OnDestroy {
-  articles$: Observable<any[]>;
+  articles$: Observable<ArticlePagine>;
   searchTermSub: Subscription;
   page: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
 
@@ -22,6 +25,7 @@ export class ResultPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.searchTermSub = this.searchService.searchTerm$.subscribe((term) => {
       this.articles$ = this.articleService.getArticleByKeyWord(term, this.page);
+      this.articles$.subscribe(console.log);
     });
   }
   readValue() {}

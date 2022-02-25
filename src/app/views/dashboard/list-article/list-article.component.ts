@@ -6,7 +6,11 @@ import { AppLoaderService } from "app/shared/services/app-loader/app-loader.serv
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../../articles/articles.service";
-import { Article, Pagination } from "../../articles/model/article.model";
+import {
+  Article,
+  ArticlePagine,
+  Pagination,
+} from "../../articles/model/article.model";
 
 @Component({
   selector: "app-list-article",
@@ -15,8 +19,8 @@ import { Article, Pagination } from "../../articles/model/article.model";
   animations: egretAnimations,
 })
 export class ListArticleComponent implements OnInit {
-  articles$: Observable<Article[]>;
-  page: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
+  articles$: Observable<ArticlePagine>;
+  page: Pagination = { count: 0, pageSize: 10, limit: 10, offset: 1 };
 
   constructor(
     private readonly router: Router,
@@ -28,6 +32,7 @@ export class ListArticleComponent implements OnInit {
 
   ngOnInit() {
     this.articles$ = this.articleService.getAllArticles(this.page);
+    this.articles$.subscribe(console.log);
   }
 
   detail(data: Article) {

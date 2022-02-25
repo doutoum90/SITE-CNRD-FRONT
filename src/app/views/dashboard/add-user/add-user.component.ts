@@ -129,6 +129,9 @@ export class AddUserComponent implements OnInit {
       roles: "SA",
       dateCreation: new Date(),
     };
+    if (!this.edition) {
+      delete user._id;
+    }
     this.articleService.addEditUser(user, this.edition).subscribe((re) => {
       this.egretLoader.open(
         `Utilisateur ${re.nom} ${re.prenom} ${

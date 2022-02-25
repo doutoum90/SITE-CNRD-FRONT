@@ -5,7 +5,43 @@
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <mat-card-title>{{ article.title }}</mat-card-title>
-            <p [innerHtml]="article.content"></p>
+            <mat-card-header>
+              <div
+                mat-card-avatar
+                [ngStyle]="{
+                  'background-image': article?.auteur?.photo,
+                  'background-size': 'cover'
+                }"
+              >
+                <img mat-card-avatar [src]="article?.auteur?.photo" />
+              </div>
+              <mat-card-title></mat-card-title>
+              <mat-card-subtitle>
+                Ecrit par {{ article?.auteur?.nom }} {{ article?.auteur?.prenom
+                }}<br />
+                Publié le
+                {{ article.datePublication | date: "EEEE d MMMM y" }}
+                <br />
+                Dans les categories {{ showCat(article?.categories) }}
+              </mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <p [innerHtml]="article.content"></p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button>
+                <span
+                  >{{
+                    article?.commentaires?.length
+                      ? article?.commentaires?.length
+                      : 0
+                  }}
+                  &nbsp; <mat-icon>comments</mat-icon></span
+                >
+              </button>
+              <button mat-button><mat-icon>share</mat-icon></button>
+            </mat-card-actions>
 
             <form
               [formGroup]="commentForm"
@@ -82,7 +118,7 @@
 
               <div>
                 <button mat-raised-button color="primary">
-                  {{ "NEXT" | translate }}
+                  {{ "COMMENT" | translate }}
                 </button>
               </div>
             </form>
@@ -96,22 +132,17 @@
                   class="media"
                   *ngFor="let commentaire of article?.commentaires"
                 >
-                  <a href="#" class="pull-left">
-                    <img
-                      [src]="commentaire?.user?.image"
-                      alt=""
-                      class="img-circle"
-                    />
-                  </a>
                   <div class="media-body">
                     <span class="text-muted pull-right">
                       <small class="text-muted">{{
                         commentaire?.datePublication | date: "dd/MM/yyyy"
                       }}</small>
                     </span>
-                    <strong class="text-success">{{
-                      commentaire?.user.userName | json
-                    }}</strong>
+                    <strong class="text-success">
+                      {{ commentaire.nom }}
+                    </strong>
+                    <br />
+                    <strong class="text-success">{{ commentaire.mail }}</strong>
                     <p [innerHtml]="commentaire?.content"></p>
                   </div>
                 </mat-list-item>

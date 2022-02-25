@@ -12,16 +12,15 @@
     [footerHeight]="50"
     [rowHeight]="50"
     [limit]="5"
-    [rows]="articles$ | async"
+    [rows]="(articles$ | async)?.data"
     [scrollbarH]="true"
-    (page)="paginationCallBack($event)"
-    (click)="readValue()"
     style="cursor: pointer"
+    
   >
     <ngx-datatable-column name="flag" [maxWidth]="160">
       <ng-template ngx-datatable-header-template> Titre </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ row?.title }}
+        {{ row?.title }} {{ (articles$ | async)?.limit }} {{ page.limit }}
       </ng-template>
     </ngx-datatable-column>
 
@@ -44,11 +43,15 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="population" [maxWidth]="250">
+    <ngx-datatable-column name="Contenu" [maxWidth]="250">
       <ng-template ngx-datatable-header-template> Contenu </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ row?.content }}
+        <p [innerHtml]="row?.content | slice: 0:20"></p>
       </ng-template>
     </ngx-datatable-column>
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 20]"
+      showFirstLastButtons
+    ></mat-paginator>
   </ngx-datatable>
 </div>

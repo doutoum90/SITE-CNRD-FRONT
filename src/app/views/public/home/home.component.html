@@ -21,21 +21,52 @@
         fxLayout="row wrap"
         *ngIf="
           (articles$ | async) &&
-          (articles$ | async)?.length > 0 &&
-          (articles$ | async) as articles
+          (articles$ | async)?.data?.length > 0 &&
+          (articles$ | async)?.data as articles
         "
       >
         <div
           fxFlex="33.33"
           style="cursor: pointer"
-          *ngFor="let article of articles$ | async; let i = index"
+          *ngFor="let article of (articles$ | async)?.data; let i = index"
         >
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
-            <p [innerHtml]="article.content | slice: 0:250"></p>
+            <mat-card-content>
+              <p [innerHtml]="article.content | slice: 0:250"></p>
+            </mat-card-content>
+            <mat-card-actions>
+              <span
+                >{{
+                  row?.commentaires?.length ? row?.commentaires?.length : 0
+                }}
+                &nbsp; <mat-icon>comments</mat-icon></span
+              >
+              <button mat-button><mat-icon>share</mat-icon></button>
+            </mat-card-actions>
           </mat-card>
         </div>
       </div>
+
+      <nav *ngIf="false" aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              <span class="sr-only">Previous</span>
+            </a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+              <span class="sr-only">Next</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
@@ -44,7 +75,7 @@
         <div
           class="d-flex mb-16"
           style="cursor: pointer"
-          *ngFor="let r of archivedArticle$ | async"
+          *ngFor="let r of (archivedArticle$ | async)?.data"
           (click)="showArticle(r)"
         >
           <div
@@ -67,7 +98,7 @@
         <div
           class="d-flex mb-16"
           style="cursor: pointer"
-          *ngFor="let r of archivedArticle$ | async"
+          *ngFor="let r of (archivedArticle$ | async)?.data"
           [class]="r.id"
           (click)="showArticle(r)"
         >

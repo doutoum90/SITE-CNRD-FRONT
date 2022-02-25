@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import {
   Adherant,
   Article,
+  ArticlePagine,
   Categories,
   Commentaire,
   Membre,
@@ -46,7 +47,7 @@ export class ArticlesService {
 
   //   articles
   getArchivedArticle(pagination: Pagination) {
-    return this.http.get<Article[]>(
+    return this.http.get<ArticlePagine>(
       `${environment.apiURL}/posts?crit=archived`,
       {
         headers: {
@@ -57,7 +58,7 @@ export class ArticlesService {
   }
 
   getArticles(pagination: Pagination) {
-    return this.http.get<Article[]>(
+    return this.http.get<ArticlePagine>(
       `${environment.apiURL}/posts?crit=nonArchived`,
       {
         headers: {
@@ -67,7 +68,7 @@ export class ArticlesService {
     );
   }
   getArticleByKeyWord(term: string, pagination: Pagination) {
-    return this.http.get<Article[]>(
+    return this.http.get<ArticlePagine>(
       `${environment.apiURL}/posts/search?term=${term}`,
       {
         headers: {
@@ -78,7 +79,7 @@ export class ArticlesService {
   }
 
   getAllArticles(pagination: Pagination) {
-    return this.http.get<Article[]>(`${environment.apiURL}/posts`, {
+    return this.http.get<ArticlePagine>(`${environment.apiURL}/posts`, {
       headers: {
         pagination: JSON.stringify(pagination),
       },
@@ -87,12 +88,12 @@ export class ArticlesService {
 
   getArticleAlaUne(pagination: Pagination) {
     return this.http
-      .get<Article[]>(`${environment.apiURL}/posts?crit=une`, {
+      .get<ArticlePagine>(`${environment.apiURL}/posts?crit=une`, {
         headers: {
           pagination: JSON.stringify(pagination),
         },
       })
-      .pipe(map((arts) => arts[0]));
+      .pipe(map((arts) => arts?.data[0]));
   }
 
   mettreAlaUneArticle(_id: string, isAlaUne: boolean) {
@@ -108,12 +109,23 @@ export class ArticlesService {
       dateArchivage: new Date(),
     });
   }
-  getArticlesByCat(catId: string) {
-    return this.http.get<Article[]>(`${environment.apiURL}/posts/`).pipe(
-      map((posts) => {
-        return posts.filter((post) => post?.cats?.includes(catId));
+  getArticlesByCat(catId: string, pagination: Pagination) {
+    return this.http
+      .get<ArticlePagine>(`${environment.apiURL}/posts/`, {
+        headers: {
+          pagination: JSON.stringify(pagination),
+        },
       })
-    );
+      .pipe(
+        map((posts) => {
+          return {
+            ...posts,
+            data: posts?.data.filter((post) =>
+              post?.categories?.includes(catId)
+            ),
+          };
+        })
+      );
   }
   getArticle(_id: string) {
     return this.http.get<Article>(`${environment.apiURL}/posts/${_id}`);
@@ -129,31 +141,13 @@ export class ArticlesService {
   }
 
   deleteArticle(_id: string) {
-    return this.http.delete<Users>(`${environment.apiURL}/posts/${_id}`);
+    return this.http.delete<Article>(`${environment.apiURL}/posts/${_id}`);
   }
 
-  addComment(
-    article: Article,
-    comment: Commentaire,
-    currentUserId: string,
-    articleId: string
-  ) {
+  addComment(comment: Commentaire, articleId: string) {
     return this.http.patch<Article>(
       `${environment.apiURL}/posts/${articleId}`,
-      {
-        commentaires: [
-          ...article.commentaires,
-          {
-            ...comment,
-            _id: uuidv4(),
-            user: {
-              _id: currentUserId,
-              userName: "@Username",
-              image: "https://bootdey.com/img/Content/user_3.jpg",
-            },
-          },
-        ],
-      }
+      comment
     );
   }
 

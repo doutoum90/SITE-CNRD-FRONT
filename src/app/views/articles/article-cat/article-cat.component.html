@@ -4,9 +4,9 @@
       <div
         fxLayout="row wrap"
         *ngIf="
-          (articles$ | async) &&
-            (articles$ | async)?.length > 0 &&
-            (articles$ | async) as articles;
+          (articles$ | async)?.data &&
+            (articles$ | async)?.data?.length > 0 &&
+            (articles$ | async)?.data as articles;
           then thenBlock;
           else notFoundBlock
         "
@@ -14,7 +14,7 @@
         <div
           fxFlex="33"
           style="cursor: pointer"
-          *ngFor="let article of articles$ | async; let i = index"
+          *ngFor="let article of (articles$ | async)?.data; let i = index"
         >
           <mat-card (click)="showArticle(article)">
             <mat-card-title>{{ article.title }}</mat-card-title>
@@ -30,7 +30,7 @@
         <div
           class="d-flex mb-16"
           style="cursor: pointer"
-          *ngFor="let r of archivedArticle$ | async"
+          *ngFor="let r of (archivedArticle$ | async)?.data"
           (click)="showArticle(r)"
         >
           <div
@@ -53,7 +53,7 @@
         <div
           class="d-flex mb-16"
           style="cursor: pointer"
-          *ngFor="let r of archivedArticle$ | async"
+          *ngFor="let r of (archivedArticle$ | async)?.data"
           [class]="r.id"
           (click)="showArticle(r)"
         >
@@ -81,7 +81,7 @@
   <div
     fxFlex="33"
     style="cursor: pointer"
-    *ngFor="let article of articles$ | async; let i = index"
+    *ngFor="let article of (articles$ | async)?.data; let i = index"
   >
     <mat-card (click)="showArticle(article)">
       <mat-card-title>{{ article.title }}</mat-card-title>

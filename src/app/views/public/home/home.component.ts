@@ -2,7 +2,11 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { TranslateService } from "@ngx-translate/core";
 import { ArticlesService } from "app/views/articles/articles.service";
-import { Article, Pagination } from "app/views/articles/model/article.model";
+import {
+  Article,
+  ArticlePagine,
+  Pagination,
+} from "app/views/articles/model/article.model";
 import { Observable } from "rxjs";
 
 @Component({
@@ -10,11 +14,11 @@ import { Observable } from "rxjs";
   templateUrl: "./home.component.html",
 })
 export class HomeComponent implements OnInit {
-  archivedArticle$: Observable<Article[]>;
-  articles$: Observable<Article[]>;
+  archivedArticle$: Observable<ArticlePagine>;
+  articles$: Observable<ArticlePagine>;
   articleAlaUne$: Observable<Article>;
 
-  page: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
+  page: Pagination = { count: 0, pageSize: 10, limit: 10, offset: 1 };
   pageArticle: Pagination = { count: 0, pageSize: 5, limit: 5, offset: 1 };
 
   constructor(
@@ -27,9 +31,9 @@ export class HomeComponent implements OnInit {
     this.archivedArticle$ = this.articleService.getArchivedArticle(
       this.pageArticle
     );
-    this.archivedArticle$.subscribe(console.log);
     this.articles$ = this.articleService.getArticles(this.page);
     this.articleAlaUne$ = this.articleService.getArticleAlaUne(this.page);
+    this.articleAlaUne$.subscribe(console.log);
   }
 
   showArticle(article: Article) {

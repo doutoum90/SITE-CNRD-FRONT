@@ -52,21 +52,13 @@ export class AddArticleComponent implements OnInit {
           _id: art._id,
           title: art.title,
           content: art.content,
-          cats: art.cats || "",
-          auteur: {
-            nom: this.currentUser.nom,
-            prenom: this.currentUser.prenom,
-            photo: this.currentUser.photo,
-          },
+          categories: art.categories || "",
+          auteur: this.currentUser._id,
         });
       });
     } else {
       this.addEditPostFormGroup.patchValue({
-        auteur: {
-          nom: this.currentUser.nom,
-          prenom: this.currentUser.prenom,
-          photo: this.currentUser.photo,
-        },
+        auteur: this.currentUser._id,
       });
     }
   }
@@ -76,9 +68,14 @@ export class AddArticleComponent implements OnInit {
       _id: new FormControl(""),
       title: new FormControl("", [Validators.required]),
       content: new FormControl("", [Validators.required]),
-      cats: this.categoryFormControl,
+      categories: this.categoryFormControl,
       auteur: new FormControl(""),
     });
+  }
+  getUser(userId: string) {
+    const users$ = this.articleService.getUser(userId);
+    users$.subscribe(console.log);
+    return users$;
   }
 
   submit() {
@@ -87,6 +84,9 @@ export class AddArticleComponent implements OnInit {
       dateModification: new Date(),
       ...this.addEditPostFormGroup.value,
     };
+    if (!edition) {
+      delete posts._id;
+    }
     this.articleService.addEditArticle(posts, edition).subscribe((re) => {
       this.egretLoader.open(
         `Article ${re.title} ${edition ? "modifié" : "publié"} avec succés`,

@@ -117,6 +117,52 @@
                       <mat-card-title>{{
                         addEditPostFormGroup.value?.title
                       }}</mat-card-title>
+                      <mat-card-header>
+                        <div
+                          mat-card-avatar
+                          [ngStyle]="{
+                            'background-image': (
+                              getUser(addEditPostFormGroup.value?.auteur)
+                              | async
+                            )?.photo,
+                            'background-size': 'cover'
+                          }"
+                        >
+                          <img
+                            mat-card-avatar
+                            [src]="
+                              (
+                                getUser(addEditPostFormGroup.value?.auteur)
+                                | async
+                              )?.photo
+                            "
+                          />
+                        </div>
+                        <mat-card-title></mat-card-title>
+                        <mat-card-subtitle>
+                          Ecrit par
+                          {{
+                            (
+                              getUser(addEditPostFormGroup.value?.auteur)
+                              | async
+                            )?.nom
+                          }}
+                          {{
+                            (
+                              getUser(addEditPostFormGroup.value?.auteur)
+                              | async
+                            )?.prenom
+                          }}<br />
+                          Publié le
+                          {{
+                            addEditPostFormGroup.value?.datePublication
+                              | date: "EEEE d MMMM y"
+                          }}
+                          <br />
+                          Dans les categories
+                          {{ addEditPostFormGroup.value?.categories }}
+                        </mat-card-subtitle>
+                      </mat-card-header>
                       <p [innerHtml]="addEditPostFormGroup.value?.content"></p>
                     </mat-card>
                   </div>
