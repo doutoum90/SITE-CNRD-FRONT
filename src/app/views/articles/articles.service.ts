@@ -204,7 +204,7 @@ export class ArticlesService {
     return this.http.get<Users>(`${environment.apiURL}/users/${_id}`);
   }
 
-  addEditUser(user: Users, edition = false) {
+  addEditUser(user: Partial<Users>, edition = false) {
     if (edition)
       return this.http.patch<Users>(
         `${environment.apiURL}/users/${user._id}`,

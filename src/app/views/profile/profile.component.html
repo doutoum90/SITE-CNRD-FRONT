@@ -5,10 +5,12 @@
         <img [src]="currentUser?.photo" alt="" />
       </div>
       <div class="profile-title text-center mb-16">
-        <div class="main-title">{{ currentUser?.nom }}</div>
-        <div class="subtitle mb-8">Big Data Expert</div>
+        <div class="main-title">
+          {{ currentUser?.nom }}{{ currentUser?.prenom }}
+        </div>
+        <div class="subtitle mb-8">{{ currentUser?.userName }}</div>
         <div class="text-muted">
-          Hi I'm Jhone, sit amet consectetur adipisicing elit. Aperiam repellendus nam perspiciatis.
+          {{ currentUser?.bio }}
         </div>
       </div>
     </mat-card>
@@ -18,21 +20,21 @@
       <mat-card-title>Contact Information</mat-card-title>
       <mat-card-content class="pt-0">
         <mat-list>
-          <mat-list-item>
-            <mat-icon class="mr-16">public</mat-icon>
-            www.mhrafi.com
-          </mat-list-item>
-          <mat-list-item>
+          <mat-list-item *ngIf="currentUser?.email">
             <mat-icon class="mr-16">email</mat-icon>
-            example@gmail.com
+            {{ currentUser?.email }}
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item *ngIf="currentUser?.phone">
             <mat-icon class="mr-16">phone</mat-icon>
-            8801822778800
+            {{ currentUser?.phone }}
+          </mat-list-item>
+          <mat-list-item *ngIf="currentUser?.userName">
+            <mat-icon class="mr-16">perm_identity</mat-icon>
+            {{ currentUser?.userName }}
           </mat-list-item>
           <mat-list-item>
-            <mat-icon class="mr-16">add_location</mat-icon> SUST, Sylhet,
-            BD
+            <mat-icon class="mr-16">location_on</mat-icon>
+            {{ currentUser.adresse || "Renseigner votre adresse ici" }}
           </mat-list-item>
         </mat-list>
       </mat-card-content>

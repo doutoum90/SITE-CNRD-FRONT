@@ -1,146 +1,168 @@
 <mat-card class="p-0">
   <mat-tab-group>
-    <mat-tab label="Account Settings">
+    <mat-tab label="Parametres du compte">
       <mat-card-content class="mt-16">
-          <form>
-            <mat-form-field class="full-width">
-              <input
-              matInput
-              name="name"
-              placeholder="Name"
-              value="">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-                <input
-                matInput
-                name="title"
-                placeholder="Title"
-                value="">
-              </mat-form-field>
-            <mat-form-field class="full-width">
-              <input
-              matInput
-              name="email"
-              placeholder="Email"
-              value="">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input
-              matInput
-              name="phone"
-              placeholder="Phone"
-              value="">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input
-              matInput
-              name="address"
-              placeholder="Adresss"
-              value="">
-            </mat-form-field>
-            <mat-form-field class="full-width">
-              <input
-              matInput
-              name="website"
-              placeholder="Website"
-              value="">
-            </mat-form-field>
-            <button mat-raised-button color="primary">Save</button>
-          </form>
-      </mat-card-content>
-    </mat-tab>
-    <mat-tab label="Profile Picture">
-      <mat-card-content>
-        <div class="mb-16 mt-16">
-          <p>Upload a profile picture</p>
-          <input type="file" ng2FileSelect [uploader]="uploader" />
-        </div>
+        <form [formGroup]="firstTabFormGroup" (ngSubmit)="firstTabEdit()">
+          <div fxLayout="row wrap">
+            <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>Nom</mat-label>
+                  <input
+                    matInput
+                    name="nom"
+                    placeholder="Nom"
+                    formControlName="nom"
+                  />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>Prenom</mat-label>
+                  <input matInput name="prenom" formControlName="prenom" />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>E-mail</mat-label>
+                  <input matInput name="email" formControlName="email" />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>Date de naissance</mat-label>
+                  <input
+                    matInput
+                    name="dateNaissance"
+                    formControlName="dateNaissance"
+                  />
+                </mat-form-field>
+              </div>
+            </div>
+            <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+              <div class="pb-16">
+                <mat-form-field class="full-width">
+                  <mat-label>Telephone</mat-label>
+                  <input matInput name="phone" formControlName="phone" />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>Adresse</mat-label>
+                  <input matInput name="adresse" formControlName="adresse" />
+                </mat-form-field>
+                <mat-form-field class="full-width">
+                  <mat-label>Votre bio</mat-label>
+                  <input matInput name="bio" formControlName="bio" />
 
-        <div class="mb-16">
-          <div ng2FileDrop
-          [ngClass]="{'dz-file-over': hasBaseDropZoneOver}"
-          [uploader]="uploader"
-          (fileOver)="fileOverBase($event)"
-          class="fileupload-drop-zone">
-          Drop png/jpeg file here
+                  <textarea
+                    matInput
+                    placeholder="Un petit texte"
+                    formControlName="bio"
+                    name="bio"
+                    id="bio"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="1"
+                    cdkAutosizeMaxRows="5"
+                  ></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+            <div>
+              <button mat-raised-button color="primary">Modifier</button>
+            </div>
           </div>
-        </div>
-        <table class="default-table mat-box-shadow" style="width: 100%">
-          <thead>
-            <tr>
-                <th width="30%">Name</th>
-                <th>Size</th>
-                <th>Progress</th>
-                <th>Status</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody *ngIf="uploader.queue.length; else tableNoData">
-            <tr *ngFor="let item of uploader.queue">
-                <td>{{ item?.file?.name }}</td>
-                <td nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB</td>
-                <td>
-                    <div class="progress" style="margin-bottom: 0;">
-                        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }"></div>
-                        <mat-progress-bar
-                          class=""
-                          color="primary"
-                          mode="determinate"
-                          [value]="item.progress">
-                        </mat-progress-bar>
-                    </div>
-                </td>
-                <td class="">
-                    <mat-icon *ngIf="item.isSuccess">check</mat-icon>
-                    <mat-icon *ngIf="item.isCancel" color="accent">cancel</mat-icon>
-                    <mat-icon *ngIf="item.isError" color="warn">error</mat-icon>
-                </td>
-                <td nowrap>
-                    <button 
-                    mat-raised-button
-                    class="mat-primary"
-                    (click)="item.upload()"
-                    [disabled]="item.isReady || item.isUploading || item.isSuccess">Upload</button>
-                    <button 
-                    mat-raised-button
-                    class="mat-accent"
-                    (click)="item.cancel()"
-                    [disabled]="!item.isUploading">Cancel</button>
-
-                    <button 
-                    mat-raised-button
-                    class="mat-warn"
-                    (click)="item.remove()">Remove</button>
-                </td>
-            </tr>
-            </tbody>
-            <ng-template #tableNoData>
-              <p [ngStyle]="{padding: '0 1.2rem'}">Queue is empty</p>
-            </ng-template>
-        </table>
+        </form>
       </mat-card-content>
     </mat-tab>
-    <mat-tab label="Privacy Settings">
-      <mat-card-content>
-        <div class="mb-16 mt-16">
-          <mat-checkbox> Get weekly news in your email.</mat-checkbox>
+    <mat-tab label="Photo de profile">
+      <mat-card-content class="mt-16">
+        <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+          <form [formGroup]="secondTabFormGroup" (ngSubmit)="secondTabEdit()">
+            <div class="pb-16 mb-16">
+              <h2>Uploader votre photo de profile</h2>
+
+              <div class="row">
+                <div class="col">
+                  <app-profile-picture
+                    [form]="secondTabFormGroup"
+                    [photo]="secondTabFormGroup.get('photo')"
+                    [editmode]="editEnabled"
+                  ></app-profile-picture>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <button
+                    mat-icon-button
+                    mat-sm-button
+                    color="warn"
+                    (click)="clear()"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <button mat-raised-button color="primary">Modifier</button>
+            </div>
+          </form>
         </div>
-        <div class="mb-16">
-          <mat-checkbox> Get notification when someone follows you.</mat-checkbox>
-        </div>
-        <div class="mb-16">
-          <mat-checkbox> Get email when someone follows you.</mat-checkbox>
-        </div>
-        <div class="mb-16">
-            <p>Choose your admin panel color schemes.</p>
-            <mat-radio-group fxLayout="column" fxLayoutGap="4px">
-              <mat-radio-button value="indigo">Indigo</mat-radio-button>
-              <mat-radio-button value="blue">Blue</mat-radio-button>
-              <mat-radio-button value="pink">Pink</mat-radio-button>
-              <mat-radio-button value="purple">Purple</mat-radio-button>
-            </mat-radio-group>
-        </div>
-        <button mat-raised-button color="primary">Save</button>
+      </mat-card-content>
+    </mat-tab>
+    <mat-tab label="Changement de mot de passe">
+      <mat-card-content class="mt-16">
+        <form [formGroup]="thirdTabFormGroup" (ngSubmit)="thirdTabEdit()">
+          <mat-form-field class="full-width">
+            <mat-label>Votre mot de passe actuel</mat-label>
+            <input
+              matInput
+              type="password"
+              name="previousPassWord"
+              placeholder="Votre mot de passe actuel"
+              formControlName="previousPassWord"
+            />
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Votre nouveau mot de passe</mat-label>
+            <input
+              matInput
+              name="newPassword"
+              type="password"
+              placeholder="Votre nouveau mot de passe"
+              formControlName="newPassword"
+            />
+            <small
+              *ngIf="
+                thirdTabFormGroup.controls['newPassword'].hasError(
+                  'required'
+                ) && thirdTabFormGroup.controls['newPassword'].touched
+              "
+              class="form-error-msg"
+            >
+              Le mot de passe est obligatoire
+            </small>
+          </mat-form-field>
+          <mat-form-field class="full-width">
+            <mat-label>Confirmation de votre nouveau mot de passe</mat-label>
+            <input
+              matInput
+              name="newPasswordConfirm"
+              type="password"
+              placeholder="Confirmation de votre nouveau mot de passe"
+              formControlName="newPasswordConfirm"
+            />
+
+            <small
+              *ngIf="
+                thirdTabFormGroup.controls['newPasswordConfirm'].hasError(
+                  'equalTo'
+                )
+              "
+              class="form-error-msg"
+            >
+              Les deux mots de passe ne correspondent pas
+            </small>
+          </mat-form-field>
+
+          <div>
+            <button mat-raised-button color="primary">Modifier</button>
+          </div>
+        </form>
       </mat-card-content>
     </mat-tab>
   </mat-tab-group>

@@ -152,10 +152,6 @@
         <img src="assets/images/logos/logo_cnrd.png" alt="" />
       </button>
       <mat-menu #accountMenu="matMenu">
-        <button mat-menu-item [routerLink]="['/profile/overview']">
-          <mat-icon>account_box</mat-icon>
-          <span>Profile</span>
-        </button>
         <button mat-menu-item [routerLink]="['/profile/settings']">
           <mat-icon>settings</mat-icon>
           <span>Account Settings</span>
@@ -166,7 +162,7 @@
         </button>
         <button mat-menu-item (click)="jwtAuth.signout()">
           <mat-icon>exit_to_app</mat-icon>
-          <span>Sign out teyre</span>
+          <span>Sign out</span>
         </button>
       </mat-menu>
       <!-- Mobile screen menu toggle -->

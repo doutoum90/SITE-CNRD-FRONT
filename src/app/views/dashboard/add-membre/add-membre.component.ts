@@ -31,7 +31,7 @@ export class AddMembreComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.edition = !!!this._activatedRoute.snapshot.params.id;
+    this.edition = !!this._activatedRoute.snapshot.params.id;
     if (this.edition) {
       this.member$ = this.articleService.getMembreById(
         this._activatedRoute.snapshot.params.id
@@ -66,9 +66,12 @@ export class AddMembreComponent implements OnInit {
     const membre: Membre = {
       ...this.addEditMemberFormGroup.value,
     };
+    if (!this.edition) {
+      delete membre._id;
+    }
     this.articleService.addEditMembre(membre, this.edition).subscribe((re) => {
       this.egretLoader.open(
-        `Le membre ${re.nom} + ${re.prenom} ${
+        `Le membre ${re.nom} ${re.prenom} ${
           this.edition ? "modifié" : "ajouté"
         } avec succés`,
         {

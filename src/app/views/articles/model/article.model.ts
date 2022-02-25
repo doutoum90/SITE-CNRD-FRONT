@@ -65,6 +65,8 @@ export interface Users {
   dateCreation: Date;
   photo: string;
   dateModification?: Date;
+  bio?: string;
+  adresse?: string;
 }
 
 export interface Membre {
