@@ -85,6 +85,16 @@ export class ArticlesService {
       },
     });
   }
+  getArticlesconnexes(articleId: string, categoryIds: string[]) {
+    return this.http.get<Article[]>(
+      `${environment.apiURL}/posts/connexes/${articleId}`,
+      {
+        headers: {
+          categoryIds: JSON.stringify(categoryIds),
+        },
+      }
+    );
+  }
 
   getArticleAlaUne(pagination: Pagination) {
     return this.http

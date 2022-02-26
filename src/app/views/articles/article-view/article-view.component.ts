@@ -4,10 +4,10 @@ import { ActivatedRoute } from "@angular/router";
 import { Observable } from "rxjs";
 import { ArticlesService } from "../articles.service";
 import { Article, Users } from "../model/article.model";
-import { v4 as uuidv4 } from "uuid";
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
 import { take } from "rxjs/operators";
 import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-article-view",
@@ -17,14 +17,17 @@ import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 export class ArticleViewComponent implements OnInit {
   commentForm: FormGroup;
   article$: Observable<Article>;
+
+  articlesConnexes$: Observable<Article[]>;
   currentUser: Users;
 
   @ViewChild("autosize") autosize: CdkTextareaAutosize;
   constructor(
     private readonly articleService: ArticlesService,
     private readonly _activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private readonly formBuilder: FormBuilder,
     private readonly _ngZone: NgZone,
+    private readonly router: Router,
     private readonly jwtAuth: JwtAuthService
   ) {}
 
@@ -60,12 +63,24 @@ export class ArticleViewComponent implements OnInit {
     this.article$ = this.articleService.getArticle(
       this._activatedRoute.snapshot.params.id
     );
+    this.article$.subscribe((art) => {
+      this.articlesConnexes$ = this.articleService.getArticlesconnexes(
+        art._id,
+        art.categories.map((cat) => cat["_id"])
+      );
+    });
+  }
+
+  showArticle(article) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = "reload";
+    this.router.navigateByUrl(`articles/${article._id}`);
   }
 
   showCat(categories) {
     return categories.map((cat) => cat.libelles);
   }
-  
+
   onSubmitComment(article: Article) {
     if (this.commentForm.invalid) {
       return false;

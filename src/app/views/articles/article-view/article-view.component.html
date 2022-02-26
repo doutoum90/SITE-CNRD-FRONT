@@ -157,13 +157,33 @@
     <div fxFlex="100" fxFlex.gt-md="25" fxFlex.md="25">
       <mat-card>
         <div class="mat-heading-label">Articles Connexes</div>
-
-        <p class="m-12">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Est quibusdam
-          dolor, sint, labore ipsam eveniet dolorum mollitia accusamus eum earum
-          laboriosam recusandae nemo nulla reiciendis pariatur obcaecati? Vero,
-          dicta saepe.
-        </p>
+        <div
+          class="d-flex mb-16"
+          style="cursor: pointer"
+          *ngFor="let connexes of articlesConnexes$ | async"
+          (click)="showArticle(connexes)"
+        >
+          <mat-card-header>
+            <div
+              mat-card-avatar
+              [ngStyle]="{
+                  'background-image': connexes?.auteurs?.[0]?.photo,
+                  'background-size': 'cover'
+                }"
+            >
+              <img mat-card-avatar [src]="connexes?.auteurs?.[0]?.photo" />
+            </div>
+          </mat-card-header>
+          <div class="d-flex flex-column justify-content-center flex-grow-1">
+            <h6 class="mb-4">{{ connexes?.title }}</h6>
+            <small class="text-muted">{{
+              connexes?.datePublication | date: "dd/MM/yyyy"
+            }}</small>
+          </div>
+          <button mat-icon-button>
+            <mat-icon class="text-muted">more_vert</mat-icon>
+          </button>
+        </div>
       </mat-card>
     </div>
   </div>
