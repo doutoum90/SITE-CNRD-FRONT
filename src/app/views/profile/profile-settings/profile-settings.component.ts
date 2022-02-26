@@ -101,25 +101,38 @@ export class ProfileSettingsComponent implements OnInit {
     });
   }
   firstTabEdit() {
-    const user = this.firstTabFormGroup.value;
-    this.editBackend(user);
+    if (this.firstTabFormGroup.valid) {
+      const user = {
+        ...this.firstTabFormGroup.value,
+        dateModification: new Date(),
+      };
+      this.editBackend(user);
+    }
   }
 
   secondTabEdit() {
-    const user = this.secondTabFormGroup.value;
-    this.editBackend(user);
+    if (this.secondTabFormGroup.valid) {
+      const user = {
+        ...this.secondTabFormGroup.value,
+        dateModification: new Date(),
+      };
+      this.editBackend(user);
+    }
   }
 
   thirdTabEdit() {
-    const user = {
-      ...this.thirdTabFormGroup.value,
-      motDePasse: this.thirdTabFormGroup.value?.newPassword,
-      oldPassword: this.thirdTabFormGroup.value?.previousPassWord,
-    };
-    delete user.previousPassWord;
-    delete user.newPassword;
-    delete user.newPasswordConfirm;
-    this.editBackend(user);
+    if (this.thirdTabFormGroup.valid) {
+      const user = {
+        ...this.thirdTabFormGroup.value,
+        motDePasse: this.thirdTabFormGroup.value?.newPassword,
+        oldPassword: this.thirdTabFormGroup.value?.previousPassWord,
+        dateModification: new Date(),
+      };
+      delete user.previousPassWord;
+      delete user.newPassword;
+      delete user.newPasswordConfirm;
+      this.editBackend(user);
+    }
   }
 
   cleanAndLoad() {

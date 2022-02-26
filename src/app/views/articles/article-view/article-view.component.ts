@@ -34,6 +34,7 @@ export class ArticleViewComponent implements OnInit {
       .pipe(take(1))
       .subscribe(() => this.autosize.resizeToFitContent(true));
   }
+
   createForm() {
     this.currentUser = this.jwtAuth.getUser();
     this.commentForm = this.formBuilder.group({
@@ -59,12 +60,12 @@ export class ArticleViewComponent implements OnInit {
     this.article$ = this.articleService.getArticle(
       this._activatedRoute.snapshot.params.id
     );
-    this.article$.subscribe((art) => console.log(art));
   }
 
   showCat(categories) {
     return categories.map((cat) => cat.libelles);
   }
+  
   onSubmitComment(article: Article) {
     if (this.commentForm.invalid) {
       return false;

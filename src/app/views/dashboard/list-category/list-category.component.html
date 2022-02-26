@@ -26,14 +26,14 @@
       [rowHeight]="50"
       (page)="paginationCallBack($event)"
     >
-      <ngx-datatable-column name="Title" [flexGrow]="1">
+      <ngx-datatable-column name="Titre" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
           {{ row?.title }}
         </ng-template>
       </ngx-datatable-column>
-      <ngx-datatable-column name="Author" [flexGrow]="1">
+      <ngx-datatable-column name="Autheur" [flexGrow]="1">
         <ng-template let-row="row" ngx-datatable-cell-template>
-          {{ row?.author?.nom }} {{ row?.author?.prenom }}
+          {{ row?.author?.[0]?.nom }} {{ row?.author?.[0]?.prenom }}
         </ng-template>
       </ngx-datatable-column>
       <ngx-datatable-column name="Date de publication" [flexGrow]="1">

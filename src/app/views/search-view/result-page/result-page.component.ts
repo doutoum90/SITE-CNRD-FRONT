@@ -38,7 +38,7 @@ export class ResultPageComponent implements OnInit, OnDestroy {
   paginationCallBack(event) {
     this.page = event;
     this.searchService.searchTerm$.subscribe((term) => {
-      console.log(event, term);
+      // console.log(event, term);
       this.articles$ = this.articleService.getArticleByKeyWord(term, event);
     });
   }

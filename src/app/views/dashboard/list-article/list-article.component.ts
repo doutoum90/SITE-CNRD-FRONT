@@ -32,7 +32,6 @@ export class ListArticleComponent implements OnInit {
 
   ngOnInit() {
     this.articles$ = this.articleService.getAllArticles(this.page);
-    this.articles$.subscribe(console.log);
   }
 
   detail(data: Article) {
