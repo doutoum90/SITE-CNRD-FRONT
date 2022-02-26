@@ -20,6 +20,7 @@
                 Ecrit par {{ article?.auteurs?.[0]?.nom }}
                 {{ article?.auteurs?.[0]?.prenom
 
+
                 }}<br />
                 Publié le
                 {{ article.datePublication | date: "EEEE d MMMM y" }}
@@ -39,7 +40,10 @@
                       ? article?.commentaires?.length
                       : 0
                   }}
-                  &nbsp; <mat-icon>comments</mat-icon></span
+                  &nbsp;
+                  <mat-icon style="vertical-align: middle"
+                    >comments</mat-icon
+                  ></span
                 >
               </button>
               <button mat-button><mat-icon>share</mat-icon></button>

@@ -71,15 +71,16 @@
               <p [innerHtml]="article.content | slice: 0:250"></p>
             </mat-card-content>
             <mat-card-actions>
-              <span
-                >{{
-                  article?.commentaires?.length
-                    ? article?.commentaires?.length
-                    : 0
-                }}
-                &nbsp; <mat-icon>comments</mat-icon></span
+              <span>{{
+                article?.commentaires?.length
+                  ? article?.commentaires?.length
+                  : 0
+              }}</span>
+              &nbsp;
+
+              <mat-icon style="vertical-align: middle" class="mr-16"
+                >comments</mat-icon
               >
-              <button mat-button><mat-icon>share</mat-icon></button>
             </mat-card-actions>
           </mat-card>
         </div>

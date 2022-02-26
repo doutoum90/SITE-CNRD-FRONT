@@ -32,6 +32,10 @@ import { FileUploadModule } from "ng2-file-upload";
 import { NgxPaginationModule } from "ngx-pagination";
 import { TranslateModule } from "@ngx-translate/core";
 
+import { NgxDatatableModule } from "@swimlane/ngx-datatable";
+import { MatPaginatorModule } from "@angular/material/paginator";
+import { ResultPageComponent } from "./result-page/result-page.component";
+
 @NgModule({
   declarations: [
     AboutComponent,
@@ -40,6 +44,7 @@ import { TranslateModule } from "@ngx-translate/core";
     DocumentsComponent,
     HomeComponent,
     MembersComponent,
+    ResultPageComponent,
   ],
   imports: [
     CommonModule,
@@ -72,6 +77,8 @@ import { TranslateModule } from "@ngx-translate/core";
     TranslateModule,
     MatFormFieldModule,
     RouterModule.forChild(PublicRoutes),
+    NgxDatatableModule,
+    MatPaginatorModule,
   ],
 })
 export class PublicModule {}

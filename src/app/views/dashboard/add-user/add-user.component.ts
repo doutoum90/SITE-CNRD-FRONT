@@ -19,9 +19,6 @@ import { Users } from "../../articles/model/article.model";
   styleUrls: ["./add-user.component.scss"],
 })
 export class AddUserComponent implements OnInit {
-  ALL_ROLES: string[] = ["SA", "Admin", "Editor"];
-  SELECT_ROLE: string[] = ["SA"];
-
   user$: Observable<Users>;
   addEditUserFormGroup: FormGroup;
 

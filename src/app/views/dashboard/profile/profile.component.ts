@@ -1,23 +1,23 @@
+import { Component, OnInit, NgZone, ViewChild } from "@angular/core";
+import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
+import { Users } from "../../articles/model/article.model";
+
 import { CdkTextareaAutosize } from "@angular/cdk/text-field";
-import { Component, NgZone, OnInit, ViewChild } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { AppLoaderService } from "app/shared/services/app-loader/app-loader.service";
-import { JwtAuthService } from "app/shared/services/auth/jwt-auth.service";
 import { ArticlesService } from "app/views/articles/articles.service";
-import { Users } from "app/views/articles/model/article.model";
 import { FileUploader } from "ng2-file-upload";
 import { CustomValidators } from "ngx-custom-validators";
 import { take } from "rxjs/operators";
 
 @Component({
-  selector: "app-profile-settings",
-  templateUrl: "./profile-settings.component.html",
+  selector: "app-profile",
+  templateUrl: "./profile.component.html",
 })
-export class ProfileSettingsComponent implements OnInit {
+export class ProfileComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({ url: "upload_url" });
   public hasBaseDropZoneOver: boolean = false;
   @ViewChild("autosize") autosize: CdkTextareaAutosize;
-
   firstTabFormGroup: FormGroup;
   secondTabFormGroup: FormGroup;
   thirdTabFormGroup: FormGroup;

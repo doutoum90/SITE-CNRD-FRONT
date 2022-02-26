@@ -10,7 +10,7 @@
     [columnMode]="'force'"
     [headerHeight]="50"
     [footerHeight]="50"
-    [rowHeight]="50"
+    [rowHeight]="150"
     [limit]="5"
     [rows]="(articles$ | async)?.data"
     [scrollbarH]="true"
@@ -24,29 +24,16 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="name" [maxWidth]="250">
-      <ng-template ngx-datatable-header-template> Auteur </ng-template>
-      <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        {{ row?.auteurs?.[0]?.nom }}
-        {{ row?.auteurs?.[0]?.prenom }}
-      </ng-template>
-    </ngx-datatable-column>
-
-    <ngx-datatable-column name="Date de publication" [flexGrow]="1">
+    <ngx-datatable-column name="Date de publication" [maxWidth]="160">
       <ng-template let-row="row" ngx-datatable-cell-template>
         {{ row?.datePublication | date: "dd/MM/yyyy" }}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="Date de modification" [flexGrow]="1">
-      <ng-template let-row="row" ngx-datatable-cell-template>
-        {{ row?.dateModification | date: "dd/MM/yyyy" }}
-      </ng-template>
-    </ngx-datatable-column>
 
-    <ngx-datatable-column name="Contenu" [maxWidth]="250">
+    <ngx-datatable-column name="Contenu">
       <ng-template ngx-datatable-header-template> Contenu </ng-template>
       <ng-template ngx-datatable-cell-template let-value="value" let-row="row">
-        <p [innerHtml]="row?.content | slice: 0:100"></p>
+        <p [innerHtml]="row?.content | slice: 0:800"></p>
       </ng-template>
     </ngx-datatable-column>
     <mat-paginator

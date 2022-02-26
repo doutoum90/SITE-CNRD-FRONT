@@ -13,6 +13,7 @@ import { AddMembreComponent } from "./add-membre/add-membre.component";
 import { ListMemberComponent } from "./list-member/list-member.component";
 import { ListAdherantComponent } from "./list-adherant/list-adherant.component";
 import { EditAdherantComponent } from "./edit-adherant/edit-adherant.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 export const DashboardRoutes: Routes = [
   {
@@ -162,5 +163,10 @@ export const DashboardRoutes: Routes = [
       breadcrumb: "Modification adherant",
       roles: config.authRoles.sa,
     },
+  },
+  {
+    path: "profile/settings",
+    component: ProfileComponent,
+    data: { title: "Settings", breadcrumb: "SETTINGS" },
   },
 ];

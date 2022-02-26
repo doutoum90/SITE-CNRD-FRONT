@@ -1,0 +1,229 @@
+<div fxLayout="row wrap">
+  <div fxFlex="100" fxFlex.gt-md="300px" fxFlex.gt-sm="50">
+    <mat-card class="profile-sidebar mb-16 pb-0">
+      <div class="propic text-center">
+        <img [src]="currentUser?.photo" alt="" />
+      </div>
+      <div class="profile-title text-center mb-16">
+        <div class="main-title">
+          {{ currentUser?.nom }}{{ currentUser?.prenom }}
+        </div>
+        <div class="subtitle mb-8">{{ currentUser?.userName }}</div>
+        <div class="text-muted">
+          {{ currentUser?.bio }}
+        </div>
+      </div>
+    </mat-card>
+
+    <mat-card class="default">
+      <mat-card-title>Contact Information</mat-card-title>
+      <mat-card-content class="pt-0">
+        <mat-list>
+          <mat-list-item *ngIf="currentUser?.email">
+            <mat-icon class="mr-16">email</mat-icon>
+            {{ currentUser?.email }}
+          </mat-list-item>
+          <mat-list-item *ngIf="currentUser?.phone">
+            <mat-icon class="mr-16">phone</mat-icon>
+            {{ currentUser?.phone }}
+          </mat-list-item>
+          <mat-list-item *ngIf="currentUser?.userName">
+            <mat-icon class="mr-16">perm_identity</mat-icon>
+            {{ currentUser?.userName }}
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon class="mr-16">location_on</mat-icon>
+            {{ currentUser.adresse || "Renseigner votre adresse ici" }}
+          </mat-list-item>
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div fxFlex="100" fxFlex.gt-sm="50" fxFlex.gt-md="calc(100% - 300px)">
+    <mat-card class="p-0">
+      <mat-tab-group>
+        <mat-tab label="Parametres du compte">
+          <mat-card-content class="mt-16">
+            <form [formGroup]="firstTabFormGroup" (ngSubmit)="firstTabEdit()">
+              <div fxLayout="row wrap">
+                <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+                  <div class="pb-16">
+                    <mat-form-field class="full-width">
+                      <mat-label>Nom</mat-label>
+                      <input
+                        matInput
+                        name="nom"
+                        placeholder="Nom"
+                        formControlName="nom"
+                      />
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Prenom</mat-label>
+                      <input matInput name="prenom" formControlName="prenom" />
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>E-mail</mat-label>
+                      <input matInput name="email" formControlName="email" />
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <input
+                        matInput
+                        name="dateNaissance"
+                        formControlName="dateNaissance"
+                        placeholder="Date de naissance"
+                        [matDatepicker]="appDatepicker"
+                      />
+
+                      <mat-datepicker-toggle
+                        matSuffix
+                        [for]="appDatepicker"
+                      ></mat-datepicker-toggle>
+                    </mat-form-field>
+                    <mat-datepicker #appDatepicker></mat-datepicker>
+                  </div>
+                </div>
+                <div fxFlex="100" fxFlex.gt-xs="50" class="pr-16">
+                  <div class="pb-16">
+                    <mat-form-field class="full-width">
+                      <mat-label>Telephone</mat-label>
+                      <input matInput name="phone" formControlName="phone" />
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Adresse</mat-label>
+                      <input
+                        matInput
+                        name="adresse"
+                        formControlName="adresse"
+                      />
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                      <mat-label>Votre bio</mat-label>
+                      <input matInput name="bio" formControlName="bio" />
+
+                      <textarea
+                        matInput
+                        formControlName="bio"
+                        name="bio"
+                        id="bio"
+                        cdkTextareaAutosize
+                        #autosize="cdkTextareaAutosize"
+                        cdkAutosizeMinRows="1"
+                        cdkAutosizeMaxRows="5"
+                      ></textarea>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div>
+                  <button mat-raised-button color="primary">Modifier</button>
+                </div>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Photo de profile">
+          <mat-card-content class="mt-16">
+            <div fxFlex="100" fxFlex.gt-xs="100" class="pr-16">
+              <form
+                [formGroup]="secondTabFormGroup"
+                (ngSubmit)="secondTabEdit()"
+              >
+                <div class="pb-16 mb-16">
+                  <h2>Uploader votre photo de profile</h2>
+
+                  <div class="row">
+                    <div class="col">
+                      <app-profile-picture
+                        [form]="secondTabFormGroup"
+                        [photo]="secondTabFormGroup.get('photo')"
+                        [editmode]="editEnabled"
+                      ></app-profile-picture>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <button
+                        mat-icon-button
+                        mat-sm-button
+                        color="warn"
+                        (click)="clear()"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <button mat-raised-button color="primary">Modifier</button>
+                </div>
+              </form>
+            </div>
+          </mat-card-content>
+        </mat-tab>
+        <mat-tab label="Changement de mot de passe">
+          <mat-card-content class="mt-16">
+            <form [formGroup]="thirdTabFormGroup" (ngSubmit)="thirdTabEdit()">
+              <mat-form-field class="full-width">
+                <mat-label>Votre mot de passe actuel</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  name="previousPassWord"
+                  placeholder="Votre mot de passe actuel"
+                  formControlName="previousPassWord"
+                />
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <mat-label>Votre nouveau mot de passe</mat-label>
+                <input
+                  matInput
+                  name="newPassword"
+                  type="password"
+                  placeholder="Votre nouveau mot de passe"
+                  formControlName="newPassword"
+                />
+                <small
+                  *ngIf="
+                    thirdTabFormGroup.controls['newPassword'].hasError(
+                      'required'
+                    ) && thirdTabFormGroup.controls['newPassword'].touched
+                  "
+                  class="form-error-msg"
+                >
+                  Le mot de passe est obligatoire
+                </small>
+              </mat-form-field>
+              <mat-form-field class="full-width">
+                <mat-label
+                  >Confirmation de votre nouveau mot de passe</mat-label
+                >
+                <input
+                  matInput
+                  name="newPasswordConfirm"
+                  type="password"
+                  placeholder="Confirmation de votre nouveau mot de passe"
+                  formControlName="newPasswordConfirm"
+                />
+
+                <small
+                  *ngIf="
+                    thirdTabFormGroup.controls['newPasswordConfirm'].hasError(
+                      'equalTo'
+                    )
+                  "
+                  class="form-error-msg"
+                >
+                  Les deux mots de passe ne correspondent pas
+                </small>
+              </mat-form-field>
+
+              <div>
+                <button mat-raised-button color="primary">Modifier</button>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-tab>
+      </mat-tab-group>
+    </mat-card>
+  </div>
+</div>

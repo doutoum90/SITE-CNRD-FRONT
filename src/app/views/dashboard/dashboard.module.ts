@@ -46,6 +46,7 @@ import { ListAdherantComponent } from "./list-adherant/list-adherant.component";
 import { EditAdherantComponent } from "./edit-adherant/edit-adherant.component";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { SharedComponentsModule } from "app/shared/components/shared-components.module";
+import { ProfileComponent } from "./profile/profile.component";
 
 @NgModule({
   imports: [
@@ -103,6 +104,7 @@ import { SharedComponentsModule } from "app/shared/components/shared-components.
 
     ListAdherantComponent,
     EditAdherantComponent,
+    ProfileComponent,
   ],
   exports: [],
 })

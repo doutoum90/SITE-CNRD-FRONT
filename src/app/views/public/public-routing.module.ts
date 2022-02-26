@@ -7,6 +7,7 @@ import { ContactComponent } from "./contact/contact.component";
 import { DocumentsComponent } from "./documents/documents.component";
 import { HomeComponent } from "./home/home.component";
 import { MembersComponent } from "./members/members.component";
+import { ResultPageComponent } from "./result-page/result-page.component";
 
 export const PublicRoutes: Routes = [
   {
@@ -41,5 +42,9 @@ export const PublicRoutes: Routes = [
       title: "Page d'acceuil",
       breadcrumb: "Page d'acceuil",
     },
+  },
+  {
+    path: "search",
+    component: ResultPageComponent,
   },
 ];
