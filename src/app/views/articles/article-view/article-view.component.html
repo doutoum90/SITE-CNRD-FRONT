@@ -21,6 +21,12 @@
                 {{ article?.auteurs?.[0]?.prenom
 
 
+
+
+
+
+
+
                 }}<br />
                 Publié le
                 {{ article.datePublication | date: "EEEE d MMMM y" }}
@@ -130,29 +136,27 @@
             </form>
           </div>
         </div>
+
         <div fxLayout="row wrap">
           <div fxFlex="100">
             <div>
-              <mat-list>
-                <mat-list-item
-                  class="media"
-                  *ngFor="let commentaire of article?.commentaires"
-                >
-                  <div class="media-body">
+              <section>
+                <ul>
+                  <li *ngFor="let commentaire of article?.commentaires">
+                    <hr />
+                    <strong class="text-success">
+                      {{ commentaire.nom }} ({{ commentaire.mail }})
+                    </strong>
                     <span class="text-muted pull-right">
                       <small class="text-muted">{{
                         commentaire?.datePublication | date: "dd/MM/yyyy"
                       }}</small>
                     </span>
-                    <strong class="text-success">
-                      {{ commentaire.nom }}
-                    </strong>
                     <br />
-                    <strong class="text-success">{{ commentaire.mail }}</strong>
                     <p [innerHtml]="commentaire?.content"></p>
-                  </div>
-                </mat-list-item>
-              </mat-list>
+                  </li>
+                </ul>
+              </section>
             </div>
           </div>
         </div>

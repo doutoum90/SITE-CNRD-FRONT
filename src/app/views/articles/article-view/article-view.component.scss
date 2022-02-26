@@ -1,60 +1,10 @@
-.comment-wrapper .panel-body {
-  max-height: 650px;
-  overflow: auto;
+ul {
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
 }
 
-.comment-wrapper .media-list .media img {
-  width: 64px;
-  height: 64px;
-  border: 2px solid #e5e7e8;
-}
-
-.comment-wrapper .media-list .media {
-  border-bottom: 1px dashed #efefef;
-  margin-bottom: 25px;
-}
-
-.comment-box input {
-  width: 70%;
-  height: 40px;
-  padding: 0 20px;
-  margin-bottom: 15px;
-  border-radius: 5px;
-  border: 1px solid #86b0b6;
-}
-.comment-box input:focus {
-  border: 1px solid #000;
-  outline: 0;
-}
-
-.comment-box textarea {
-  width: 70%;
-  height: 100px;
-  padding: 15px 20px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  border: 1px solid #86b0b6;
-}
-.comment-box textarea:focus {
-  border: 1px solid #000;
-  outline: 0;
-}
-
-.comment-box button {
-  border: 0;
-  padding: 10px 30px;
-  background: #86b0b6;
-  font-size: 18px;
-  border-radius: 5px;
-  color: #fff;
-}
-
-.comment-box button:hover {
-  background: #718a8e;
-  
-}
-
-
-.example-card {
-  max-width: 400px;
+li {
+  display: block;
+  padding: 0;
 }
