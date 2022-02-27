@@ -68,7 +68,7 @@ export class SigninComponent implements OnInit, OnDestroy {
       (err) => {
         this.submitButton.disabled = false;
         this.progressBar.mode = "determinate";
-        this.errorMsg = err.message;
+        this.errorMsg = err?.error?.message;
       }
     );
   }
