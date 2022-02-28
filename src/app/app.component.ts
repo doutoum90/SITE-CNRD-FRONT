@@ -1,10 +1,6 @@
 import { Component, OnInit, AfterViewInit, Renderer2 } from "@angular/core";
 import { Title } from "@angular/platform-browser";
-import {
-  Router,
-  NavigationEnd,
-  ActivatedRoute
-} from "@angular/router";
+import { Router, NavigationEnd, ActivatedRoute } from "@angular/router";
 
 import { RoutePartsService } from "./shared/services/route-parts.service";
 
@@ -17,7 +13,7 @@ import { UILibIconService } from "./shared/services/ui-lib-icon.service";
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  appTitle = "CNRD";
+  appTitle = "CNRD-TCHAD";
   pageTitle = "";
 
   constructor(
